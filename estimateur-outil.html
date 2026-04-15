@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estimateur de travaux | ADORA — Économiste de la construction</title>
+<meta name="description" content="Estimez le coût de vos travaux de rénovation par lot, avec fourchettes et coefficients régionaux. Outil professionnel gratuit par ADORA.">
+<link rel="canonical" href="https://adora-economie.fr/estimateur.html">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--navy:#1B3A5C;--blue:#2E75B6;--accent:#D4740B;--light:#D6E4F0;--pale:#EBF2F9;--green:#2D8B55;--txt:#333;--muted:#6B7280;--bg:#f8f9fa;--white:#fff;--radius:10px;--shadow:0 2px 12px rgba(27,58,92,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--txt);background:var(--bg);line-height:1.6}
+.container{max-width:800px;margin:0 auto;padding:0 20px}
+
+/* Header */
+.header{background:var(--navy);padding:16px 0;text-align:center}
+.header h1{color:var(--white);font-size:14px;letter-spacing:4px;font-weight:400;margin-bottom:2px}
+.header p{color:var(--light);font-size:11px;opacity:.7}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#264d73 100%);padding:40px 20px;text-align:center;color:var(--white)}
+.hero h2{font-size:28px;font-weight:700;margin-bottom:8px}
+.hero h2 span{color:var(--accent)}
+.hero p{font-size:15px;color:var(--light);max-width:550px;margin:0 auto 16px}
+.badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.12);padding:5px 14px;border-radius:20px;font-size:12px;color:var(--light)}
+
+/* Progress */
+.progress-wrap{background:var(--white);padding:20px;border-bottom:1px solid #e5e7eb}
+.steps{display:flex;gap:4px;max-width:800px;margin:0 auto}
+.step-dot{flex:1;height:5px;border-radius:3px;background:#e5e7eb;transition:background .3s}
+.step-dot.active{background:var(--blue)}
+.step-dot.done{background:var(--green)}
+.step-labels{display:flex;max-width:800px;margin:6px auto 0;font-size:11px;color:var(--muted)}
+.step-labels span{flex:1;text-align:center}
+.step-labels span.active{color:var(--blue);font-weight:600}
+
+/* Form */
+.form-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);margin:24px auto;padding:32px;max-width:800px}
+.form-card h3{font-size:20px;color:var(--navy);margin-bottom:4px}
+.form-card .sub{font-size:13px;color:var(--muted);margin-bottom:24px}
+.form-step{display:none}
+.form-step.active{display:block}
+
+.field{margin-bottom:18px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:5px}
+.field label .hint{font-weight:400;color:var(--muted);font-size:12px}
+.field select,.field input[type=text],.field input[type=number],.field input[type=email]{
+  width:100%;padding:10px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;
+  background:var(--white);transition:border-color .2s;color:var(--txt)}
+.field select:focus,.field input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(46,117,182,.12)}
+.field input[type=range]{width:100%;margin-top:4px}
+.range-val{text-align:right;font-size:13px;color:var(--blue);font-weight:600}
+
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:500px){.field-row{grid-template-columns:1fr}}
+
+.toggle-group{display:flex;gap:8px;flex-wrap:wrap}
+.toggle-btn{padding:8px 16px;border:1.5px solid #d1d5db;border-radius:8px;background:var(--white);
+  cursor:pointer;font-size:13px;transition:all .2s;color:var(--txt)}
+.toggle-btn:hover{border-color:var(--blue);background:var(--pale)}
+.toggle-btn.selected{border-color:var(--blue);background:var(--blue);color:var(--white)}
+
+/* Lots checkboxes */
+.lots-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+@media(max-width:500px){.lots-grid{grid-template-columns:1fr}}
+.lot-check{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #e5e7eb;
+  border-radius:6px;font-size:12px;cursor:pointer;transition:all .2s}
+.lot-check:hover{background:var(--pale)}
+.lot-check.active{background:var(--pale);border-color:var(--blue)}
+.lot-check input{accent-color:var(--blue)}
+
+/* Buttons */
+.btn-row{display:flex;gap:12px;justify-content:flex-end;margin-top:24px}
+.btn{padding:11px 28px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--blue);color:var(--white)}
+.btn-primary:hover{background:var(--navy)}
+.btn-secondary{background:var(--white);color:var(--blue);border:1.5px solid var(--blue)}
+.btn-secondary:hover{background:var(--pale)}
+.btn-accent{background:var(--accent);color:var(--white);font-size:16px;padding:14px 36px}
+.btn-accent:hover{background:#b8630a}
+.btn-green{background:var(--green);color:var(--white)}
+.btn-green:hover{background:#236b44}
+
+/* Email gate */
+.email-gate{background:var(--pale);border-radius:8px;padding:16px;margin-bottom:20px;border-left:3px solid var(--blue)}
+.email-gate p{font-size:13px;color:var(--navy);margin-bottom:8px}
+.email-row{display:flex;gap:8px}
+.email-row input{flex:1}
+
+/* Results */
+.results{display:none;max-width:800px;margin:24px auto}
+.result-hero{background:linear-gradient(135deg,var(--navy),#264d73);border-radius:var(--radius) var(--radius) 0 0;
+  padding:28px 32px;color:var(--white)}
+.result-hero h3{font-size:22px;margin-bottom:4px}
+.result-hero .total{font-size:38px;font-weight:700;color:var(--accent);margin:8px 0}
+.result-hero .range{font-size:14px;color:var(--light)}
+.result-hero .coeff{font-size:12px;color:var(--light);opacity:.7;margin-top:6px}
+
+.result-body{background:var(--white);border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow);padding:28px 32px}
+
+/* Free summary */
+.free-summary{margin-bottom:24px}
+.free-summary h4{font-size:16px;color:var(--navy);margin-bottom:12px}
+.summary-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:500px){.summary-cards{grid-template-columns:1fr}}
+.summary-card{background:var(--pale);border-radius:8px;padding:14px;text-align:center}
+.summary-card .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.summary-card .val{font-size:22px;font-weight:700;color:var(--navy);margin:4px 0}
+.summary-card .sub{font-size:11px;color:var(--muted)}
+
+/* Paywall */
+.paywall{background:linear-gradient(135deg,#FFF7ED,#FEF3C7);border:2px solid var(--accent);border-radius:var(--radius);
+  padding:24px;text-align:center;margin:20px 0}
+.paywall h4{color:var(--navy);font-size:18px;margin-bottom:6px}
+.paywall .price{font-size:32px;font-weight:700;color:var(--accent);margin:8px 0}
+.paywall .price small{font-size:14px;font-weight:400;color:var(--muted)}
+.paywall ul{text-align:left;list-style:none;max-width:340px;margin:12px auto;font-size:13px;color:var(--txt)}
+.paywall ul li{padding:4px 0}
+.paywall ul li::before{content:"✓ ";color:var(--green);font-weight:700}
+
+/* Full results (after payment) */
+.full-results{display:none}
+.lot-table{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0}
+.lot-table th{background:var(--navy);color:var(--white);padding:10px 12px;text-align:left;font-weight:500}
+.lot-table td{padding:8px 12px;border-bottom:1px solid #e5e7eb}
+.lot-table tr:nth-child(even){background:var(--pale)}
+.lot-table .lot-total{font-weight:700;background:var(--pale)}
+.lot-table .lot-total td{border-top:2px solid var(--navy)}
+
+.chart-wrap{max-width:350px;margin:20px auto}
+
+/* CTA Audit Pro */
+.cta-audit{background:linear-gradient(135deg,var(--pale),#e8f4f0);border-radius:var(--radius);padding:28px;margin-top:24px;
+  border:2px solid var(--green);position:relative;overflow:hidden}
+.cta-audit::before{content:"";position:absolute;top:-30px;right:-30px;width:120px;height:120px;
+  background:var(--green);opacity:.06;border-radius:50%}
+.cta-audit h4{color:var(--navy);font-size:18px;margin-bottom:4px}
+.cta-audit .audit-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
+.cta-audit .audit-price{display:inline-block;background:var(--green);color:var(--white);
+  padding:6px 18px;border-radius:20px;font-size:16px;font-weight:700;margin-bottom:16px}
+.audit-features{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:18px;font-size:12px;color:var(--txt)}
+@media(max-width:500px){.audit-features{grid-template-columns:1fr}}
+.audit-features span::before{content:"✓ ";color:var(--green);font-weight:700}
+.audit-form{display:none;margin-top:16px;padding-top:16px;border-top:1px solid #d1d5db}
+.audit-form .field-row{margin-bottom:0}
+.upload-zone{border:2px dashed #d1d5db;border-radius:8px;padding:12px 16px;text-align:center;
+  cursor:pointer;transition:all .2s;background:var(--white);margin-bottom:8px}
+.upload-zone:hover{border-color:var(--green);background:#f0fff4}
+.upload-zone input[type=file]{display:none}
+.upload-zone .uz-label{font-size:12px;color:var(--muted)}
+.upload-zone .uz-icon{font-size:20px;margin-bottom:4px}
+.upload-zone .uz-name{font-size:11px;color:var(--green);font-weight:600;margin-top:4px;display:none}
+.uploads-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:500px){.uploads-grid{grid-template-columns:1fr}}
+
+/* Cross-tool */
+.cross-tool{background:var(--white);border:1px solid #e5e7eb;border-radius:var(--radius);padding:16px;margin-top:16px;text-align:center}
+.cross-tool a{color:var(--blue);text-decoration:none;font-weight:600;font-size:14px}
+.cross-tool a:hover{text-decoration:underline}
+
+/* Footer */
+.footer{background:var(--navy);color:var(--light);padding:24px 20px;text-align:center;font-size:12px;margin-top:40px}
+.footer a{color:var(--accent);text-decoration:none}
+
+/* Disclaimer */
+.disclaimer{font-size:11px;color:var(--muted);text-align:center;margin-top:12px;line-height:1.5}
+
+/* Demo banner */
+.demo-banner{background:#FEF3C7;border-bottom:2px solid var(--accent);padding:8px 16px;text-align:center;font-size:12px;color:#92400E}
+.demo-banner strong{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  <strong>⚠ Version de développement</strong> — Ratios provisoires en cours de calibration. Ne pas diffuser.
+</div>
+
+<nav style="background:rgba(27,58,92,0.97);padding:12px 0;position:sticky;top:0;z-index:100">
+<div style="display:flex;align-items:center;justify-content:space-between;max-width:800px;margin:0 auto;padding:0 20px">
+<a href="index.html" style="display:flex;align-items:center;text-decoration:none"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA" style="height:28px;width:auto"></a>
+<div style="display:flex;gap:20px;align-items:center">
+<a href="simulateur.html" style="color:rgba(255,255,255,.75);font-size:13px;font-weight:500;text-decoration:none">Simulateur aides</a>
+<a href="estimateur.html" style="color:#D6E4F0;font-size:13px;font-weight:600;text-decoration:none">Estimateur</a>
+<a href="audit-avant-achat.html" style="color:rgba(255,255,255,.75);font-size:13px;font-weight:500;text-decoration:none">Audit achat</a>
+<a href="sur-mesure.html" style="color:rgba(255,255,255,.75);font-size:13px;font-weight:500;text-decoration:none">Sur mesure</a>
+</div>
+</div>
+</nav>
+</div>
+
+<div class="progress-wrap">
+  <div class="steps">
+    <div class="step-dot active" id="dot0"></div>
+    <div class="step-dot" id="dot1"></div>
+    <div class="step-dot" id="dot2"></div>
+    <div class="step-dot" id="dot3"></div>
+  </div>
+  <div class="step-labels">
+    <span class="active" id="lbl0">Votre projet</span>
+    <span id="lbl1">L'existant</span>
+    <span id="lbl2">Localisation</span>
+    <span id="lbl3">Travaux</span>
+  </div>
+</div>
+
+<!-- ═══════════ STEP 1 — PROJET ═══════════ -->
+<div class="form-card">
+<div class="form-step active" id="step0">
+  <h3>Décrivez votre projet</h3>
+  <p class="sub">Quelques informations de base pour calibrer l'estimation.</p>
+
+  <div class="email-gate">
+    <p>📧 <strong>Recevez votre estimation par email</strong> — résultats + rapport détaillé.</p>
+    <div class="email-row">
+      <input type="email" id="email" placeholder="votre@email.com">
+      <input type="text" id="prenom" placeholder="Prénom" style="max-width:140px">
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Type de bien</label>
+    <div class="toggle-group" id="typeBien">
+      <div class="toggle-btn selected" data-val="maison" onclick="selectToggle(this)">🏠 Maison</div>
+      <div class="toggle-btn" data-val="appartement" onclick="selectToggle(this)">🏢 Appartement</div>
+      <div class="toggle-btn" data-val="immeuble" onclick="selectToggle(this)">🏗 Immeuble</div>
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label>Surface habitable <span class="hint">(m²)</span></label>
+      <input type="number" id="surface" value="100" min="20" max="500" step="5">
+    </div>
+    <div class="field">
+      <label>Nombre de niveaux</label>
+      <select id="niveaux">
+        <option value="1">Plain-pied (1 niveau)</option>
+        <option value="2" selected>2 niveaux (R+1)</option>
+        <option value="3">3 niveaux (R+2)</option>
+        <option value="4">4 niveaux ou plus</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Nombre de pièces principales</label>
+    <input type="range" id="pieces" min="2" max="10" value="5" oninput="document.getElementById('piecesVal').textContent=this.value">
+    <div class="range-val"><span id="piecesVal">5</span> pièces</div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="goStep(1)">Suivant →</button>
+  </div>
+</div>
+
+<!-- ═══════════ STEP 2 — EXISTANT ═══════════ -->
+<div class="form-step" id="step1">
+  <h3>L'état de l'existant</h3>
+  <p class="sub">L'état du bâtiment influence fortement le coût des travaux.</p>
+
+  <div class="field-row">
+    <div class="field">
+      <label>Année de construction</label>
+      <select id="annee">
+        <option value="avant1948">Avant 1948</option>
+        <option value="1948-1974">1948 — 1974</option>
+        <option value="1975-1990" selected>1975 — 1990</option>
+        <option value="1991-2005">1991 — 2005</option>
+        <option value="apres2005">Après 2005</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>État général</label>
+      <div class="toggle-group" id="etat">
+        <div class="toggle-btn" data-val="bon" onclick="selectToggle(this)">Bon</div>
+        <div class="toggle-btn" data-val="moyen" onclick="selectToggle(this)">Moyen</div>
+        <div class="toggle-btn selected" data-val="degrade" onclick="selectToggle(this)">Dégradé</div>
+        <div class="toggle-btn" data-val="tres_degrade" onclick="selectToggle(this)">Très dégradé</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label>DPE actuel <span class="hint">(si connu)</span></label>
+      <select id="dpe">
+        <option value="inconnu">Ne sait pas</option>
+        <option value="A">A</option><option value="B">B</option>
+        <option value="C">C</option><option value="D">D</option>
+        <option value="E" selected>E</option><option value="F">F</option><option value="G">G</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Accès chantier</label>
+      <select id="acces">
+        <option value="facile" selected>Facile (pavillon, accès camion)</option>
+        <option value="moyen">Moyen (rue étroite, portage limité)</option>
+        <option value="difficile">Difficile (centre ancien, étages sans asc.)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label>Présence d'amiante</label>
+      <div class="toggle-group" id="amiante">
+        <div class="toggle-btn" data-val="non" onclick="selectToggle(this)">Non / Ne sait pas</div>
+        <div class="toggle-btn selected" data-val="oui" onclick="selectToggle(this)">Oui (diagnostiqué)</div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Présence de plomb</label>
+      <div class="toggle-group" id="plomb">
+        <div class="toggle-btn selected" data-val="non" onclick="selectToggle(this)">Non / Ne sait pas</div>
+        <div class="toggle-btn" data-val="oui" onclick="selectToggle(this)">Oui (diagnostiqué)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="goStep(0)">← Retour</button>
+    <button class="btn btn-primary" onclick="goStep(2)">Suivant →</button>
+  </div>
+</div>
+
+<!-- ═══════════ STEP 3 — LOCALISATION ═══════════ -->
+<div class="form-step" id="step2">
+  <h3>Localisation du projet</h3>
+  <p class="sub">Le coût de la construction varie selon le département (main d'œuvre, approvisionnement).</p>
+
+  <div class="field">
+    <label>Code postal</label>
+    <input type="text" id="cp" placeholder="27400" maxlength="5" oninput="detectDept(this.value)">
+  </div>
+  <div class="field">
+    <label>Département détecté</label>
+    <div id="deptDisplay" style="padding:10px;background:var(--pale);border-radius:8px;font-size:14px;color:var(--navy);font-weight:600">
+      Saisissez votre code postal
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="goStep(1)">← Retour</button>
+    <button class="btn btn-primary" onclick="goStep(3)">Suivant →</button>
+  </div>
+</div>
+
+<!-- ═══════════ STEP 4 — TRAVAUX ═══════════ -->
+<div class="form-step" id="step3">
+  <h3>Nature des travaux</h3>
+  <p class="sub">Sélectionnez le type de rénovation et la gamme souhaitée.</p>
+
+  <div class="field">
+    <label>Type de rénovation</label>
+    <div class="toggle-group" id="typeReno">
+      <div class="toggle-btn" data-val="rafraichissement" onclick="selectToggle(this);setProfile('rafraichissement')">Rafraîchissement</div>
+      <div class="toggle-btn" data-val="partielle" onclick="selectToggle(this);setProfile('partielle')">Partielle</div>
+      <div class="toggle-btn selected" data-val="complete" onclick="selectToggle(this);setProfile('complete')">Complète</div>
+      <div class="toggle-btn" data-val="lourde" onclick="selectToggle(this);setProfile('lourde')">Réhabilitation lourde</div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Gamme de finitions</label>
+    <div class="toggle-group" id="gamme">
+      <div class="toggle-btn" data-val="eco" onclick="selectToggle(this)">🪙 Économique</div>
+      <div class="toggle-btn selected" data-val="standard" onclick="selectToggle(this)">⭐ Standard</div>
+      <div class="toggle-btn" data-val="confort" onclick="selectToggle(this)">✨ Confort</div>
+      <div class="toggle-btn" data-val="hdg" onclick="selectToggle(this)">💎 Haut de gamme</div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Lots à inclure <span class="hint">(adaptés au profil de rénovation — personnalisable)</span></label>
+    <div class="lots-grid" id="lotsGrid"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="goStep(2)">← Retour</button>
+    <button class="btn btn-accent" onclick="calculate()">📊 Estimer mes travaux</button>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ RESULTS ═══════════ -->
+<div class="results" id="results">
+  <div class="result-hero">
+    <h3>Votre estimation de travaux</h3>
+    <div class="total" id="totalEstim"></div>
+    <div class="range" id="rangeEstim"></div>
+    <div class="coeff" id="coeffInfo"></div>
+  </div>
+  <div class="result-body">
+
+    <div class="free-summary">
+      <h4>Synthèse — 3 grands postes</h4>
+      <div class="summary-cards" id="summaryCards"></div>
+    </div>
+
+    <div class="paywall" id="paywall">
+      <h4>Débloquer le détail complet par lot</h4>
+      <div class="price">49 € <small>TTC</small></div>
+      <ul>
+        <li>15 lots détaillés avec fourchettes</li>
+        <li>Répartition en camembert</li>
+        <li>Coefficients correcteurs expliqués</li>
+        <li>Alertes métier personnalisées</li>
+        <li>Rapport PDF téléchargeable (brandé ADORA)</li>
+      </ul>
+      <button class="btn btn-accent" onclick="unlockFull()" style="margin-top:12px">🔓 Débloquer — 49 €</button>
+      <p style="font-size:11px;color:var(--muted);margin-top:8px">Paiement sécurisé par Stripe</p>
+    </div>
+
+    <div class="cta-audit" id="ctaAudit">
+      <h4>Besoin d'un estimatif détaillé professionnel ?</h4>
+      <p class="audit-sub">Faites appel à ADORA pour un rapport complet type Audit Avant Achat, calibré sur votre bien réel.</p>
+      <div class="audit-price">499 € TTC</div>
+      <div class="audit-features">
+        <span>Visite sur site par un économiste</span>
+        <span>Analyse des diagnostics (DDT, DPE)</span>
+        <span>Estimation détaillée lot par lot</span>
+        <span>Identification des pathologies</span>
+        <span>Montage financier (aides, éco-PTZ)</span>
+        <span>Rapport PDF professionnel complet</span>
+        <span>Alertes réglementaires</span>
+        <span>Recommandations de travaux priorisés</span>
+      </div>
+      <button class="btn btn-green" onclick="toggleAuditForm()" id="auditToggleBtn">Demander mon audit professionnel →</button>
+
+      <div class="audit-form" id="auditForm">
+        <h4 style="font-size:15px;color:var(--navy);margin-bottom:14px">Votre demande d'audit</h4>
+        <form id="auditFormEl" action="https://formspree.io/f/xzdjopya" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="_subject" value="🏠 Demande Audit Avant Achat — 499€">
+          <input type="hidden" name="source" value="estimateur-tce">
+          <input type="hidden" id="auditEstimData" name="estimation_contexte" value="">
+
+          <div class="field-row">
+            <div class="field">
+              <label>Nom</label>
+              <input type="text" name="nom" required placeholder="Dupont">
+            </div>
+            <div class="field">
+              <label>Prénom</label>
+              <input type="text" name="prenom" required placeholder="Marie">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Email</label>
+              <input type="email" name="email" required placeholder="marie@email.com">
+            </div>
+            <div class="field">
+              <label>Téléphone</label>
+              <input type="text" name="telephone" required placeholder="06 12 34 56 78">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Adresse complète du bien</label>
+            <input type="text" name="adresse" required placeholder="12 rue des Pénitents, 27400 Louviers">
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Type de bien</label>
+              <select name="type_bien">
+                <option>Maison individuelle</option>
+                <option>Appartement</option>
+                <option>Immeuble</option>
+                <option>Local commercial</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Surface habitable (m²)</label>
+              <input type="number" name="surface" placeholder="120">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label>Année de construction</label>
+              <input type="text" name="annee_construction" placeholder="1965">
+            </div>
+            <div class="field">
+              <label>Contexte <span class="hint">(achat, rénovation, sinistre...)</span></label>
+              <select name="contexte">
+                <option>Achat en cours — besoin d'estimer avant offre</option>
+                <option>Bien acquis — planification des travaux</option>
+                <option>Rénovation énergétique</option>
+                <option>Sinistre / expertise contradictoire</option>
+                <option>Autre</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Description du projet / questions spécifiques <span class="hint">(optionnel)</span></label>
+            <textarea name="description" rows="3" style="width:100%;padding:10px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-size:13px;font-family:inherit;resize:vertical" placeholder="Ex: Maison bourgeoise avec cave dégradée, projet de rénovation complète pour résidence principale. Diagnostic parasitaire inquiétant."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Documents à joindre <span class="hint">(DDT, DPE, photos — max 10 Mo par fichier)</span></label>
+            <div class="uploads-grid">
+              <div class="upload-zone" onclick="this.querySelector('input').click()">
+                <div class="uz-icon">📋</div>
+                <div class="uz-label">DDT (Dossier Diagnostic Technique)</div>
+                <input type="file" name="ddt" accept=".pdf,.jpg,.png" onchange="showFileName(this)">
+                <div class="uz-name"></div>
+              </div>
+              <div class="upload-zone" onclick="this.querySelector('input').click()">
+                <div class="uz-icon">🏷</div>
+                <div class="uz-label">DPE / Audit énergétique</div>
+                <input type="file" name="dpe" accept=".pdf,.jpg,.png" onchange="showFileName(this)">
+                <div class="uz-name"></div>
+              </div>
+              <div class="upload-zone" onclick="this.querySelector('input').click()">
+                <div class="uz-icon">📸</div>
+                <div class="uz-label">Photos extérieures</div>
+                <input type="file" name="photos_ext" accept=".jpg,.png,.heic" multiple onchange="showFileName(this)">
+                <div class="uz-name"></div>
+              </div>
+              <div class="upload-zone" onclick="this.querySelector('input').click()">
+                <div class="uz-icon">🏠</div>
+                <div class="uz-label">Photos intérieures</div>
+                <input type="file" name="photos_int" accept=".jpg,.png,.heic" multiple onchange="showFileName(this)">
+                <div class="uz-name"></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:var(--pale);border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:var(--navy)">
+            <strong>Prestation à 499 € TTC</strong> — Comprend : analyse des diagnostics, visite sur site (dépt. 27/76 inclus),
+            estimation détaillée par lot, montage financier, rapport PDF professionnel complet. Acompte de 50% à la commande,
+            solde à la livraison du rapport. Délai : 5-10 jours ouvrés après réception des documents.
+          </div>
+
+          <div class="btn-row" style="justify-content:center">
+            <button type="submit" class="btn btn-green" style="font-size:15px;padding:13px 32px">Envoyer ma demande d'audit — 499 €</button>
+          </div>
+          <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:8px">
+            Vous serez recontacté sous 24h pour confirmer les détails et planifier la visite.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div class="full-results" id="fullResults">
+      <h4 style="font-size:16px;color:var(--navy);margin:24px 0 12px">Détail par lot</h4>
+      <table class="lot-table" id="lotTable"></table>
+      <div class="chart-wrap"><canvas id="pieChart"></canvas></div>
+      <div style="margin-top:16px;text-align:center">
+        <button class="btn btn-primary" onclick="generatePDF()">📄 Télécharger le rapport PDF</button>
+      </div>
+    </div>
+
+    <div class="cross-tool">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:6px">Vous connaissez le coût de vos travaux. Maintenant, calculez vos aides.</p>
+      <a href="https://adora-economie.fr/simulateur.html">→ Simulateur d'aides rénovation 2026 (gratuit)</a>
+    </div>
+
+    <div class="disclaimer">
+      Estimation indicative basée sur des ratios moyens 2026. Ne se substitue pas à un chiffrage professionnel après visite sur site.<br>
+      Les prix réels peuvent varier de ±20% selon les spécificités du projet, les entreprises consultées et les conditions de marché.
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p><strong>ADORA</strong> — Économiste de la construction</p>
+  <p style="margin-top:4px">Aymeric Dussauze · <a href="https://adora-economie.fr">adora-economie.fr</a> · 06 60 21 55 09</p>
+  <p style="margin-top:4px;opacity:.6">EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</p>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// DATA — RATIOS PROVISOIRES (€/m² habitable, prix de vente TTC)
+// ═══════════════════════════════════════════════════════════
+const LOTS = [
+  {id:1,  nom:"Démolition / Curage",          eco:15, std:25, confort:35, hdg:45},
+  {id:2,  nom:"Gros-œuvre / Maçonnerie",       eco:40, std:80, confort:130,hdg:200},
+  {id:3,  nom:"Charpente / Couverture",        eco:30, std:60, confort:100,hdg:160},
+  {id:4,  nom:"Étanchéité",                    eco:8,  std:15, confort:25, hdg:40},
+  {id:5,  nom:"Menuiseries extérieures",       eco:35, std:65, confort:110,hdg:180},
+  {id:6,  nom:"Isolation / Doublages",         eco:25, std:45, confort:70, hdg:100},
+  {id:7,  nom:"Cloisons / Plâtrerie",          eco:20, std:40, confort:60, hdg:85},
+  {id:8,  nom:"Menuiseries intérieures",       eco:15, std:30, confort:50, hdg:80},
+  {id:9,  nom:"Revêtements de sols",           eco:20, std:40, confort:70, hdg:120},
+  {id:10, nom:"Peinture / Rev. muraux",        eco:12, std:20, confort:30, hdg:50},
+  {id:11, nom:"Plomberie / Sanitaires",        eco:25, std:50, confort:85, hdg:140},
+  {id:12, nom:"Électricité / Courants faibles", eco:20, std:40, confort:65, hdg:100},
+  {id:13, nom:"CVC (Chauffage/Ventilation)",   eco:25, std:55, confort:90, hdg:150},
+  {id:14, nom:"Façades / Ravalement",          eco:15, std:35, confort:60, hdg:100},
+  {id:15, nom:"Aménagements extérieurs",       eco:10, std:25, confort:45, hdg:80}
+];
+
+// Profils de rénovation : lots activés par défaut
+const PROFILES = {
+  rafraichissement: [9,10],
+  partielle: [1,7,8,9,10,11,12],
+  complete: [1,5,6,7,8,9,10,11,12,13],
+  lourde: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+};
+
+// Coefficients correcteurs
+function getCoeffEtat(v){return{bon:0.85,moyen:1.0,degrade:1.15,tres_degrade:1.35}[v]||1.0}
+function getCoeffAncien(v){return{avant1948:1.25,'1948-1974':1.15,'1975-1990':1.05,'1991-2005':1.0,apres2005:0.90}[v]||1.0}
+function getCoeffAcces(v){return{facile:1.0,moyen:1.08,difficile:1.20}[v]||1.0}
+function getCoeffAmiante(v){return v==='oui'?1.15:1.0}
+function getCoeffPlomb(v){return v==='oui'?1.05:1.0}
+function getCoeffType(v){return{maison:1.0,appartement:0.95,immeuble:0.92}[v]||1.0}
+
+// Coefficients départementaux (INSEE BT01 + salaires régionaux)
+const DEPT_COEFF = {
+"01":0.95,"02":0.93,"03":0.93,"04":0.96,"05":0.97,"06":1.08,"07":0.95,"08":0.92,"09":0.94,
+"10":0.93,"11":0.94,"12":0.93,"13":1.05,"14":0.97,"15":0.93,"16":0.93,"17":0.95,"18":0.92,
+"19":0.93,"20":1.05,"21":0.95,"22":0.94,"23":0.92,"24":0.93,"25":0.95,"26":0.96,"27":0.97,
+"28":0.96,"29":0.95,"30":0.98,"31":1.00,"32":0.93,"33":0.98,"34":0.99,"35":0.96,"36":0.91,
+"37":0.95,"38":1.00,"39":0.94,"40":0.95,"41":0.94,"42":0.96,"43":0.93,"44":0.98,"45":0.95,
+"46":0.93,"47":0.94,"48":0.93,"49":0.95,"50":0.96,"51":0.94,"52":0.92,"53":0.93,"54":0.95,
+"55":0.92,"56":0.95,"57":0.95,"58":0.92,"59":0.97,"60":0.98,"61":0.95,"62":0.96,"63":0.95,
+"64":0.97,"65":0.95,"66":0.96,"67":1.00,"68":1.00,"69":1.03,"70":0.93,"71":0.94,"72":0.94,
+"73":1.02,"74":1.05,"75":1.20,"76":0.97,"77":1.05,"78":1.10,"79":0.93,"80":0.93,"81":0.94,
+"82":0.93,"83":1.03,"84":0.98,"85":0.95,"86":0.93,"87":0.93,"88":0.93,"89":0.93,"90":0.95,
+"91":1.08,"92":1.18,"93":1.12,"94":1.12,"95":1.08,"96":1.05,"97":1.02,"98":1.05,"99":1.00,
+"2A":1.05,"2B":1.05,"971":1.15,"972":1.15,"973":1.20,"974":1.15,"976":1.25
+};
+
+const DEPT_NAMES = {
+"01":"Ain","02":"Aisne","03":"Allier","04":"Alpes-de-Haute-Provence","05":"Hautes-Alpes",
+"06":"Alpes-Maritimes","07":"Ardèche","08":"Ardennes","09":"Ariège","10":"Aube",
+"11":"Aude","12":"Aveyron","13":"Bouches-du-Rhône","14":"Calvados","15":"Cantal",
+"16":"Charente","17":"Charente-Maritime","18":"Cher","19":"Corrèze","20":"Corse",
+"2A":"Corse-du-Sud","2B":"Haute-Corse","21":"Côte-d'Or","22":"Côtes-d'Armor","23":"Creuse",
+"24":"Dordogne","25":"Doubs","26":"Drôme","27":"Eure","28":"Eure-et-Loir",
+"29":"Finistère","30":"Gard","31":"Haute-Garonne","32":"Gers","33":"Gironde",
+"34":"Hérault","35":"Ille-et-Vilaine","36":"Indre","37":"Indre-et-Loire","38":"Isère",
+"39":"Jura","40":"Landes","41":"Loir-et-Cher","42":"Loire","43":"Haute-Loire",
+"44":"Loire-Atlantique","45":"Loiret","46":"Lot","47":"Lot-et-Garonne","48":"Lozère",
+"49":"Maine-et-Loire","50":"Manche","51":"Marne","52":"Haute-Marne","53":"Mayenne",
+"54":"Meurthe-et-Moselle","55":"Meuse","56":"Morbihan","57":"Moselle","58":"Nièvre",
+"59":"Nord","60":"Oise","61":"Orne","62":"Pas-de-Calais","63":"Puy-de-Dôme",
+"64":"Pyrénées-Atlantiques","65":"Hautes-Pyrénées","66":"Pyrénées-Orientales","67":"Bas-Rhin",
+"68":"Haut-Rhin","69":"Rhône","70":"Haute-Saône","71":"Saône-et-Loire","72":"Sarthe",
+"73":"Savoie","74":"Haute-Savoie","75":"Paris","76":"Seine-Maritime","77":"Seine-et-Marne",
+"78":"Yvelines","79":"Deux-Sèvres","80":"Somme","81":"Tarn","82":"Tarn-et-Garonne",
+"83":"Var","84":"Vaucluse","85":"Vendée","86":"Vienne","87":"Haute-Vienne",
+"88":"Vosges","89":"Yonne","90":"Territoire de Belfort","91":"Essonne","92":"Hauts-de-Seine",
+"93":"Seine-Saint-Denis","94":"Val-de-Marne","95":"Val-d'Oise",
+"971":"Guadeloupe","972":"Martinique","973":"Guyane","974":"Réunion","976":"Mayotte"
+};
+
+// ═══════════════════════════════════════════════════════════
+// UI LOGIC
+// ═══════════════════════════════════════════════════════════
+let currentStep = 0;
+let detectedDept = "27";
+let calculatedData = null;
+
+function selectToggle(el) {
+  el.parentElement.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function getToggleVal(groupId) {
+  const sel = document.querySelector('#' + groupId + ' .toggle-btn.selected');
+  return sel ? sel.dataset.val : null;
+}
+
+function goStep(n) {
+  document.getElementById('step' + currentStep).classList.remove('active');
+  document.getElementById('step' + n).classList.add('active');
+  for (let i = 0; i < 4; i++) {
+    const dot = document.getElementById('dot' + i);
+    const lbl = document.getElementById('lbl' + i);
+    dot.className = 'step-dot' + (i < n ? ' done' : i === n ? ' active' : '');
+    lbl.className = i === n ? 'active' : '';
+  }
+  currentStep = n;
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function detectDept(cp) {
+  if (cp.length < 2) return;
+  let dept;
+  if (cp.startsWith('20')) {
+    const num = parseInt(cp);
+    dept = num <= 20190 ? '2A' : '2B';
+  } else if (cp.startsWith('97')) {
+    dept = cp.substring(0, 3);
+  } else {
+    dept = cp.substring(0, 2);
+  }
+  if (DEPT_NAMES[dept]) {
+    detectedDept = dept;
+    const coeff = DEPT_COEFF[dept] || 1.0;
+    document.getElementById('deptDisplay').innerHTML =
+      `<strong>${dept} — ${DEPT_NAMES[dept]}</strong> · Coefficient régional : <span style="color:var(--blue)">${coeff.toFixed(2)}</span>`;
+  }
+}
+
+// Lots grid
+function buildLotsGrid() {
+  const grid = document.getElementById('lotsGrid');
+  grid.innerHTML = '';
+  LOTS.forEach(lot => {
+    const div = document.createElement('div');
+    div.className = 'lot-check';
+    div.innerHTML = `<input type="checkbox" id="lot${lot.id}" checked> <span>${String(lot.id).padStart(2,'0')} — ${lot.nom}</span>`;
+    div.onclick = (e) => {
+      if (e.target.tagName !== 'INPUT') {
+        const cb = div.querySelector('input');
+        cb.checked = !cb.checked;
+      }
+      div.classList.toggle('active', div.querySelector('input').checked);
+    };
+    div.classList.add('active');
+    grid.appendChild(div);
+  });
+}
+
+function setProfile(profile) {
+  const activeLots = PROFILES[profile] || [];
+  LOTS.forEach(lot => {
+    const cb = document.getElementById('lot' + lot.id);
+    cb.checked = activeLots.includes(lot.id);
+    cb.closest('.lot-check').classList.toggle('active', cb.checked);
+  });
+}
+
+buildLotsGrid();
+setProfile('complete');
+
+// ═══════════════════════════════════════════════════════════
+// CALCULATION ENGINE
+// ═══════════════════════════════════════════════════════════
+function calculate() {
+  const surface = parseFloat(document.getElementById('surface').value) || 100;
+  const gamme = getToggleVal('gamme');
+  const typeBien = getToggleVal('typeBien');
+  const etat = getToggleVal('etat');
+  const annee = document.getElementById('annee').value;
+  const acces = document.getElementById('acces').value;
+  const amiante = getToggleVal('amiante');
+  const plomb = getToggleVal('plomb');
+
+  const coeffRegional = DEPT_COEFF[detectedDept] || 1.0;
+  const coeffEtat = getCoeffEtat(etat);
+  const coeffAncien = getCoeffAncien(annee);
+  const coeffAcces = getCoeffAcces(acces);
+  const coeffAmiante = getCoeffAmiante(amiante);
+  const coeffPlomb = getCoeffPlomb(plomb);
+  const coeffType = getCoeffType(typeBien);
+  const coeffTotal = coeffRegional * coeffEtat * coeffAncien * coeffAcces * coeffAmiante * coeffPlomb * coeffType;
+
+  // Scale factor for surface (economies of scale)
+  const scaleFactor = surface <= 50 ? 1.15 : surface <= 80 ? 1.05 : surface <= 120 ? 1.0 : surface <= 180 ? 0.95 : 0.90;
+
+  const results = [];
+  let totalLow = 0, totalMid = 0, totalHigh = 0;
+
+  LOTS.forEach(lot => {
+    const cb = document.getElementById('lot' + lot.id);
+    if (!cb.checked) return;
+    const ratio = lot[gamme] || lot.std;
+    const base = ratio * surface * coeffTotal * scaleFactor;
+    const low = Math.round(base * 0.85);
+    const mid = Math.round(base);
+    const high = Math.round(base * 1.15);
+    results.push({id: lot.id, nom: lot.nom, low, mid, high, ratio});
+    totalLow += low;
+    totalMid += mid;
+    totalHigh += high;
+  });
+
+  // Group into 3 posts for free view
+  const goLots = results.filter(r => [1,2,3,4,14].includes(r.id));
+  const soLots = results.filter(r => [5,6,7,8,9,10].includes(r.id));
+  const teLots = results.filter(r => [11,12,13,15].includes(r.id));
+  const goTotal = goLots.reduce((s,r) => s + r.mid, 0);
+  const soTotal = soLots.reduce((s,r) => s + r.mid, 0);
+  const teTotal = teLots.reduce((s,r) => s + r.mid, 0);
+
+  calculatedData = {results, totalLow, totalMid, totalHigh, goTotal, soTotal, teTotal,
+    surface, gamme, coeffTotal, coeffRegional, coeffEtat, coeffAncien, coeffAcces,
+    coeffAmiante, coeffPlomb, coeffType, scaleFactor, dept: detectedDept,
+    typeBien, etat, annee, acces, amiante, plomb};
+
+  displayResults(calculatedData);
+}
+
+function displayResults(d) {
+  document.querySelector('.form-card').style.display = 'none';
+  document.querySelector('.progress-wrap').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+
+  document.getElementById('totalEstim').textContent = d.totalMid.toLocaleString('fr-FR') + ' €';
+  document.getElementById('rangeEstim').textContent =
+    `Fourchette : ${d.totalLow.toLocaleString('fr-FR')} € — ${d.totalHigh.toLocaleString('fr-FR')} € TTC`;
+  document.getElementById('coeffInfo').textContent =
+    `${d.surface} m² · ${DEPT_NAMES[d.dept]} (×${d.coeffRegional.toFixed(2)}) · Coeff. global ×${d.coeffTotal.toFixed(2)} · ${Math.round(d.totalMid/d.surface)} €/m²`;
+
+  const cards = document.getElementById('summaryCards');
+  const posts = [
+    {label:'Gros-œuvre & structure', val:d.goTotal, color:'var(--navy)'},
+    {label:'Second-œuvre & finitions', val:d.soTotal, color:'var(--blue)'},
+    {label:'Équipements techniques', val:d.teTotal, color:'var(--accent)'}
+  ];
+  cards.innerHTML = posts.map(p =>
+    `<div class="summary-card">
+      <div class="label">${p.label}</div>
+      <div class="val" style="color:${p.color}">${p.val.toLocaleString('fr-FR')} €</div>
+      <div class="sub">${d.totalMid > 0 ? Math.round(p.val/d.totalMid*100) : 0}% du total</div>
+    </div>`
+  ).join('');
+
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ═══════════════════════════════════════════════════════════
+// UNLOCK FULL (simulated — Stripe integration later)
+// ═══════════════════════════════════════════════════════════
+function unlockFull() {
+  // In production: Stripe Checkout redirect here
+  alert("🔧 Paiement Stripe — En cours de configuration.\n\nPour cette version de développement, le détail est débloqué gratuitement.");
+  document.getElementById('paywall').style.display = 'none';
+  document.getElementById('fullResults').style.display = 'block';
+  renderFullResults();
+}
+
+function renderFullResults() {
+  if (!calculatedData) return;
+  const d = calculatedData;
+
+  // Table
+  const table = document.getElementById('lotTable');
+  let html = `<tr><th>N°</th><th>Lot</th><th>Estimation basse</th><th>Estimation moyenne</th><th>Estimation haute</th></tr>`;
+  d.results.forEach(r => {
+    html += `<tr>
+      <td>${String(r.id).padStart(2,'0')}</td>
+      <td>${r.nom}</td>
+      <td>${r.low.toLocaleString('fr-FR')} €</td>
+      <td><strong>${r.mid.toLocaleString('fr-FR')} €</strong></td>
+      <td>${r.high.toLocaleString('fr-FR')} €</td>
+    </tr>`;
+  });
+  html += `<tr class="lot-total">
+    <td></td><td>TOTAL</td>
+    <td>${d.totalLow.toLocaleString('fr-FR')} €</td>
+    <td><strong>${d.totalMid.toLocaleString('fr-FR')} €</strong></td>
+    <td>${d.totalHigh.toLocaleString('fr-FR')} €</td>
+  </tr>`;
+  table.innerHTML = html;
+
+  // Pie chart
+  const ctx = document.getElementById('pieChart').getContext('2d');
+  const colors = ['#1B3A5C','#2E75B6','#D4740B','#2D8B55','#D6E4F0','#8B5CF6','#EC4899','#F59E0B',
+    '#10B981','#6366F1','#F43F5E','#0EA5E9','#84CC16','#A855F7','#FB923C'];
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: d.results.map(r => r.nom),
+      datasets: [{
+        data: d.results.map(r => r.mid),
+        backgroundColor: colors.slice(0, d.results.length),
+        borderWidth: 1, borderColor: '#fff'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {position:'bottom', labels:{font:{size:10},boxWidth:12,padding:6}}
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// AUDIT FORM
+// ═══════════════════════════════════════════════════════════
+function toggleAuditForm() {
+  const form = document.getElementById('auditForm');
+  const btn = document.getElementById('auditToggleBtn');
+  if (form.style.display === 'block') {
+    form.style.display = 'none';
+    btn.textContent = 'Demander mon audit professionnel →';
+  } else {
+    form.style.display = 'block';
+    btn.textContent = 'Masquer le formulaire';
+    // Pre-fill from estimator data
+    if (calculatedData) {
+      const d = calculatedData;
+      const ctx = `Estimation en ligne : ${d.totalMid.toLocaleString('fr-FR')}€ TTC (${d.totalLow.toLocaleString('fr-FR')}-${d.totalHigh.toLocaleString('fr-FR')}€) | ${d.surface}m² | ${DEPT_NAMES[d.dept]} | Gamme ${d.gamme} | État ${d.etat} | ${d.annee} | ${d.results.length} lots actifs | Coeff ×${d.coeffTotal.toFixed(2)}`;
+      document.getElementById('auditEstimData').value = ctx;
+      // Pre-fill surface
+      const surfInput = document.querySelector('#auditForm input[name="surface"]');
+      if (surfInput && !surfInput.value) surfInput.value = d.surface;
+    }
+    // Pre-fill email if captured earlier
+    const emailVal = document.getElementById('email').value;
+    const prenomVal = document.getElementById('prenom').value;
+    if (emailVal) {
+      const emailInput = document.querySelector('#auditForm input[name="email"]');
+      if (emailInput && !emailInput.value) emailInput.value = emailVal;
+    }
+    if (prenomVal) {
+      const prenomInput = document.querySelector('#auditForm input[name="prenom"]');
+      if (prenomInput && !prenomInput.value) prenomInput.value = prenomVal;
+    }
+    form.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+function showFileName(input) {
+  const zone = input.closest('.upload-zone');
+  const nameEl = zone.querySelector('.uz-name');
+  if (input.files.length > 0) {
+    const names = Array.from(input.files).map(f => f.name).join(', ');
+    nameEl.textContent = names;
+    nameEl.style.display = 'block';
+    zone.style.borderColor = 'var(--green)';
+    zone.style.background = '#f0fff4';
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// PDF GENERATION
+// ═══════════════════════════════════════════════════════════
+function generatePDF() {
+  if (!calculatedData) return;
+  const d = calculatedData;
+  const {jsPDF} = window.jspdf;
+  const doc = new jsPDF();
+
+  // Header
+  doc.setFillColor(27,58,92);
+  doc.rect(0,0,210,35,  'F');
+  doc.setTextColor(255,255,255);
+  doc.setFontSize(10);
+  doc.text('A D O R A', 15, 14);
+  doc.setFontSize(8);
+  doc.text('Économiste de la construction', 15, 20);
+  doc.setFontSize(18);
+  doc.text('Estimation de travaux', 15, 30);
+  doc.setFontSize(9);
+  doc.setTextColor(212,116,11);
+  doc.text(`${d.surface} m² — ${DEPT_NAMES[d.dept]} — ${new Date().toLocaleDateString('fr-FR')}`, 120, 30);
+
+  // Total
+  doc.setTextColor(27,58,92);
+  doc.setFontSize(14);
+  doc.text('Estimation globale', 15, 48);
+  doc.setFontSize(24);
+  doc.setTextColor(212,116,11);
+  doc.text(`${d.totalMid.toLocaleString('fr-FR')} € TTC`, 15, 60);
+  doc.setFontSize(10);
+  doc.setTextColor(107,114,128);
+  doc.text(`Fourchette : ${d.totalLow.toLocaleString('fr-FR')} € — ${d.totalHigh.toLocaleString('fr-FR')} €`, 15, 68);
+  doc.text(`Coefficient régional (${d.dept}) : ×${d.coeffRegional.toFixed(2)} · Coefficient global : ×${d.coeffTotal.toFixed(2)} · ${Math.round(d.totalMid/d.surface)} €/m²`, 15, 74);
+
+  // Table
+  let y = 85;
+  doc.setFillColor(27,58,92);
+  doc.rect(15, y, 180, 8, 'F');
+  doc.setTextColor(255,255,255);
+  doc.setFontSize(8);
+  doc.text('N°', 17, y+6);
+  doc.text('Lot', 28, y+6);
+  doc.text('Basse', 110, y+6);
+  doc.text('Moyenne', 135, y+6);
+  doc.text('Haute', 165, y+6);
+  y += 10;
+
+  d.results.forEach((r, i) => {
+    if (y > 265) { doc.addPage(); y = 20; }
+    if (i % 2 === 0) { doc.setFillColor(235,242,249); doc.rect(15, y-4, 180, 8, 'F'); }
+    doc.setTextColor(51,51,51);
+    doc.setFontSize(8);
+    doc.text(String(r.id).padStart(2,'0'), 17, y);
+    doc.text(r.nom, 28, y);
+    doc.text(`${r.low.toLocaleString('fr-FR')} €`, 110, y);
+    doc.setFont(undefined, 'bold');
+    doc.text(`${r.mid.toLocaleString('fr-FR')} €`, 135, y);
+    doc.setFont(undefined, 'normal');
+    doc.text(`${r.high.toLocaleString('fr-FR')} €`, 165, y);
+    y += 8;
+  });
+
+  // Total row
+  doc.setFillColor(214,228,240);
+  doc.rect(15, y-4, 180, 9, 'F');
+  doc.setFont(undefined, 'bold');
+  doc.setTextColor(27,58,92);
+  doc.text('TOTAL', 28, y+1);
+  doc.text(`${d.totalLow.toLocaleString('fr-FR')} €`, 110, y+1);
+  doc.setTextColor(212,116,11);
+  doc.text(`${d.totalMid.toLocaleString('fr-FR')} €`, 135, y+1);
+  doc.setTextColor(27,58,92);
+  doc.text(`${d.totalHigh.toLocaleString('fr-FR')} €`, 165, y+1);
+
+  // CTA footer
+  y += 20;
+  if (y > 250) { doc.addPage(); y = 20; }
+  doc.setFillColor(235,242,249);
+  doc.roundedRect(15, y, 180, 30, 3, 3, 'F');
+  doc.setTextColor(27,58,92);
+  doc.setFontSize(10);
+  doc.setFont(undefined, 'bold');
+  doc.text('Cette estimation est indicative.', 20, y+8);
+  doc.setFont(undefined, 'normal');
+  doc.setFontSize(9);
+  doc.text('Pour un estimatif détaillé professionnel (Audit Avant Achat — 499 € TTC) :', 20, y+14);
+  doc.text('Visite sur site, analyse des diagnostics, estimation lot par lot, montage financier.', 20, y+19);
+  doc.setTextColor(212,116,11);
+  doc.text('06 60 21 55 09 · aymericdussauze@gmail.com · adora-economie.fr', 20, y+25);
+
+  // Footer
+  doc.setTextColor(150,150,150);
+  doc.setFontSize(7);
+  doc.text('ADORA — EI Aymeric Dussauze · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI', 15, 290);
+  doc.text(`Généré le ${new Date().toLocaleDateString('fr-FR')} — Ratios provisoires 2026`, 15, 294);
+
+  doc.save(`ADORA_Estimation_${d.surface}m2_${d.dept}_${new Date().toISOString().slice(0,10).replace(/-/g,'')}.pdf`);
+}
+</script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M0LENY960B"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-M0LENY960B');</script>
+
+<div style="background:#D4740B;color:#fff;text-align:center;padding:8px;font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;position:fixed;bottom:0;left:0;right:0;z-index:9999">PREPROD — Recette en cours — Ne pas diffuser</div>
+</body>
+</html>

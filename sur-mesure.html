@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Économiste de la construction Normandie | AMO sur mesure | ADORA</title>
+<meta name="description" content="Économiste de la construction en Normandie et Île-de-France. Estimations TCE, CCTP/DPGF, AMO particuliers et professionnels. Devis gratuit.">
+<meta name="keywords" content="économiste construction normandie, AMO particulier, estimation travaux, accompagnement rénovation, CCTP DPGF">
+<link rel="canonical" href="https://adora-economie.fr/sur-mesure.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1B3A5C;--blue:#2E75B6;--accent:#D4740B;--light:#D6E4F0;--pale:#EBF2F9;--green:#2D8B55;--txt:#333;--muted:#6B7280;--bg:#f8f9fa;--white:#fff;--radius:12px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Sans 3',system-ui,sans-serif;color:var(--txt);background:var(--white);line-height:1.7}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;line-height:1.3}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1000px;margin:0 auto;padding:0 24px}
+
+.nav{background:var(--navy);padding:12px 0;position:sticky;top:0;z-index:100}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1000px;margin:0 auto;padding:0 24px}
+.nav-logo{color:var(--white);font-family:'Montserrat',sans-serif;font-size:14px;letter-spacing:4px;font-weight:700}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{color:var(--light);font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--white);text-decoration:none}
+.nav-links a.active{color:var(--accent)}
+.nav-cta{background:var(--accent);color:var(--white)!important;padding:6px 16px;border-radius:6px;font-weight:600;font-size:13px}
+.nav-cta:hover{opacity:.9;text-decoration:none}
+
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1e4a6e 50%,#264d73 100%);padding:64px 24px;text-align:center;color:var(--white);position:relative;overflow:hidden}
+.hero h1{font-size:clamp(26px,4.5vw,40px);font-weight:800;margin-bottom:12px}
+.hero h1 span{color:var(--accent)}
+.hero .subtitle{font-size:17px;color:var(--light);max-width:650px;margin:0 auto 24px}
+.hero-tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.hero-tag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);padding:5px 14px;border-radius:20px;font-size:12px;color:var(--light)}
+
+.section{padding:64px 0}
+.section-alt{background:var(--pale)}
+.section-title{font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--navy);text-align:center;margin-bottom:8px}
+.section-sub{text-align:center;color:var(--muted);font-size:16px;max-width:600px;margin:0 auto 40px}
+
+/* PRESTATIONS */
+.presta-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px;margin:0 auto}
+@media(max-width:600px){.presta-grid{grid-template-columns:1fr}}
+.presta-card{background:var(--white);border:1.5px solid #e5e7eb;border-radius:var(--radius);padding:24px}
+.presta-card h3{font-size:16px;color:var(--navy);margin-bottom:4px}
+.presta-card .price{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.presta-card p{font-size:13px;color:var(--muted)}
+
+/* PACKS */
+.packs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:0 auto}
+@media(max-width:700px){.packs-grid{grid-template-columns:1fr}}
+.pack-card{background:var(--white);border:1.5px solid #e5e7eb;border-radius:var(--radius);padding:28px 20px;text-align:center;position:relative}
+.pack-card.featured{border-color:var(--accent);border-width:2px}
+.pack-card.featured::before{content:'Le plus choisi';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--white);padding:3px 14px;border-radius:20px;font-size:11px;font-weight:700;font-family:'Montserrat',sans-serif}
+.pack-name{font-size:20px;font-weight:700;font-family:'Montserrat',sans-serif;color:var(--navy);margin-bottom:4px}
+.pack-price{font-size:28px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--accent);margin-bottom:4px}
+.pack-price small{font-size:13px;font-weight:400;color:var(--muted)}
+.pack-desc{font-size:13px;color:var(--muted);margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #f0f0f0}
+.pack-list{list-style:none;padding:0;text-align:left}
+.pack-list li{font-size:13px;padding:5px 0;display:flex;gap:8px;align-items:flex-start}
+.pack-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.pack-cta{margin-top:20px}
+.btn-pack{display:inline-block;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:600;font-family:'Montserrat',sans-serif;cursor:pointer;transition:all .2s;border:none;text-align:center}
+.btn-outline{background:var(--white);color:var(--blue);border:1.5px solid var(--blue)}
+.btn-outline:hover{background:var(--pale);text-decoration:none}
+.btn-accent{background:var(--accent);color:var(--white)}
+.btn-accent:hover{background:#c06608;text-decoration:none}
+
+/* PROFIL */
+.profil-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:32px;align-items:center;max-width:800px;margin:0 auto}
+@media(max-width:600px){.profil-grid{grid-template-columns:1fr}}
+.profil-card{background:var(--navy);border-radius:var(--radius);padding:32px;color:var(--white);text-align:center}
+.profil-name{font-size:20px;font-weight:700;font-family:'Montserrat',sans-serif;margin-bottom:4px}
+.profil-role{font-size:13px;color:var(--light);margin-bottom:16px}
+.profil-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.stat{text-align:center}
+.stat-val{font-size:22px;font-weight:700;font-family:'Montserrat',sans-serif;color:var(--accent)}
+.stat-label{font-size:11px;color:var(--light)}
+.profil-text h3{font-size:18px;color:var(--navy);margin-bottom:12px}
+.profil-text p{font-size:14px;color:var(--muted);margin-bottom:12px}
+
+/* CONTACT FORM */
+.contact-form{max-width:600px;margin:0 auto;background:var(--white);border:1.5px solid #e5e7eb;border-radius:var(--radius);padding:32px}
+.contact-form h3{font-size:18px;color:var(--navy);margin-bottom:16px;text-align:center}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;padding:10px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:var(--white);transition:border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(46,117,182,.12)}
+.field textarea{resize:vertical;min-height:100px}
+.btn-submit{width:100%;padding:12px;background:var(--accent);color:var(--white);border:none;border-radius:8px;font-size:15px;font-weight:700;font-family:'Montserrat',sans-serif;cursor:pointer;transition:background .2s}
+.btn-submit:hover{background:#c06608}
+
+.cta-band{background:var(--navy);padding:48px 24px;text-align:center;color:var(--white)}
+.cta-band h2{font-size:clamp(22px,3vw,28px);margin-bottom:12px}
+.cta-band p{color:var(--light);font-size:15px;margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.cta-link{color:var(--light);font-size:13px;opacity:.7;transition:opacity .2s}
+.cta-link:hover{opacity:1;text-decoration:none}
+
+.footer{background:#0e2239;padding:32px 24px;text-align:center;color:var(--muted);font-size:12px}
+.footer a{color:var(--light)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="nav-inner">
+<a href="index.html" class="nav-logo" style="display:flex;align-items:center"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA" style="height:28px;width:auto"></a>
+<div class="nav-links">
+<a href="simulateur.html">Simulateur aides</a>
+<a href="estimateur.html">Estimateur</a>
+<a href="audit-avant-achat.html">Audit achat</a>
+<a href="sur-mesure.html" class="active">Sur mesure</a>
+<a href="#contact" class="nav-cta">Demander un devis</a>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container">
+<h1>Votre <span>économiste</span><br>de la construction</h1>
+<p class="subtitle">Estimations TCE, rédaction de CCTP/DPGF, accompagnement de projet (AMO), audit technique. Un interlocuteur unique, du chiffrage à la réception des travaux.</p>
+<div class="hero-tags">
+<span class="hero-tag">Normandie (27/76)</span>
+<span class="hero-tag">Île-de-France</span>
+<span class="hero-tag">Particuliers & professionnels</span>
+<span class="hero-tag">Devis gratuit sous 24h</span>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<h2 class="section-title">Prestations</h2>
+<p class="section-sub">De l'estimation rapide à l'accompagnement complet de votre projet.</p>
+<div class="presta-grid">
+<div class="presta-card">
+<h3>Estimation rapide</h3>
+<div class="price">590 €</div>
+<p>Enveloppe budgétaire par lot sur la base de vos plans et de votre programme. Livré sous 5 jours ouvrés.</p>
+</div>
+<div class="presta-card">
+<h3>Estimation détaillée</h3>
+<div class="price">990 — 1 490 €</div>
+<p>Métrés quantitatifs, allotissement complet, fourchettes par ouvrage. Support à la consultation d'entreprises.</p>
+</div>
+<div class="presta-card">
+<h3>Rédaction DCE</h3>
+<div class="price">TJM 380 €</div>
+<p>CCTP, DPGF, cahier des charges techniques. Documents opposables pour la consultation d'entreprises.</p>
+</div>
+<div class="presta-card">
+<h3>OPC / Suivi de chantier</h3>
+<div class="price">TJM 420 — 450 €</div>
+<p>Planning, coordination des lots, comptes-rendus de chantier, vérification de la conformité des travaux.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section-alt">
+<div class="container">
+<h2 class="section-title">Packs AMO particuliers</h2>
+<p class="section-sub">Trois niveaux d'accompagnement selon votre besoin et votre budget.</p>
+<div class="packs-grid">
+<div class="pack-card">
+<div class="pack-name">Essentiel</div>
+<div class="pack-price">2 200 € <small>TTC</small></div>
+<div class="pack-desc">L'estimation et la consultation</div>
+<ul class="pack-list">
+<li>Visite sur site</li>
+<li>Estimation détaillée par lot</li>
+<li>Rédaction du cahier des charges</li>
+<li>Consultation de 3 entreprises</li>
+<li>Analyse comparative des devis</li>
+<li>Recommandation argumentée</li>
+</ul>
+<div class="pack-cta"><a href="#contact" class="btn-pack btn-outline">Demander un devis</a></div>
+</div>
+
+<div class="pack-card featured">
+<div class="pack-name">Confort</div>
+<div class="pack-price">3 900 € <small>TTC</small></div>
+<div class="pack-desc">L'accompagnement complet</div>
+<ul class="pack-list">
+<li>Tout le pack Essentiel</li>
+<li>Suivi de chantier (visites régulières)</li>
+<li>Vérification avancement travaux</li>
+<li>Gestion des aléas et modifications</li>
+<li>Assistance aux opérations de réception</li>
+<li>Levée des réserves</li>
+</ul>
+<div class="pack-cta"><a href="#contact" class="btn-pack btn-accent">Demander un devis</a></div>
+</div>
+
+<div class="pack-card">
+<div class="pack-name">Sérénité</div>
+<div class="pack-price">5 — 8% <small>du montant travaux</small></div>
+<div class="pack-desc">La tranquillité totale</div>
+<ul class="pack-list">
+<li>Tout le pack Confort</li>
+<li>Rédaction CCTP/DPGF complets</li>
+<li>Consultation élargie (5+ entreprises)</li>
+<li>Négociation avec les entreprises</li>
+<li>Pilotage intégral du chantier</li>
+<li>Réception et suivi garanties</li>
+</ul>
+<div class="pack-cta"><a href="#contact" class="btn-pack btn-outline">Demander un devis</a></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<h2 class="section-title">Qui suis-je ?</h2>
+<div class="profil-grid">
+<div class="profil-card">
+<div class="profil-name">Aymeric Dussauze</div>
+<div class="profil-role">Économiste de la construction<br>Titre Pro Niv. 5 · HUPSO</div>
+<div class="profil-stats">
+<div class="stat"><div class="stat-val">15 ans</div><div class="stat-label">pilotage de projets MOA</div></div>
+<div class="stat"><div class="stat-val">24h</div><div class="stat-label">delai de reponse</div></div>
+<div class="stat"><div class="stat-val">-12%</div><div class="stat-label">vs marché (réf. 136 m²)</div></div>
+<div class="stat"><div class="stat-val">27/76/IDF</div><div class="stat-label">zone d'intervention</div></div>
+</div>
+</div>
+<div class="profil-text">
+<h3>Un profil au croisement de la stratégie et du terrain</h3>
+<p>Pendant 15 ans, j'ai piloté des projets complexes côté maîtrise d'ouvrage : gestion de P&L, coordination d'équipes pluridisciplinaires, négociation et suivi contractuel.</p>
+<p>En 2025, j'ai choisi de mettre cette double compétence — technique et stratégique — au service du bâtiment, en me formant à l'économie de la construction (Titre Professionnel Niveau 5, HUPSO).</p>
+<p style="font-size:14px;color:var(--muted)">Résultat : je comprends aussi bien la technique du chiffrage lot par lot que la stratégie budgétaire globale d'un projet. C'est cette vision complète qui fait la différence. Interventions en Normandie (Eure, Seine-Maritime) et en Île-de-France.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section-alt" id="contact">
+<div class="container">
+<h2 class="section-title">Demander un devis gratuit</h2>
+<p class="section-sub">Décrivez votre projet, je vous réponds sous 24 heures.</p>
+<form class="contact-form" action="https://formspree.io/f/xzdjopya" method="POST">
+<input type="hidden" name="_subject" value="Demande sur mesure — adora-economie.fr">
+<div class="field">
+<label>Nom et prénom</label>
+<input type="text" name="nom" required placeholder="Jean Dupont">
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div class="field">
+<label>Email</label>
+<input type="email" name="email" required placeholder="jean@exemple.fr">
+</div>
+<div class="field">
+<label>Téléphone</label>
+<input type="tel" name="telephone" placeholder="06 12 34 56 78">
+</div>
+</div>
+<div class="field">
+<label>Type de prestation souhaitée</label>
+<select name="prestation" required>
+<option value="">Sélectionnez...</option>
+<option value="estimation-rapide">Estimation rapide (590 €)</option>
+<option value="estimation-detaillee">Estimation détaillée (990-1 490 €)</option>
+<option value="pack-essentiel">Pack Essentiel (2 200 €)</option>
+<option value="pack-confort">Pack Confort (3 900 €)</option>
+<option value="pack-serenite">Pack Sérénité (5-8%)</option>
+<option value="redaction-dce">Rédaction DCE / CCTP / DPGF</option>
+<option value="opc">OPC / Suivi de chantier</option>
+<option value="autre">Autre — je décris ci-dessous</option>
+</select>
+</div>
+<div class="field">
+<label>Décrivez votre projet</label>
+<textarea name="projet" required placeholder="Type de bien, surface, localisation, nature des travaux envisagés, budget approximatif, calendrier souhaité..."></textarea>
+</div>
+<button type="submit" class="btn-submit">Envoyer ma demande</button>
+<p style="text-align:center;font-size:11px;color:var(--muted);margin-top:8px">Réponse sous 24h · Devis gratuit · Sans engagement</p>
+</form>
+</div>
+</section>
+
+<section class="cta-band">
+<div class="container">
+<h2>Des outils gratuits pour commencer</h2>
+<p>Avant de nous contacter, vous pouvez déjà estimer votre budget ou calculer vos aides avec nos outils en ligne.</p>
+<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+<a href="simulateur.html" class="btn-hero" style="background:var(--green)">Simulateur aides</a>
+<a href="estimateur-outil.html" class="btn-hero">Estimateur travaux</a>
+</div>
+<div class="cta-links" style="margin-top:24px">
+<a href="audit-avant-achat.html" class="cta-link">Audit avant achat — 499 €</a>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container">
+<p style="margin-bottom:8px"><strong style="color:var(--light)">ADORA</strong> — Aymeric Dussauze — Économiste de la construction</p>
+<p>EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</p>
+<p style="margin-top:8px">
+<a href="index.html">Accueil</a> · <a href="simulateur.html">Simulateur aides</a> · <a href="estimateur.html">Estimateur</a> · <a href="audit-avant-achat.html">Audit achat</a> · <a href="sur-mesure.html">Sur mesure</a>
+</p>
+<p style="margin-top:12px;font-size:11px">06 60 21 55 09 · aymericdussauze@gmail.com · adora-economie.fr</p>
+</div>
+</footer>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M0LENY960B"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M0LENY960B');</script>
+<div style="background:#D4740B;color:#fff;text-align:center;padding:8px;font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;position:fixed;bottom:0;left:0;right:0;z-index:9999">PREPROD — Recette en cours — Ne pas diffuser</div>
+</body>
+</html>

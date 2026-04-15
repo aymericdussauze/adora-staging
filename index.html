@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADORA — Économiste de la construction | Normandie & Île-de-France</title>
+<meta name="description" content="ADORA, économiste de la construction indépendant. Estimations TCE, CCTP/DPGF, AMO pour particuliers et professionnels. Outils en ligne gratuits. Normandie (27/76) et IDF.">
+<meta name="keywords" content="économiste construction, estimation travaux, AMO particulier, CCTP DPGF, rénovation normandie">
+<link rel="canonical" href="https://adora-economie.fr/">
+<meta property="og:title" content="ADORA — Économiste de la construction">
+<meta property="og:description" content="Estimations, AMO, outils en ligne gratuits. Normandie et IDF.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://adora-economie.fr/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1B3A5C;--blue:#2E75B6;--accent:#D4740B;--light:#D6E4F0;--pale:#EBF2F9;--green:#2D8B55;--txt:#333;--muted:#6B7280;--white:#fff;--radius:12px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Sans 3',system-ui,sans-serif;color:var(--txt);background:var(--white);line-height:1.7}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;line-height:1.3}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1000px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+.nav{background:var(--navy);padding:12px 0;position:sticky;top:0;z-index:100}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1000px;margin:0 auto;padding:0 24px}
+.nav-logo{color:var(--white);font-family:'Montserrat',sans-serif;font-size:14px;letter-spacing:4px;font-weight:700}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{color:var(--light);font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--white);text-decoration:none}
+.nav-links a.active{color:var(--accent)}
+.nav-cta{background:var(--accent);color:var(--white)!important;padding:6px 16px;border-radius:6px;font-weight:600;font-size:13px}
+.nav-cta:hover{opacity:.9;text-decoration:none}
+.nav-burger{display:none;background:none;border:none;color:var(--white);font-size:24px;cursor:pointer}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1e4a6e 50%,#264d73 100%);padding:72px 24px 64px;color:var(--white);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;bottom:-30%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(212,116,11,.1) 0%,transparent 70%);pointer-events:none}
+.hero-content{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1.3fr 0.7fr;gap:48px;align-items:center}
+@media(max-width:700px){.hero-content{grid-template-columns:1fr}.hero-right{display:none}}
+.hero h1{font-size:clamp(30px,5vw,46px);font-weight:800;margin-bottom:12px}
+.hero h1 span{color:var(--accent)}
+.hero .subtitle{font-size:18px;color:var(--light);margin-bottom:28px;max-width:520px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 28px;border-radius:8px;font-size:15px;font-weight:700;font-family:'Montserrat',sans-serif;transition:all .2s;border:none;cursor:pointer}
+.btn-accent{background:var(--accent);color:var(--white)}
+.btn-accent:hover{background:#c06608;text-decoration:none}
+.btn-outline{background:transparent;color:var(--light);border:1.5px solid rgba(255,255,255,.3)}
+.btn-outline:hover{background:rgba(255,255,255,.08);text-decoration:none}
+.btn-green{background:var(--green);color:var(--white)}
+.btn-green:hover{background:#246e44;text-decoration:none}
+
+.hero-right{display:flex;flex-direction:column;gap:12px}
+.hero-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:16px 20px;display:flex;align-items:center;gap:16px}
+.hero-stat .hs-val{font-size:28px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--accent);min-width:60px}
+.hero-stat .hs-label{font-size:13px;color:var(--light)}
+
+/* SECTION */
+.section{padding:64px 0}
+.section-alt{background:var(--pale)}
+.section-title{font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--navy);text-align:center;margin-bottom:8px}
+.section-sub{text-align:center;color:var(--muted);font-size:16px;max-width:600px;margin:0 auto 40px}
+
+/* TOOLS GRID */
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;margin:0 auto}
+@media(max-width:600px){.tools-grid{grid-template-columns:1fr}}
+.tool-card{background:var(--white);border:1.5px solid #e5e7eb;border-radius:var(--radius);padding:28px 24px;transition:border-color .2s;position:relative;overflow:hidden}
+.tool-card:hover{border-color:var(--blue)}
+.tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.tool-card.tc-green::before{background:var(--green)}
+.tool-card.tc-blue::before{background:var(--blue)}
+.tool-card.tc-amber::before{background:var(--accent)}
+.tool-card.tc-purple::before{background:#7F77DD}
+.tool-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-bottom:12px}
+.badge-live{background:#EAF3DE;color:#27500A}
+.badge-new{background:#E6F1FB;color:#0C447C}
+.tool-card h3{font-size:18px;color:var(--navy);margin-bottom:6px}
+.tool-card .price{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.tool-card p{font-size:14px;color:var(--muted);margin-bottom:16px}
+.tool-card .tc-link{font-size:14px;font-weight:600;color:var(--blue)}
+.tool-card .tc-link:hover{text-decoration:underline}
+
+/* PRESTATIONS */
+.presta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:860px;margin:0 auto}
+.presta-pill{background:var(--white);border:1px solid #e5e7eb;border-radius:8px;padding:14px 20px;text-align:center;flex:1;min-width:180px}
+.presta-pill h4{font-size:14px;color:var(--navy);margin-bottom:2px}
+.presta-pill .pp-price{font-size:13px;font-weight:600;color:var(--accent)}
+
+/* TRUST */
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:700px;margin:0 auto}
+@media(max-width:500px){.trust-grid{grid-template-columns:1fr 1fr}}
+.trust-card{text-align:center;padding:20px 12px}
+.trust-val{font-size:32px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--navy)}
+.trust-label{font-size:13px;color:var(--muted);margin-top:4px}
+
+/* CTA BAND */
+.cta-band{background:var(--navy);padding:48px 24px;text-align:center;color:var(--white)}
+.cta-band h2{font-size:clamp(22px,3vw,28px);margin-bottom:8px}
+.cta-band p{color:var(--light);font-size:15px;margin-bottom:24px;max-width:550px;margin-left:auto;margin-right:auto}
+.cta-band .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+.footer{background:#0e2239;padding:32px 24px;text-align:center;color:var(--muted);font-size:12px}
+.footer a{color:var(--light)}
+.footer-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+
+@media(max-width:700px){
+  .nav-links{display:none}
+  .nav-burger{display:block}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+<div class="nav-inner">
+<a href="index.html" class="nav-logo" style="display:flex;align-items:center"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA" style="height:28px;width:auto"></a>
+<div class="nav-links">
+<a href="simulateur.html">Simulateur aides</a>
+<a href="estimateur.html">Estimateur</a>
+<a href="audit-avant-achat.html">Audit achat</a>
+<a href="sur-mesure.html">Sur mesure</a>
+<a href="estimateur-outil.html" class="nav-cta">Estimer mes travaux</a>
+</div>
+<button class="nav-burger" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'" aria-label="Menu">&#9776;</button>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<div>
+<h1>L'<span>économiste</span><br>qui parle votre langue</h1>
+<p class="subtitle">Vous avez un projet de rénovation, un achat immobilier ou des travaux à chiffrer ? ADORA vous accompagne avec des outils en ligne gratuits et des prestations sur mesure.</p>
+<div class="hero-btns">
+<a href="simulateur.html" class="btn btn-green">Calculer mes aides</a>
+<a href="estimateur-outil.html" class="btn btn-accent">Estimer mes travaux</a>
+<a href="sur-mesure.html" class="btn btn-outline">Accompagnement</a>
+</div>
+</div>
+<div class="hero-right">
+<div class="hero-stat">
+<div class="hs-val">15</div>
+<div class="hs-label">lots techniques analysés dans chaque estimation</div>
+</div>
+<div class="hero-stat">
+<div class="hs-val">101</div>
+<div class="hs-label">départements couverts par les coefficients régionaux</div>
+</div>
+<div class="hero-stat">
+<div class="hs-val">0 €</div>
+<div class="hs-label">pour commencer — simulateur et synthèse d'estimation gratuits</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- OUTILS EN LIGNE -->
+<section class="section">
+<div class="container">
+<h2 class="section-title">Vos outils en ligne</h2>
+<p class="section-sub">Commencez gratuitement. Allez plus loin si vous en avez besoin.</p>
+<div class="tools-grid">
+
+<a href="simulateur.html" class="tool-card tc-green" style="text-decoration:none;color:inherit">
+<span class="tool-badge badge-live">En ligne</span>
+<h3>Simulateur d'aides</h3>
+<div class="price">Gratuit</div>
+<p>Calculez vos droits MaPrimeRénov', CEE, éco-PTZ et TVA réduite. Barèmes Anah 2026. Résultat immédiat + PDF.</p>
+<span class="tc-link">Lancer le simulateur &#8594;</span>
+</a>
+
+<a href="estimateur.html" class="tool-card tc-blue" style="text-decoration:none;color:inherit">
+<span class="tool-badge badge-new">Nouveau</span>
+<h3>Estimateur de travaux</h3>
+<div class="price">Gratuit + rapport complet 49 €</div>
+<p>Estimation structurée par 15 lots TCE, coefficients régionaux, fourchettes réalistes. Comme un économiste, en 3 minutes.</p>
+<span class="tc-link">Découvrir l'estimateur &#8594;</span>
+</a>
+
+<a href="audit-avant-achat.html" class="tool-card tc-amber" style="text-decoration:none;color:inherit">
+<span class="tool-badge badge-new">Nouveau</span>
+<h3>Audit avant achat</h3>
+<div class="price">499 €</div>
+<p>Avant d'acheter, faites analyser le bien. DDT, DPE, estimation travaux, risques cachés, stratégie de négociation.</p>
+<span class="tc-link">En savoir plus &#8594;</span>
+</a>
+
+<a href="sur-mesure.html" class="tool-card tc-purple" style="text-decoration:none;color:inherit">
+<span class="tool-badge badge-live">Disponible</span>
+<h3>Accompagnement sur mesure</h3>
+<div class="price">590 — 3 900 €</div>
+<p>Estimation détaillée, rédaction CCTP/DPGF, suivi de chantier, AMO complète. Du chiffrage à la réception.</p>
+<span class="tc-link">Voir les packs &#8594;</span>
+</a>
+
+</div>
+</div>
+</section>
+
+<!-- PRESTATIONS PRO -->
+<section class="section section-alt">
+<div class="container">
+<h2 class="section-title">Prestations professionnelles</h2>
+<p class="section-sub">Pour les architectes, BET, maîtres d'ouvrage et promoteurs.</p>
+<div class="presta-row">
+<div class="presta-pill"><h4>Estimations TCE</h4><div class="pp-price">TJM 380 €</div></div>
+<div class="presta-pill"><h4>CCTP / DPGF / DCE</h4><div class="pp-price">TJM 380 €</div></div>
+<div class="presta-pill"><h4>OPC</h4><div class="pp-price">TJM 420-450 €</div></div>
+<div class="presta-pill"><h4>AMO</h4><div class="pp-price">TJM 450 €</div></div>
+</div>
+<p style="text-align:center;margin-top:20px"><a href="sur-mesure.html" style="font-size:14px;font-weight:600">Demander un devis gratuit &#8594;</a></p>
+</div>
+</section>
+
+<!-- QUI SUIS-JE -->
+<section class="section">
+<div class="container">
+<h2 class="section-title">Qui suis-je ?</h2>
+<p class="section-sub">La rigueur d'un pilote de projets, la technique d'un économiste.</p>
+<div style="max-width:700px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:32px;align-items:center">
+<div style="background:var(--navy);border-radius:var(--radius);padding:28px;text-align:center;color:var(--white)">
+<div style="font-size:20px;font-weight:700;font-family:'Montserrat',sans-serif;margin-bottom:2px">Aymeric Dussauze</div>
+<div style="font-size:13px;color:var(--light);margin-bottom:16px">Économiste de la construction<br>Titre Pro Niv. 5</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div style="text-align:center"><div style="font-size:20px;font-weight:700;color:var(--accent)">15 ans</div><div style="font-size:10px;color:var(--light)">pilotage de projets MOA</div></div>
+<div style="text-align:center"><div style="font-size:20px;font-weight:700;color:var(--accent)">-12%</div><div style="font-size:10px;color:var(--light)">vs marché (réf.)</div></div>
+</div>
+</div>
+<div>
+<p style="font-size:15px;color:var(--txt);margin-bottom:12px">Pendant 15 ans, j'ai piloté des projets complexes côté maîtrise d'ouvrage : gestion de P&L, coordination d'équipes pluridisciplinaires, négociation et suivi contractuel.</p>
+<p style="font-size:15px;color:var(--txt);margin-bottom:12px">En 2025, j'ai choisi de mettre cette double compétence — technique et stratégique — au service du bâtiment, en me formant à l'économie de la construction (Titre Professionnel Niveau 5, HUPSO).</p>
+<p style="font-size:14px;color:var(--muted)">Résultat : je comprends aussi bien la technique du chiffrage lot par lot que la stratégie budgétaire globale d'un projet. C'est cette vision complète qui fait la différence.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CHIFFRES -->
+<section class="section section-alt">
+<div class="container">
+<div class="trust-grid">
+<div class="trust-card"><div class="trust-val">15</div><div class="trust-label">lots techniques analysés</div></div>
+<div class="trust-card"><div class="trust-val">101</div><div class="trust-label">départements couverts</div></div>
+<div class="trust-card"><div class="trust-val">2026</div><div class="trust-label">barèmes à jour</div></div>
+<div class="trust-card"><div class="trust-val">24h</div><div class="trust-label">réponse garantie</div></div>
+</div>
+</div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-band">
+<div class="container">
+<h2>Commencez maintenant</h2>
+<p>Gratuit, sans engagement, en quelques minutes. Nos outils en ligne vous donnent une première réponse immédiate.</p>
+<div class="btns">
+<a href="simulateur.html" class="btn btn-green">Calculer mes aides</a>
+<a href="estimateur-outil.html" class="btn btn-accent">Estimer mes travaux</a>
+<a href="sur-mesure.html#contact" class="btn btn-outline">Contacter ADORA</a>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container">
+<p style="margin-bottom:8px"><strong style="color:var(--light)">ADORA</strong> — Aymeric Dussauze — Économiste de la construction</p>
+<p>EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</p>
+<div class="footer-links">
+<a href="index.html">Accueil</a>
+<a href="simulateur.html">Simulateur aides</a>
+<a href="estimateur.html">Estimateur</a>
+<a href="audit-avant-achat.html">Audit achat</a>
+<a href="sur-mesure.html">Sur mesure</a>
+</div>
+<p style="margin-top:12px;font-size:11px">06 60 21 55 09 · aymericdussauze@gmail.com · adora-economie.fr</p>
+</div>
+</footer>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M0LENY960B"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M0LENY960B');</script>
+<div style="background:#D4740B;color:#fff;text-align:center;padding:8px;font-family:Montserrat,sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;position:fixed;bottom:0;left:0;right:0;z-index:9999">PREPROD — Recette en cours — Ne pas diffuser</div>
+</body>
+</html>
