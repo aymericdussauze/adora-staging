@@ -6,86 +6,166 @@
 <title>Demande d'audit avant achat | ADORA — Économiste de la construction</title>
 <meta name="description" content="Remplissez le formulaire pour demander votre audit avant achat immobilier. Envoyez vos diagnostics, DPE et photos. Réponse sous 24h.">
 <link rel="canonical" href="https://adora-economie.fr/audit-formulaire.html">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#1B3A5C;--blue:#2E75B6;--accent:#D4740B;--light:#D6E4F0;--pale:#EBF2F9;--green:#2D8B55;--txt:#333;--muted:#6B7280;--white:#fff;--radius:12px}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Source Sans 3',system-ui,sans-serif;color:var(--txt);background:var(--pale);line-height:1.7}
-h1,h2,h3{font-family:'Montserrat',sans-serif;line-height:1.3}
-a{color:var(--blue);text-decoration:none}
+/* ═══ ADORA PropTech Design System v2 ═══ */
+:root{--navy:#1B3A5C;--blue:#2E75B6;--accent:#D4740B;--accent-hover:#BF6508;--light:#D6E4F0;--pale:#F4F7FB;--green:#2D8B55;--green-hover:#246E44;--txt:#1E293B;--muted:#64748B;--border:#E2E8F0;--white:#FFFFFF;--radius:16px;--radius-sm:10px;--shadow-card:0 1px 3px rgba(27,58,92,.06),0 8px 24px rgba(27,58,92,.04);--shadow-hover:0 4px 12px rgba(27,58,92,.08),0 16px 40px rgba(27,58,92,.06);--shadow-btn:0 2px 8px rgba(212,116,11,.25);--transition:.3s cubic-bezier(.4,0,.2,1)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:var(--txt);background:var(--white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;line-height:1.2}
+a{color:var(--blue);text-decoration:none;transition:color var(--transition)}
+a:hover{color:var(--navy)}
+img{max-width:100%;height:auto}
+.container{max-width:1120px;margin:0 auto;padding:0 28px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-.nav{background:var(--navy);padding:12px 0;position:sticky;top:0;z-index:100}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1000px;margin:0 auto;padding:0 24px}
-.nav-logo{color:var(--white);font-family:'Montserrat',sans-serif;font-size:14px;letter-spacing:4px;font-weight:700}
-.nav-links{display:flex;gap:24px;align-items:center}
-.nav-links a{color:var(--light);font-size:13px;font-weight:500}
-.nav-links a.active{color:var(--accent)}
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(27,58,92,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:14px 28px}
+.nav-logo img{height:26px;width:auto}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-links a{color:rgba(214,228,240,.8);font-size:13.5px;font-weight:500;padding:6px 14px;border-radius:8px;transition:all var(--transition)}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.08);text-decoration:none}
+.nav-links a.active{color:var(--accent);background:rgba(212,116,11,.1)}
+.nav-cta{background:var(--accent)!important;color:var(--white)!important;padding:8px 20px!important;border-radius:8px;font-weight:700!important;font-size:13px!important;box-shadow:var(--shadow-btn)}
+.nav-cta:hover{background:var(--accent-hover)!important;transform:translateY(-1px)}
+.nav-burger{display:none;background:none;border:none;color:var(--white);font-size:22px;cursor:pointer;padding:8px}
 
-.page-header{background:var(--navy);padding:32px 24px;text-align:center;color:var(--white)}
-.page-header h1{font-size:24px;margin-bottom:6px}
-.page-header p{font-size:14px;color:var(--light)}
+/* HERO */
+.hero{background:var(--navy);padding:72px 0 80px;color:var(--white);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-20%;width:900px;height:900px;background:radial-gradient(circle,rgba(46,117,182,.15) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(212,116,11,.08) 0%,transparent 65%);pointer-events:none}
+.hero h1{font-size:clamp(30px,5vw,48px);font-weight:900;margin-bottom:16px;letter-spacing:-.02em;position:relative}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .subtitle{font-size:17px;color:rgba(214,228,240,.85);margin-bottom:32px;max-width:540px;line-height:1.7}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 30px;border-radius:var(--radius-sm);font-size:15px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;transition:all var(--transition);border:none;cursor:pointer;text-decoration:none!important}
+.btn-accent{background:var(--accent);color:var(--white);box-shadow:var(--shadow-btn)}
+.btn-accent:hover{background:var(--accent-hover);color:var(--white);transform:translateY(-2px);box-shadow:0 4px 16px rgba(212,116,11,.35)}
+.btn-green{background:var(--green);color:var(--white)}
+.btn-green:hover{background:var(--green-hover);color:var(--white);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:rgba(214,228,240,.9);border:1.5px solid rgba(255,255,255,.2)}
+.btn-outline:hover{background:rgba(255,255,255,.08);color:var(--white);transform:translateY(-2px)}
+.btn-white{background:var(--white);color:var(--navy)}
+.btn-white:hover{background:#F1F5F9;color:var(--navy);transform:translateY(-2px)}
 
-.form-container{max-width:680px;margin:-20px auto 40px;background:var(--white);border-radius:var(--radius);border:1.5px solid #e5e7eb;padding:36px;position:relative;z-index:1}
+/* SECTIONS */
+.section{padding:100px 0}
+.section-alt{background:var(--pale)}
+.section-label{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.section-title{font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--navy);margin-bottom:12px;letter-spacing:-.01em}
+.section-sub{font-size:17px;color:var(--muted);max-width:560px;line-height:1.7}
+.section-header{margin-bottom:56px}
+.section-header.center{text-align:center}
+.section-header.center .section-sub{margin:0 auto}
 
-.form-section{margin-bottom:28px}
-.form-section h3{font-size:16px;color:var(--navy);margin-bottom:4px}
-.form-section .section-hint{font-size:12px;color:var(--muted);margin-bottom:16px}
+/* FAQ */
+.faq-list{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0}
+.faq-q{font-weight:700;color:var(--navy);font-size:16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Montserrat',sans-serif}
+.faq-q::after{content:'+';font-size:24px;color:var(--accent);font-weight:300;flex-shrink:0;transition:transform var(--transition)}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{display:none;padding:12px 0 4px;font-size:15px;color:var(--muted);line-height:1.7}
+.faq-item.open .faq-a{display:block}
 
-.field{margin-bottom:16px}
-.field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:5px}
+/* CTA BAND */
+.cta-band{background:linear-gradient(135deg,var(--navy) 0%,#1F4E75 60%,#234E77 100%);padding:80px 28px;text-align:center;color:var(--white);position:relative;overflow:hidden}
+.cta-band::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(212,116,11,.1) 0%,transparent 60%);pointer-events:none}
+.cta-band h2{font-size:clamp(26px,4vw,36px);font-weight:800;margin-bottom:12px;position:relative}
+.cta-band .cta-sub{font-size:17px;color:rgba(214,228,240,.8);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;position:relative}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+.cta-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px;position:relative}
+.cta-links a{color:rgba(214,228,240,.5);font-size:13px;font-weight:500;transition:color var(--transition)}
+.cta-links a:hover{color:var(--white)}
+
+/* FOOTER */
+.footer{background:#0D1F33;padding:48px 28px 36px;color:var(--muted);font-size:13px}
+.footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px}
+.footer-brand strong{color:var(--light);font-weight:700}
+.footer-brand p{margin-top:4px;font-size:12px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{color:rgba(214,228,240,.6);font-size:13px;font-weight:500;transition:color var(--transition)}
+.footer-links a:hover{color:var(--white)}
+.footer-contact{font-size:12px;color:rgba(214,228,240,.4);text-align:right}
+.footer-legal{max-width:1120px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(214,228,240,.3);text-align:center}
+
+/* FORMS */
+.form-container{max-width:720px;margin:0 auto;background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:40px;box-shadow:var(--shadow-card)}
+.form-section{margin-bottom:32px}
+.form-section h3{font-size:17px;color:var(--navy);margin-bottom:4px}
+.form-section .section-hint{font-size:13px;color:var(--muted);margin-bottom:20px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px}
 .field label .opt{font-weight:400;color:var(--muted);font-size:11px}
-.field input,.field select,.field textarea{width:100%;padding:10px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;font-family:'Source Sans 3',sans-serif;background:var(--white);transition:border-color .2s}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(46,117,182,.12)}
-.field textarea{resize:vertical;min-height:100px}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:500px){.field-row{grid-template-columns:1fr}}
+.field input,.field select,.field textarea{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);transition:all var(--transition)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(46,117,182,.1)}
+.field textarea{resize:vertical;min-height:110px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.btn-submit{width:100%;padding:16px;background:var(--accent);color:var(--white);border:none;border-radius:var(--radius-sm);font-size:16px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:all var(--transition);box-shadow:var(--shadow-btn)}
+.btn-submit:hover{background:var(--accent-hover);transform:translateY(-1px)}
 
-.upload-zone{border:2px dashed var(--light);border-radius:8px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;position:relative;background:var(--pale)}
+/* SCROLL PROGRESS */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:200;width:0;transition:width .1s linear}
+
+@media(max-width:700px){
+  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--navy);padding:16px 28px;gap:4px;border-top:1px solid rgba(255,255,255,.08)}
+  .nav-links.open{display:flex}
+  .nav-burger{display:block}
+  .hero{padding:56px 0 64px}
+  .section{padding:72px 0}
+  .field-row{grid-template-columns:1fr}
+  .footer-inner{flex-direction:column}
+  .footer-contact{text-align:left}
+}
+
+
+body{background:var(--pale)}
+.page-header{background:var(--navy);padding:48px 28px;text-align:center;color:var(--white);position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;top:-40%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(46,117,182,.12) 0%,transparent 65%);pointer-events:none}
+.page-header h1{font-size:clamp(24px,4vw,32px);font-weight:800;margin-bottom:8px;position:relative}
+.page-header p{font-size:16px;color:rgba(214,228,240,.8);position:relative}
+.form-wrapper{margin-top:-24px;position:relative;z-index:1;padding-bottom:48px}
+.upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.upload-zone{border:2px dashed var(--border);border-radius:var(--radius-sm);padding:24px;text-align:center;cursor:pointer;transition:all var(--transition);position:relative;background:var(--pale)}
 .upload-zone:hover{border-color:var(--blue);background:var(--white)}
 .upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
-.upload-zone .uz-title{font-size:13px;font-weight:600;color:var(--navy)}
-.upload-zone .uz-hint{font-size:11px;color:var(--muted);margin-top:2px}
+.upload-zone .uz-title{font-size:14px;font-weight:700;color:var(--navy)}
+.upload-zone .uz-hint{font-size:12px;color:var(--muted);margin-top:4px}
 .upload-zone .uz-files{font-size:12px;color:var(--green);margin-top:6px;font-weight:600}
-
-.price-box{background:var(--pale);border:1.5px solid var(--light);border-radius:var(--radius);padding:20px;text-align:center;margin:24px 0}
-.price-val{font-size:32px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--accent)}
+.price-box{background:var(--pale);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;margin:28px 0}
+.price-val{font-family:'Montserrat',sans-serif;font-size:36px;font-weight:900;color:var(--accent)}
 .price-val small{font-size:14px;font-weight:400;color:var(--muted)}
 .price-note{font-size:12px;color:var(--muted);margin-top:6px}
-
-.btn-submit{width:100%;padding:14px;background:var(--accent);color:var(--white);border:none;border-radius:8px;font-size:16px;font-weight:700;font-family:'Montserrat',sans-serif;cursor:pointer;transition:background .2s}
-.btn-submit:hover{background:#c06608}
-
-.back-link{text-align:center;margin-top:16px;font-size:13px}
-
-.footer{background:#0e2239;padding:32px 24px;text-align:center;color:var(--muted);font-size:12px}
-.footer a{color:var(--light)}
-
 .success-msg{display:none;text-align:center;padding:48px 24px}
-.success-msg h2{color:var(--green);margin-bottom:8px}
-.success-msg p{color:var(--muted);font-size:15px}
+.success-msg h2{color:var(--green);margin-bottom:12px}
+.success-msg p{color:var(--muted);font-size:16px}
+@media(max-width:500px){.upload-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
-
+<div class="scroll-progress" id="scrollProgress"></div>
 <nav class="nav">
 <div class="nav-inner">
-<a href="/" class="nav-logo" style="display:flex;align-items:center"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA" style="height:28px;width:auto"></a>
-<div class="nav-links">
+<a href="/" class="nav-logo"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA" style="height:26px;width:auto"></a>
+<div class="nav-links" id="navLinks">
 <a href="/simulateur.html">Simulateur aides</a>
 <a href="/estimateur.html">Estimateur</a>
 <a href="/audit-avant-achat.html" class="active">Audit achat</a>
 <a href="/sur-mesure.html">Sur mesure</a>
+<a href="/audit-formulaire.html" class="nav-cta">Demander un audit</a>
 </div>
+<button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
 </div>
 </nav>
 
 <div class="page-header">
 <h1>Demande d'audit avant achat</h1>
-<p>Remplissez le formulaire et envoyez vos documents. Nous vous recontactons sous 24h.</p>
+<p>Remplissez le formulaire et envoyez vos documents. Réponse sous 24h.</p>
 </div>
 
-<div id="form-section">
+<div id="form-section" class="form-wrapper">
 <form class="form-container" action="https://formspree.io/f/xzdjopya" method="POST" enctype="multipart/form-data" id="audit-form">
 <input type="hidden" name="_subject" value="AUDIT AVANT ACHAT — adora-economie.fr">
 
@@ -93,95 +173,39 @@ a{color:var(--blue);text-decoration:none}
 <h3>Vos coordonnées</h3>
 <div class="section-hint">Pour que nous puissions vous recontacter.</div>
 <div class="field-row">
-<div class="field">
-<label>Nom</label>
-<input type="text" name="nom" required placeholder="Dupont">
-</div>
-<div class="field">
-<label>Prénom</label>
-<input type="text" name="prenom" required placeholder="Jean">
-</div>
+<div class="field"><label>Nom</label><input type="text" name="nom" required placeholder="Dupont"></div>
+<div class="field"><label>Prénom</label><input type="text" name="prenom" required placeholder="Jean"></div>
 </div>
 <div class="field-row">
-<div class="field">
-<label>Email</label>
-<input type="email" name="email" required placeholder="jean@exemple.fr">
-</div>
-<div class="field">
-<label>Téléphone</label>
-<input type="tel" name="telephone" required placeholder="06 12 34 56 78">
-</div>
+<div class="field"><label>Email</label><input type="email" name="email" required placeholder="jean@exemple.fr"></div>
+<div class="field"><label>Téléphone</label><input type="tel" name="telephone" required placeholder="06 12 34 56 78"></div>
 </div>
 </div>
 
 <div class="form-section">
 <h3>Le bien concerné</h3>
 <div class="section-hint">Décrivez le bien que vous envisagez d'acheter.</div>
-<div class="field">
-<label>Adresse du bien</label>
-<input type="text" name="adresse" required placeholder="12 rue de la Paix, 27400 Louviers">
+<div class="field"><label>Adresse du bien</label><input type="text" name="adresse" required placeholder="12 rue de la Paix, 27400 Louviers"></div>
+<div class="field-row">
+<div class="field"><label>Type de bien</label>
+<select name="type_bien" required><option value="">Sélectionnez...</option><option value="maison">Maison individuelle</option><option value="appartement">Appartement</option><option value="immeuble">Immeuble</option><option value="local-commercial">Local commercial</option><option value="autre">Autre</option></select></div>
+<div class="field"><label>Surface habitable (m²)</label><input type="number" name="surface" required placeholder="120"></div>
 </div>
 <div class="field-row">
-<div class="field">
-<label>Type de bien</label>
-<select name="type_bien" required>
-<option value="">Sélectionnez...</option>
-<option value="maison">Maison individuelle</option>
-<option value="appartement">Appartement</option>
-<option value="immeuble">Immeuble</option>
-<option value="local-commercial">Local commercial</option>
-<option value="autre">Autre</option>
-</select>
+<div class="field"><label>Année de construction <span class="opt">(approximative)</span></label><input type="text" name="annee" placeholder="1970"></div>
+<div class="field"><label>Prix demandé (FAI)</label><input type="text" name="prix" placeholder="250 000 €"></div>
 </div>
-<div class="field">
-<label>Surface habitable (m²)</label>
-<input type="number" name="surface" required placeholder="120">
-</div>
-</div>
-<div class="field-row">
-<div class="field">
-<label>Année de construction <span class="opt">(approximative)</span></label>
-<input type="text" name="annee" placeholder="1970">
-</div>
-<div class="field">
-<label>Prix demandé (FAI)</label>
-<input type="text" name="prix" placeholder="250 000 €">
-</div>
-</div>
-<div class="field">
-<label>Contexte de l'achat <span class="opt">(résidence principale, investissement, etc.)</span></label>
-<textarea name="contexte" rows="3" placeholder="Ex : primo-accession pour résidence principale, budget travaux à définir, compromis prévu fin mai..."></textarea>
-</div>
+<div class="field"><label>Contexte de l'achat <span class="opt">(résidence principale, investissement…)</span></label><textarea name="contexte" rows="3" placeholder="Ex : primo-accession pour résidence principale, budget travaux à définir, compromis prévu fin mai..."></textarea></div>
 </div>
 
 <div class="form-section">
 <h3>Documents à joindre</h3>
-<div class="section-hint">Plus vous fournissez de documents, plus l'analyse sera précise. Formats acceptés : PDF, JPG, PNG (max 10 Mo par fichier).</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-<div class="upload-zone">
-<input type="file" name="ddt" accept=".pdf,.jpg,.jpeg,.png" multiple onchange="showFiles(this,'ddt-files')">
-<div class="uz-title">DDT (diagnostics)</div>
-<div class="uz-hint">PDF du dossier de diagnostic technique</div>
-<div class="uz-files" id="ddt-files"></div>
-</div>
-<div class="upload-zone">
-<input type="file" name="dpe" accept=".pdf,.jpg,.jpeg,.png" multiple onchange="showFiles(this,'dpe-files')">
-<div class="uz-title">DPE</div>
-<div class="uz-hint">Diagnostic de performance énergétique</div>
-<div class="uz-files" id="dpe-files"></div>
-</div>
-<div class="upload-zone">
-<input type="file" name="photos_ext" accept=".jpg,.jpeg,.png" multiple onchange="showFiles(this,'ext-files')">
-<div class="uz-title">Photos extérieures</div>
-<div class="uz-hint">Façades, toiture, terrain</div>
-<div class="uz-files" id="ext-files"></div>
-</div>
-<div class="upload-zone">
-<input type="file" name="photos_int" accept=".jpg,.jpeg,.png" multiple onchange="showFiles(this,'int-files')">
-<div class="uz-title">Photos intérieures</div>
-<div class="uz-hint">Pièces, installations, défauts visibles</div>
-<div class="uz-files" id="int-files"></div>
-</div>
+<div class="section-hint">Plus vous fournissez de documents, plus l'analyse sera précise. PDF, JPG, PNG (max 10 Mo/fichier).</div>
+<div class="upload-grid">
+<div class="upload-zone"><input type="file" name="ddt" accept=".pdf,.jpg,.jpeg,.png" multiple onchange="showFiles(this,'ddt-files')"><div class="uz-title">DDT (diagnostics)</div><div class="uz-hint">PDF du dossier de diagnostic technique</div><div class="uz-files" id="ddt-files"></div></div>
+<div class="upload-zone"><input type="file" name="dpe" accept=".pdf,.jpg,.jpeg,.png" multiple onchange="showFiles(this,'dpe-files')"><div class="uz-title">DPE</div><div class="uz-hint">Diagnostic de performance énergétique</div><div class="uz-files" id="dpe-files"></div></div>
+<div class="upload-zone"><input type="file" name="photos_ext" accept=".jpg,.jpeg,.png" multiple onchange="showFiles(this,'ext-files')"><div class="uz-title">Photos extérieures</div><div class="uz-hint">Façades, toiture, terrain</div><div class="uz-files" id="ext-files"></div></div>
+<div class="upload-zone"><input type="file" name="photos_int" accept=".jpg,.jpeg,.png" multiple onchange="showFiles(this,'int-files')"><div class="uz-title">Photos intérieures</div><div class="uz-hint">Pièces, installations, défauts visibles</div><div class="uz-files" id="int-files"></div></div>
 </div>
 </div>
 
@@ -191,7 +215,7 @@ a{color:var(--blue);text-decoration:none}
 </div>
 
 <button type="submit" class="btn-submit">Envoyer ma demande d'audit</button>
-<div class="back-link"><a href="/audit-avant-achat.html">En savoir plus sur l'audit avant achat</a></div>
+<p style="text-align:center;margin-top:16px;font-size:13px"><a href="/audit-avant-achat.html">En savoir plus sur l'audit avant achat</a></p>
 </form>
 </div>
 
@@ -203,36 +227,26 @@ a{color:var(--blue);text-decoration:none}
 </div>
 </div>
 
-<footer class="footer" style="margin-top:40px">
-<div style="max-width:1000px;margin:0 auto;padding:0 24px">
-<p style="margin-bottom:8px"><strong style="color:var(--light)">ADORA</strong> — Aymeric Dussauze — Économiste de la construction</p>
-<p>EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</p>
-<p style="margin-top:8px">
-<a href="/">Accueil</a> · <a href="/simulateur.html">Simulateur aides</a> · <a href="/estimateur.html">Estimateur</a> · <a href="/audit-avant-achat.html">Audit achat</a> · <a href="/sur-mesure.html">Sur mesure</a>
-</p>
-<p style="margin-top:12px;font-size:11px">06 60 21 55 09 · aymericdussauze@gmail.com · adora-economie.fr</p>
-</div>
-</footer>
-
 <script>
-function showFiles(input, targetId) {
-  const el = document.getElementById(targetId);
-  if (input.files.length > 0) {
-    el.textContent = input.files.length + ' fichier(s) sélectionné(s)';
-  } else {
-    el.textContent = '';
-  }
-}
-
-document.getElementById('audit-form').addEventListener('submit', function(e) {
-  setTimeout(function() {
-    document.getElementById('form-section').style.display = 'none';
-    document.getElementById('success-section').style.display = 'block';
-    window.scrollTo(0, 0);
-  }, 1000);
-});
+function showFiles(input,id){const el=document.getElementById(id);el.textContent=input.files.length>0?input.files.length+' fichier(s) sélectionné(s)':'';}
+document.getElementById('audit-form').addEventListener('submit',function(){setTimeout(function(){document.getElementById('form-section').style.display='none';document.getElementById('success-section').style.display='block';window.scrollTo(0,0)},1000)});
 </script>
 
+<footer class="footer">
+<div class="footer-inner">
+<div class="footer-brand"><strong>ADORA</strong> — Aymeric Dussauze<br><p>Économiste de la construction · Normandie & Île-de-France</p></div>
+<div class="footer-links">
+<a href="/">Accueil</a><a href="/simulateur.html">Simulateur aides</a><a href="/estimateur.html">Estimateur</a><a href="/audit-avant-achat.html">Audit achat</a><a href="/sur-mesure.html">Sur mesure</a>
+</div>
+<div class="footer-contact">06 60 21 55 09<br>aymericdussauze@gmail.com<br>adora-economie.fr</div>
+</div>
+<div class="footer-legal">EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</div>
+</footer>
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('scrollProgress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%'});
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0LENY960B"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M0LENY960B');</script>
 </body>

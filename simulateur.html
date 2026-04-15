@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://adora-economie.fr/simulateur">
 <link rel="canonical" href="https://adora-economie.fr/simulateur">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0LENY960B"></script>
@@ -28,11 +28,11 @@
 .site-nav .logo-link{display:flex;align-items:center;gap:10px;text-decoration:none}
 .site-nav .logo-link img{height:32px;width:auto;object-fit:contain}
 .site-nav .nav-links{display:flex;gap:1.5rem;align-items:center}
-.site-nav .nav-links a{font-family:'Source Sans 3',sans-serif;font-size:14px;color:rgba(255,255,255,0.75);text-decoration:none;transition:.2s}
+.site-nav .nav-links a{font-family:'Plus Jakarta Sans',sans-serif;font-size:13.5px;color:rgba(214,228,240,0.8);text-decoration:none;transition:.2s}
 .site-nav .nav-links a:hover{color:#fff}
 .site-nav .nav-links a.active{color:#D6E4F0;font-weight:600}
 .site-nav .nav-cta{
-  padding:7px 18px;border-radius:6px;background:#D4740B;color:#fff;
+  padding:8px 20px;border-radius:8px;background:#D4740B;box-shadow:0 2px 8px rgba(212,116,11,.25);color:#fff;
   font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;text-decoration:none;transition:.2s
 }
 .site-nav .nav-cta:hover{background:#BD6709}
@@ -47,9 +47,9 @@
 
 /* ── Site footer ── */
 .site-footer{
-  background:#1B3A5C;color:rgba(255,255,255,0.7);
+  background:#0D1F33;color:rgba(255,255,255,0.7);
   padding:3rem 2rem 1.5rem;margin-top:3rem;
-  font-family:'Source Sans 3',sans-serif;font-size:14px;text-align:center;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;text-align:center;
 }
 .site-footer a{color:#D6E4F0;text-decoration:none}
 .site-footer a:hover{text-decoration:underline}
@@ -74,12 +74,12 @@
   --bg:#FFFFFF;--bg-alt:#F8FAFC;--border:#E5E7EB;
   --navy-10:rgba(27,58,92,0.08);--blue-10:rgba(46,117,182,0.08);
   --accent-10:rgba(212,116,11,0.08);--green-10:rgba(45,139,85,0.08);
-  --radius:8px;--radius-lg:12px;--radius-xl:16px;
+  --radius:10px;--radius-lg:14px;--radius-xl:18px;
   --shadow-sm:0 1px 2px rgba(27,58,92,0.06);
-  --shadow-md:0 4px 12px rgba(27,58,92,0.08);
+  --shadow-md:0 4px 16px rgba(27,58,92,0.06),0 1px 3px rgba(27,58,92,0.04);
 }
 html{font-size:16px;-webkit-font-smoothing:antialiased}
-body{font-family:'Source Sans 3',system-ui,sans-serif;color:var(--text);background:#F1F5F9;min-height:100vh;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:var(--text);background:#F1F5F9;min-height:100vh;margin:0;padding:0}
 .app{width:100%;max-width:680px;margin:0 auto;padding:2rem 1rem}
 
 /* Header */
@@ -113,10 +113,10 @@ body{font-family:'Source Sans 3',system-ui,sans-serif;color:var(--text);backgrou
 .field label{font-size:12px;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px}
 .field select,.field input[type=number],.field input[type=text]{
   height:42px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius);
-  font-family:'Source Sans 3',system-ui,sans-serif;font-size:14px;color:var(--text);
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;color:var(--text);
   background:var(--bg);transition:.2s;outline:none;width:100%
 }
-.field select:focus,.field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-10)}
+.field select:focus,.field input:focus{border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-10)}
 .field input[type=number]{-moz-appearance:textfield}
 .field input::-webkit-inner-spin-button{-webkit-appearance:none}
 .field .hint{font-size:11px;color:var(--text-muted);margin-top:2px}
@@ -735,16 +735,21 @@ function generatePDF() {
 </div>
 
 <!-- ═══ FOOTER ═══ -->
-<footer style="background:#0e2239;padding:32px 24px;text-align:center;color:#6B7280;font-size:12px;margin-top:40px">
-<div style="max-width:1000px;margin:0 auto">
-<p style="margin-bottom:8px"><strong style="color:#D6E4F0">ADORA</strong> — Aymeric Dussauze — Économiste de la construction</p>
-<p>EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</p>
-<p style="margin-top:8px">
-<a href="/" style="color:#D6E4F0">Accueil</a> · <a href="/simulateur.html" style="color:#D6E4F0">Simulateur aides</a> · <a href="/estimateur.html" style="color:#D6E4F0">Estimateur</a> · <a href="/audit-avant-achat.html" style="color:#D6E4F0">Audit achat</a> · <a href="/sur-mesure.html" style="color:#D6E4F0">Sur mesure</a>
-</p>
-<p style="margin-top:12px;font-size:11px">06 60 21 55 09 · aymericdussauze@gmail.com · adora-economie.fr</p>
+<footer style="background:#0D1F33;padding:48px 28px 36px;color:#64748B;font-size:13px">
+<div style="max-width:680px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px">
+<div><strong style="color:#D6E4F0;font-weight:700">ADORA</strong> — Aymeric Dussauze<br><p style="margin-top:4px;font-size:12px">Économiste de la construction · Normandie & Île-de-France</p></div>
+<div style="display:flex;gap:20px;flex-wrap:wrap">
+<a href="/" style="color:rgba(214,228,240,.6);font-size:13px;text-decoration:none">Accueil</a>
+<a href="/simulateur.html" style="color:rgba(214,228,240,.6);font-size:13px;text-decoration:none">Simulateur aides</a>
+<a href="/estimateur.html" style="color:rgba(214,228,240,.6);font-size:13px;text-decoration:none">Estimateur</a>
+<a href="/audit-avant-achat.html" style="color:rgba(214,228,240,.6);font-size:13px;text-decoration:none">Audit achat</a>
+<a href="/sur-mesure.html" style="color:rgba(214,228,240,.6);font-size:13px;text-decoration:none">Sur mesure</a>
 </div>
+<div style="font-size:12px;color:rgba(214,228,240,.4);text-align:right">06 60 21 55 09<br>aymericdussauze@gmail.com<br>adora-economie.fr</div>
+</div>
+<div style="max-width:680px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(214,228,240,.3);text-align:center">EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</div>
 </footer>
+<script>window.addEventListener('scroll',()=>{const h=document.documentElement;const el=document.getElementById('scrollProgress');if(el)el.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%'});</script>
 
 </body>
 </html>

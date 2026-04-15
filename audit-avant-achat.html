@@ -6,260 +6,256 @@
 <title>Audit avant achat immobilier | 499 € | ADORA — Économiste de la construction</title>
 <meta name="description" content="Avant d'acheter, faites analyser le bien par un économiste de la construction. DDT, DPE, structure, estimation travaux, stratégie de négociation. 499 €.">
 <link rel="canonical" href="https://adora-economie.fr/audit-avant-achat.html">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#1B3A5C;--blue:#2E75B6;--accent:#D4740B;--light:#D6E4F0;--pale:#EBF2F9;--green:#2D8B55;--txt:#333;--muted:#6B7280;--bg:#f8f9fa;--white:#fff;--radius:12px}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Source Sans 3',system-ui,sans-serif;color:var(--txt);background:var(--white);line-height:1.7}
-h1,h2,h3,h4{font-family:'Montserrat',sans-serif;line-height:1.3}
-a{color:var(--blue);text-decoration:none}
-a:hover{text-decoration:underline}
-.container{max-width:1000px;margin:0 auto;padding:0 24px}
+/* ═══ ADORA PropTech Design System v2 ═══ */
+:root{--navy:#1B3A5C;--blue:#2E75B6;--accent:#D4740B;--accent-hover:#BF6508;--light:#D6E4F0;--pale:#F4F7FB;--green:#2D8B55;--green-hover:#246E44;--txt:#1E293B;--muted:#64748B;--border:#E2E8F0;--white:#FFFFFF;--radius:16px;--radius-sm:10px;--shadow-card:0 1px 3px rgba(27,58,92,.06),0 8px 24px rgba(27,58,92,.04);--shadow-hover:0 4px 12px rgba(27,58,92,.08),0 16px 40px rgba(27,58,92,.06);--shadow-btn:0 2px 8px rgba(212,116,11,.25);--transition:.3s cubic-bezier(.4,0,.2,1)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:var(--txt);background:var(--white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;line-height:1.2}
+a{color:var(--blue);text-decoration:none;transition:color var(--transition)}
+a:hover{color:var(--navy)}
+img{max-width:100%;height:auto}
+.container{max-width:1120px;margin:0 auto;padding:0 28px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
 /* NAV */
-.nav{background:var(--navy);padding:12px 0;position:sticky;top:0;z-index:100}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1000px;margin:0 auto;padding:0 24px}
-.nav-logo{color:var(--white);font-family:'Montserrat',sans-serif;font-size:14px;letter-spacing:4px;font-weight:700}
-.nav-links{display:flex;gap:24px;align-items:center}
-.nav-links a{color:var(--light);font-size:13px;font-weight:500;transition:color .2s}
-.nav-links a:hover{color:var(--white);text-decoration:none}
-.nav-links a.active{color:var(--accent)}
-.nav-cta{background:var(--accent);color:var(--white)!important;padding:6px 16px;border-radius:6px;font-weight:600;font-size:13px}
-.nav-cta:hover{opacity:.9;text-decoration:none}
+.nav{position:sticky;top:0;z-index:100;background:rgba(27,58,92,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:14px 28px}
+.nav-logo img{height:26px;width:auto}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-links a{color:rgba(214,228,240,.8);font-size:13.5px;font-weight:500;padding:6px 14px;border-radius:8px;transition:all var(--transition)}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.08);text-decoration:none}
+.nav-links a.active{color:var(--accent);background:rgba(212,116,11,.1)}
+.nav-cta{background:var(--accent)!important;color:var(--white)!important;padding:8px 20px!important;border-radius:8px;font-weight:700!important;font-size:13px!important;box-shadow:var(--shadow-btn)}
+.nav-cta:hover{background:var(--accent-hover)!important;transform:translateY(-1px)}
+.nav-burger{display:none;background:none;border:none;color:var(--white);font-size:22px;cursor:pointer;padding:8px}
 
 /* HERO */
-.hero{background:linear-gradient(135deg,var(--navy) 0%,#1e4a6e 50%,#264d73 100%);padding:64px 24px;color:var(--white);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-40%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(212,116,11,.12) 0%,transparent 70%);pointer-events:none}
-.hero-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:40px;align-items:center;max-width:1000px;margin:0 auto}
-@media(max-width:700px){.hero-grid{grid-template-columns:1fr}}
-.hero h1{font-size:clamp(26px,4vw,38px);font-weight:800;margin-bottom:12px}
-.hero h1 span{color:var(--accent)}
-.hero .subtitle{font-size:16px;color:var(--light);margin-bottom:24px}
-.btn-hero{display:inline-block;background:var(--accent);color:var(--white);padding:14px 32px;border-radius:8px;font-size:16px;font-weight:700;font-family:'Montserrat',sans-serif;transition:all .2s}
-.btn-hero:hover{background:#c06608;transform:translateY(-1px);text-decoration:none}
-.hero-price-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);padding:28px;text-align:center}
-.hero-price{font-size:48px;font-weight:800;font-family:'Montserrat',sans-serif;color:var(--accent)}
-.hero-price small{font-size:16px;font-weight:400;color:var(--light)}
-.hero-price-sub{font-size:13px;color:var(--light);margin-top:6px;opacity:.8}
-.hero-includes{text-align:left;margin-top:16px;list-style:none;padding:0}
-.hero-includes li{font-size:13px;color:var(--light);padding:4px 0;display:flex;gap:8px;align-items:center}
-.hero-includes li::before{content:'✓';color:var(--accent);font-weight:700}
+.hero{background:var(--navy);padding:72px 0 80px;color:var(--white);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-20%;width:900px;height:900px;background:radial-gradient(circle,rgba(46,117,182,.15) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(212,116,11,.08) 0%,transparent 65%);pointer-events:none}
+.hero h1{font-size:clamp(30px,5vw,48px);font-weight:900;margin-bottom:16px;letter-spacing:-.02em;position:relative}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .subtitle{font-size:17px;color:rgba(214,228,240,.85);margin-bottom:32px;max-width:540px;line-height:1.7}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 30px;border-radius:var(--radius-sm);font-size:15px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;transition:all var(--transition);border:none;cursor:pointer;text-decoration:none!important}
+.btn-accent{background:var(--accent);color:var(--white);box-shadow:var(--shadow-btn)}
+.btn-accent:hover{background:var(--accent-hover);color:var(--white);transform:translateY(-2px);box-shadow:0 4px 16px rgba(212,116,11,.35)}
+.btn-green{background:var(--green);color:var(--white)}
+.btn-green:hover{background:var(--green-hover);color:var(--white);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:rgba(214,228,240,.9);border:1.5px solid rgba(255,255,255,.2)}
+.btn-outline:hover{background:rgba(255,255,255,.08);color:var(--white);transform:translateY(-2px)}
+.btn-white{background:var(--white);color:var(--navy)}
+.btn-white:hover{background:#F1F5F9;color:var(--navy);transform:translateY(-2px)}
 
 /* SECTIONS */
-.section{padding:64px 0}
+.section{padding:100px 0}
 .section-alt{background:var(--pale)}
-.section-title{font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--navy);text-align:center;margin-bottom:8px}
-.section-sub{text-align:center;color:var(--muted);font-size:16px;max-width:600px;margin:0 auto 40px}
-
-/* POURQUOI */
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px;margin:0 auto}
-@media(max-width:600px){.why-grid{grid-template-columns:1fr}}
-.why-card{background:var(--white);border:1.5px solid #e5e7eb;border-radius:var(--radius);padding:24px}
-.why-card h3{font-size:16px;color:var(--navy);margin-bottom:8px}
-.why-card p{font-size:14px;color:var(--muted)}
-.why-card.danger{border-color:#F09595;background:#FCEBEB}
-.why-card.danger h3{color:#791F1F}
-.why-card.danger p{color:#A32D2D}
-
-/* PROCESS */
-.process-timeline{max-width:700px;margin:0 auto;position:relative}
-.process-timeline::before{content:'';position:absolute;left:24px;top:32px;bottom:32px;width:2px;background:var(--light)}
-.process-step{display:flex;gap:20px;padding:16px 0;position:relative}
-.process-dot{width:48px;height:48px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:18px;color:var(--white);background:var(--navy);position:relative;z-index:1}
-.process-content h4{font-size:16px;color:var(--navy);margin-bottom:4px}
-.process-content p{font-size:14px;color:var(--muted)}
-
-/* LIVRABLES */
-.deliverables-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:800px;margin:0 auto}
-@media(max-width:600px){.deliverables-grid{grid-template-columns:1fr}}
-.deliv-card{background:var(--white);border:1.5px solid #e5e7eb;border-radius:var(--radius);padding:20px;text-align:center}
-.deliv-card h4{font-size:14px;color:var(--navy);margin-bottom:6px}
-.deliv-card p{font-size:12px;color:var(--muted)}
+.section-label{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.section-title{font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--navy);margin-bottom:12px;letter-spacing:-.01em}
+.section-sub{font-size:17px;color:var(--muted);max-width:560px;line-height:1.7}
+.section-header{margin-bottom:56px}
+.section-header.center{text-align:center}
+.section-header.center .section-sub{margin:0 auto}
 
 /* FAQ */
-.faq-list{max-width:700px;margin:0 auto}
-.faq-item{border-bottom:1px solid #e5e7eb;padding:16px 0}
-.faq-q{font-weight:600;color:var(--navy);font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.faq-q::after{content:'+';font-size:20px;color:var(--accent);font-weight:300;flex-shrink:0;transition:transform .2s}
+.faq-list{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0}
+.faq-q{font-weight:700;color:var(--navy);font-size:16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Montserrat',sans-serif}
+.faq-q::after{content:'+';font-size:24px;color:var(--accent);font-weight:300;flex-shrink:0;transition:transform var(--transition)}
 .faq-item.open .faq-q::after{transform:rotate(45deg)}
-.faq-a{display:none;padding:10px 0 4px;font-size:14px;color:var(--muted);line-height:1.6}
+.faq-a{display:none;padding:12px 0 4px;font-size:15px;color:var(--muted);line-height:1.7}
 .faq-item.open .faq-a{display:block}
 
-/* CTA */
-.cta-band{background:var(--navy);padding:48px 24px;text-align:center;color:var(--white)}
-.cta-band h2{font-size:clamp(22px,3vw,28px);margin-bottom:12px}
-.cta-band p{color:var(--light);font-size:15px;margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto}
-.cta-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px}
-.cta-link{color:var(--light);font-size:13px;opacity:.7;transition:opacity .2s}
-.cta-link:hover{opacity:1;text-decoration:none}
+/* CTA BAND */
+.cta-band{background:linear-gradient(135deg,var(--navy) 0%,#1F4E75 60%,#234E77 100%);padding:80px 28px;text-align:center;color:var(--white);position:relative;overflow:hidden}
+.cta-band::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(212,116,11,.1) 0%,transparent 60%);pointer-events:none}
+.cta-band h2{font-size:clamp(26px,4vw,36px);font-weight:800;margin-bottom:12px;position:relative}
+.cta-band .cta-sub{font-size:17px;color:rgba(214,228,240,.8);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;position:relative}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+.cta-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px;position:relative}
+.cta-links a{color:rgba(214,228,240,.5);font-size:13px;font-weight:500;transition:color var(--transition)}
+.cta-links a:hover{color:var(--white)}
 
-.footer{background:#0e2239;padding:32px 24px;text-align:center;color:var(--muted);font-size:12px}
-.footer a{color:var(--light)}
+/* FOOTER */
+.footer{background:#0D1F33;padding:48px 28px 36px;color:var(--muted);font-size:13px}
+.footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px}
+.footer-brand strong{color:var(--light);font-weight:700}
+.footer-brand p{margin-top:4px;font-size:12px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{color:rgba(214,228,240,.6);font-size:13px;font-weight:500;transition:color var(--transition)}
+.footer-links a:hover{color:var(--white)}
+.footer-contact{font-size:12px;color:rgba(214,228,240,.4);text-align:right}
+.footer-legal{max-width:1120px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(214,228,240,.3);text-align:center}
+
+/* FORMS */
+.form-container{max-width:720px;margin:0 auto;background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:40px;box-shadow:var(--shadow-card)}
+.form-section{margin-bottom:32px}
+.form-section h3{font-size:17px;color:var(--navy);margin-bottom:4px}
+.form-section .section-hint{font-size:13px;color:var(--muted);margin-bottom:20px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.field label .opt{font-weight:400;color:var(--muted);font-size:11px}
+.field input,.field select,.field textarea{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);transition:all var(--transition)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(46,117,182,.1)}
+.field textarea{resize:vertical;min-height:110px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.btn-submit{width:100%;padding:16px;background:var(--accent);color:var(--white);border:none;border-radius:var(--radius-sm);font-size:16px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:all var(--transition);box-shadow:var(--shadow-btn)}
+.btn-submit:hover{background:var(--accent-hover);transform:translateY(-1px)}
+
+/* SCROLL PROGRESS */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:200;width:0;transition:width .1s linear}
+
+@media(max-width:700px){
+  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--navy);padding:16px 28px;gap:4px;border-top:1px solid rgba(255,255,255,.08)}
+  .nav-links.open{display:flex}
+  .nav-burger{display:block}
+  .hero{padding:56px 0 64px}
+  .section{padding:72px 0}
+  .field-row{grid-template-columns:1fr}
+  .footer-inner{flex-direction:column}
+  .footer-contact{text-align:left}
+}
+
+
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero-price-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:36px;text-align:center}
+.hero-price{font-family:'Montserrat',sans-serif;font-size:52px;font-weight:900;color:var(--accent);line-height:1}
+.hero-price small{font-size:16px;font-weight:400;color:rgba(214,228,240,.7)}
+.hero-price-sub{font-size:13px;color:rgba(214,228,240,.5);margin-top:8px}
+.hero-includes{list-style:none;padding:0;text-align:left;margin-top:20px}
+.hero-includes li{font-size:14px;color:rgba(214,228,240,.8);padding:6px 0;display:flex;gap:10px;align-items:center}
+.hero-includes li::before{content:'✓';color:var(--accent);font-weight:700}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;margin:0 auto}
+.why-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:all var(--transition)}
+.why-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.why-card h3{font-size:16px;color:var(--navy);margin-bottom:8px}
+.why-card p{font-size:14.5px;color:var(--muted);line-height:1.6}
+.why-card.danger{border-color:#FCA5A5;background:#FEF2F2}
+.why-card.danger h3{color:#991B1B}
+.why-card.danger p{color:#B91C1C}
+.process-timeline{max-width:720px;margin:0 auto;position:relative}
+.process-timeline::before{content:'';position:absolute;left:28px;top:40px;bottom:40px;width:2px;background:var(--border)}
+.process-step{display:flex;gap:24px;padding:20px 0;position:relative}
+.process-dot{width:56px;height:56px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:var(--white);background:var(--navy);position:relative;z-index:1}
+.process-content h4{font-size:17px;color:var(--navy);margin-bottom:6px}
+.process-content p{font-size:15px;color:var(--muted);line-height:1.6}
+.deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:860px;margin:0 auto}
+.deliv-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;transition:all var(--transition)}
+.deliv-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.deliv-card h4{font-size:15px;color:var(--navy);margin-bottom:8px}
+.deliv-card p{font-size:13.5px;color:var(--muted);line-height:1.5}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.why-grid{grid-template-columns:1fr}.deliv-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
-
+<div class="scroll-progress" id="scrollProgress"></div>
 <nav class="nav">
 <div class="nav-inner">
-<a href="/" class="nav-logo" style="display:flex;align-items:center"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA" style="height:28px;width:auto"></a>
-<div class="nav-links">
+<a href="/" class="nav-logo"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA" style="height:26px;width:auto"></a>
+<div class="nav-links" id="navLinks">
 <a href="/simulateur.html">Simulateur aides</a>
 <a href="/estimateur.html">Estimateur</a>
 <a href="/audit-avant-achat.html" class="active">Audit achat</a>
 <a href="/sur-mesure.html">Sur mesure</a>
 <a href="/audit-formulaire.html" class="nav-cta">Demander un audit</a>
 </div>
+<button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
 </div>
 </nav>
 
 <section class="hero">
+<div class="container">
 <div class="hero-grid">
 <div>
-<h1>Avant d'acheter,<br>faites <span>auditer le bien</span></h1>
-<p class="subtitle">Un économiste de la construction analyse les diagnostics, estime les travaux réels, et vous donne les arguments pour négocier le prix. Vous achetez en sachant exactement ce qui vous attend.</p>
-<a href="/audit-formulaire.html" class="btn-hero">Demander mon audit</a>
+<h1>Avant d'acheter,<br>faites <em>analyser</em> le bien.</h1>
+<p class="subtitle">Un économiste de la construction passe votre futur achat au crible. DDT, DPE, estimation travaux, risques cachés et stratégie de négociation.</p>
+<div style="display:flex;gap:14px;flex-wrap:wrap">
+<a href="/audit-formulaire.html" class="btn btn-accent">Demander mon audit</a>
+<a href="#faq" class="btn btn-outline">Questions fréquentes</a>
+</div>
 </div>
 <div class="hero-price-card">
 <div class="hero-price">499 € <small>TTC</small></div>
-<div class="hero-price-sub">Forfait fixe, pas de surprise</div>
+<div class="hero-price-sub">Forfait fixe · Résultat sous 48-72h</div>
 <ul class="hero-includes">
-<li>Analyse complète du DDT (7 diagnostics)</li>
+<li>Analyse complète du DDT</li>
 <li>Estimation travaux par lot</li>
-<li>Alerte sur les risques cachés</li>
-<li>Rapport PDF détaillé</li>
-<li>Conseil de négociation prix</li>
+<li>Fiche risques hiérarchisée</li>
+<li>Conseil de négociation chiffré</li>
+<li>Échange téléphonique 30 min</li>
 </ul>
 </div>
 </div>
+</div>
 </section>
 
 <section class="section">
 <div class="container">
-<h2 class="section-title">Pourquoi faire un audit avant d'acheter ?</h2>
-<p class="section-sub">Parce que les surprises post-acquisition coûtent infiniment plus cher qu'un audit.</p>
-<div class="why-grid">
-<div class="why-card">
-<h3>Le DDT est illisible</h3>
-<p>Un dossier de diagnostic technique fait 50 à 100 pages. Amiante, plomb, électricité, DPE, termites… Même un notaire ne vérifie pas le contenu technique. Nous, si.</p>
+<div class="section-header center reveal">
+<div class="section-label">Pourquoi un audit</div>
+<h2 class="section-title">Le prix affiché n'est jamais<br>le vrai coût de l'opération</h2>
+<p class="section-sub">Entre les travaux invisibles, les diagnostics alarmants et les vices cachés, un achat immobilier sans analyse technique est un pari.</p>
 </div>
-<div class="why-card">
-<h3>Le DPE ne dit pas tout</h3>
-<p>Un DPE en F ne veut pas dire les mêmes travaux qu'un DPE en G. Les coûts pour passer en D peuvent varier de 15 000 à 80 000 € selon le bâti. L'étiquette ne suffit pas.</p>
-</div>
-<div class="why-card danger">
-<h3>Les risques que personne ne voit</h3>
-<p>Xylophages dans la charpente, fissures structurelles masquées, remblais déficients sous les fondations. Nous avons déjà identifié des problèmes à 62 000 € de reprise que l'agent immobilier avait "oublié" de mentionner.</p>
-</div>
-<div class="why-card">
-<h3>Négocier avec des chiffres</h3>
-<p>Un rapport technique chiffré est un levier de négociation opposable. Il ne s'agit plus de "je pense que c'est trop cher" mais de "voici l'estimation des travaux nécessaires, lot par lot".</p>
-</div>
+<div class="why-grid reveal">
+<div class="why-card danger"><h3>Vétusté masquée</h3><p>Toiture, charpente, assainissement — les postes les plus coûteux sont souvent les moins visibles lors d'une visite.</p></div>
+<div class="why-card danger"><h3>DPE trompeur</h3><p>Un DPE en F ou G peut cacher 30 à 60 000 € de travaux d'isolation. Le vendeur n'est pas tenu de le chiffrer.</p></div>
+<div class="why-card"><h3>Négociation aveugle</h3><p>Sans estimation technique, vous négociez au doigt mouillé. Avec un rapport chiffré, vous avez des arguments opposables.</p></div>
+<div class="why-card"><h3>Budget global invisible</h3><p>Prix d'achat + frais de notaire + travaux + aléas = le vrai coût. Sans cette vision, vous risquez un trou dans votre plan de financement.</p></div>
 </div>
 </div>
 </section>
 
-<section class="section section-alt" id="processus">
+<section class="section section-alt">
 <div class="container">
-<h2 class="section-title">Le processus en 5 étapes</h2>
-<p class="section-sub">De l'envoi de vos documents au rapport final.</p>
-<div class="process-timeline">
-<div class="process-step">
-<div class="process-dot">1</div>
-<div class="process-content">
-<h4>Vous envoyez vos documents</h4>
-<p>DDT, DPE, annonce immobilière, photos du bien. Via notre formulaire sécurisé avec upload de fichiers.</p>
+<div class="section-header center reveal">
+<div class="section-label">Processus</div>
+<h2 class="section-title">Comment se déroule l'audit</h2>
 </div>
-</div>
-<div class="process-step">
-<div class="process-dot">2</div>
-<div class="process-content">
-<h4>Analyse technique du DDT</h4>
-<p>Chaque diagnostic est lu et interprété : amiante, plomb, électricité, gaz, termites, assainissement, risques naturels. On identifie les alertes critiques.</p>
-</div>
-</div>
-<div class="process-step">
-<div class="process-dot">3</div>
-<div class="process-content">
-<h4>Estimation des travaux par lot</h4>
-<p>Sur la base des éléments fournis et de notre connaissance du marché local, on produit une estimation structurée par lot technique avec fourchettes.</p>
-</div>
-</div>
-<div class="process-step">
-<div class="process-dot">4</div>
-<div class="process-content">
-<h4>Rapport PDF complet</h4>
-<p>Un document professionnel que vous pouvez transmettre à votre banquier, votre notaire ou votre agent immobilier. Il contient l'analyse, l'estimation et les recommandations.</p>
-</div>
-</div>
-<div class="process-step">
-<div class="process-dot">5</div>
-<div class="process-content">
-<h4>Échange téléphonique (30 min)</h4>
-<p>On reprend ensemble les points clés, les risques identifiés, et la stratégie de négociation. Vous posez vos questions, on répond sans jargon.</p>
-</div>
-</div>
+<div class="process-timeline reveal">
+<div class="process-step"><div class="process-dot">1</div><div class="process-content"><h4>Envoi de vos documents</h4><p>DDT complet, DPE, photos, annonce immobilière. Vous remplissez le formulaire en ligne et joignez vos fichiers.</p></div></div>
+<div class="process-step"><div class="process-dot">2</div><div class="process-content"><h4>Analyse du DDT</h4><p>Chaque diagnostic est passé en revue : amiante, plomb, électricité, gaz, termites, assainissement, risques naturels. Alertes hiérarchisées.</p></div></div>
+<div class="process-step"><div class="process-dot">3</div><div class="process-content"><h4>Estimation des travaux</h4><p>Sur la base des éléments fournis et de notre connaissance du marché local, estimation structurée par lot technique avec fourchettes.</p></div></div>
+<div class="process-step"><div class="process-dot">4</div><div class="process-content"><h4>Rapport PDF complet</h4><p>Un document professionnel que vous pouvez transmettre à votre banquier, votre notaire ou votre agent immobilier.</p></div></div>
+<div class="process-step"><div class="process-dot">5</div><div class="process-content"><h4>Échange téléphonique (30 min)</h4><p>On reprend ensemble les points clés, les risques identifiés, et la stratégie de négociation. Sans jargon.</p></div></div>
 </div>
 </div>
 </section>
 
 <section class="section">
 <div class="container">
+<div class="section-header center reveal">
+<div class="section-label">Livrables</div>
 <h2 class="section-title">Ce que vous recevez</h2>
 <p class="section-sub">Un rapport professionnel complet, utilisable immédiatement.</p>
-<div class="deliverables-grid">
-<div class="deliv-card">
-<h4>Analyse DDT</h4>
-<p>Synthèse des 7 diagnostics avec alertes hiérarchisées : critique, modéré, acceptable.</p>
 </div>
-<div class="deliv-card">
-<h4>Estimation travaux</h4>
-<p>Budget prévisionnel structuré par lot. Fourchettes basse/haute, coefficient régional appliqué.</p>
-</div>
-<div class="deliv-card">
-<h4>Fiche risques</h4>
-<p>Les points de vigilance que vous devez absolument vérifier avant de signer le compromis.</p>
-</div>
-<div class="deliv-card">
-<h4>Budget total</h4>
-<p>Prix d'achat + travaux + frais annexes. Le vrai coût de l'opération, pas juste le prix affiché.</p>
-</div>
-<div class="deliv-card">
-<h4>Conseil négo</h4>
-<p>Arguments chiffrés et opposables pour négocier le prix sur la base de faits techniques.</p>
-</div>
-<div class="deliv-card">
-<h4>Appel 30 min</h4>
-<p>Échange direct avec l'économiste. Questions, clarifications, stratégie d'acquisition.</p>
-</div>
+<div class="deliv-grid reveal">
+<div class="deliv-card"><h4>Analyse DDT</h4><p>Synthèse des 7 diagnostics avec alertes hiérarchisées : critique, modéré, acceptable.</p></div>
+<div class="deliv-card"><h4>Estimation travaux</h4><p>Budget prévisionnel structuré par lot. Fourchettes basse/haute, coefficient régional appliqué.</p></div>
+<div class="deliv-card"><h4>Fiche risques</h4><p>Les points de vigilance que vous devez vérifier avant de signer le compromis.</p></div>
+<div class="deliv-card"><h4>Budget total</h4><p>Prix d'achat + travaux + frais annexes. Le vrai coût de l'opération.</p></div>
+<div class="deliv-card"><h4>Conseil négo</h4><p>Arguments chiffrés et opposables pour négocier le prix sur la base de faits techniques.</p></div>
+<div class="deliv-card"><h4>Appel 30 min</h4><p>Échange direct avec l'économiste. Questions, clarifications, stratégie d'acquisition.</p></div>
 </div>
 </div>
 </section>
 
 <section class="section section-alt" id="faq">
 <div class="container">
+<div class="section-header center reveal">
+<div class="section-label">FAQ</div>
 <h2 class="section-title">Questions fréquentes</h2>
-<div class="faq-list">
-<div class="faq-item">
-<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">En combien de temps je reçois le rapport ?</div>
-<div class="faq-a">En général sous 48 à 72 heures ouvrées après réception de l'ensemble des documents. Si votre projet est urgent (compromis imminent), nous pouvons accélérer sur demande.</div>
 </div>
-<div class="faq-item">
-<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">L'audit inclut-il une visite sur site ?</div>
-<div class="faq-a">Non, l'audit à 499 € est réalisé sur documents (DDT, DPE, photos, annonce). Si vous souhaitez une visite sur site avec analyse contradictoire, c'est une prestation AMO complète — à partir de 990 €. On en discute lors de l'échange téléphonique si nécessaire.</div>
-</div>
-<div class="faq-item">
-<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Quels documents dois-je fournir ?</div>
-<div class="faq-a">Au minimum : le DDT complet (tous les diagnostics), le DPE, et l'annonce immobilière. Idéalement aussi : des photos intérieures et extérieures du bien, le plan s'il est disponible, et le prix demandé. Plus on a d'informations, plus l'analyse est précise.</div>
-</div>
-<div class="faq-item">
-<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Ça couvre quelle zone géographique ?</div>
-<div class="faq-a">L'audit sur documents est réalisable pour tout bien situé en France métropolitaine. Les prix de référence sont régionalisés par département. Pour une visite sur site, nous intervenons principalement en Normandie (27/76) et en Île-de-France.</div>
-</div>
-<div class="faq-item">
-<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Si je veux aller plus loin après l'audit ?</div>
-<div class="faq-a">L'audit peut déboucher sur un accompagnement AMO complet (suivi de l'acquisition, consultation d'entreprises, suivi de chantier). Les 499 € de l'audit sont alors déduits du montant de la mission AMO. C'est pensé comme une première étape, pas un cul-de-sac.</div>
-</div>
+<div class="faq-list reveal">
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">En combien de temps je reçois le rapport ?</div><div class="faq-a">En général sous 48 à 72 heures ouvrées après réception de l'ensemble des documents. Si votre projet est urgent (compromis imminent), nous pouvons accélérer sur demande.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">L'audit inclut-il une visite sur site ?</div><div class="faq-a">Non, l'audit à 499 € est réalisé sur documents. Si vous souhaitez une visite sur site avec analyse contradictoire, c'est une prestation AMO complète — à partir de 990 €.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Quels documents dois-je fournir ?</div><div class="faq-a">Au minimum : le DDT complet, le DPE, et l'annonce immobilière. Idéalement aussi : des photos intérieures et extérieures du bien, le plan s'il est disponible, et le prix demandé.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Ça couvre quelle zone géographique ?</div><div class="faq-a">L'audit sur documents est réalisable pour tout bien situé en France métropolitaine. Les prix sont régionalisés par département. Pour une visite sur site : Normandie (27/76) et Île-de-France.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Si je veux aller plus loin après l'audit ?</div><div class="faq-a">L'audit peut déboucher sur un accompagnement AMO complet. Les 499 € de l'audit sont alors déduits du montant de la mission AMO. C'est pensé comme une première étape.</div></div>
 </div>
 </div>
 </section>
@@ -267,27 +263,31 @@ a:hover{text-decoration:underline}
 <section class="cta-band">
 <div class="container">
 <h2>Achetez en connaissance de cause</h2>
-<p>499 €, c'est moins de 0,3% du prix d'un bien à 200 000 €. Et ça peut vous économiser des dizaines de milliers d'euros de mauvaises surprises.</p>
-<a href="/audit-formulaire.html" class="btn-hero">Demander mon audit</a>
+<p class="cta-sub">499 €, c'est moins de 0,3% du prix d'un bien à 200 000 €. Et ça peut vous économiser des dizaines de milliers d'euros de mauvaises surprises.</p>
+<div class="cta-btns"><a href="/audit-formulaire.html" class="btn btn-accent">Demander mon audit</a></div>
 <div class="cta-links">
-<a href="/estimateur.html" class="cta-link">Estimer mes travaux</a>
-<a href="/simulateur.html" class="cta-link">Calculer mes aides</a>
-<a href="/sur-mesure.html" class="cta-link">Accompagnement sur mesure</a>
+<a href="/estimateur.html">Estimer mes travaux</a>
+<a href="/simulateur.html">Calculer mes aides</a>
+<a href="/sur-mesure.html">Accompagnement sur mesure</a>
 </div>
 </div>
 </section>
 
 <footer class="footer">
-<div class="container">
-<p style="margin-bottom:8px"><strong style="color:var(--light)">ADORA</strong> — Aymeric Dussauze — Économiste de la construction</p>
-<p>EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</p>
-<p style="margin-top:8px">
-<a href="/">Accueil</a> · <a href="/simulateur.html">Simulateur aides</a> · <a href="/estimateur.html">Estimateur</a> · <a href="/audit-avant-achat.html">Audit achat</a> · <a href="/sur-mesure.html">Sur mesure</a>
-</p>
-<p style="margin-top:12px;font-size:11px">06 60 21 55 09 · aymericdussauze@gmail.com · adora-economie.fr</p>
+<div class="footer-inner">
+<div class="footer-brand"><strong>ADORA</strong> — Aymeric Dussauze<br><p>Économiste de la construction · Normandie & Île-de-France</p></div>
+<div class="footer-links">
+<a href="/">Accueil</a><a href="/simulateur.html">Simulateur aides</a><a href="/estimateur.html">Estimateur</a><a href="/audit-avant-achat.html">Audit achat</a><a href="/sur-mesure.html">Sur mesure</a>
 </div>
+<div class="footer-contact">06 60 21 55 09<br>aymericdussauze@gmail.com<br>adora-economie.fr</div>
+</div>
+<div class="footer-legal">EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</div>
 </footer>
-
+<script>
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('scrollProgress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%'});
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0LENY960B"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M0LENY960B');</script>
 </body>
