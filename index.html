@@ -19,23 +19,23 @@
    ADORA — PropTech B2C Design System
    ═══════════════════════════════════════════════════ */
 :root {
-  --navy: #1B3A5C;
-  --blue: #2E75B6;
-  --accent: #D4740B;
-  --accent-hover: #BF6508;
-  --light: #D6E4F0;
-  --pale: #F4F7FB;
-  --green: #2D8B55;
-  --green-hover: #246E44;
-  --txt: #1E293B;
+  --navy: #0D1025;
+  --blue: #0E7490;
+  --accent: #22D3EE;
+  --accent-hover: #06B6D4;
+  --light: #EDE9FE;
+  --pale: #FAFAFC;
+  --green: #A78BFA;
+  --green-hover: #8B6FE3;
+  --txt: #1E1B4B;
   --muted: #64748B;
-  --border: #E2E8F0;
+  --border: #E5E7F2;
   --white: #FFFFFF;
   --radius: 16px;
   --radius-sm: 10px;
-  --shadow-card: 0 1px 3px rgba(27,58,92,.06), 0 8px 24px rgba(27,58,92,.04);
-  --shadow-card-hover: 0 4px 12px rgba(27,58,92,.08), 0 16px 40px rgba(27,58,92,.06);
-  --shadow-btn: 0 2px 8px rgba(212,116,11,.25);
+  --shadow-card: 0 1px 3px rgba(13,16,37,.06), 0 8px 24px rgba(13,16,37,.04);
+  --shadow-card-hover: 0 4px 12px rgba(13,16,37,.08), 0 16px 40px rgba(13,16,37,.06);
+  --shadow-btn: 0 2px 8px rgba(34,211,238,.25);
   --transition: .3s cubic-bezier(.4,0,.2,1);
 }
 
@@ -79,7 +79,7 @@ img { max-width: 100%; height: auto; }
    ═══════════════════════════════════════════════════ */
 .nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(27, 58, 92, .97);
+  background: rgba(13, 16, 37, .97);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 0;
@@ -92,13 +92,13 @@ img { max-width: 100%; height: auto; }
 .nav-logo img { height: 26px; width: auto; }
 .nav-links { display: flex; gap: 8px; align-items: center; }
 .nav-links a {
-  color: rgba(214,228,240,.8); font-size: 13.5px; font-weight: 500;
+  color: rgba(237,233,254,.8); font-size: 13.5px; font-weight: 500;
   padding: 6px 14px; border-radius: 8px;
   transition: all var(--transition);
 }
 .nav-links a:hover { color: var(--white); background: rgba(255,255,255,.08); text-decoration: none; }
 .nav-cta {
-  background: var(--accent) !important; color: var(--white) !important;
+  background: var(--accent) !important; color: var(--navy) !important;
   padding: 8px 20px !important; border-radius: 8px; font-weight: 700 !important;
   font-size: 13px !important; box-shadow: var(--shadow-btn);
 }
@@ -119,14 +119,14 @@ img { max-width: 100%; height: auto; }
   content: '';
   position: absolute; top: -40%; right: -20%;
   width: 900px; height: 900px;
-  background: radial-gradient(circle, rgba(46,117,182,.15) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(14,116,144,.15) 0%, transparent 65%);
   pointer-events: none;
 }
 .hero::after {
   content: '';
   position: absolute; bottom: -30%; left: -10%;
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(212,116,11,.08) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(34,211,238,.08) 0%, transparent 65%);
   pointer-events: none;
 }
 .hero-grid {
@@ -138,7 +138,7 @@ img { max-width: 100%; height: auto; }
 }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(45,139,85,.15); border: 1px solid rgba(45,139,85,.25);
+  background: rgba(167,139,250,.15); border: 1px solid rgba(167,139,250,.25);
   color: #6EE7A0; font-size: 13px; font-weight: 600;
   padding: 6px 16px; border-radius: 100px;
   margin-bottom: 24px;
@@ -187,12 +187,12 @@ img { max-width: 100%; height: auto; }
   text-decoration: none !important;
 }
 .btn-accent {
-  background: var(--accent); color: var(--white);
+  background: var(--accent); color: var(--navy);
   box-shadow: var(--shadow-btn);
 }
-.btn-accent:hover { background: var(--accent-hover); color: var(--white); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(212,116,11,.35); }
-.btn-green { background: var(--green); color: var(--white); }
-.btn-green:hover { background: var(--green-hover); color: var(--white); transform: translateY(-2px); }
+.btn-accent:hover { background: var(--accent-hover); color: var(--navy); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(34,211,238,.35); }
+.btn-green { background: var(--green); color: var(--navy); }
+.btn-green:hover { background: var(--green-hover); color: var(--navy); transform: translateY(-2px); }
 .btn-outline {
   background: transparent; color: rgba(214,228,240,.9);
   border: 1.5px solid rgba(255,255,255,.2);
@@ -209,11 +209,11 @@ img { max-width: 100%; height: auto; }
 }
 .hero-reassurance span {
   display: flex; align-items: center; gap: 6px;
-  font-size: 13px; color: rgba(214,228,240,.6); font-weight: 500;
+  font-size: 13px; color: rgba(237,233,254,.6); font-weight: 500;
 }
 .hero-reassurance span::before {
   content: '✓'; font-weight: 700; color: var(--green);
-  font-size: 11px; background: rgba(45,139,85,.2);
+  font-size: 11px; background: rgba(167,139,250,.2);
   width: 18px; height: 18px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
 }
@@ -238,11 +238,11 @@ img { max-width: 100%; height: auto; }
   margin-bottom: 6px;
 }
 .kpi-label {
-  font-size: 14px; color: rgba(214,228,240,.7);
+  font-size: 14px; color: rgba(237,233,254,.7);
   line-height: 1.4;
 }
 .kpi-card .kpi-context {
-  font-size: 11px; color: rgba(214,228,240,.4);
+  font-size: 11px; color: rgba(237,233,254,.4);
   margin-top: 4px;
 }
 
@@ -263,6 +263,15 @@ img { max-width: 100%; height: auto; }
   font-size: clamp(28px, 4vw, 40px);
   font-weight: 800; color: var(--navy);
   margin-bottom: 12px; letter-spacing: -.01em;
+}
+.section-title-alt {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: clamp(22px, 3.2vw, 32px);
+  color: var(--blue);
+  letter-spacing: -.01em;
+  margin-top: 8px;
 }
 .section-sub {
   font-size: 17px; color: var(--muted);
@@ -477,7 +486,7 @@ img { max-width: 100%; height: auto; }
   color: var(--accent);
 }
 .about-stat-label {
-  font-size: 11px; color: rgba(214,228,240,.6);
+  font-size: 11px; color: rgba(237,233,254,.6);
   margin-top: 2px;
 }
 .about-text p {
@@ -524,7 +533,7 @@ img { max-width: 100%; height: auto; }
   content: '';
   position: absolute; top: -50%; right: -20%;
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(212,116,11,.1) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(34,211,238,.1) 0%, transparent 60%);
   pointer-events: none;
 }
 .cta-band h2 {
@@ -533,7 +542,7 @@ img { max-width: 100%; height: auto; }
   position: relative;
 }
 .cta-band .cta-sub {
-  font-size: 17px; color: rgba(214,228,240,.8);
+  font-size: 17px; color: rgba(237,233,254,.8);
   margin-bottom: 36px; max-width: 520px;
   margin-left: auto; margin-right: auto;
   position: relative;
@@ -552,7 +561,7 @@ img { max-width: 100%; height: auto; }
    FOOTER
    ═══════════════════════════════════════════════════ */
 .footer {
-  background: #0D1F33;
+  background: #080B1C;
   padding: 48px 28px 36px;
   color: var(--muted);
   font-size: 13px;
@@ -566,19 +575,19 @@ img { max-width: 100%; height: auto; }
 .footer-brand p { margin-top: 4px; font-size: 12px; }
 .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
 .footer-links a {
-  color: rgba(214,228,240,.6); font-size: 13px; font-weight: 500;
+  color: rgba(237,233,254,.6); font-size: 13px; font-weight: 500;
   transition: color var(--transition);
 }
 .footer-links a:hover { color: var(--white); }
 .footer-contact {
-  font-size: 12px; color: rgba(214,228,240,.4);
+  font-size: 12px; color: rgba(237,233,254,.4);
   text-align: right;
 }
 .footer-legal {
   max-width: 1120px; margin: 0 auto;
   padding-top: 24px; margin-top: 24px;
   border-top: 1px solid rgba(255,255,255,.06);
-  font-size: 11px; color: rgba(214,228,240,.3);
+  font-size: 11px; color: rgba(237,233,254,.3);
   text-align: center;
 }
 
@@ -631,10 +640,9 @@ img { max-width: 100%; height: auto; }
 <div class="nav-inner">
   <a href="./" class="nav-logo"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA" style="height:26px;width:auto"></a>
   <div class="nav-links" id="navLinks">
-    <a href="simulateur.html">Simulateur aides</a>
-    <a href="estimateur.html">Estimateur</a>
-    <a href="audit-avant-achat.html">Audit achat</a>
-    <a href="sur-mesure.html">Sur mesure</a>
+    <a href="#outils">Outils gratuits</a>
+    <a href="sur-mesure.html">Prestations</a>
+    <a href="#apropos">À propos</a>
     <a href="estimateur-outil.html" class="nav-cta">Estimer mes travaux</a>
   </div>
   <button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
@@ -650,9 +658,10 @@ img { max-width: 100%; height: auto; }
       <h1>Vous rénovez&nbsp;?<br>Sachez <em>combien</em><br>avant de signer.</h1>
       <p class="hero-sub">Outils en ligne gratuits et accompagnement sur mesure par un économiste de la construction indépendant. Normandie & Île-de-France.</p>
       <div class="hero-btns">
-        <a href="estimateur-outil.html" class="btn btn-accent">Estimer mes travaux</a>
-        <a href="simulateur.html" class="btn btn-green">Calculer mes aides</a>
-        <a href="sur-mesure.html" class="btn btn-outline">Accompagnement</a>
+        <a href="estimateur-outil.html" class="btn btn-accent" style="font-size:17px;padding:18px 40px">Estimer mes travaux gratuitement</a>
+      </div>
+      <div style="margin-top:12px">
+        <a href="simulateur.html" style="color:rgba(237,233,254,.7);font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:3px">ou calculer mes aides à la rénovation →</a>
       </div>
       <div class="hero-reassurance">
         <span>Gratuit pour commencer</span>
@@ -703,7 +712,7 @@ img { max-width: 100%; height: auto; }
       <div class="side-title">✓ Avec ADORA</div>
       <ul class="gain-list">
         <li>Une estimation fiable et détaillée avant toute consultation</li>
-        <li>Un DCE complet (CCTP, DPGF) pour comparer sur des bases identiques</li>
+        <li>Un cahier des charges complet pour comparer les devis sur des bases identiques</li>
         <li>Un regard indépendant, sans lien avec les entreprises de travaux</li>
         <li>Un interlocuteur unique du chiffrage jusqu'à la réception</li>
       </ul>
@@ -739,7 +748,7 @@ img { max-width: 100%; height: auto; }
       </div>
       <h3>Estimateur de travaux</h3>
       <div class="tool-price">Gratuit · rapport complet 49 €</div>
-      <p>Estimation structurée par 15 lots TCE, coefficients régionaux, fourchettes réalistes. Comme un économiste, en 3 minutes.</p>
+      <p>Estimation structurée par 15 postes de travaux, coefficients régionaux, fourchettes réalistes. Comme un économiste, en 3 minutes.</p>
       <span class="tool-link">Découvrir l'estimateur</span>
     </a>
 
@@ -761,46 +770,20 @@ img { max-width: 100%; height: auto; }
       </div>
       <h3>Accompagnement sur mesure</h3>
       <div class="tool-price">590 — 3 900 €</div>
-      <p>Estimation détaillée, rédaction CCTP/DPGF, suivi de chantier, AMO complète. Du chiffrage à la réception.</p>
+      <p>Estimation détaillée, cahier des charges, suivi de chantier, accompagnement complet. Du chiffrage à la réception.</p>
       <span class="tool-link">Voir les packs</span>
     </a>
   </div>
 </div>
 </section>
 
-<!-- ═══ PRESTATIONS PRO ═══ -->
-<section class="section">
+<!-- ═══ TEASER B2B ═══ -->
+<section style="padding:0">
 <div class="container">
-  <div class="section-header center reveal">
-    <div class="section-label">Professionnels</div>
-    <h2 class="section-title">Prestations pour architectes, BET & maîtres d'ouvrage</h2>
-    <p class="section-sub">Intervention en sous-traitance ou en prestation directe. TJM compétitif, autonomie complète.</p>
+  <div style="background:var(--pale);border-radius:var(--radius);padding:24px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:-50px;position:relative;z-index:1" class="reveal">
+    <p style="font-size:15px;color:var(--navy);font-weight:600;margin:0">Vous êtes architecte, BET ou maître d'ouvrage ?</p>
+    <a href="sur-mesure.html" class="btn btn-outline" style="color:var(--navy);border-color:var(--border);padding:10px 24px;font-size:13px">Découvrir les prestations pro →</a>
   </div>
-  <div class="presta-grid reveal">
-    <div class="presta-card">
-      <h4>Estimations TCE</h4>
-      <div class="presta-price">380 €</div>
-      <div class="presta-unit">TJM / jour</div>
-    </div>
-    <div class="presta-card">
-      <h4>CCTP / DPGF / DCE</h4>
-      <div class="presta-price">380 €</div>
-      <div class="presta-unit">TJM / jour</div>
-    </div>
-    <div class="presta-card">
-      <h4>OPC</h4>
-      <div class="presta-price">420-450 €</div>
-      <div class="presta-unit">TJM / jour</div>
-    </div>
-    <div class="presta-card">
-      <h4>AMO</h4>
-      <div class="presta-price">450 €</div>
-      <div class="presta-unit">TJM / jour</div>
-    </div>
-  </div>
-  <p style="text-align:center;margin-top:28px" class="reveal">
-    <a href="sur-mesure.html" class="btn btn-accent" style="font-size:14px;padding:12px 28px">Demander un devis gratuit →</a>
-  </p>
 </div>
 </section>
 
@@ -809,7 +792,7 @@ img { max-width: 100%; height: auto; }
 <div class="container">
   <div class="section-header center reveal">
     <div class="section-label">Qui suis-je</div>
-    <h2 class="section-title">La rigueur d'un pilote de projets,<br>la technique d'un économiste</h2>
+    <h2 class="section-title">La rigueur des grands projets d'ingénierie.<span class="section-title-alt">La simplicité dont votre projet a besoin.</span></h2>
   </div>
   <div class="about-grid reveal">
     <div class="about-identity">
@@ -818,18 +801,18 @@ img { max-width: 100%; height: auto; }
       <div class="about-stats">
         <div>
           <div class="about-stat-val">15 ans</div>
-          <div class="about-stat-label">pilotage de projets MOA</div>
+          <div class="about-stat-label">de gestion de projets</div>
         </div>
         <div>
           <div class="about-stat-val">-12%</div>
-          <div class="about-stat-label">vs marché (réf.)</div>
+          <div class="about-stat-label">sur l'estimation de référence</div>
         </div>
       </div>
     </div>
     <div class="about-text">
-      <p>Pendant 15 ans, j'ai piloté des projets complexes côté maîtrise d'ouvrage : gestion de P&L, coordination d'équipes pluridisciplinaires, négociation et suivi contractuel.</p>
-      <p>En 2025, j'ai mis cette double compétence — technique et stratégique — au service du bâtiment, en me formant à l'économie de la construction (HUPSO).</p>
-      <p class="muted">Résultat : je comprends aussi bien la technique du chiffrage lot par lot que la stratégie budgétaire globale d'un projet. C'est cette vision complète qui fait la différence.</p>
+      <p>Pendant 15 ans, j'ai piloté des budgets de plusieurs millions d'euros pour des entreprises exigeantes. Négociation, coordination, contrôle des coûts — c'était mon quotidien.</p>
+      <p>En 2025, j'ai décidé de mettre cette rigueur au service des particuliers et des professionnels du bâtiment, en me formant à l'économie de la construction.</p>
+      <p class="muted">Mon engagement : vous donner la même qualité d'analyse budgétaire que celle réservée aux grands projets. Pas de jargon, pas de surprise, un interlocuteur unique qui parle votre langue.</p>
     </div>
   </div>
 </div>
@@ -840,20 +823,20 @@ img { max-width: 100%; height: auto; }
 <div class="container">
   <div class="trust-strip reveal">
     <div class="trust-item">
-      <div class="trust-val" data-count="15">0</div>
-      <div class="trust-label">lots techniques<br>analysés</div>
+      <div class="trust-val">0 €</div>
+      <div class="trust-label">pour<br>commencer</div>
     </div>
     <div class="trust-item">
-      <div class="trust-val" data-count="101">0</div>
-      <div class="trust-label">départements<br>couverts</div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-val">2026</div>
-      <div class="trust-label">barèmes<br>à jour</div>
+      <div class="trust-val">3<span class="unit">min</span></div>
+      <div class="trust-label">pour une<br>estimation</div>
     </div>
     <div class="trust-item">
       <div class="trust-val">24<span class="unit">h</span></div>
-      <div class="trust-label">réponse<br>garantie</div>
+      <div class="trust-label">délai de<br>réponse</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-val">100<span class="unit">%</span></div>
+      <div class="trust-label">indépendant<br>sans commission</div>
     </div>
   </div>
 </div>
@@ -865,11 +848,13 @@ img { max-width: 100%; height: auto; }
   <h2>Commencez maintenant</h2>
   <p class="cta-sub">Gratuit, sans engagement, en quelques minutes. Nos outils en ligne vous donnent une première réponse immédiate.</p>
   <div class="cta-btns">
-    <a href="simulateur.html" class="btn btn-green">Calculer mes aides</a>
-    <a href="estimateur-outil.html" class="btn btn-accent">Estimer mes travaux</a>
-    <a href="sur-mesure.html#contact" class="btn btn-white">Contacter ADORA</a>
+    <a href="estimateur-outil.html" class="btn btn-accent" style="font-size:17px;padding:18px 40px">Estimer mes travaux gratuitement</a>
   </div>
-  <div class="cta-micro">Gratuit · Sans inscription · Résultat immédiat</div>
+  <div class="cta-links" style="margin-top:16px">
+    <a href="simulateur.html">Calculer mes aides</a>
+    <a href="sur-mesure.html#contact">Contacter ADORA</a>
+  </div>
+  <div class="cta-micro" style="margin-top:12px">Gratuit · Sans inscription · Résultat immédiat</div>
 </div>
 </section>
 
@@ -915,26 +900,29 @@ const obs = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 /* ═══ Count-up animation ═══ */
+function animateCount(el) {
+  const target = parseInt(el.getAttribute('data-count'));
+  if (!target) return;
+  const duration = 1600;
+  const start = performance.now();
+  const ease = t => t < .5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+  const tick = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    el.textContent = Math.round(ease(progress) * target);
+    if (progress < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
 const counterObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      const el = e.target;
-      const target = parseInt(el.getAttribute('data-count'));
-      if (!target) return;
-      const duration = 1600;
-      const start = performance.now();
-      const ease = t => t < .5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
-      const tick = (now) => {
-        const progress = Math.min((now - start) / duration, 1);
-        el.textContent = Math.round(ease(progress) * target);
-        if (progress < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-      counterObs.unobserve(el);
-    }
+    if (e.isIntersecting) { animateCount(e.target); counterObs.unobserve(e.target); }
   });
-}, { threshold: 0.5 });
-document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+}, { threshold: 0.3 });
+document.querySelectorAll('[data-count]').forEach(el => {
+  const rect = el.getBoundingClientRect();
+  if (rect.top < window.innerHeight && rect.bottom > 0) { animateCount(el); }
+  else { counterObs.observe(el); }
+});
 </script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0LENY960B"></script>

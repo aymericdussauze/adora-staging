@@ -5,12 +5,12 @@
 <base href="https://aymericdussauze.github.io/adora-staging/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Économiste de la construction Normandie | AMO sur mesure | ADORA</title>
-<meta name="description" content="Économiste de la construction en Normandie et Île-de-France. Estimations TCE, CCTP/DPGF, AMO particuliers et professionnels. Devis gratuit.">
+<meta name="description" content="Économiste de la construction en Normandie et Île-de-France. Chiffrage complet, CCTP/DPGF, AMO particuliers et professionnels. Devis gratuit.">
 <link rel="canonical" href="https://adora-economie.fr/sur-mesure.html">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ═══ ADORA PropTech Design System v2 ═══ */
-:root{--navy:#1B3A5C;--blue:#2E75B6;--accent:#D4740B;--accent-hover:#BF6508;--light:#D6E4F0;--pale:#F4F7FB;--green:#2D8B55;--green-hover:#246E44;--txt:#1E293B;--muted:#64748B;--border:#E2E8F0;--white:#FFFFFF;--radius:16px;--radius-sm:10px;--shadow-card:0 1px 3px rgba(27,58,92,.06),0 8px 24px rgba(27,58,92,.04);--shadow-hover:0 4px 12px rgba(27,58,92,.08),0 16px 40px rgba(27,58,92,.06);--shadow-btn:0 2px 8px rgba(212,116,11,.25);--transition:.3s cubic-bezier(.4,0,.2,1)}
+:root{--navy:#0D1025;--blue:#0E7490;--accent:#22D3EE;--accent-hover:#06B6D4;--light:#EDE9FE;--pale:#FAFAFC;--green:#A78BFA;--green-hover:#8B6FE3;--txt:#1E1B4B;--muted:#64748B;--border:#E5E7F2;--white:#FFFFFF;--radius:16px;--radius-sm:10px;--shadow-card:0 1px 3px rgba(13,16,37,.06),0 8px 24px rgba(13,16,37,.04);--shadow-hover:0 4px 12px rgba(13,16,37,.08),0 16px 40px rgba(13,16,37,.06);--shadow-btn:0 2px 8px rgba(34,211,238,.25);--transition:.3s cubic-bezier(.4,0,.2,1)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:var(--txt);background:var(--white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -23,27 +23,27 @@ img{max-width:100%;height:auto}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 /* NAV */
-.nav{position:sticky;top:0;z-index:100;background:rgba(27,58,92,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav{position:sticky;top:0;z-index:100;background:rgba(13,16,37,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:14px 28px}
 .nav-logo img{height:26px;width:auto}
 .nav-links{display:flex;gap:8px;align-items:center}
-.nav-links a{color:rgba(214,228,240,.8);font-size:13.5px;font-weight:500;padding:6px 14px;border-radius:8px;transition:all var(--transition)}
+.nav-links a{color:rgba(237,233,254,.8);font-size:13.5px;font-weight:500;padding:6px 14px;border-radius:8px;transition:all var(--transition)}
 .nav-links a:hover{color:var(--white);background:rgba(255,255,255,.08);text-decoration:none}
-.nav-links a.active{color:var(--accent);background:rgba(212,116,11,.1)}
+.nav-links a.active{color:var(--accent);background:rgba(34,211,238,.1)}
 .nav-cta{background:var(--accent)!important;color:var(--white)!important;padding:8px 20px!important;border-radius:8px;font-weight:700!important;font-size:13px!important;box-shadow:var(--shadow-btn)}
 .nav-cta:hover{background:var(--accent-hover)!important;transform:translateY(-1px)}
 .nav-burger{display:none;background:none;border:none;color:var(--white);font-size:22px;cursor:pointer;padding:8px}
 
 /* HERO */
 .hero{background:var(--navy);padding:72px 0 80px;color:var(--white);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-40%;right:-20%;width:900px;height:900px;background:radial-gradient(circle,rgba(46,117,182,.15) 0%,transparent 65%);pointer-events:none}
-.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(212,116,11,.08) 0%,transparent 65%);pointer-events:none}
+.hero::before{content:'';position:absolute;top:-40%;right:-20%;width:900px;height:900px;background:radial-gradient(circle,rgba(14,116,144,.15) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(34,211,238,.08) 0%,transparent 65%);pointer-events:none}
 .hero h1{font-size:clamp(30px,5vw,48px);font-weight:900;margin-bottom:16px;letter-spacing:-.02em;position:relative}
 .hero h1 em{font-style:normal;color:var(--accent)}
 .hero .subtitle{font-size:17px;color:rgba(214,228,240,.85);margin-bottom:32px;max-width:540px;line-height:1.7}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 30px;border-radius:var(--radius-sm);font-size:15px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;transition:all var(--transition);border:none;cursor:pointer;text-decoration:none!important}
 .btn-accent{background:var(--accent);color:var(--white);box-shadow:var(--shadow-btn)}
-.btn-accent:hover{background:var(--accent-hover);color:var(--white);transform:translateY(-2px);box-shadow:0 4px 16px rgba(212,116,11,.35)}
+.btn-accent:hover{background:var(--accent-hover);color:var(--white);transform:translateY(-2px);box-shadow:0 4px 16px rgba(34,211,238,.35)}
 .btn-green{background:var(--green);color:var(--white)}
 .btn-green:hover{background:var(--green-hover);color:var(--white);transform:translateY(-2px)}
 .btn-outline{background:transparent;color:rgba(214,228,240,.9);border:1.5px solid rgba(255,255,255,.2)}
@@ -56,6 +56,7 @@ img{max-width:100%;height:auto}
 .section-alt{background:var(--pale)}
 .section-label{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
 .section-title{font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--navy);margin-bottom:12px;letter-spacing:-.01em}
+.section-title-alt{display:block;font-family:'Montserrat',sans-serif;font-weight:500;font-size:clamp(22px,3.2vw,32px);color:var(--blue);letter-spacing:-.01em;margin-top:8px}
 .section-sub{font-size:17px;color:var(--muted);max-width:560px;line-height:1.7}
 .section-header{margin-bottom:56px}
 .section-header.center{text-align:center}
@@ -72,24 +73,24 @@ img{max-width:100%;height:auto}
 
 /* CTA BAND */
 .cta-band{background:linear-gradient(135deg,var(--navy) 0%,#1F4E75 60%,#234E77 100%);padding:80px 28px;text-align:center;color:var(--white);position:relative;overflow:hidden}
-.cta-band::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(212,116,11,.1) 0%,transparent 60%);pointer-events:none}
+.cta-band::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(34,211,238,.1) 0%,transparent 60%);pointer-events:none}
 .cta-band h2{font-size:clamp(26px,4vw,36px);font-weight:800;margin-bottom:12px;position:relative}
-.cta-band .cta-sub{font-size:17px;color:rgba(214,228,240,.8);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;position:relative}
+.cta-band .cta-sub{font-size:17px;color:rgba(237,233,254,.8);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;position:relative}
 .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
 .cta-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px;position:relative}
-.cta-links a{color:rgba(214,228,240,.5);font-size:13px;font-weight:500;transition:color var(--transition)}
+.cta-links a{color:rgba(237,233,254,.5);font-size:13px;font-weight:500;transition:color var(--transition)}
 .cta-links a:hover{color:var(--white)}
 
 /* FOOTER */
-.footer{background:#0D1F33;padding:48px 28px 36px;color:var(--muted);font-size:13px}
+.footer{background:#080B1C;padding:48px 28px 36px;color:var(--muted);font-size:13px}
 .footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px}
 .footer-brand strong{color:var(--light);font-weight:700}
 .footer-brand p{margin-top:4px;font-size:12px}
 .footer-links{display:flex;gap:20px;flex-wrap:wrap}
-.footer-links a{color:rgba(214,228,240,.6);font-size:13px;font-weight:500;transition:color var(--transition)}
+.footer-links a{color:rgba(237,233,254,.6);font-size:13px;font-weight:500;transition:color var(--transition)}
 .footer-links a:hover{color:var(--white)}
-.footer-contact{font-size:12px;color:rgba(214,228,240,.4);text-align:right}
-.footer-legal{max-width:1120px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(214,228,240,.3);text-align:center}
+.footer-contact{font-size:12px;color:rgba(237,233,254,.4);text-align:right}
+.footer-legal{max-width:1120px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(237,233,254,.3);text-align:center}
 
 /* FORMS */
 .form-container{max-width:720px;margin:0 auto;background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:40px;box-shadow:var(--shadow-card)}
@@ -100,7 +101,7 @@ img{max-width:100%;height:auto}
 .field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px}
 .field label .opt{font-weight:400;color:var(--muted);font-size:11px}
 .field input,.field select,.field textarea{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);transition:all var(--transition)}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(46,117,182,.1)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(14,116,144,.1)}
 .field textarea{resize:vertical;min-height:110px}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .btn-submit{width:100%;padding:16px;background:var(--accent);color:var(--white);border:none;border-radius:var(--radius-sm);font-size:16px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:all var(--transition);box-shadow:var(--shadow-btn)}
@@ -122,7 +123,7 @@ img{max-width:100%;height:auto}
 
 
 .hero-tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
-.hero-tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:6px 16px;border-radius:100px;font-size:12.5px;color:rgba(214,228,240,.8)}
+.hero-tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:6px 16px;border-radius:100px;font-size:12.5px;color:rgba(237,233,254,.8)}
 .hero.center-hero{text-align:center}
 .hero.center-hero .subtitle{margin-left:auto;margin-right:auto}
 .presta-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;margin:0 auto}
@@ -150,7 +151,7 @@ img{max-width:100%;height:auto}
 .about-role{font-size:13px;color:var(--light);margin-bottom:24px;line-height:1.5}
 .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .about-stat-val{font-family:'Montserrat',sans-serif;font-size:24px;font-weight:900;color:var(--accent)}
-.about-stat-label{font-size:11px;color:rgba(214,228,240,.6);margin-top:2px}
+.about-stat-label{font-size:11px;color:rgba(237,233,254,.6);margin-top:2px}
 .about-text p{font-size:16px;color:var(--txt);margin-bottom:16px;line-height:1.8}
 .about-text .muted{color:var(--muted);font-size:15px}
 .contact-form{max-width:640px;margin:0 auto}
@@ -165,10 +166,10 @@ img{max-width:100%;height:auto}
 <div class="nav-inner">
 <a href="./" class="nav-logo"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA" style="height:26px;width:auto"></a>
 <div class="nav-links" id="navLinks">
-<a href="simulateur.html">Simulateur aides</a>
+<a href="./">Accueil</a>
+<a href="simulateur.html">Simulateur</a>
 <a href="estimateur.html">Estimateur</a>
 <a href="audit-avant-achat.html">Audit achat</a>
-<a href="sur-mesure.html" class="active">Sur mesure</a>
 <a href="#contact" class="nav-cta">Demander un devis</a>
 </div>
 <button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
@@ -181,9 +182,9 @@ img{max-width:100%;height:auto}
 <p class="subtitle">De l'estimation rapide à l'AMO complète, des solutions adaptées à chaque phase de votre projet. Particuliers et professionnels.</p>
 <div class="hero-tags">
 <span class="hero-tag">Estimation & chiffrage</span>
-<span class="hero-tag">CCTP / DPGF / DCE</span>
-<span class="hero-tag">OPC & pilotage</span>
-<span class="hero-tag">AMO</span>
+<span class="hero-tag">Cahier des charges & consultation</span>
+<span class="hero-tag">Pilotage de chantier</span>
+<span class="hero-tag">Accompagnement</span>
 <span class="hero-tag">Normandie & IDF</span>
 </div>
 </div>
@@ -198,7 +199,7 @@ img{max-width:100%;height:auto}
 </div>
 <div class="presta-grid reveal">
 <div class="presta-card"><h3>Estimation rapide</h3><div class="price">590 €</div><p>Estimation globale de votre projet à partir des plans et des photos. Fourchettes par lots principaux. Résultat sous 5 jours.</p></div>
-<div class="presta-card"><h3>Estimation détaillée</h3><div class="price">990 — 1 490 €</div><p>Métrés précis, allotissement complet TCE, prix unitaires Batichiffrage. Le même travail qu'un cabinet, livré sous 10 jours.</p></div>
+<div class="presta-card"><h3>Estimation détaillée</h3><div class="price">990 — 1 490 €</div><p>Métrés précis, allotissement complet tous corps d'état, prix unitaires Batichiffrage. Le même travail qu'un cabinet, livré sous 10 jours.</p></div>
 </div>
 </div>
 </section>
@@ -216,9 +217,9 @@ img{max-width:100%;height:auto}
 <div class="pack-price">2 200 € <small>TTC</small></div>
 <div class="pack-desc">L'estimation + le cahier des charges pour consulter sereinement.</div>
 <ul class="pack-list">
-<li>Estimation détaillée TCE</li>
-<li>Rédaction CCTP simplifié</li>
-<li>DPGF pour consultation</li>
+<li>Estimation détaillée tous postes</li>
+<li>Cahier des charges simplifié</li>
+<li>Bordereau quantitatif pour consultation</li>
 <li>Grille comparative des devis</li>
 <li>Échange téléphonique 1h</li>
 </ul>
@@ -243,7 +244,7 @@ img{max-width:100%;height:auto}
 <div class="pack-desc">L'AMO complète jusqu'à la réception du chantier.</div>
 <ul class="pack-list">
 <li>Tout le Pack Confort</li>
-<li>Rédaction CCTP/DPGF complets</li>
+<li>Cahier des charges Rédaction CCTP/DPGF complets bordereau complets</li>
 <li>Consultation élargie (5+ entreprises)</li>
 <li>Négociation avec les entreprises</li>
 <li>Pilotage intégral du chantier</li>
@@ -260,13 +261,13 @@ img{max-width:100%;height:auto}
 <div class="section-header center reveal">
 <div class="section-label">Professionnels</div>
 <h2 class="section-title">Pour architectes, BET & maîtres d'ouvrage</h2>
-<p class="section-sub">Intervention en sous-traitance ou en prestation directe. TJM compétitif, autonomie complète.</p>
+<p class="section-sub">Intervention en sous-traitance ou en prestation directe. Tarif compétitif, autonomie complète.</p>
 </div>
 <div class="presta-grid reveal">
-<div class="presta-card"><h3>Estimations TCE</h3><div class="price">TJM 380 €</div><p>Estimations préliminaires et détaillées Tous Corps d'État. Métrés sur plans (AutoCAD, Revit), prix Batichiffrage.</p></div>
-<div class="presta-card"><h3>CCTP / DPGF / DCE</h3><div class="price">TJM 380 €</div><p>Rédaction pièces écrites et montage DCE complet pour consultation des entreprises.</p></div>
-<div class="presta-card"><h3>OPC / Pilotage</h3><div class="price">TJM 420 — 450 €</div><p>Ordonnancement, pilotage et coordination. Planning d'exécution, réunions, suivi délais.</p></div>
-<div class="presta-card"><h3>AMO / Conseil</h3><div class="price">TJM 450 €</div><p>Assistance à maîtrise d'ouvrage. Définition du programme, conseil budgétaire, accompagnement.</p></div>
+<div class="presta-card"><h3>Chiffrage complet</h3><div class="price">380 € / jour</div><p>Estimations préliminaires et détaillées Tous Corps d'État. Métrés sur plans (AutoCAD, Revit), prix Batichiffrage.</p></div>
+<div class="presta-card"><h3>Cahier des charges & consultation</h3><div class="price">380 € / jour</div><p>Rédaction pièces écrites et montage DCE complet pour consultation des entreprises.</p></div>
+<div class="presta-card"><h3>Pilotage de chantier</h3><div class="price">420 — 450 € / jour</div><p>Ordonnancement, pilotage et coordination. Planning d'exécution, réunions, suivi délais.</p></div>
+<div class="presta-card"><h3>Accompagnement personnalisé</h3><div class="price">450 € / jour</div><p>Assistance à maîtrise d'ouvrage. Définition du programme, conseil budgétaire, accompagnement.</p></div>
 </div>
 </div>
 </section>
@@ -275,23 +276,23 @@ img{max-width:100%;height:auto}
 <div class="container">
 <div class="section-header center reveal">
 <div class="section-label">Qui suis-je</div>
-<h2 class="section-title">La rigueur d'un pilote de projets,<br>la technique d'un économiste</h2>
+<h2 class="section-title">La rigueur des grands projets d'ingénierie.<span class="section-title-alt">La simplicité dont votre projet a besoin.</span></h2>
 </div>
 <div class="about-grid reveal">
 <div class="about-identity">
 <div class="about-name">Aymeric Dussauze</div>
 <div class="about-role">Économiste de la construction<br>Titre Professionnel Niveau 5</div>
 <div class="about-stats">
-<div><div class="about-stat-val">15 ans</div><div class="about-stat-label">pilotage projets MOA</div></div>
+<div><div class="about-stat-val">15 ans</div><div class="about-stat-label">de gestion de projets</div></div>
 <div><div class="about-stat-val">-12%</div><div class="about-stat-label">vs marché (réf.)</div></div>
 <div><div class="about-stat-val">24h</div><div class="about-stat-label">délai de réponse</div></div>
 <div><div class="about-stat-val">27/76/IDF</div><div class="about-stat-label">zone d'intervention</div></div>
 </div>
 </div>
 <div class="about-text">
-<p>Pendant 15 ans, j'ai piloté des projets complexes côté maîtrise d'ouvrage : gestion de P&L, coordination d'équipes pluridisciplinaires, négociation et suivi contractuel.</p>
-<p>En 2025, j'ai mis cette double compétence — technique et stratégique — au service du bâtiment, en me formant à l'économie de la construction (HUPSO).</p>
-<p class="muted">Résultat : je comprends aussi bien la technique du chiffrage lot par lot que la stratégie budgétaire globale d'un projet. Interventions en Normandie (Eure, Seine-Maritime) et en Île-de-France.</p>
+<p>Pendant 15 ans, j'ai piloté des budgets de plusieurs millions d'euros pour des entreprises exigeantes. Négociation, coordination, contrôle des coûts — c'était mon quotidien.</p>
+<p>En 2025, j'ai décidé de mettre cette rigueur au service des particuliers et des professionnels du bâtiment, en me formant à l'économie de la construction.</p>
+<p class="muted">Mon engagement : vous donner la même qualité d'analyse budgétaire que celle réservée aux grands projets. Normandie (Eure, Seine-Maritime) et Île-de-France.</p>
 </div>
 </div>
 </div>
@@ -312,7 +313,7 @@ img{max-width:100%;height:auto}
 <div class="field"><label>Téléphone</label><input type="tel" name="telephone" placeholder="06 12 34 56 78"></div>
 </div>
 <div class="field"><label>Type de prestation souhaitée</label>
-<select name="prestation" required><option value="">Sélectionnez...</option><option value="estimation-rapide">Estimation rapide (590 €)</option><option value="estimation-detaillee">Estimation détaillée (990-1 490 €)</option><option value="pack-essentiel">Pack Essentiel (2 200 €)</option><option value="pack-confort">Pack Confort (3 900 €)</option><option value="pack-serenite">Pack Sérénité (5-8%)</option><option value="redaction-dce">Rédaction DCE / CCTP / DPGF</option><option value="opc">OPC / Suivi de chantier</option><option value="autre">Autre — je décris ci-dessous</option></select></div>
+<select name="prestation" required><option value="">Sélectionnez...</option><option value="estimation-rapide">Estimation rapide (590 €)</option><option value="estimation-detaillee">Estimation détaillée (990-1 490 €)</option><option value="pack-essentiel">Pack Essentiel (2 200 €)</option><option value="pack-confort">Pack Confort (3 900 €)</option><option value="pack-serenite">Pack Sérénité (5-8%)</option><option value="redaction-dce">Rédaction cahier des charges</option><option value="opc">Pilotage >OPC / Suivi de chantier< suivi de chantier</option><option value="autre">Autre — je décris ci-dessous</option></select></div>
 <div class="field"><label>Décrivez votre projet</label><textarea name="projet" required placeholder="Type de bien, surface, localisation, nature des travaux envisagés, budget approximatif, calendrier souhaité..."></textarea></div>
 <button type="submit" class="btn-submit">Envoyer ma demande</button>
 <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:10px">Réponse sous 24h · Devis gratuit · Sans engagement</p>

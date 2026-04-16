@@ -19,18 +19,18 @@
 
 <style>
 /* ═══ UNIFIED NAV ═══ */
-.scroll-progress{position:fixed;top:0;left:0;height:3px;background:#D4740B;z-index:200;width:0;transition:width .1s linear}
-.nav{position:sticky;top:0;z-index:100;background:rgba(27,58,92,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:#22D3EE;z-index:200;width:0;transition:width .1s linear}
+.nav{position:sticky;top:0;z-index:100;background:rgba(13,16,37,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:14px 28px}
 .nav-logo img{height:26px;width:auto}
 .nav .nav-links{display:flex;gap:8px;align-items:center}
-.nav .nav-links a{color:rgba(214,228,240,.8);font-size:13.5px;font-weight:500;padding:6px 14px;border-radius:8px;transition:all .3s;text-decoration:none}
+.nav .nav-links a{color:rgba(237,233,254,.8);font-size:13.5px;font-weight:500;padding:6px 14px;border-radius:8px;transition:all .3s;text-decoration:none}
 .nav .nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
-.nav .nav-links a.active{color:#D4740B;background:rgba(212,116,11,.1)}
-.nav .nav-cta{background:#D4740B!important;color:#fff!important;padding:8px 20px!important;border-radius:8px;font-weight:700!important;font-size:13px!important;box-shadow:0 2px 8px rgba(212,116,11,.25)}
-.nav .nav-cta:hover{background:#BF6508!important;transform:translateY(-1px)}
+.nav .nav-links a.active{color:#22D3EE;background:rgba(34,211,238,.1)}
+.nav .nav-cta{background:#22D3EE!important;color:#fff!important;padding:8px 20px!important;border-radius:8px;font-weight:700!important;font-size:13px!important;box-shadow:0 2px 8px rgba(34,211,238,.25)}
+.nav .nav-cta:hover{background:#06B6D4!important;transform:translateY(-1px)}
 .nav-burger{display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:8px}
-@media(max-width:700px){.nav .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(27,58,92,.97);padding:16px 28px;gap:4px;border-top:1px solid rgba(255,255,255,.08)}.nav .nav-links.open{display:flex}.nav-burger{display:block}}
+@media(max-width:700px){.nav .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(13,16,37,.97);padding:16px 28px;gap:4px;border-top:1px solid rgba(255,255,255,.08)}.nav .nav-links.open{display:flex}.nav-burger{display:block}}
 
 
 }
@@ -39,12 +39,12 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#1B3A5C;--blue:#2E75B6;--accent:#D4740B;
-  --light-blue:#D6E4F0;--pale-blue:#EBF2F9;--green:#2D8B55;
+  --navy:#0D1025;--blue:#0E7490;--accent:#22D3EE;
+  --light-blue:#EDE9FE;--pale-blue:#F5F3FF;--green:#A78BFA;
   --text:#333333;--text-light:#6B7280;--text-muted:#9CA3AF;
   --bg:#FFFFFF;--bg-alt:#F8FAFC;--border:#E5E7EB;
-  --navy-10:rgba(27,58,92,0.08);--blue-10:rgba(46,117,182,0.08);
-  --accent-10:rgba(212,116,11,0.08);--green-10:rgba(45,139,85,0.08);
+  --navy-10:rgba(27,58,92,0.08);--blue-10:rgba(14,116,144,0.08);
+  --accent-10:rgba(34,211,238,0.08);--green-10:rgba(167,139,250,0.08);
   --radius:10px;--radius-lg:14px;--radius-xl:18px;
   --shadow-sm:0 1px 2px rgba(27,58,92,0.06);
   --shadow-md:0 4px 16px rgba(27,58,92,0.06),0 1px 3px rgba(27,58,92,0.04);
@@ -130,7 +130,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:va
 .btn-secondary{background:transparent;color:var(--navy);border:1.5px solid var(--border)}
 .btn-secondary:hover{background:var(--pale-blue);border-color:var(--light-blue)}
 .btn-accent{background:var(--accent);color:#fff}
-.btn-accent:hover{background:#BD6709}
+.btn-accent:hover{background:#06B6D4}
 
 /* Results */
 .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
@@ -172,7 +172,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:va
   background:var(--accent);color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;
   font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:.2s
 }
-.cta-btn:hover{background:#BD6709;transform:translateY(-1px)}
+.cta-btn:hover{background:#06B6D4;transform:translateY(-1px)}
 
 /* Disclaimer */
 .disclaimer{font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:16px;padding:12px 16px;background:var(--bg-alt);border-radius:var(--radius);border:1px solid var(--border)}
@@ -202,11 +202,11 @@ body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:va
 <div class="nav-inner">
   <a href="./" class="nav-logo"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA" style="height:26px;width:auto"></a>
   <div class="nav-links" id="navLinks">
-    <a href="simulateur.html" class="active">Simulateur aides</a>
-    <a href="estimateur.html">Estimateur</a>
-    <a href="audit-avant-achat.html">Audit achat</a>
-    <a href="sur-mesure.html">Sur mesure</a>
-    <a href="estimateur-outil.html" class="nav-cta">Estimer mes travaux</a>
+    <a href="./">Accueil</a>
+<a href="estimateur.html">Estimateur</a>
+<a href="audit-avant-achat.html">Audit achat</a>
+<a href="sur-mesure.html">Prestations</a>
+<a href="estimateur-outil.html" class="nav-cta">Estimer mes travaux</a>
   </div>
   <button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
 </div>
@@ -494,7 +494,7 @@ function renderStep3() {
     <h3>Besoin d\u2019un accompagnement professionnel ?</h3>
     <p>Un \u00E9conomiste de la construction peut optimiser votre plan de financement, v\u00E9rifier l\u2019\u00E9ligibilit\u00E9 de vos travaux et vous accompagner dans vos d\u00E9marches (Mon Accompagnateur R\u00E9nov\u2019, montage du dossier Anah, analyse comparative des devis).</p>
     <a href="sur-mesure.html#contact" class="cta-btn" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-bottom:8px">Demander un accompagnement ADORA \u2192</a>
-    <button onclick="generatePDF()" style="margin-left:10px;padding:10px 24px;border-radius:var(--radius);background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:.2s" onmouseover="this.style.background='#244B73'" onmouseout="this.style.background='#1B3A5C'">T\u00E9l\u00E9charger le rapport PDF \u2193</button>
+    <button onclick="generatePDF()" style="margin-left:10px;padding:10px 24px;border-radius:var(--radius);background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:.2s" onmouseover="this.style.background='#244B73'" onmouseout="this.style.background='#0D1025'">T\u00E9l\u00E9charger le rapport PDF \u2193</button>
   </div>`;
 
   h += `<div class="disclaimer">\u26A0\uFE0F Cette simulation est indicative et ne constitue pas un engagement. Les montants d\u00E9finitifs d\u00E9pendent des devis d\u2019artisans RGE, du DPE r\u00E9alis\u00E9 par un diagnostiqueur certifi\u00E9, et de la validation par l\u2019Anah. Sources : bar\u00E8mes Anah 2026 (arr\u00EAt\u00E9 du 29/12/2025), plafonds revaloris\u00E9s. Les CEE sont estim\u00E9s en fourchette (variable selon op\u00E9rateur). Aides locales (R\u00E9gion, D\u00E9partement) non int\u00E9gr\u00E9es. Mise \u00E0 jour avril 2026.</div>`;
@@ -675,31 +675,31 @@ function generatePDF() {
 
 <!-- ═══ CTA SECTION ═══ -->
 <div style="max-width:680px;margin:32px auto;padding:0 1rem">
-<div style="background:#EBF2F9;border-radius:12px;padding:24px;text-align:center">
-<p style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:8px">Besoin d'aller plus loin ?</p>
+<div style="background:#F5F3FF;border-radius:12px;padding:24px;text-align:center">
+<p style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:#0D1025;margin-bottom:8px">Besoin d'aller plus loin ?</p>
 <p style="font-size:14px;color:#6B7280;margin-bottom:16px">Nos outils complémentaires vous aident à chiffrer et préparer votre projet.</p>
 <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-<a href="estimateur-outil.html" style="display:inline-block;padding:10px 20px;background:#2E75B6;color:#fff;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;text-decoration:none">Estimer mes travaux</a>
-<a href="audit-avant-achat.html" style="display:inline-block;padding:10px 20px;background:#D4740B;color:#fff;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;text-decoration:none">Audit avant achat — 499 €</a>
-<a href="sur-mesure.html" style="display:inline-block;padding:10px 20px;background:transparent;color:#2E75B6;border:1.5px solid #2E75B6;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;text-decoration:none">Accompagnement sur mesure</a>
+<a href="estimateur-outil.html" style="display:inline-block;padding:10px 20px;background:#0E7490;color:#fff;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;text-decoration:none">Estimer mes travaux</a>
+<a href="audit-avant-achat.html" style="display:inline-block;padding:10px 20px;background:#22D3EE;color:#0D1025;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;text-decoration:none">Audit avant achat — 499 €</a>
+<a href="sur-mesure.html" style="display:inline-block;padding:10px 20px;background:transparent;color:#0E7490;border:1.5px solid #0E7490;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;text-decoration:none">Accompagnement sur mesure</a>
 </div>
 </div>
 </div>
 
 <!-- ═══ FOOTER ═══ -->
-<footer style="background:#0D1F33;padding:48px 28px 36px;color:#64748B;font-size:13px">
+<footer style="background:#080B1C;padding:48px 28px 36px;color:#64748B;font-size:13px">
 <div style="max-width:680px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px">
-<div><strong style="color:#D6E4F0;font-weight:700">ADORA</strong> — Aymeric Dussauze<br><p style="margin-top:4px;font-size:12px">Économiste de la construction · Normandie & Île-de-France</p></div>
+<div><strong style="color:#EDE9FE;font-weight:700">ADORA</strong> — Aymeric Dussauze<br><p style="margin-top:4px;font-size:12px">Économiste de la construction · Normandie & Île-de-France</p></div>
 <div style="display:flex;gap:20px;flex-wrap:wrap">
-<a href="./" style="color:rgba(214,228,240,.6);font-size:13px;text-decoration:none">Accueil</a>
-<a href="simulateur.html" style="color:rgba(214,228,240,.6);font-size:13px;text-decoration:none">Simulateur aides</a>
-<a href="estimateur.html" style="color:rgba(214,228,240,.6);font-size:13px;text-decoration:none">Estimateur</a>
-<a href="audit-avant-achat.html" style="color:rgba(214,228,240,.6);font-size:13px;text-decoration:none">Audit achat</a>
-<a href="sur-mesure.html" style="color:rgba(214,228,240,.6);font-size:13px;text-decoration:none">Sur mesure</a>
+<a href="./" style="color:rgba(237,233,254,.6);font-size:13px;text-decoration:none">Accueil</a>
+<a href="simulateur.html" style="color:rgba(237,233,254,.6);font-size:13px;text-decoration:none">Simulateur aides</a>
+<a href="estimateur.html" style="color:rgba(237,233,254,.6);font-size:13px;text-decoration:none">Estimateur</a>
+<a href="audit-avant-achat.html" style="color:rgba(237,233,254,.6);font-size:13px;text-decoration:none">Audit achat</a>
+<a href="sur-mesure.html" style="color:rgba(237,233,254,.6);font-size:13px;text-decoration:none">Sur mesure</a>
 </div>
-<div style="font-size:12px;color:rgba(214,228,240,.4);text-align:right">06 60 21 55 09<br>aymericdussauze@gmail.com<br>adora-economie.fr</div>
+<div style="font-size:12px;color:rgba(237,233,254,.4);text-align:right">06 60 21 55 09<br>aymericdussauze@gmail.com<br>adora-economie.fr</div>
 </div>
-<div style="max-width:680px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(214,228,240,.3);text-align:center">EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</div>
+<div style="max-width:680px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(237,233,254,.3);text-align:center">EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</div>
 </footer>
 <script>window.addEventListener('scroll',()=>{const h=document.documentElement;const el=document.getElementById('scrollProgress');if(el)el.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%'});</script>
 
