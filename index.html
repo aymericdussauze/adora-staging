@@ -628,6 +628,24 @@ img { max-width: 100%; height: auto; }
   .footer-contact { text-align: left; }
   .trust-val { font-size: 32px; }
 }
+
+/* ═══ UNIFIED FOOTER ═══ */
+.footer{background:var(--navy, #0D1025);color:rgba(237,233,254,.7);padding:60px 24px 30px;margin-top:80px}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px}
+.footer-brand strong{font-size:18px;color:#fff;display:block;margin-bottom:8px}
+.footer-brand p{font-size:13px;line-height:1.6;color:rgba(237,233,254,.5)}
+.footer-col{display:flex;flex-direction:column;gap:8px}
+.footer-col-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(237,233,254,.4);margin-bottom:6px}
+.footer-col a{color:rgba(237,233,254,.7);text-decoration:none;font-size:13px;transition:color .2s}
+.footer-col a:hover{color:#22D3EE}
+.footer-contact a{font-size:13px}
+.footer-legal{max-width:1100px;margin:30px auto 0;padding-top:20px;border-top:1px solid rgba(237,233,254,.1);font-size:11px;color:rgba(237,233,254,.35);text-align:center}
+@media(max-width:768px){
+.footer-inner{grid-template-columns:1fr 1fr;gap:30px 20px}
+}
+@media(max-width:480px){
+.footer-inner{grid-template-columns:1fr;gap:24px}
+}
 </style>
 </head>
 <body>
@@ -863,25 +881,30 @@ img { max-width: 100%; height: auto; }
 <footer class="footer">
 <div class="footer-inner">
   <div class="footer-brand">
-    <strong>ADORA</strong> — Aymeric Dussauze<br>
-    <p>Économiste de la construction · Normandie & Île-de-France</p>
+    <strong>ADORA</strong>
+    <p>Économiste de la construction<br>Normandie &amp; Île-de-France</p>
   </div>
-  <div class="footer-links">
-    <a href="./">Accueil</a>
+  <div class="footer-col">
+    <div class="footer-col-title">Outils</div>
     <a href="simulateur.html">Simulateur aides</a>
-    <a href="estimateur.html">Estimateur</a>
-    <a href="audit-avant-achat.html">Audit achat</a>
+    <a href="estimateur.html">Estimateur travaux</a>
+    <a href="audit-avant-achat.html">Audit avant achat</a>
     <a href="sur-mesure.html">Sur mesure</a>
   </div>
-  <div class="footer-contact">
-    06 60 21 55 09<br>
-    aymericdussauze@gmail.com<br>
-    adora-economie.fr
+  <div class="footer-col">
+    <div class="footer-col-title">ADORA</div>
+    <a href="a-propos.html">À propos</a>
+    <a href="professionnels.html">Professionnels</a>
+    <a href="blog.html">Blog</a>
+  </div>
+  <div class="footer-col footer-contact">
+    <div class="footer-col-title">Contact</div>
+    <a href="tel:+33660215509">06 60 21 55 09</a>
+    <a href="mailto:aymericdussauze@gmail.com">aymericdussauze@gmail.com</a>
+    <a href="https://adora-economie.fr">adora-economie.fr</a>
   </div>
 </div>
-<div class="footer-legal">
-  EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI
-</div>
+<div class="footer-legal">© 2026 ADORA · EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</div>
 </footer>
 
 <script>
