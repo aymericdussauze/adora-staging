@@ -255,7 +255,6 @@ input,select,textarea{font-family:inherit}
 .footer-links a{color:rgba(237,233,254,.6);font-size:13px;text-decoration:none}
 .footer-legal{max-width:980px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(237,233,254,.3);text-align:center}
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
@@ -1002,24 +1001,38 @@ function showResults(r) {
 // ═══════════════════════════════════════════════════════════
 // UNLOCK (email capture → Formspree → show details)
 // ═══════════════════════════════════════════════════════════
+// UNLOCK — capture lead + generate PDF via Worker + show details
+// ═══════════════════════════════════════════════════════════
+
+// CONFIG — URL du Worker Cloudflare (à remplacer après déploiement)
+const PDF_WORKER_URL = "https://adora-pdf.VOTRE-SOUSDOMAINE.workers.dev";
+
 function unlock() {
   const prenom = document.getElementById("prenom").value.trim();
   const email = document.getElementById("email").value.trim();
   
-  if (!prenom || !email) { alert("Merci de renseigner votre prénom et email."); return; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert("Adresse email invalide."); return; }
+  if (!prenom || !email) {
+    alert("Merci de renseigner votre prénom et email.");
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert("Adresse email invalide.");
+    return;
+  }
   
-  S.prenom = prenom; S.email = email;
+  S.prenom = prenom;
+  S.email = email;
   
   const btn = document.getElementById("unlockBtn");
-  btn.textContent = "Génération du rapport...";
+  btn.textContent = "Génération en cours...";
   btn.disabled = true;
   
-  // Send full context to Formspree (lead capture)
   const r = S.result;
+  
+  // 1. Lead capture via Formspree (fire and forget)
   fetch("https://formspree.io/f/maqaewbn", {
     method: "POST",
-    headers: {"Content-Type":"application/json","Accept":"application/json"},
+    headers: {"Content-Type": "application/json", "Accept": "application/json"},
     body: JSON.stringify({
       _formType: "simulateur_gratuit",
       prenom, email,
@@ -1049,812 +1062,93 @@ function unlock() {
     gtag("event", "generate_lead", { value: 1, currency: "EUR", source: "simulateur" });
   }
   
+  // 2. Generate PDF via Cloudflare Worker
+  generatePdfFromWorker(prenom, email, r)
+    .then(pdfBlob => {
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+      window.open(pdfUrl, "_blank");
+    })
+    .catch(err => {
+      console.error("Erreur PDF Worker:", err);
+      alert("Problème lors de la génération du PDF. Le rapport est quand même disponible ci-dessous. Vous pouvez nous contacter pour recevoir la version PDF.");
+    });
+  
+  // 3. Show unlocked details on page (always, even if PDF fails)
   setTimeout(() => {
-    try {
-      generatePDF();
-    } catch(err) {
-      console.error("Erreur génération PDF:", err);
-      alert("Problème lors de la génération du PDF. Le rapport est quand même affiché ci-dessous.");
-    }
     document.getElementById("paywall").style.display = "none";
     renderUnlocked();
     document.getElementById("unlocked").classList.add("show");
     document.getElementById("unlocked").scrollIntoView({behavior:"smooth", block:"start"});
-  }, 500);
+  }, 400);
 }
 
-// ═══════════════════════════════════════════════════════════
-// PDF GENERATION (jsPDF client-side)
-// ═══════════════════════════════════════════════════════════
-function getProfilDesc(profil) {
-  return {
-    "Bleu": "Revenus tres modestes - aides maximales",
-    "Jaune": "Revenus modestes - aides elevees",
-    "Violet": "Revenus intermediaires - aides classiques",
-    "Rose": "Revenus superieurs - aides reduites"
-  }[profil] || "";
-}
-
-function generatePDF() {
-  const r = S.result;
-  const profilKey = COULEURS_KEY[r.ci];
-  const profilName = COULEURS[r.ci];
-  const today = new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
-  
-  // Situation data
-  const situationRows = [
-    ["Localisation", S.loc === "idf" ? "Île-de-France" : "Hors Île-de-France"],
-    ["Type de logement", S.logType === "maison" ? "Maison individuelle" : "Appartement"],
-    ["Ancienneté", S.logAge === "plus15" ? "Plus de 15 ans" : S.logAge === "moins15" ? "Moins de 15 ans" : "Non renseigné"],
-    ["Statut", S.statut === "occupant" ? "Propriétaire occupant" : "Propriétaire bailleur"],
-    ["Composition foyer", S.menage + " personne" + (S.menage > 1 ? "s" : "")],
-    ["Revenu fiscal", fmt(S.rfr)],
-    ["DPE actuel", S.dpe === "inconnu" ? "Non renseigné" : S.dpe],
-    ["Parcours choisi", S.parcours === "ampleur" ? "Rénovation d'ampleur" : "Monogeste / bouquet"]
-  ];
-  const situationHTML = situationRows.map(([label, val]) => `
-    <tr><td class="sit-label">${label}</td><td class="sit-val">${val}</td></tr>
-  `).join("");
-  
-  // Travaux list
-  const travauxHTML = S.travaux.length > 0 
-    ? S.travaux.map(t => `<li>${GESTES[t].nom}</li>`).join("")
-    : "<li>Aucun travail sélectionné</li>";
-  
-  // Aides rows
-  const aidesRows = [
-    {
-      label: "MaPrimeRénov'",
-      sub: S.parcours === "ampleur" ? "Parcours accompagné" : "Parcours monogeste",
-      value: r.mpr > 0 ? fmt(r.mpr) : "0 €"
-    },
-    {
-      label: "Certificats d'Économie d'Énergie (CEE)",
-      sub: "Prime énergie versée par un obligé",
-      value: r.cumulCee && r.ceeMoy > 0 ? fmt(r.ceeMin) + " — " + fmt(r.ceeMax) : (r.cumulCee ? "0 €" : "Non cumulable")
-    },
-    {
-      label: "Éco-PTZ (Prêt à taux zéro)",
-      sub: "Prêt bancaire à 0%, remboursable sur 20 ans",
-      value: "jusqu'à " + fmt(r.ecoPtz)
-    },
-    {
-      label: "TVA réduite à 5,5%",
-      sub: "Économie vs TVA 20% standard",
-      value: r.budget > 0 ? fmt(r.tvaEco) : "Selon budget"
+async function generatePdfFromWorker(prenom, email, r) {
+  // Build alertes for the PDF
+  const alertes = [];
+  r.alerts.forEach(a => {
+    // Extract title from text (first sentence or bold)
+    const cleanText = a.text.replace(/<\/?strong>/g, "").replace(/<[^>]+>/g, "");
+    let title = "";
+    let body = cleanText;
+    const firstColon = cleanText.indexOf(":");
+    if (firstColon > 0 && firstColon < 60) {
+      title = cleanText.slice(0, firstColon);
+      body = cleanText.slice(firstColon + 1).trim();
+    } else {
+      const firstStop = cleanText.search(/[.!?]/);
+      if (firstStop > 0 && firstStop < 80) {
+        title = cleanText.slice(0, firstStop);
+        body = cleanText.slice(firstStop + 1).trim();
+      } else {
+        title = cleanText.slice(0, 60) + (cleanText.length > 60 ? "…" : "");
+      }
     }
-  ];
-  const aidesHTML = aidesRows.map(a => `
-    <tr>
-      <td>
-        <div class="aide-label">${a.label}</div>
-        <div class="aide-sub">${a.sub}</div>
-      </td>
-      <td class="aide-val">${a.value}</td>
-    </tr>
-  `).join("");
+    alertes.push({
+      type: a.type,
+      title: title,
+      text: body || cleanText
+    });
+  });
   
-  // Alerts
-  const alertsHTML = r.alerts.length > 0 
-    ? r.alerts.map(al => {
-        const cleanText = al.text.replace(/<[^>]+>/g, "");
-        return `<div class="alert alert-${al.type}">${cleanText}</div>`;
-      }).join("")
-    : "<div class=\"alert alert-info\">Aucune alerte particulière sur votre configuration.</div>";
-  
-  // RAC block (only if budget filled)
-  const racHTML = r.budget > 0 ? `
-    <div class="rac-block">
-      <div>
-        <div class="rac-label">Reste à charge estimé</div>
-        <div class="rac-sub">Sur budget total de ${fmt(r.budget)}</div>
-      </div>
-      <div class="rac-amount">${fmt(r.rac)}</div>
-    </div>
-  ` : "";
-  
-  // Build the HTML report (body content only, scoped styles)
-  const reportHTML = `
-<style id="pdfReportStyles">
-  #pdfReport * { margin: 0; padding: 0; box-sizing: border-box; }
-  #pdfReport {
-    font-family: 'Helvetica', 'Arial', sans-serif;
-    color: #1E1B4B;
-    line-height: 1.55;
-    font-size: 11pt;
-    background: #fff;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-    width: 210mm;
-  }
-  
-  #pdfReport .page {
-    width: 210mm;
-    min-height: 297mm;
-    padding: 0;
-    position: relative;
-    page-break-after: always;
-    overflow: hidden;
-  }
-  #pdfReport .page:last-child { page-break-after: auto; }
-  
-  /* ═══ PAGE 1 — COVER ═══ */
-  #pdfReport .cover-hero {
-    background: linear-gradient(135deg, #0D1025 0%, #1A1F3D 100%);
-    color: #fff;
-    padding: 50px 40px 40px;
-    position: relative;
-    overflow: hidden;
-  }
-  #pdfReport .cover-hero::before {
-    content: "";
-    position: absolute;
-    top: -40%;
-    right: -10%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(34,211,238,.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  #pdfReport .cover-logo {
-    font-family: 'Helvetica', sans-serif;
-    font-size: 34pt;
-    font-weight: 900;
-    color: #22D3EE;
-    letter-spacing: -1px;
-    margin-bottom: 6px;
-    position: relative;
-  }
-  #pdfReport .cover-sub-role {
-    font-size: 10pt;
-    color: rgba(237,233,254,.7);
-    margin-bottom: 60px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 500;
-  }
-  #pdfReport .cover-title {
-    font-size: 32pt;
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 16px;
-    letter-spacing: -0.5px;
-  }
-  #pdfReport .cover-date {
-    font-size: 10pt;
-    color: rgba(237,233,254,.6);
-  }
-  
-  #pdfReport .cover-body {
-    padding: 40px;
-  }
-  #pdfReport .cover-prep {
-    font-size: 10pt;
-    color: #64748B;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-  #pdfReport .cover-client {
-    font-size: 24pt;
-    font-weight: 800;
-    color: #0D1025;
-    margin-bottom: 40px;
-    letter-spacing: -0.3px;
-  }
-  
-  #pdfReport .profil-card {
-    border-radius: 14px;
-    padding: 32px 36px;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 30px;
-  }
-  #pdfReport .profil-card.bleu { background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%); }
-  #pdfReport .profil-card.jaune { background: linear-gradient(135deg, #A16207 0%, #713F12 100%); }
-  #pdfReport .profil-card.violet { background: linear-gradient(135deg, #6B21A8 0%, #581C87 100%); }
-  #pdfReport .profil-card.rose { background: linear-gradient(135deg, #BE185D 0%, #831843 100%); }
-  #pdfReport .profil-label {
-    font-size: 9pt;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0.85;
-    margin-bottom: 10px;
-  }
-  #pdfReport .profil-name {
-    font-size: 30pt;
-    font-weight: 900;
-    letter-spacing: -0.5px;
-    margin-bottom: 6px;
-    line-height: 1;
-  }
-  #pdfReport .profil-desc {
-    font-size: 11pt;
-    opacity: 0.85;
-    margin-bottom: 22px;
-  }
-  #pdfReport .profil-divider {
-    height: 1px;
-    background: rgba(255,255,255,.2);
-    margin: 0 0 18px 0;
-  }
-  #pdfReport .profil-total-label {
-    font-size: 10pt;
-    opacity: 0.75;
-    margin-bottom: 4px;
-  }
-  #pdfReport .profil-total {
-    font-size: 26pt;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-  }
-  
-  #pdfReport .cover-badge-row {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  #pdfReport .cover-badge {
-    background: #FAFAFC;
-    border: 1px solid #E5E7F2;
-    border-radius: 8px;
-    padding: 10px 16px;
-    font-size: 9pt;
-    color: #64748B;
-    font-weight: 500;
-  }
-  #pdfReport .cover-badge strong { color: #0D1025; }
-  
-  /* ═══ PAGES SUIVANTES ═══ */
-  #pdfReport .section {
-    padding: 40px 40px 30px;
-  }
-  #pdfReport .section-eyebrow {
-    font-size: 9pt;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #0E7490;
-    margin-bottom: 8px;
-  }
-  #pdfReport .section-title {
-    font-size: 22pt;
-    font-weight: 800;
-    color: #0D1025;
-    margin-bottom: 6px;
-    letter-spacing: -0.3px;
-  }
-  #pdfReport .section-sub {
-    font-size: 11pt;
-    color: #64748B;
-    margin-bottom: 28px;
-  }
-  
-  /* Situation table */
-  #pdfReport .situation-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #FAFAFC;
-    border: 1px solid #E5E7F2;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 28px;
-  }
-  #pdfReport .situation-table td {
-    padding: 12px 20px;
-    font-size: 11pt;
-    border-bottom: 1px solid #E5E7F2;
-  }
-  #pdfReport .situation-table tr:last-child td { border-bottom: none; }
-  #pdfReport .situation-table .sit-label {
-    font-weight: 600;
-    color: #64748B;
-    font-size: 9.5pt;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    width: 45%;
-  }
-  #pdfReport .situation-table .sit-val {
-    color: #0D1025;
-    font-weight: 700;
-  }
-  
-  /* Travaux */
-  #pdfReport .travaux-title {
-    font-size: 13pt;
-    font-weight: 700;
-    color: #0D1025;
-    margin-bottom: 10px;
-  }
-  #pdfReport .travaux-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-  }
-  #pdfReport .travaux-list li {
-    padding: 8px 16px;
-    background: #FAFAFC;
-    border-left: 3px solid #22D3EE;
-    margin-bottom: 6px;
-    border-radius: 0 6px 6px 0;
-    font-size: 10.5pt;
-  }
-  #pdfReport .budget-line {
-    font-size: 13pt;
-    font-weight: 700;
-    color: #0D1025;
-    padding: 14px 20px;
-    background: linear-gradient(135deg, rgba(34,211,238,.08), rgba(167,139,250,.08));
-    border-radius: 10px;
-    border: 1px solid rgba(34,211,238,.2);
-  }
-  #pdfReport .budget-line strong { color: #0E7490; }
-  
-  /* Aides table */
-  #pdfReport .aides-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-bottom: 24px;
-    border: 1px solid #E5E7F2;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  #pdfReport .aides-table thead th {
-    background: #0D1025;
-    color: #fff;
-    text-align: left;
-    padding: 14px 20px;
-    font-size: 9pt;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-  }
-  #pdfReport .aides-table thead th:last-child { text-align: right; }
-  #pdfReport .aides-table tbody td {
-    padding: 16px 20px;
-    border-bottom: 1px solid #E5E7F2;
-    font-size: 11pt;
-    vertical-align: middle;
-  }
-  #pdfReport .aides-table tbody tr:last-child td { border-bottom: none; }
-  #pdfReport .aides-table tbody tr:nth-child(even) td { background: #FAFAFC; }
-  #pdfReport .aides-table .aide-label {
-    font-weight: 700;
-    color: #0D1025;
-    margin-bottom: 3px;
-  }
-  #pdfReport .aides-table .aide-sub {
-    font-size: 9pt;
-    color: #64748B;
-  }
-  #pdfReport .aides-table .aide-val {
-    text-align: right;
-    font-weight: 800;
-    color: #0E7490;
-    font-size: 13pt;
-    white-space: nowrap;
-  }
-  
-  /* RAC block */
-  #pdfReport .rac-block {
-    background: linear-gradient(135deg, #0D1025 0%, #1A1F3D 100%);
-    color: #fff;
-    padding: 24px 28px;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  #pdfReport .rac-label {
-    font-size: 13pt;
-    font-weight: 700;
-    margin-bottom: 3px;
-  }
-  #pdfReport .rac-sub {
-    font-size: 9.5pt;
-    color: rgba(237,233,254,.7);
-  }
-  #pdfReport .rac-amount {
-    font-size: 22pt;
-    font-weight: 800;
-    color: #22D3EE;
-    letter-spacing: -0.5px;
-  }
-  
-  /* Alerts */
-  #pdfReport .alert {
-    padding: 14px 18px;
-    border-radius: 8px;
-    border-left: 3px solid;
-    margin-bottom: 10px;
-    font-size: 10.5pt;
-    line-height: 1.6;
-  }
-  #pdfReport .alert-warn {
-    background: #FEF3C7;
-    border-left-color: #FCD34D;
-    color: #92400E;
-  }
-  #pdfReport .alert-info {
-    background: rgba(34,211,238,.08);
-    border-left-color: #22D3EE;
-    color: #0E7490;
-  }
-  
-  /* Next steps */
-  #pdfReport .steps-block {
-    background: rgba(167,139,250,.06);
-    border: 1px solid rgba(167,139,250,.2);
-    border-radius: 12px;
-    padding: 28px 32px;
-    margin-top: 24px;
-  }
-  #pdfReport .steps-title {
-    font-size: 14pt;
-    font-weight: 800;
-    color: #0D1025;
-    margin-bottom: 16px;
-  }
-  #pdfReport .steps-list {
-    list-style: none;
-    padding: 0;
-  }
-  #pdfReport .steps-list li {
-    padding: 8px 0 8px 32px;
-    position: relative;
-    font-size: 10.5pt;
-    color: #1E1B4B;
-    line-height: 1.6;
-  }
-  #pdfReport .steps-list li::before {
-    content: counter(step);
-    counter-increment: step;
-    position: absolute;
-    left: 0;
-    top: 8px;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: #A78BFA;
-    color: #0D1025;
-    font-weight: 800;
-    font-size: 10pt;
-    text-align: center;
-    line-height: 22px;
-  }
-  #pdfReport .steps-list { counter-reset: step; }
-  
-  /* CTA block */
-  #pdfReport .cta-block {
-    background: linear-gradient(135deg, #0D1025 0%, #1A1F3D 100%);
-    color: #fff;
-    padding: 40px;
-    border-radius: 14px;
-    margin-bottom: 24px;
-    position: relative;
-    overflow: hidden;
-  }
-  #pdfReport .cta-block::before {
-    content: "";
-    position: absolute;
-    bottom: -50%;
-    left: -20%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(167,139,250,.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  #pdfReport .cta-label {
-    font-size: 9pt;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #22D3EE;
-    margin-bottom: 12px;
-    position: relative;
-  }
-  #pdfReport .cta-title {
-    font-size: 20pt;
-    font-weight: 800;
-    margin-bottom: 10px;
-    line-height: 1.2;
-    position: relative;
-  }
-  #pdfReport .cta-desc {
-    font-size: 11pt;
-    color: rgba(237,233,254,.8);
-    margin-bottom: 22px;
-    max-width: 420px;
-    line-height: 1.6;
-    position: relative;
-  }
-  #pdfReport .cta-buttons {
-    display: flex;
-    gap: 12px;
-    position: relative;
-  }
-  #pdfReport .cta-btn {
-    padding: 12px 22px;
-    border-radius: 8px;
-    font-size: 10.5pt;
-    font-weight: 700;
-    text-decoration: none;
-    display: inline-block;
-  }
-  #pdfReport .cta-btn-primary {
-    background: #22D3EE;
-    color: #0D1025;
-  }
-  #pdfReport .cta-btn-secondary {
-    background: #A78BFA;
-    color: #0D1025;
-  }
-  
-  /* Contact */
-  #pdfReport .contact-card {
-    background: #FAFAFC;
-    border: 1px solid #E5E7F2;
-    border-radius: 12px;
-    padding: 28px 32px;
-  }
-  #pdfReport .contact-name {
-    font-size: 16pt;
-    font-weight: 800;
-    color: #0D1025;
-    margin-bottom: 4px;
-  }
-  #pdfReport .contact-role {
-    font-size: 10pt;
-    color: #64748B;
-    margin-bottom: 14px;
-  }
-  #pdfReport .contact-line {
-    font-size: 10.5pt;
-    color: #1E1B4B;
-    margin-bottom: 6px;
-  }
-  #pdfReport .contact-line strong { color: #0D1025; }
-  #pdfReport .contact-note {
-    font-size: 9.5pt;
-    color: #64748B;
-    margin-top: 14px;
-    font-style: italic;
-  }
-  
-  /* Footer legal */
-  #pdfReport .legal-footer {
-    position: absolute;
-    bottom: 20mm;
-    left: 40px;
-    right: 40px;
-    font-size: 8pt;
-    color: #94A3B8;
-    text-align: center;
-    border-top: 1px solid #E5E7F2;
-    padding-top: 10px;
-  }
-  
-</style>
-<div id="pdfReport">
-
-<!-- PAGE 1 — COVER -->
-<div class="page">
-  <div class="cover-hero">
-    <div class="cover-logo">ADORA</div>
-    <div class="cover-sub-role">Économiste de la construction</div>
-    <div class="cover-title">Simulation d'aides<br>à la rénovation</div>
-    <div class="cover-date">${today}</div>
-  </div>
-  
-  <div class="cover-body">
-    <div class="cover-prep">Préparé pour</div>
-    <div class="cover-client">${S.prenom}</div>
-    
-    <div class="profil-card ${profilKey}">
-      <div class="profil-label">Votre profil MaPrimeRénov'</div>
-      <div class="profil-name">${profilName}</div>
-      <div class="profil-desc">${getProfilDesc(profilName)}</div>
-      <div class="profil-divider"></div>
-      <div class="profil-total-label">Total aides estimées</div>
-      <div class="profil-total">${fmt(r.aidesFinales)}</div>
-    </div>
-    
-    <div class="cover-badge-row">
-      <div class="cover-badge"><strong>Barèmes 2026</strong> — Anah</div>
-      <div class="cover-badge"><strong>Estimation indicative</strong> — non opposable</div>
-    </div>
-  </div>
-  
-  <div class="legal-footer">
-    ADORA · Aymeric Dussauze · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI
-  </div>
-</div>
-
-<!-- PAGE 2 — SITUATION -->
-<div class="page">
-  <div class="section">
-    <div class="section-eyebrow">Votre situation</div>
-    <div class="section-title">Paramètres de la simulation</div>
-    <div class="section-sub">Les informations que vous nous avez communiquées pour le calcul de vos aides.</div>
-    
-    <table class="situation-table">
-      <tbody>
-        ${situationHTML}
-      </tbody>
-    </table>
-    
-    <div class="travaux-title">Travaux envisagés</div>
-    <ul class="travaux-list">
-      ${travauxHTML}
-    </ul>
-    
-    <div class="budget-line">Budget travaux total : <strong>${fmt(S.budget)}</strong></div>
-  </div>
-  
-  <div class="legal-footer">
-    ADORA · Aymeric Dussauze · SIRET 532 886 918 00020 · Page 2
-  </div>
-</div>
-
-<!-- PAGE 3 — AIDES -->
-<div class="page">
-  <div class="section">
-    <div class="section-eyebrow">Rapport détaillé</div>
-    <div class="section-title">Vos aides, ligne par ligne</div>
-    <div class="section-sub">Estimation selon les barèmes Anah 2026 applicables à votre profil ${profilName}.</div>
-    
-    <table class="aides-table">
-      <thead>
-        <tr>
-          <th>Aide mobilisable</th>
-          <th>Montant estimé</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${aidesHTML}
-      </tbody>
-    </table>
-    
-    ${racHTML}
-  </div>
-  
-  <div class="legal-footer">
-    ADORA · Aymeric Dussauze · SIRET 532 886 918 00020 · Page 3
-  </div>
-</div>
-
-<!-- PAGE 4 — ALERTES + STEPS -->
-<div class="page">
-  <div class="section">
-    <div class="section-eyebrow">À savoir</div>
-    <div class="section-title">Points de vigilance 2026</div>
-    <div class="section-sub">Les règles qui s'appliquent à votre configuration — à bien connaître avant de vous lancer.</div>
-    
-    ${alertsHTML}
-    
-    <div class="steps-block">
-      <div class="steps-title">Vos prochaines étapes</div>
-      <ul class="steps-list">
-        <li>Faire réaliser un <strong>DPE initial</strong> si ce n'est pas déjà fait</li>
-        <li>Choisir un <strong>artisan RGE</strong> (vérifier sur france-renov.gouv.fr)</li>
-        <li>Créer votre compte sur <strong>maprimerenov.gouv.fr</strong> AVANT de signer le devis</li>
-        <li>Faire <strong>valider votre dossier Anah</strong> AVANT le début des travaux</li>
-        <li>Signer avec un <strong>opérateur CEE</strong> (Effy, TotalEnergies, EDF, ENGIE...)</li>
-        <li>Demander l'<strong>éco-PTZ</strong> à votre banque avec les devis signés</li>
-      </ul>
-    </div>
-  </div>
-  
-  <div class="legal-footer">
-    ADORA · Aymeric Dussauze · SIRET 532 886 918 00020 · Page 4
-  </div>
-</div>
-
-<!-- PAGE 5 — CTA + CONTACT -->
-<div class="page">
-  <div class="section">
-    <div class="section-eyebrow">Pour aller plus loin</div>
-    <div class="section-title">Transformez cette simulation en projet concret</div>
-    
-    <div class="cta-block">
-      <div class="cta-label">Accompagnement ADORA</div>
-      <div class="cta-title">Besoin d'aide sur votre projet ?</div>
-      <div class="cta-desc">Optimiser ses aides, choisir les bons travaux, sécuriser son plan de financement... ADORA vous accompagne à chaque étape, de la rédaction du cahier des charges à la réception du chantier.</div>
-      <div class="cta-buttons">
-        <span class="cta-btn cta-btn-primary">Chiffrer mes travaux (49 €)</span>
-        <span class="cta-btn cta-btn-secondary">Accompagnement sur mesure</span>
-      </div>
-    </div>
-    
-    <div class="contact-card">
-      <div class="contact-name">Aymeric Dussauze</div>
-      <div class="contact-role">Économiste de la construction · ADORA</div>
-      <div class="contact-line">📞 <strong>06 60 21 55 09</strong></div>
-      <div class="contact-line">✉️ <strong>aymericdussauze@gmail.com</strong></div>
-      <div class="contact-line">🌐 <strong>adora-economie.fr</strong></div>
-      <div class="contact-note">Si vous avez des questions sur ce rapport ou sur votre projet, vous pouvez m'écrire ou m'appeler directement — c'est avec plaisir que je vous accompagnerai.</div>
-    </div>
-  </div>
-  
-  <div class="legal-footer">
-    ADORA · Aymeric Dussauze · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI · Page 5/5
-  </div>
-</div>
-
-</div>
-  `;
-  
-  // Inject the styles + HTML into the page (hidden but rendered)
-  const wrapper = document.createElement("div");
-  wrapper.id = "pdfReportWrapper";
-  wrapper.style.position = "fixed";
-  wrapper.style.left = "0";
-  wrapper.style.top = "0";
-  wrapper.style.width = "210mm";
-  wrapper.style.zIndex = "-9999";
-  wrapper.style.opacity = "0.01";
-  wrapper.style.pointerEvents = "none";
-  wrapper.innerHTML = reportHTML;
-  document.body.appendChild(wrapper);
-  
-  // Target the #pdfReport div inside the wrapper for capture
-  const renderTarget = wrapper.querySelector("#pdfReport");
-  
-  if (!renderTarget) {
-    console.error("PDF target not found");
-    document.body.removeChild(wrapper);
-    return;
-  }
-  
-  // html2pdf options
-  const opt = {
-    margin: 0,
-    filename: "ADORA_Simulation_Aides_" + S.prenom.replace(/[^a-zA-Z0-9]/g, "_") + ".pdf",
-    image: { type: "jpeg", quality: 0.95 },
-    html2canvas: { 
-      scale: 2,
-      useCORS: true,
-      letterRendering: true,
-      backgroundColor: "#ffffff",
-      logging: false,
-      windowWidth: 794
-    },
-    jsPDF: { 
-      unit: "mm", 
-      format: "a4", 
-      orientation: "portrait",
-      compress: true
-    },
-    pagebreak: { mode: ["css", "legacy"] }
+  const payload = {
+    type: "simulateur",
+    data: {
+      prenom: prenom,
+      localisation: S.loc === "idf" ? "Île-de-France" : "Hors Île-de-France",
+      type_logement: S.logType === "maison" ? "Maison individuelle" : "Appartement",
+      age_logement: S.logAge === "plus15" ? "Plus de 15 ans" : (S.logAge === "moins15" ? "Moins de 15 ans" : "Non renseigné"),
+      statut: S.statut === "occupant" ? "Propriétaire occupant" : "Propriétaire bailleur",
+      menage: S.menage,
+      revenu_fiscal: S.rfr,
+      dpe: S.dpe === "inconnu" ? "Non renseigné" : S.dpe,
+      parcours: S.parcours === "ampleur" ? "parcours accompagné" : "parcours monogeste",
+      travaux_envisages: S.travaux.map(t => GESTES[t].nom),
+      budget_travaux: S.budget,
+      profil_anah: COULEURS[r.ci],
+      mpr_estimee: r.mpr,
+      cee_min: r.ceeMin || 0,
+      cee_max: r.ceeMax || 0,
+      cumul_cee: r.cumulCee !== false,
+      eco_ptz_max: r.ecoPtz,
+      tva_economie: r.tvaEco,
+      aides_finales: r.aidesFinales,
+      reste_a_charge: r.rac,
+      alertes: alertes
+    }
   };
   
-  // Wait for render, then generate
-  setTimeout(function() {
-    html2pdf()
-      .set(opt)
-      .from(renderTarget)
-      .toPdf()
-      .output("blob")
-      .then(function(pdfBlob) {
-        const pdfUrl = URL.createObjectURL(pdfBlob);
-        window.open(pdfUrl, "_blank");
-        if (document.getElementById("pdfReportWrapper")) {
-          document.body.removeChild(wrapper);
-        }
-      })
-      .catch(function(err) {
-        console.error("Erreur génération PDF:", err);
-        if (document.getElementById("pdfReportWrapper")) {
-          document.body.removeChild(wrapper);
-        }
-        throw err;
-      });
-  }, 300);
+  const response = await fetch(PDF_WORKER_URL, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload)
+  });
+  
+  if (!response.ok) {
+    const errText = await response.text();
+    throw new Error("Worker " + response.status + ": " + errText);
+  }
+  
+  return await response.blob();
 }
 
 function renderUnlocked() {
