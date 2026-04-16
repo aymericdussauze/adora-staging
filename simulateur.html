@@ -255,6 +255,8 @@ input,select,textarea{font-family:inherit}
 .footer-links a{color:rgba(237,233,254,.6);font-size:13px;text-decoration:none}
 .footer-legal{max-width:980px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(237,233,254,.3);text-align:center}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.1/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
 
@@ -1011,7 +1013,7 @@ function unlock() {
   S.prenom = prenom; S.email = email;
   
   const btn = document.getElementById("unlockBtn");
-  btn.textContent = "Déverrouillage...";
+  btn.textContent = "Génération du rapport...";
   btn.disabled = true;
   
   // Send full context to Formspree (lead capture)
@@ -1049,11 +1051,398 @@ function unlock() {
   }
   
   setTimeout(() => {
+    try {
+      generatePDF();
+    } catch(err) {
+      console.error("Erreur génération PDF:", err);
+      alert("Problème lors de la génération du PDF. Le rapport est quand même affiché ci-dessous.");
+    }
     document.getElementById("paywall").style.display = "none";
     renderUnlocked();
     document.getElementById("unlocked").classList.add("show");
     document.getElementById("unlocked").scrollIntoView({behavior:"smooth", block:"start"});
-  }, 700);
+  }, 500);
+}
+
+// ═══════════════════════════════════════════════════════════
+// PDF GENERATION (jsPDF client-side)
+// ═══════════════════════════════════════════════════════════
+function getProfilDesc(profil) {
+  return {
+    "Bleu": "Revenus tres modestes - aides maximales",
+    "Jaune": "Revenus modestes - aides elevees",
+    "Violet": "Revenus intermediaires - aides classiques",
+    "Rose": "Revenus superieurs - aides reduites"
+  }[profil] || "";
+}
+
+function generatePDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+  const r = S.result;
+  
+  const COLORS = {
+    navy: [13, 16, 37],
+    aqua: [34, 211, 238],
+    iris: [167, 139, 250],
+    muted: [100, 116, 139],
+    text: [30, 27, 75],
+    pale: [250, 250, 252],
+    border: [229, 231, 242],
+    anahBleu: [30, 64, 175],
+    anahJaune: [161, 98, 7],
+    anahViolet: [107, 33, 168],
+    anahRose: [190, 24, 93]
+  };
+  
+  const profilColorMap = {
+    "Bleu": COLORS.anahBleu,
+    "Jaune": COLORS.anahJaune,
+    "Violet": COLORS.anahViolet,
+    "Rose": COLORS.anahRose
+  };
+  const profilColor = profilColorMap[COULEURS[r.ci]] || COLORS.anahBleu;
+  
+  // ═══ PAGE 1 — COVER ═══
+  doc.setFillColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+  doc.rect(0, 0, 210, 90, "F");
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(28);
+  doc.setTextColor(COLORS.aqua[0], COLORS.aqua[1], COLORS.aqua[2]);
+  doc.text("ADORA", 18, 28);
+  
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.setTextColor(237, 233, 254);
+  doc.text("Economiste de la construction", 18, 35);
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(24);
+  doc.setTextColor(255, 255, 255);
+  doc.text("Simulation d'aides", 18, 60);
+  doc.text("a la renovation", 18, 72);
+  
+  const today = new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+  doc.setTextColor(237, 233, 254);
+  doc.text(today, 192, 82, { align: "right" });
+  
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(11);
+  doc.setTextColor(COLORS.muted[0], COLORS.muted[1], COLORS.muted[2]);
+  doc.text("Prepare pour", 18, 110);
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(18);
+  doc.setTextColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+  doc.text(S.prenom, 18, 120);
+  
+  // Profil box
+  doc.setFillColor(profilColor[0], profilColor[1], profilColor[2]);
+  doc.roundedRect(18, 135, 174, 60, 3, 3, "F");
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9);
+  doc.setTextColor(255, 255, 255);
+  doc.text("VOTRE PROFIL MAPRIMERENOV'", 26, 148);
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(22);
+  doc.text(COULEURS[r.ci], 26, 162);
+  
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.text(getProfilDesc(COULEURS[r.ci]), 26, 170);
+  
+  doc.setDrawColor(255, 255, 255);
+  doc.setLineWidth(0.2);
+  doc.line(26, 176, 184, 176);
+  
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+  doc.text("Total aides estimees", 26, 183);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(16);
+  doc.text(fmt(r.aidesFinales), 26, 192);
+  
+  // ═══ PAGE 2 — SITUATION ═══
+  doc.addPage();
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9);
+  doc.setTextColor(14, 116, 144);
+  doc.text("VOTRE SITUATION", 18, 22);
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(18);
+  doc.setTextColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+  doc.text("Parametres de la simulation", 18, 30);
+  
+  const situationData = [
+    ["Localisation", S.loc === "idf" ? "Ile-de-France" : "Hors Ile-de-France"],
+    ["Type de logement", S.logType === "maison" ? "Maison individuelle" : "Appartement"],
+    ["Anciennete", S.logAge === "plus15" ? "Plus de 15 ans" : S.logAge === "moins15" ? "Moins de 15 ans" : "Non renseigne"],
+    ["Statut", S.statut === "occupant" ? "Proprietaire occupant" : "Proprietaire bailleur"],
+    ["Composition foyer", S.menage + " personne" + (S.menage > 1 ? "s" : "")],
+    ["Revenu fiscal", fmt(S.rfr)],
+    ["DPE actuel", S.dpe === "inconnu" ? "Non renseigne" : S.dpe],
+    ["Parcours choisi", S.parcours === "ampleur" ? "Renovation d'ampleur" : "Monogeste / bouquet"]
+  ];
+  
+  doc.autoTable({
+    startY: 40,
+    body: situationData,
+    theme: "plain",
+    styles: { font: "helvetica", fontSize: 10, cellPadding: 5, textColor: COLORS.text, lineColor: COLORS.border, lineWidth: 0.1 },
+    columnStyles: {
+      0: { fontStyle: "bold", textColor: COLORS.muted, cellWidth: 55, fontSize: 9 },
+      1: { textColor: COLORS.navy, fontStyle: "bold" }
+    }
+  });
+  
+  let yPos = doc.lastAutoTable.finalY + 20;
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9);
+  doc.setTextColor(14, 116, 144);
+  doc.text("TRAVAUX ENVISAGES", 18, yPos);
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.setTextColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+  doc.text("Liste des postes retenus", 18, yPos + 8);
+  
+  const travauxList = S.travaux.map(t => GESTES[t].nom).join(" | ");
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.setTextColor(COLORS.text[0], COLORS.text[1], COLORS.text[2]);
+  const splitTravaux = doc.splitTextToSize(travauxList || "Aucun travail selectionne", 174);
+  doc.text(splitTravaux, 18, yPos + 18);
+  
+  yPos += 18 + (splitTravaux.length * 5) + 8;
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(11);
+  doc.setTextColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+  doc.text("Budget travaux total : " + fmt(S.budget), 18, yPos);
+  
+  // ═══ PAGE 3 — AIDES TABLE ═══
+  doc.addPage();
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9);
+  doc.setTextColor(14, 116, 144);
+  doc.text("RAPPORT DETAILLE", 18, 22);
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(18);
+  doc.setTextColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+  doc.text("Vos aides, ligne par ligne", 18, 30);
+  
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.setTextColor(COLORS.muted[0], COLORS.muted[1], COLORS.muted[2]);
+  doc.text("Estimation selon les baremes Anah 2026.", 18, 37);
+  
+  const aidesData = [
+    [
+      "MaPrimeRenov' (" + (S.parcours === "ampleur" ? "Accompagne" : "Monogeste") + ")",
+      r.mpr > 0 ? fmt(r.mpr) : "0 €"
+    ],
+    [
+      "CEE - Prime energie",
+      r.cumulCee && r.ceeMoy > 0 ? fmt(r.ceeMin) + " a " + fmt(r.ceeMax) : (r.cumulCee ? "0 €" : "Non cumulable")
+    ],
+    [
+      "Eco-PTZ (pret 0%)",
+      "jusqu'a " + fmt(r.ecoPtz)
+    ],
+    [
+      "TVA reduite 5,5% (economie)",
+      r.budget > 0 ? fmt(r.tvaEco) : "Selon budget"
+    ]
+  ];
+  
+  doc.autoTable({
+    startY: 45,
+    head: [["Aide", "Montant"]],
+    body: aidesData,
+    theme: "striped",
+    headStyles: { fillColor: COLORS.navy, textColor: [255, 255, 255], fontStyle: "bold", fontSize: 10, cellPadding: 6 },
+    styles: { font: "helvetica", fontSize: 11, cellPadding: 8, textColor: COLORS.text, lineColor: COLORS.border, lineWidth: 0.1 },
+    columnStyles: {
+      1: { halign: "right", fontStyle: "bold", textColor: [14, 116, 144] }
+    },
+    alternateRowStyles: { fillColor: COLORS.pale }
+  });
+  
+  yPos = doc.lastAutoTable.finalY + 12;
+  
+  if (r.budget > 0) {
+    doc.setFillColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+    doc.roundedRect(18, yPos, 174, 22, 2, 2, "F");
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.setTextColor(255, 255, 255);
+    doc.text("Reste a charge estime", 24, yPos + 13);
+    doc.setFontSize(16);
+    doc.setTextColor(COLORS.aqua[0], COLORS.aqua[1], COLORS.aqua[2]);
+    doc.text(fmt(r.rac), 186, yPos + 13, { align: "right" });
+  }
+  
+  // ═══ PAGE 4 — ALERTES & NEXT STEPS ═══
+  doc.addPage();
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9);
+  doc.setTextColor(14, 116, 144);
+  doc.text("A SAVOIR", 18, 22);
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(18);
+  doc.setTextColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+  doc.text("Points de vigilance 2026", 18, 30);
+  
+  yPos = 45;
+  r.alerts.forEach(alert => {
+    const cleanText = alert.text.replace(/<[^>]+>/g, "");
+    const isWarn = alert.type === "warn";
+    
+    const bgColor = isWarn ? [254, 243, 199] : [240, 249, 255];
+    doc.setFillColor(bgColor[0], bgColor[1], bgColor[2]);
+    const splitText = doc.splitTextToSize(cleanText, 165);
+    const boxHeight = splitText.length * 5 + 10;
+    doc.roundedRect(18, yPos, 174, boxHeight, 2, 2, "F");
+    
+    const borderColor = isWarn ? [252, 211, 77] : [34, 211, 238];
+    doc.setDrawColor(borderColor[0], borderColor[1], borderColor[2]);
+    doc.setLineWidth(1);
+    doc.line(18, yPos, 18, yPos + boxHeight);
+    
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    const txtColor = isWarn ? [146, 64, 14] : [14, 116, 144];
+    doc.setTextColor(txtColor[0], txtColor[1], txtColor[2]);
+    doc.text(splitText, 24, yPos + 7);
+    
+    yPos += boxHeight + 5;
+  });
+  
+  // Next steps
+  yPos += 10;
+  if (yPos > 230) { doc.addPage(); yPos = 30; }
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9);
+  doc.setTextColor(14, 116, 144);
+  doc.text("VOS PROCHAINES ETAPES", 18, yPos);
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.setTextColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+  doc.text("Par ou commencer", 18, yPos + 8);
+  
+  yPos += 18;
+  const steps = [
+    "1. Faire realiser un DPE initial si ce n'est pas deja fait",
+    "2. Choisir un artisan RGE (verif. france-renov.gouv.fr)",
+    "3. Creer votre compte sur maprimerenov.gouv.fr AVANT de signer",
+    "4. Faire valider votre dossier Anah AVANT le debut des travaux",
+    "5. Signer avec un operateur CEE (Effy, TotalEnergies, EDF...)",
+    "6. Demander l'eco-PTZ a votre banque avec les devis signes"
+  ];
+  
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.setTextColor(COLORS.text[0], COLORS.text[1], COLORS.text[2]);
+  steps.forEach(step => {
+    const splitStep = doc.splitTextToSize(step, 174);
+    doc.text(splitStep, 18, yPos);
+    yPos += splitStep.length * 5 + 3;
+  });
+  
+  // ═══ PAGE 5 — CTA ═══
+  doc.addPage();
+  
+  doc.setFillColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+  doc.roundedRect(18, 30, 174, 90, 3, 3, "F");
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9);
+  doc.setTextColor(COLORS.aqua[0], COLORS.aqua[1], COLORS.aqua[2]);
+  doc.text("POUR ALLER PLUS LOIN", 28, 48);
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(16);
+  doc.setTextColor(255, 255, 255);
+  doc.text("Envie d'etre accompagne(e) ?", 28, 62);
+  
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.setTextColor(237, 233, 254);
+  const ctaText = "Optimiser ses aides, choisir les bons travaux, securiser son plan de financement. ADORA vous accompagne de A a Z.";
+  const splitCta = doc.splitTextToSize(ctaText, 160);
+  doc.text(splitCta, 28, 74);
+  
+  doc.setFillColor(COLORS.aqua[0], COLORS.aqua[1], COLORS.aqua[2]);
+  doc.roundedRect(28, 96, 75, 14, 2, 2, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(10);
+  doc.setTextColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+  doc.text("Chiffrer mes travaux (49 €)", 65, 105, { align: "center" });
+  
+  doc.setFillColor(COLORS.iris[0], COLORS.iris[1], COLORS.iris[2]);
+  doc.roundedRect(108, 96, 75, 14, 2, 2, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(10);
+  doc.setTextColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+  doc.text("Accompagnement sur mesure", 145, 105, { align: "center" });
+  
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+  doc.setTextColor(COLORS.muted[0], COLORS.muted[1], COLORS.muted[2]);
+  doc.text("adora-economie.fr/estimateur  -  adora-economie.fr/sur-mesure", 105, 130, { align: "center" });
+  
+  // Contact
+  doc.setFillColor(COLORS.pale[0], COLORS.pale[1], COLORS.pale[2]);
+  doc.setDrawColor(COLORS.border[0], COLORS.border[1], COLORS.border[2]);
+  doc.setLineWidth(0.2);
+  doc.roundedRect(18, 150, 174, 60, 3, 3, "FD");
+  
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.setTextColor(COLORS.navy[0], COLORS.navy[1], COLORS.navy[2]);
+  doc.text("Aymeric Dussauze", 28, 168);
+  
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.setTextColor(COLORS.muted[0], COLORS.muted[1], COLORS.muted[2]);
+  doc.text("Economiste de la construction", 28, 175);
+  doc.text("06 60 21 55 09  -  aymericdussauze@gmail.com", 28, 185);
+  doc.text("adora-economie.fr", 28, 192);
+  
+  doc.setFontSize(9);
+  doc.text("Si vous avez des questions sur ce rapport ou sur votre projet,", 28, 202);
+  doc.text("vous pouvez m'ecrire ou m'appeler directement - c'est avec plaisir.", 28, 207);
+  
+  // Footer on all pages
+  const pageCount = doc.internal.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8);
+    doc.setTextColor(COLORS.muted[0], COLORS.muted[1], COLORS.muted[2]);
+    doc.text("ADORA - Aymeric Dussauze - SIRET 532 886 918 00020 - TVA art. 293B", 105, 288, { align: "center" });
+    if (i > 1) {
+      doc.text("Page " + i + " / " + pageCount, 192, 288, { align: "right" });
+    }
+  }
+  
+  // Open in new tab
+  const pdfBlob = doc.output("blob");
+  const pdfUrl = URL.createObjectURL(pdfBlob);
+  window.open(pdfUrl, "_blank");
 }
 
 function renderUnlocked() {
