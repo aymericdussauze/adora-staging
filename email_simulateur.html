@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Votre simulation d'aides</title>
+</head>
+<body style="margin:0;padding:0;background:#FAFAFC;font-family:'Helvetica Neue',Arial,sans-serif;color:#1E1B4B;line-height:1.6">
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FAFAFC;padding:40px 20px">
+<tr><td align="center">
+
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(13,16,37,.08)">
+
+<!-- HEADER -->
+<tr><td style="background:linear-gradient(135deg,#0D1025 0%,#1A1F3D 100%);padding:40px 32px;text-align:center">
+  <div style="color:#22D3EE;font-size:28px;font-weight:900;letter-spacing:-0.5px;margin-bottom:6px">ADORA</div>
+  <div style="color:rgba(237,233,254,.7);font-size:12px;letter-spacing:1px;text-transform:uppercase">Économiste de la construction</div>
+</td></tr>
+
+<!-- BODY -->
+<tr><td style="padding:40px 32px">
+
+<div style="display:inline-block;padding:4px 12px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);border-radius:99px;color:#6D44D9;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px">
+  Rapport gratuit
+</div>
+
+<h1 style="font-size:26px;font-weight:800;color:#0D1025;margin:0 0 12px;line-height:1.2">
+  Bonjour {{prenom}},
+</h1>
+
+<p style="font-size:15px;color:#64748B;margin:0 0 24px;line-height:1.7">
+  Voici votre <strong>simulation d'aides à la rénovation énergétique</strong> en pièce jointe. Nous y avons calculé précisément les montants auxquels vous pouvez prétendre selon votre profil.
+</p>
+
+<!-- Summary box -->
+<div style="background:#FAFAFC;border:1px solid #E5E7F2;border-radius:10px;padding:20px;margin-bottom:28px">
+  <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#0E7490;margin-bottom:8px">Votre profil</div>
+  <div style="font-size:22px;font-weight:800;color:#0D1025;margin-bottom:6px">{{profil_anah}} — {{aides_finales}} d'aides</div>
+  <div style="font-size:13px;color:#64748B">{{parcours}} · Budget {{budget_travaux}}</div>
+</div>
+
+<h2 style="font-size:18px;font-weight:700;color:#0D1025;margin:0 0 14px">Ce qu'il y a dans votre rapport</h2>
+
+<ul style="font-size:14px;color:#1E1B4B;margin:0 0 28px;padding-left:20px;line-height:1.8">
+  <li>Le <strong>détail de chaque aide</strong> (MaPrimeRénov', CEE, éco-PTZ, TVA 5,5%)</li>
+  <li>Les <strong>alertes personnalisées 2026</strong> — pièges à éviter, conditions à respecter</li>
+  <li>Le <strong>plan de financement complet</strong> avec reste à charge effectif</li>
+  <li>Une <strong>checklist des prochaines étapes</strong> pour débloquer vos aides</li>
+</ul>
+
+<!-- Upsell soft -->
+<div style="background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(167,139,250,.08));border-radius:10px;padding:24px;margin-bottom:28px">
+  <div style="font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6D44D9;margin-bottom:8px">💡 Pour aller plus loin</div>
+  <div style="font-size:16px;font-weight:700;color:#0D1025;margin-bottom:8px">Vous hésitez sur le budget travaux ?</div>
+  <div style="font-size:13px;color:#64748B;line-height:1.6;margin-bottom:16px">
+    Notre estimateur ADORA vous donne un chiffrage détaillé en 15 lots techniques pour seulement 49 €. Un rapport PDF professionnel + un appel téléphonique offert.
+  </div>
+  <a href="https://adora-economie.fr/estimateur.html" style="display:inline-block;background:#22D3EE;color:#0D1025;padding:10px 22px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none">
+    Chiffrer mes travaux →
+  </a>
+</div>
+
+<!-- Personal note -->
+<p style="font-size:14px;color:#1E1B4B;margin:0 0 16px;line-height:1.7">
+  Si vous avez des questions sur les aides ou sur votre projet de rénovation, je suis disponible pour un <strong>appel téléphonique de 15-20 minutes</strong>, sans aucune obligation.
+</p>
+
+<p style="font-size:14px;color:#1E1B4B;margin:0 0 24px;line-height:1.7">
+  Vous pouvez répondre à cet email, ou m'appeler directement au <strong style="color:#0D1025">06 60 21 55 09</strong>.
+</p>
+
+<p style="font-size:14px;color:#1E1B4B;margin:20px 0 0;line-height:1.7">
+  Bonne lecture,<br>
+  <strong style="color:#0D1025">Aymeric Dussauze</strong><br>
+  <span style="color:#64748B;font-size:13px">Économiste de la construction · ADORA</span>
+</p>
+
+</td></tr>
+
+<!-- FOOTER -->
+<tr><td style="background:#080B1C;padding:24px 32px;text-align:center">
+  <div style="color:rgba(237,233,254,.5);font-size:11px;line-height:1.6">
+    <strong style="color:#EDE9FE">ADORA</strong> — Aymeric Dussauze · 06 60 21 55 09<br>
+    aymericdussauze@gmail.com · adora-economie.fr<br>
+    <span style="color:rgba(237,233,254,.3);font-size:10px">EI · SIRET 532 886 918 00020 · Vous recevez cet email suite à votre simulation sur adora-economie.fr</span>
+  </div>
+</td></tr>
+
+</table>
+
+</td></tr>
+</table>
+
+</body>
+</html>

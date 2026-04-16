@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Rapport d'estimation de travaux — ADORA</title>
+<style>
+  /* ═══ ADORA PDF template — Indigo Aurora ═══ */
+  @page { size: A4; margin: 20mm 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #1E1B4B;
+    line-height: 1.5;
+    font-size: 10pt;
+  }
+  h1, h2, h3 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #0D1025;
+    line-height: 1.2;
+  }
+  /* Cover page */
+  .cover {
+    background: linear-gradient(135deg, #0D1025 0%, #1A1F3D 100%);
+    color: #fff;
+    padding: 60px 40px;
+    margin: -20mm -18mm 30px;
+    page-break-after: always;
+  }
+  .cover-logo {
+    font-size: 28pt;
+    font-weight: 900;
+    color: #22D3EE;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .cover-sub {
+    font-size: 11pt;
+    color: rgba(237,233,254,.7);
+    margin-bottom: 80px;
+  }
+  .cover-title {
+    font-size: 28pt;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+  .cover-client {
+    font-size: 14pt;
+    color: #EDE9FE;
+    margin-bottom: 60px;
+  }
+  .cover-highlight {
+    background: rgba(34,211,238,.12);
+    border-left: 3px solid #22D3EE;
+    padding: 24px 28px;
+    border-radius: 8px;
+    margin-bottom: 60px;
+  }
+  .cover-label {
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #22D3EE;
+    margin-bottom: 8px;
+  }
+  .cover-range {
+    font-size: 26pt;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+  }
+  .cover-range-small {
+    font-size: 11pt;
+    color: rgba(237,233,254,.6);
+    margin-top: 8px;
+  }
+  .cover-meta {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,.1);
+    font-size: 9pt;
+    color: rgba(237,233,254,.6);
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 28px;
+  }
+  .section-eyebrow {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #0E7490;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 18pt;
+    font-weight: 800;
+    color: #0D1025;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+  .section-sub {
+    font-size: 10pt;
+    color: #64748B;
+    margin-bottom: 16px;
+  }
+
+  /* Summary cards */
+  .summary-grid {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .summary-card {
+    flex: 1;
+    background: #FAFAFC;
+    border: 1px solid #E5E7F2;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .summary-label {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #64748B;
+    margin-bottom: 6px;
+  }
+  .summary-val {
+    font-size: 16pt;
+    font-weight: 800;
+    color: #0D1025;
+  }
+  .summary-sub {
+    font-size: 8pt;
+    color: #64748B;
+    margin-top: 4px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 9.5pt;
+  }
+  thead th {
+    background: #0D1025;
+    color: #fff;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 700;
+    font-size: 8.5pt;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  thead th:nth-child(3), thead th:nth-child(4) {
+    text-align: right;
+  }
+  tbody tr {
+    border-bottom: 1px solid #E5E7F2;
+  }
+  tbody td {
+    padding: 9px 12px;
+  }
+  tbody td:nth-child(3), tbody td:nth-child(4) {
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .lot-id {
+    font-size: 8pt;
+    font-weight: 700;
+    color: #64748B;
+    background: #FAFAFC;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  tr.total {
+    background: #FAFAFC;
+    font-weight: 800;
+  }
+  tr.total td {
+    padding: 12px;
+    color: #0D1025;
+  }
+
+  /* Alerts */
+  .alert {
+    background: #FEF3C7;
+    border-left: 3px solid #FCD34D;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 9.5pt;
+    color: #92400E;
+    line-height: 1.5;
+  }
+  .alert strong { color: #92400E; }
+  .alert.info {
+    background: rgba(34,211,238,.08);
+    border-left-color: #22D3EE;
+    color: #0E7490;
+  }
+
+  /* Aides card */
+  .aides-card {
+    background: linear-gradient(135deg, rgba(167,139,250,.08), rgba(34,211,238,.08));
+    border: 1px solid rgba(167,139,250,.2);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .aides-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(167,139,250,.15);
+    font-size: 10pt;
+  }
+  .aides-row:last-child { border-bottom: none; }
+  .aides-row strong {
+    color: #0D1025;
+    font-weight: 700;
+  }
+  .aides-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0 0;
+    margin-top: 8px;
+    border-top: 2px solid #0D1025;
+    font-size: 12pt;
+    font-weight: 800;
+    color: #0D1025;
+  }
+
+  /* Info box */
+  .info-box {
+    background: #FAFAFC;
+    border: 1px solid #E5E7F2;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+  }
+  .info-box h4 {
+    font-size: 11pt;
+    margin-bottom: 8px;
+    color: #0D1025;
+  }
+  .info-box p {
+    font-size: 9.5pt;
+    color: #64748B;
+    margin-bottom: 6px;
+  }
+  .info-box p:last-child { margin-bottom: 0; }
+
+  /* CTA block */
+  .cta {
+    background: linear-gradient(135deg, #0D1025, #1A1F3D);
+    color: #fff;
+    padding: 28px;
+    border-radius: 12px;
+    margin-top: 30px;
+    text-align: center;
+  }
+  .cta h3 {
+    color: #fff;
+    font-size: 14pt;
+    margin-bottom: 8px;
+  }
+  .cta p {
+    color: rgba(237,233,254,.8);
+    font-size: 10pt;
+    margin-bottom: 16px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: #22D3EE;
+    color: #0D1025;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 11pt;
+    text-decoration: none;
+  }
+  .cta-contact {
+    margin-top: 12px;
+    font-size: 9pt;
+    color: rgba(237,233,254,.5);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #E5E7F2;
+    font-size: 8pt;
+    color: #64748B;
+    line-height: 1.6;
+    text-align: center;
+  }
+  .footer strong { color: #0D1025; }
+  .page-break { page-break-before: always; }
+
+  /* Project details grid */
+  .project-details {
+    background: #FAFAFC;
+    border: 1px solid #E5E7F2;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .project-details dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+  }
+  .project-details dt {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #64748B;
+    margin-bottom: 2px;
+  }
+  .project-details dd {
+    font-size: 10.5pt;
+    color: #0D1025;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ COVER PAGE ═══════════ -->
+<div class="cover">
+  <div class="cover-logo">ADORA</div>
+  <div class="cover-sub">Économiste de la construction</div>
+
+  <div class="cover-title">Rapport d'estimation<br>de travaux</div>
+  <div class="cover-client">Préparé pour <strong>{{prenom}}</strong></div>
+
+  <div class="cover-highlight">
+    <div class="cover-label">Fourchette d'estimation</div>
+    <div class="cover-range">Entre {{estimation_low}} et {{estimation_high}}</div>
+    <div class="cover-range-small">{{surface}} m² · {{dept_nom}} · {{gamme}}</div>
+  </div>
+
+  <div class="cover-meta">
+    <div>{{today}}</div>
+    <div>Indice de précision : 80 %</div>
+    <div>ADORA · SIRET 532 886 918 00020</div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 1 — RÉCAPITULATIF PROJET ═══════════ -->
+<div class="section">
+  <div class="section-eyebrow">Votre projet</div>
+  <h2 class="section-title">Récapitulatif</h2>
+  <p class="section-sub">Paramètres utilisés pour le calcul de l'estimation.</p>
+
+  <div class="project-details">
+    <dl>
+      <div>
+        <dt>Type de projet</dt>
+        <dd>{{projet_label}}</dd>
+      </div>
+      <div>
+        <dt>Type de bien</dt>
+        <dd>{{type_bien_label}}</dd>
+      </div>
+      <div>
+        <dt>Surface habitable</dt>
+        <dd>{{surface}} m²</dd>
+      </div>
+      <div>
+        <dt>Localisation</dt>
+        <dd>{{dept_nom}} ({{dept}})</dd>
+      </div>
+      <div>
+        <dt>Année de construction</dt>
+        <dd>{{annee_label}}</dd>
+      </div>
+      <div>
+        <dt>État général</dt>
+        <dd>{{etat_label}}</dd>
+      </div>
+      <div>
+        <dt>Gamme de finitions</dt>
+        <dd>{{gamme_label}}</dd>
+      </div>
+      <div>
+        <dt>Contraintes</dt>
+        <dd>{{contraintes}}</dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-eyebrow">Répartition globale</div>
+  <h2 class="section-title">Le budget en 3 grands postes</h2>
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="summary-label">Gros œuvre</div>
+      <div class="summary-val">{{go_total}}</div>
+      <div class="summary-sub">Structure, façades, VRD</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-label">Second œuvre</div>
+      <div class="summary-val">{{so_total}}</div>
+      <div class="summary-sub">Cloisons, sols, menuiseries</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-label">Équipements</div>
+      <div class="summary-val">{{te_total}}</div>
+      <div class="summary-sub">Plomberie, élec., CVC</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 2 — DÉTAIL PAR LOT ═══════════ -->
+<div class="page-break"></div>
+
+<div class="section">
+  <div class="section-eyebrow">Détail chiffré</div>
+  <h2 class="section-title">Budget par poste de travaux</h2>
+  <p class="section-sub">Les postes concernés par votre projet, avec fourchettes basse et haute pour chaque poste.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">Lot</th>
+        <th>Désignation</th>
+        <th style="width:90px">Basse</th>
+        <th style="width:90px">Haute</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{lots_rows}}
+      <tr class="total">
+        <td></td>
+        <td>Total estimé</td>
+        <td>{{estimation_low}}</td>
+        <td>{{estimation_high}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════ PAGE 3 — AIDES ═══════════ -->
+<div class="page-break"></div>
+
+<div class="section">
+  <div class="section-eyebrow">Aides mobilisables</div>
+  <h2 class="section-title">Les aides disponibles pour votre projet</h2>
+  <p class="section-sub">Estimation indicative basée sur le type de travaux et la gamme choisie. Les montants exacts dépendent de votre profil fiscal (simulation dédiée disponible sur adora-economie.fr).</p>
+
+  <div class="aides-card">
+    <div class="aides-row">
+      <span>MaPrimeRénov' (selon revenus)</span>
+      <strong>{{aide_mpr}}</strong>
+    </div>
+    <div class="aides-row">
+      <span>CEE — Prime énergie</span>
+      <strong>{{aide_cee}}</strong>
+    </div>
+    <div class="aides-row">
+      <span>Éco-PTZ (prêt à 0%)</span>
+      <strong>jusqu'à {{aide_ecoptz}}</strong>
+    </div>
+    <div class="aides-row">
+      <span>TVA réduite 5,5% (économie)</span>
+      <strong>{{aide_tva}}</strong>
+    </div>
+    <div class="aides-total">
+      <span>Total aides directes</span>
+      <span>{{aides_total}}</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ VIGILANCE ═══════════ -->
+<div class="section">
+  <div class="section-eyebrow">Points de vigilance</div>
+  <h2 class="section-title">3 alertes métier sur votre projet</h2>
+  <p class="section-sub">Chaque projet a ses pièges. Voici les principaux à anticiper pour le vôtre.</p>
+
+  {{alertes_html}}
+</div>
+
+<!-- ═══════════ MÉTHODOLOGIE ═══════════ -->
+<div class="info-box">
+  <h4>Comment cette estimation a été calculée</h4>
+  <p>Les ratios appliqués (en €/m² habitable) proviennent de notre base Batichiffrage (trimestre 1 2026), croisés avec des coefficients régionaux INSEE BT01 et des coefficients correcteurs propres à votre projet (état, ancienneté, accès, amiante/plomb). Un facteur d'échelle est appliqué selon la surface (économies d'échelle).</p>
+  <p><strong>Fourchette de ±15%</strong> correspondant à l'incertitude normale sans visite sur site.</p>
+</div>
+
+<!-- ═══════════ CTA ═══════════ -->
+<div class="cta">
+  <h3>Envie d'aller plus loin ?</h3>
+  <p>Pour un chiffrage opposable (négociation avec entreprises, dossier bancaire), je vous propose un accompagnement sur mesure.</p>
+  <a href="https://adora-economie.fr/sur-mesure.html" class="cta-btn">Découvrir l'accompagnement</a>
+  <div class="cta-contact">Un appel téléphonique de 30 min est inclus — je vous contacte sous 48h.</div>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<div class="footer">
+  <strong>ADORA</strong> — Aymeric Dussauze · Économiste de la construction<br>
+  06 60 21 55 09 · aymericdussauze@gmail.com · adora-economie.fr<br>
+  EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI<br><br>
+  <em>Document confidentiel. Estimation indicative non-opposable. Pour une estimation ferme, un audit sur site est nécessaire.</em>
+</div>
+
+</body>
+</html>

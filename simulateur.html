@@ -1016,10 +1016,11 @@ function unlock() {
   
   // Send full context to Formspree (lead capture)
   const r = S.result;
-  fetch("https://formspree.io/f/xzdjopya", {
+  fetch("https://formspree.io/f/maqaewbn", {
     method: "POST",
     headers: {"Content-Type":"application/json","Accept":"application/json"},
     body: JSON.stringify({
+      _formType: "simulateur_gratuit",
       prenom, email,
       _subject: "[Simulateur aides] " + prenom + " — " + COULEURS[r.ci] + " · " + fmt(r.aidesFinales),
       localisation: S.loc === "idf" ? "Île-de-France" : "Hors IDF",

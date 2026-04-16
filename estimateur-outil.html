@@ -1039,7 +1039,7 @@ function showResults() {
 // ═══════════════════════════════════════════════════════════
 // Créer le produit "Rapport d'estimation ADORA - 49€" dans ton dashboard Stripe
 // puis coller l'URL Payment Link ici :
-const STRIPE_PAYMENT_LINK = " https://buy.stripe.com/test_6oUaEZadS5EHb805FHdjO00";
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/REMPLACER_PAR_TON_LIEN_STRIPE";
 
 function proceedToPayment() {
   const prenom = document.getElementById("prenom").value.trim();
@@ -1065,6 +1065,7 @@ function proceedToPayment() {
   // Formspree reçoit toutes les données du projet + email
   // Make/Zapier pourra ensuite les croiser avec l'événement Stripe pour générer le PDF
   const formData = {
+    _formType: "estimateur_payant",
     prenom, email,
     projet: STATE.projet,
     typeBien: STATE.typeBien,
@@ -1087,7 +1088,7 @@ function proceedToPayment() {
     _subject: `[Estimateur Pro] ${prenom} ${email} — ${STATE.dept} · ${STATE.surface} m² · ${euros(STATE.result.totalLow)}-${euros(STATE.result.totalHigh)}`
   };
   
-  fetch("https://formspree.io/f/xzdjopya", {
+  fetch("https://formspree.io/f/maqaewbn", {
     method: "POST",
     headers: {"Content-Type":"application/json","Accept":"application/json"},
     body: JSON.stringify(formData)

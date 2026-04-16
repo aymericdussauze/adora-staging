@@ -1,218 +1,287 @@
-# ADORA — Staging
+# Configuration Make pour ADORA — Guide complet
 
-**Environnement de staging** pour le site [adora-economie.fr](https://adora-economie.fr)
+Ce document détaille la configuration des 3 scénarios Make nécessaires au fonctionnement du site.
 
-🔗 **Preview** : [aymericdussauze.github.io/adora-staging](https://aymericdussauze.github.io/adora-staging/)
+## 🎯 Prérequis
+
+- [ ] **Compte Make** — https://www.make.com (plan Core gratuit : 1 000 ops/mois)
+- [ ] **Compte PDF.co** — https://pdf.co (100 pages PDF/mois gratuit)
+- [ ] **Compte Formspree** actif (déjà fait : `xzdjopya`)
+- [ ] **Compte Stripe** actif avec Payment Link créé (déjà fait)
+- [ ] **Gmail** (aymericdussauze@gmail.com) pour connexion à Make
 
 ---
 
-## À propos
+## 🔧 Étape 1 — Configuration PDF.co
 
-Site vitrine et outils en ligne d'**ADORA — Économiste de la construction**, cabinet indépendant en Normandie (27/76) et Île-de-France.
+1. Aller sur https://app.pdf.co/dashboard
+2. Créer un compte (email + password)
+3. Dans le dashboard, aller dans **API Key** → copier la clé (format `xxx@xxx.com_xxxxxxx`)
+4. **Conserver cette clé** — elle sera collée dans Make
 
-- Estimations TCE, CCTP/DPGF, AMO pour particuliers et professionnels
-- Outils en ligne : simulateur d'aides rénovation, estimateur de travaux, audit avant achat
-- **Tunnel de conversion PropTech** : Gratuit (lead) → 49 € (rapport PDF) → 499 € (audit) → AMO sur mesure (2 200–3 900 €)
+---
 
-## Pages
+## 🔧 Étape 2 — Configuration Stripe Webhook
 
-| Fichier | Page | Type | Conversion |
+Make va recevoir les événements Stripe via un webhook. Il faut donc créer ce webhook côté Stripe.
+
+1. Dashboard Stripe → **Developers** → **Webhooks** → **Add endpoint**
+2. **URL à renseigner** : celle générée par Make (on la créera à l'étape 4)
+3. **Events to listen for** : cocher uniquement `checkout.session.completed`
+4. **NE PAS CRÉER MAINTENANT** — on reviendra ici après avoir créé le scénario Make
+
+---
+
+## 🔧 Étape 3 — Formspree : activer le webhook vers Make
+
+Formspree doit envoyer les soumissions vers Make.
+
+1. Dashboard Formspree → Forms → cliquer sur ton form `xzdjopya`
+2. Aller dans **Plugins** → **Webhooks** (peut nécessiter plan Gold à 10$/mois)
+3. **Alternative gratuite** : utiliser le module Formspree natif dans Make (connexion API)
+4. Ou **solution la plus simple** : utiliser **Email Parser** de Make — Make reçoit les emails envoyés par Formspree à ton adresse et parse leur contenu
+
+**Je recommande l'option Email Parser** : gratuite, fiable, déjà en place sans rien modifier côté Formspree.
+
+---
+
+## 📦 Scénario 1 — Estimateur 49 € (Stripe paywall)
+
+### Déclencheur
+**Module** : `Webhooks → Custom webhook`
+
+### Flow
+
+```
+[1] Webhook Stripe (checkout.session.completed)
+    ↓
+[2] Filter : ne traiter que les paiements réussis + produit estimateur
+    ↓
+[3] Email Parser / Formspree API : retrouver les données projet du client
+    ↓
+[4] PDF.co : Générer le PDF depuis template HTML
+    ↓
+[5] Gmail : Envoyer email au client avec PDF en pièce jointe
+    ↓
+[6] Gmail : Notif interne à aymericdussauze@gmail.com
+```
+
+### Configuration pas à pas
+
+**Module 1 — Webhook Stripe**
+- Type : `Custom webhook`
+- Nom : `Stripe - Paiement estimateur`
+- Cliquer **Add** → copier l'URL générée (format `https://hook.eu2.make.com/xxxxx`)
+- Cette URL va dans le webhook Stripe (Étape 2 ci-dessus)
+
+**Module 2 — Filter**
+- Condition 1 : `type` → `text equal to` → `checkout.session.completed`
+- Condition 2 : `data.object.payment_status` → `text equal to` → `paid`
+- Condition 3 : `data.object.amount_total` → `numeric equal to` → `4900` (= 49,00 €)
+
+**Module 3 — Récupération des données projet**
+
+Deux options selon ce que tu as mis en place :
+
+*Option A : si tu utilises Email Parser pour Formspree*
+- Module : `Email → Watch emails`
+- Filtrer sur `_formType: estimateur_payant`
+- Matcher par email avec `customer_email` de Stripe
+
+*Option B : Google Sheets en tampon (plus fiable)*
+- Ajouter un module avant Stripe : quand Formspree envoie (via Email Parser), stocker dans Google Sheet
+- Au webhook Stripe : module `Google Sheets → Search rows` pour retrouver l'entrée par email
+- Récupérer toutes les données de la simulation
+
+**Module 4 — PDF.co : génération du PDF**
+- Module : `PDF.co → Convert HTML to PDF`
+- API Key : celle de l'étape 1
+- HTML : coller le template (fichier `/templates/pdf_estimation.html` fourni)
+- Utiliser les variables `{{prenom}}`, `{{surface}}`, `{{dept_nom}}`, `{{estimation_low}}`, etc.
+- Output name : `ADORA_Estimation_{{prenom}}_{{today}}.pdf`
+
+**Module 5 — Gmail : envoi au client**
+- Module : `Gmail → Send an email`
+- To : `{{customer_email}}` (depuis Stripe)
+- Subject : `Votre rapport d'estimation ADORA — {{prenom}}`
+- Body : HTML (template fourni dans `/templates/email_estimation.html`)
+- Attachments : le PDF généré au module 4
+- From : aymericdussauze@gmail.com
+
+**Module 6 — Notification interne**
+- Module : `Gmail → Send an email`
+- To : `aymericdussauze@gmail.com`
+- Subject : `🎉 Vente estimateur 49€ — {{prenom}} ({{customer_email}})`
+- Body : résumé de la vente avec lien vers le PDF
+
+---
+
+## 📦 Scénario 2 — Simulateur aides (Lead magnet gratuit)
+
+### Déclencheur
+**Module** : `Email → Watch emails` (via Gmail connecté à Make)
+
+### Flow
+
+```
+[1] Watch Gmail (filtre sur subject [Simulateur aides])
+    ↓
+[2] Parse email content → extraire les variables
+    ↓
+[3] Filter : _formType = simulateur_gratuit
+    ↓
+[4] PDF.co : Générer le rapport PDF aides
+    ↓
+[5] Gmail : Envoyer au prospect avec PDF
+    ↓
+[6] Google Sheets : Ajouter le lead dans un tableau CRM
+```
+
+### Configuration pas à pas
+
+**Module 1 — Watch Gmail**
+- Module : `Gmail → Watch emails`
+- Folder : `INBOX`
+- Filter : `Subject contains: [Simulateur aides]` ET `From: no-reply@formspree.io`
+- Max emails : 10 par exécution
+- Interval : 15 minutes
+
+**Module 2 — Text parser**
+- Module : `Text parser → Match pattern`
+- Pattern : extraire les champs du body de l'email Formspree
+- Formspree envoie un email formaté : parser pour récupérer `prenom`, `email`, `profil_anah`, etc.
+
+**Alternative plus simple : JSON parse**
+Si Formspree envoie bien le JSON dans le body (à vérifier), utiliser `JSON → Parse JSON`
+
+**Module 3 — Filter**
+- Condition : `_formType` → `text equal to` → `simulateur_gratuit`
+
+**Module 4 — PDF.co**
+- Template : `/templates/pdf_simulateur.html`
+- Variables : `{{prenom}}`, `{{profil_anah}}`, `{{mpr_estimee}}`, `{{cee_min}}`, `{{cee_max}}`, `{{eco_ptz_max}}`, `{{aides_finales}}`, `{{reste_a_charge}}`, `{{travaux_envisages}}`
+
+**Module 5 — Gmail envoi prospect**
+- To : `{{email}}`
+- Subject : `Votre simulation d'aides rénovation — {{prenom}}`
+- Body : template email simulateur (dans `/templates/email_simulateur.html`)
+- Attachment : PDF généré
+
+**Module 6 — Google Sheets (CRM leads)**
+- Créer d'abord une Google Sheet "ADORA — Leads Simulateur" avec colonnes :
+  - Date / Prénom / Email / Localisation / Profil Anah / Budget / Aides estimées / Statut
+- Module Make : `Google Sheets → Add a row`
+- Mapper les variables
+
+---
+
+## 📦 Scénario 3 — Audit achat 499 € (demande qualifiée)
+
+### Déclencheur
+**Module** : `Email → Watch emails` (filtre sur `[AUDIT 499€]`)
+
+### Flow
+
+```
+[1] Watch Gmail (filtre [AUDIT 499€])
+    ↓
+[2] Parse content → extraire données
+    ↓
+[3] Filter : _formType = audit_499
+    ↓
+[4] Gmail : Notif interne à Aymeric (URGENT)
+    ↓
+[5] Stripe : Créer un Payment Link personnalisé 499 €
+    ↓
+[6] (Manuel) Aymeric valide la demande et envoie le lien Stripe
+```
+
+### Configuration pas à pas
+
+**Module 1-3** : identique au scénario 2 mais avec filter `_formType = audit_499`
+
+**Module 4 — Notification interne prioritaire**
+- Module : `Gmail → Send an email`
+- To : `aymericdussauze@gmail.com`
+- Priority : High
+- Subject : `🚨 NOUVELLE DEMANDE AUDIT 499€ — {{prenom}} {{nom}}`
+- Body : toutes les infos du bien + lien vers le bien s'il y a une URL d'annonce + pièces jointes
+- Si uploads présents, lister les fichiers
+
+**Module 5 — Stripe Payment Link (optionnel, à valider)**
+- Module : `Stripe → Create a Payment Link`
+- Product : Audit avant achat 499 €
+- Metadata : `{prenom, email, telephone, adresse_bien}`
+- Success URL : `https://adora-economie.fr/paiement-reussi.html`
+
+**Module 6 — Manuel**
+Après examen des documents, tu envoies manuellement le Payment Link créé au client.
+
+---
+
+## 🎨 Templates PDF et Email
+
+Les templates sont fournis dans le dossier `/templates/` :
+
+```
+make/
+├── README.md                      # Ce fichier
+└── templates/
+    ├── pdf_estimation.html        # Template PDF rapport 49€
+    ├── pdf_simulateur.html        # Template PDF aides gratuit
+    ├── email_estimation.html      # Email client estimateur payant
+    ├── email_simulateur.html      # Email prospect simulateur
+    └── email_audit_notif.html     # Email notif interne audit
+```
+
+Chaque template utilise la syntaxe `{{variable}}` de Make (Mustache-like).
+
+---
+
+## 🧪 Tests recommandés
+
+### Test 1 — Estimateur end-to-end
+1. Sur le site staging, remplir l'estimateur jusqu'au bout
+2. Cliquer "Obtenir mon rapport 49 €"
+3. Faire un paiement test Stripe (carte `4242 4242 4242 4242`)
+4. Vérifier que le scénario Make se déclenche (dashboard Make)
+5. Vérifier réception PDF à l'email de test
+6. Vérifier réception notif interne
+
+### Test 2 — Simulateur
+1. Remplir le simulateur jusqu'à unlock
+2. Saisir email de test
+3. Attendre 15 min (cycle Watch Gmail)
+4. Vérifier réception du PDF aides à l'email
+
+### Test 3 — Audit
+1. Remplir le formulaire audit
+2. Joindre un fichier PDF test
+3. Soumettre
+4. Vérifier notif interne avec tous les détails
+
+---
+
+## 💰 Coûts estimés
+
+| Service | Plan | Prix/mois | Limite |
 |---|---|---|---|
-| `index.html` | Homepage | Landing principale | → outils |
-| `simulateur.html` | Simulateur aides | **Outil Typeform** (10 écrans) | **Lead magnet** (email) |
-| `estimateur.html` | Estimateur (landing) | Présentation | → outil |
-| `estimateur-outil.html` | Estimateur (outil) | **Outil Typeform** (8 écrans) | **Paywall Stripe 49 €** |
-| `paiement-reussi.html` | Confirmation paiement | Success page post-Stripe | → rapport email |
-| `audit-avant-achat.html` | Audit achat (landing) | Présentation | → formulaire |
-| `audit-formulaire.html` | Audit achat (formulaire) | **Formulaire Typeform** (10 écrans) | **Lead qualifié** → paiement manuel |
-| `sur-mesure.html` | Sur mesure | Prestations, packs AMO | → contact direct |
+| Make | Core | **Gratuit** | 1 000 ops/mois |
+| Make | Pro | 9 €/mois | 10 000 ops/mois |
+| PDF.co | Free | **Gratuit** | 100 pages/mois |
+| PDF.co | Starter | 15 $/mois | 1 000 pages/mois |
+| Formspree | Basic | **Gratuit** | 50 soumissions/mois |
+| Formspree | Gold | 10 $/mois | Illimité + webhooks |
 
-## Design System — Indigo Aurora (PropTech B2C v3)
+**Coût au démarrage : 0 €/mois** si trafic limité.
+**Dès que tu dépasses** : passer à Make Pro (9 €) + PDF.co Starter (15 $) = ~23 €/mois.
 
-Refonte avril 2026 inspirée des codes PropTech/FinTech (Airbnb, Alan, Stripe, Matera).
+Pour un estimateur à 49 €/vente et une marge de ~95% sur le flow no-code, 1 vente/mois suffit à rentabiliser.
 
-### Principes
-- **Typeform UX** : une question par écran, auto-advance au clic, progress bar proéminente
-- **Paywall cognitif** : résultat visible + blocs floutés + formulaire de déblocage
-- **Micro-copy rassurante** : "Je ne sais pas", "Passer cette étape", explications contextuelles (Pourquoi cette question ?)
-- **Écrans de chargement** : spinner + messages qui défilent (2,8 sec) pour donner de la valeur perçue
-- **Mobile-first** : slider big-number, cartes tactiles, nav burger
+---
 
-### Typographie
-- **Headings** : Montserrat 700/800/900 (Google Fonts)
-- **Body** : Plus Jakarta Sans 400–800 (Google Fonts)
+## 📞 Si tu bloques
 
-### Palette Indigo Aurora
-
-| Token | Hex | Usage |
-|---|---|---|
-| `--navy` | `#0D1025` Nightfall | Headings, nav, hero background |
-| `--surface` | `#1A1F3D` Indigo | CTA bands, surface sombre |
-| `--deep` | `#080B1C` | Footer |
-| `--accent` | `#22D3EE` Aqua | CTAs, accent principal |
-| `--accent-hover` | `#06B6D4` | Hover CTA |
-| `--accent-deep` | `#0E7490` Deep aqua | Liens texte, prix sur fond clair |
-| `--iris` | `#A78BFA` Iris violet | Badges, accents secondaires |
-| `--light` | `#EDE9FE` Lavender | Texte clair sur fond sombre |
-| `--pale` | `#FAFAFC` Canvas | Sections alternées |
-| `--txt` | `#1E1B4B` | Texte principal |
-| `--muted` | `#64748B` | Texte secondaire |
-| `--border` | `#E5E7F2` | Bordures |
-
-**Règle de contraste** : le texte sur fond aqua est toujours en Nightfall (`--navy`), jamais en blanc (l'aqua est trop clair pour respecter WCAG AA).
-
-### Composants unifiés
-- **Nav** : sticky, backdrop-blur 12px, fond `rgba(13,16,37,.97)`, burger mobile
-- **Footer** : 3 colonnes, fond Deep Night (`#080B1C`)
-- **Cards** : border-radius 16px, shadow-on-hover + lift `translateY(-2px)`, check aqua au state selected
-- **Slider big-number** : valeur en Montserrat 56px + input range avec thumb aqua
-- **Paywall cards** : contenu flouté (`filter: blur(5px)`) + badge "Verrouillé" navy
-- **Hero results** : dégradé navy/indigo + barre de confiance iris→aqua
-
-## Outils interactifs — Architecture
-
-### Estimateur (`estimateur-outil.html`) — Freemium Stripe
-
-**Flow utilisateur** (8 écrans Typeform) :
-1. Type de projet (Rénovation globale / Énergétique / Achat / Rafraîchissement)
-2. Type de bien (Maison / Appart / Immeuble)
-3. Surface (slider 20–400 m²)
-4. Code postal (détection département live + variance régionale)
-5. Année de construction (6 cartes + micro-copy amiante/plomb)
-6. État général (4 cartes)
-7. Gamme de finitions (4 cartes)
-8. Contraintes (toggles amiante / plomb / accès)
-
-**Écran de chargement** 2,8 sec avec 5 messages qui défilent.
-
-**Résultats** :
-- Hero dégradé navy + fourchette + indice de précision 80%
-- 3 summary cards gratuites (Gros œuvre / Second œuvre / Équipements)
-- 3 lock cards floutées (Détail par lot / Aides / Vigilance)
-- **Bloc checkout 49 €** : Prénom + Email → Stripe Payment Link
-- Ligne de trust : Paiement sécurisé Stripe · CB · Apple Pay · Google Pay
-- Stepper 3 étapes post-paiement (Paiement → Email → Débrief)
-
-**Calcul préservé** : 15 lots TCE, 101 départements, 6 coefficients correcteurs, scale factor surface.
-
-**Configuration Stripe requise** (ligne ~1042) :
-```javascript
-const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/REMPLACER_PAR_TON_LIEN_STRIPE";
-```
-Success URL à configurer dans Stripe : `https://adora-economie.fr/paiement-reussi.html`
-
-### Simulateur d'aides (`simulateur.html`) — Lead Magnet email
-
-**Flow utilisateur** (10 écrans Typeform) :
-1. Localisation (IDF / Hors IDF)
-2. Type de bien (Maison / Appartement)
-3. Âge logement (+15 / -15 / NSP)
-4. Statut (Occupant / Bailleur)
-5. Composition foyer (slider 1–8+)
-6. Revenu fiscal de référence (input + helper "où le trouver")
-7. DPE (pills A-G avec code couleur + inconnu)
-8. Parcours (Monogeste / Ampleur)
-9. Travaux (multi-select groupé par catégorie)
-10. Budget travaux (slider 5–150k€)
-
-**Résultats** :
-- Hero avec dégradé dynamique selon profil Anah (Bleu / Jaune / Violet / Rose)
-- Good news banner personnalisée par profil
-- Aperçu gratuit : cards MPR + CEE
-- 3 lock cards floutées (Tableau détaillé / Alertes 2026 / Plan financement)
-- **Bloc capture email** : Prénom + Email → Formspree → unlock direct
-- Tableau déverrouillé : 6 lignes (MPR, CEE, éco-PTZ, TVA, Écrêtement, RAC)
-- Alertes personnalisées (warn orange / info aqua)
-
-**Calcul préservé** : `PLAFONDS_IDF/HDF`, `EXTRA_IDF/HDF`, `GESTES` (17 travaux), `AMPLEUR`, `ECRETEMENT_GESTE/ACCOMP`, `PLAFOND_GESTE_5ANS`, barèmes Anah 2026.
-
-### Formulaire audit achat (`audit-formulaire.html`) — Lead qualifié
-
-**Flow utilisateur** (10 écrans Typeform) :
-1. Type de bien (4 cartes)
-2. **Lien de l'annonce** + bouton "📋 Coller depuis presse-papier" + skip
-3. Adresse complète (validation)
-4. Surface (slider)
-5. Prix demandé (formatage auto avec espaces)
-6. Année de construction (6 cartes dont "Je ne sais pas")
-7. Documents (4 uploads : DDT / DPE / photos ext / photos int) + skip
-8. Contexte (textarea) + skip
-9. Coordonnées (Prénom / Nom / Email / Téléphone)
-10. **Récapitulatif éditable** + price block 499 € + submit
-
-**Submission** : Formspree `xzdjopya` avec `multipart/form-data` (uploads).
-
-**Paiement différé** : le lien Stripe est envoyé manuellement par email après validation de la demande (pas de paiement direct sur le site).
-
-### Page de remerciement (`paiement-reussi.html`)
-
-Redirect post-Stripe pour l'estimateur 49 €.
-- Hero dégradé + check mark aqua animé (popIn + drawCheck)
-- Personnalisation "Merci [prénom]" via localStorage (défini par estimateur avant redirect)
-- Timeline 3 étapes (Dans 5 min PDF / Sous 48h appel / Quand vous voulez accompagnement)
-- Card support (tel + mailto pré-rempli)
-- GA4 event `purchase` (value: 49 €)
-
-## Stack technique
-
-- **Hébergement** : GitHub Pages (ce repo = staging)
-- **Production** : [aymericdussauze/adora](https://github.com/aymericdussauze/adora) → adora-economie.fr
-- **DNS** : OVH (4× A records → GitHub + CNAME www)
-- **Analytics** : GA4 (`G-M0LENY960B`)
-  - Événements : `begin_checkout`, `purchase`, `generate_lead`, `audit_request`, `estimator_unlock`
-- **Paiement** : Stripe Payment Links (pas de backend, no-code)
-- **Formulaires** : Formspree (`xzdjopya`) — endpoint unique pour toutes les soumissions
-- **Automatisation post-paiement** : Make/Zapier (webhook Stripe → génération PDF → email)
-- **Pas de framework** : HTML/CSS/JS vanilla, single-file par page, Google Fonts uniquement
-
-## Configuration requise en production
-
-### Stripe
-1. Créer produit "Rapport d'estimation ADORA - 49 €" dans le dashboard
-2. Créer un Payment Link associé
-3. Configurer `success_url` → `https://adora-economie.fr/paiement-reussi.html`
-4. Remplacer `STRIPE_PAYMENT_LINK` ligne ~1042 de `estimateur-outil.html`
-
-### Make (ou Zapier)
-Scénario : `Stripe — New payment succeeded` → `Gmail — Send email with attachment`
-- Récupérer `customer_email` + `client_reference_id` (format : `prenom_timestamp`)
-- Matcher avec la soumission Formspree correspondante (par email)
-- Générer le PDF (module PDF Monkey / Google Docs / API)
-- Envoyer par email
-
-### Formspree
-Endpoint commun `xzdjopya` pour tous les formulaires :
-- Simulateur : lead capture avec tout le contexte simulation
-- Estimateur : pré-envoi avant Stripe (données projet + estimation)
-- Audit : demande qualifiée avec pièces jointes (multipart)
-
-## Déploiement en production
-
-Quand le staging est validé :
-
-1. Remplacer `<base href="https://aymericdussauze.github.io/adora-staging/">` par `<base href="https://adora-economie.fr/">` dans les **8 fichiers HTML**
-2. Copier les fichiers dans le repo `aymericdussauze/adora` (branche `main`)
-3. Vérifier que `STRIPE_PAYMENT_LINK` pointe vers le vrai Payment Link Stripe
-4. Push → GitHub Pages redéploie automatiquement sous 1-2 min
-
-## Fichiers du repo
-
-```
-adora-staging/
-├── index.html                          # Homepage
-├── simulateur.html                     # Simulateur aides (Typeform + lead magnet)
-├── estimateur.html                     # Landing estimateur
-├── estimateur-outil.html               # Estimateur (Typeform + Stripe paywall)
-├── paiement-reussi.html                # Post-Stripe confirmation
-├── audit-avant-achat.html              # Landing audit achat
-├── audit-formulaire.html               # Formulaire audit (Typeform + uploads)
-├── sur-mesure.html                     # Prestations sur mesure
-└── README.md                           # Ce fichier
-```
-
-## Contact
-
-**ADORA** — Aymeric Dussauze
-Économiste de la construction · EI · SIRET 532 886 918 00020
-TVA non applicable, art. 293B du CGI
-06 60 21 55 09 · aymericdussauze@gmail.com
+1. Documentation Make : https://www.make.com/en/help
+2. Documentation PDF.co : https://developer.pdf.co/
+3. Communauté Make (française) : https://www.make.com/en/community
