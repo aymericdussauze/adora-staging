@@ -3,251 +3,780 @@
 <head>
 <meta charset="UTF-8">
 <base href="https://aymericdussauze.github.io/adora-staging/">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Demande d'audit avant achat | ADORA — Économiste de la construction</title>
-<meta name="description" content="Remplissez le formulaire pour demander votre audit avant achat immobilier. Envoyez vos diagnostics, DPE et photos. Réponse sous 24h.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
+<title>Demande d'audit avant achat — ADORA</title>
+<meta name="description" content="Demandez un audit avant achat immobilier. Un économiste de la construction analyse votre futur bien en 48-72h. 499 € forfait fixe.">
 <link rel="canonical" href="https://adora-economie.fr/audit-formulaire.html">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ═══ ADORA PropTech Design System v2 ═══ */
-:root{--navy:#0D1025;--blue:#0E7490;--accent:#22D3EE;--accent-hover:#06B6D4;--light:#EDE9FE;--pale:#FAFAFC;--green:#A78BFA;--green-hover:#8B6FE3;--txt:#1E1B4B;--muted:#64748B;--border:#E5E7F2;--white:#FFFFFF;--radius:16px;--radius-sm:10px;--shadow-card:0 1px 3px rgba(13,16,37,.06),0 8px 24px rgba(13,16,37,.04);--shadow-hover:0 4px 12px rgba(13,16,37,.08),0 16px 40px rgba(13,16,37,.06);--shadow-btn:0 2px 8px rgba(34,211,238,.25);--transition:.3s cubic-bezier(.4,0,.2,1)}
+:root{
+  --navy:#0D1025;--surface:#1A1F3D;--deep:#080B1C;
+  --accent:#22D3EE;--accent-hover:#06B6D4;--accent-deep:#0E7490;
+  --iris:#A78BFA;--iris-soft:rgba(167,139,250,.14);
+  --aqua-soft:rgba(34,211,238,.12);--aqua-mist:rgba(34,211,238,.06);
+  --txt:#1E1B4B;--muted:#64748B;--light:#EDE9FE;
+  --bg:#FFFFFF;--pale:#FAFAFC;--border:#E5E7F2;--border-dark:rgba(255,255,255,.08);
+  --radius:16px;--radius-sm:10px;--radius-lg:20px;
+  --shadow:0 1px 3px rgba(13,16,37,.06),0 8px 24px rgba(13,16,37,.04);
+  --shadow-hover:0 4px 12px rgba(13,16,37,.08),0 16px 40px rgba(34,211,238,.12);
+}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:var(--txt);background:var(--white);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Montserrat',sans-serif;line-height:1.2}
-a{color:var(--blue);text-decoration:none;transition:color var(--transition)}
-a:hover{color:var(--navy)}
-img{max-width:100%;height:auto}
-.container{max-width:1120px;margin:0 auto;padding:0 28px}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
-.reveal.visible{opacity:1;transform:translateY(0)}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--txt);background:var(--pale);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--navy);letter-spacing:-.01em;line-height:1.2}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font-family:inherit}
 
-/* NAV */
-.nav{position:sticky;top:0;z-index:100;background:rgba(13,16,37,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:14px 28px}
+/* ═══ NAV ═══ */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:200;width:0;transition:width .1s linear}
+.nav{position:sticky;top:0;z-index:100;background:rgba(13,16,37,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-dark)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:980px;margin:0 auto;padding:14px 28px}
 .nav-logo img{height:26px;width:auto}
 .nav-links{display:flex;gap:8px;align-items:center}
-.nav-links a{color:rgba(237,233,254,.8);font-size:13.5px;font-weight:500;padding:6px 14px;border-radius:8px;transition:all var(--transition)}
-.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.08);text-decoration:none}
-.nav-links a.active{color:var(--accent);background:rgba(34,211,238,.1)}
-.nav-cta{background:var(--accent)!important;color:var(--white)!important;padding:8px 20px!important;border-radius:8px;font-weight:700!important;font-size:13px!important;box-shadow:var(--shadow-btn)}
-.nav-cta:hover{background:var(--accent-hover)!important;transform:translateY(-1px)}
-.nav-burger{display:none;background:none;border:none;color:var(--white);font-size:22px;cursor:pointer;padding:8px}
+.nav-links a{color:rgba(237,233,254,.8);font-size:13.5px;font-weight:500;padding:6px 14px;border-radius:8px;transition:.3s;text-decoration:none}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-burger{display:none;color:#fff;font-size:22px;padding:8px}
+@media(max-width:700px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(13,16,37,.97);padding:16px 28px;gap:4px}.nav-links.open{display:flex}.nav-burger{display:block}}
 
-/* HERO */
-.hero{background:var(--navy);padding:72px 0 80px;color:var(--white);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-40%;right:-20%;width:900px;height:900px;background:radial-gradient(circle,rgba(14,116,144,.15) 0%,transparent 65%);pointer-events:none}
-.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(34,211,238,.08) 0%,transparent 65%);pointer-events:none}
-.hero h1{font-size:clamp(30px,5vw,48px);font-weight:900;margin-bottom:16px;letter-spacing:-.02em;position:relative}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero .subtitle{font-size:17px;color:rgba(214,228,240,.85);margin-bottom:32px;max-width:540px;line-height:1.7}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 30px;border-radius:var(--radius-sm);font-size:15px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;transition:all var(--transition);border:none;cursor:pointer;text-decoration:none!important}
-.btn-accent{background:var(--accent);color:var(--white);box-shadow:var(--shadow-btn)}
-.btn-accent:hover{background:var(--accent-hover);color:var(--white);transform:translateY(-2px);box-shadow:0 4px 16px rgba(34,211,238,.35)}
-.btn-green{background:var(--green);color:var(--white)}
-.btn-green:hover{background:var(--green-hover);color:var(--white);transform:translateY(-2px)}
-.btn-outline{background:transparent;color:rgba(214,228,240,.9);border:1.5px solid rgba(255,255,255,.2)}
-.btn-outline:hover{background:rgba(255,255,255,.08);color:var(--white);transform:translateY(-2px)}
-.btn-white{background:var(--white);color:var(--navy)}
-.btn-white:hover{background:#F1F5F9;color:var(--navy);transform:translateY(-2px)}
+/* ═══ APP ═══ */
+.app{max-width:680px;margin:0 auto;padding:40px 20px 80px;min-height:calc(100vh - 60px)}
+@media(max-width:600px){.app{padding:24px 16px 48px}}
 
-/* SECTIONS */
-.section{padding:100px 0}
-.section-alt{background:var(--pale)}
-.section-label{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
-.section-title{font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--navy);margin-bottom:12px;letter-spacing:-.01em}
-.section-sub{font-size:17px;color:var(--muted);max-width:560px;line-height:1.7}
-.section-header{margin-bottom:56px}
-.section-header.center{text-align:center}
-.section-header.center .section-sub{margin:0 auto}
+/* Progress */
+.progress-rail{position:sticky;top:56px;z-index:50;background:var(--pale);padding:16px 0 12px}
+.progress-bar{height:4px;background:var(--border);border-radius:99px;overflow:hidden;margin-bottom:10px}
+.progress-fill{height:100%;background:var(--accent);border-radius:99px;width:0;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.progress-info{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);font-weight:500}
+.progress-step{color:var(--accent-deep);font-weight:600}
 
-/* FAQ */
-.faq-list{max-width:720px;margin:0 auto}
-.faq-item{border-bottom:1px solid var(--border);padding:20px 0}
-.faq-q{font-weight:700;color:var(--navy);font-size:16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Montserrat',sans-serif}
-.faq-q::after{content:'+';font-size:24px;color:var(--accent);font-weight:300;flex-shrink:0;transition:transform var(--transition)}
-.faq-item.open .faq-q::after{transform:rotate(45deg)}
-.faq-a{display:none;padding:12px 0 4px;font-size:15px;color:var(--muted);line-height:1.7}
-.faq-item.open .faq-a{display:block}
+/* Screens */
+.screen{display:none;animation:slideIn .4s cubic-bezier(.4,0,.2,1)}
+.screen.active{display:block}
+@keyframes slideIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-/* CTA BAND */
-.cta-band{background:linear-gradient(135deg,var(--navy) 0%,#1F4E75 60%,#234E77 100%);padding:80px 28px;text-align:center;color:var(--white);position:relative;overflow:hidden}
-.cta-band::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(34,211,238,.1) 0%,transparent 60%);pointer-events:none}
-.cta-band h2{font-size:clamp(26px,4vw,36px);font-weight:800;margin-bottom:12px;position:relative}
-.cta-band .cta-sub{font-size:17px;color:rgba(237,233,254,.8);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;position:relative}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
-.cta-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px;position:relative}
-.cta-links a{color:rgba(237,233,254,.5);font-size:13px;font-weight:500;transition:color var(--transition)}
-.cta-links a:hover{color:var(--white)}
+.screen-header{margin-bottom:28px}
+.screen-eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent-deep);margin-bottom:10px}
+.screen-title{font-size:clamp(24px,3.6vw,32px);font-weight:800;line-height:1.2;margin-bottom:8px}
+.screen-hint{font-size:15px;color:var(--muted);line-height:1.6;max-width:540px}
+.screen-why{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-top:12px;padding:6px 12px;background:var(--pale);border-radius:8px;border:1px solid var(--border)}
 
-/* FOOTER */
-.footer{background:#080B1C;padding:48px 28px 36px;color:var(--muted);font-size:13px}
-.footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px}
-.footer-brand strong{color:var(--light);font-weight:700}
-.footer-brand p{margin-top:4px;font-size:12px}
-.footer-links{display:flex;gap:20px;flex-wrap:wrap}
-.footer-links a{color:rgba(237,233,254,.6);font-size:13px;font-weight:500;transition:color var(--transition)}
-.footer-links a:hover{color:var(--white)}
-.footer-contact{font-size:12px;color:rgba(237,233,254,.4);text-align:right}
-.footer-legal{max-width:1120px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(237,233,254,.3);text-align:center}
+/* Cards */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.cards.cards-3{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:540px){.cards,.cards.cards-3{grid-template-columns:1fr 1fr}}
 
-/* FORMS */
-.form-container{max-width:720px;margin:0 auto;background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:40px;box-shadow:var(--shadow-card)}
-.form-section{margin-bottom:32px}
-.form-section h3{font-size:17px;color:var(--navy);margin-bottom:4px}
-.form-section .section-hint{font-size:13px;color:var(--muted);margin-bottom:20px}
+.card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);padding:22px 20px;cursor:pointer;transition:.25s cubic-bezier(.4,0,.2,1);position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:10px;text-align:left;width:100%}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+.card.selected{border-color:var(--accent);background:var(--aqua-mist);box-shadow:0 0 0 3px var(--aqua-soft)}
+.card.selected::after{content:"";position:absolute;top:14px;right:14px;width:22px;height:22px;border-radius:50%;background:var(--accent)}
+.card.selected::before{content:"";position:absolute;top:22px;right:22px;width:6px;height:10px;border:solid var(--navy);border-width:0 2px 2px 0;transform:rotate(45deg);z-index:1}
+.card-icon{font-size:28px;line-height:1}
+.card-title{font-size:16px;font-weight:700;color:var(--navy);font-family:'Montserrat',sans-serif}
+.card-desc{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* Slider */
+.slider-block{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;margin-bottom:24px}
+.slider-value{font-family:'Montserrat',sans-serif;font-size:56px;font-weight:800;color:var(--navy);line-height:1;margin-bottom:4px}
+.slider-unit{font-size:15px;color:var(--muted);margin-bottom:24px}
+.slider-input{width:100%;height:6px;border-radius:99px;background:var(--border);-webkit-appearance:none;appearance:none;outline:none;cursor:pointer}
+.slider-input::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--accent);cursor:pointer;border:4px solid #fff;box-shadow:0 2px 8px rgba(34,211,238,.35)}
+.slider-input::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--accent);cursor:pointer;border:4px solid #fff;box-shadow:0 2px 8px rgba(34,211,238,.35)}
+.slider-ticks{display:flex;justify-content:space-between;margin-top:10px;font-size:12px;color:var(--muted)}
+
+/* Text inputs */
+.input-block{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:24px}
+.big-input{width:100%;font-family:'Montserrat',sans-serif;font-size:32px;font-weight:700;color:var(--navy);border:none;outline:none;padding:8px 0;border-bottom:2px solid var(--border);transition:.2s;background:transparent}
+.big-input:focus{border-bottom-color:var(--accent)}
+.big-input::placeholder{color:var(--border);font-weight:400}
+.big-input-smaller{font-size:20px;letter-spacing:.3px}
+.big-input-xs{font-size:17px}
+.big-textarea{width:100%;font-family:inherit;font-size:16px;color:var(--txt);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;outline:none;resize:vertical;min-height:120px;line-height:1.6;background:#fff;transition:.2s}
+.big-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--aqua-soft)}
+
+.paste-helper{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--accent-deep);font-weight:500;cursor:pointer;margin-top:14px;padding:8px 14px;background:var(--aqua-mist);border:1px solid rgba(34,211,238,.2);border-radius:8px;transition:.2s}
+.paste-helper:hover{background:var(--aqua-soft)}
+
+.field-label{display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
 .field{margin-bottom:18px}
-.field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px}
-.field label .opt{font-weight:400;color:var(--muted);font-size:11px}
-.field input,.field select,.field textarea{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);transition:all var(--transition)}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(14,116,144,.1)}
-.field textarea{resize:vertical;min-height:110px}
+.field:last-child{margin-bottom:0}
+.field-input{width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;transition:.2s;outline:none;background:#fff;color:var(--txt)}
+.field-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--aqua-soft)}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.btn-submit{width:100%;padding:16px;background:var(--accent);color:var(--white);border:none;border-radius:var(--radius-sm);font-size:16px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:all var(--transition);box-shadow:var(--shadow-btn)}
-.btn-submit:hover{background:var(--accent-hover);transform:translateY(-1px)}
+@media(max-width:540px){.field-row{grid-template-columns:1fr}}
+.prefix-input{position:relative}
+.prefix-input::before{content:"€";position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600;font-size:18px;pointer-events:none}
 
-/* SCROLL PROGRESS */
-.scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:200;width:0;transition:width .1s linear}
+/* Upload zones */
+.uploads{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+@media(max-width:540px){.uploads{grid-template-columns:1fr}}
+.upload-zone{position:relative;border:2px dashed var(--border);border-radius:var(--radius);padding:22px 18px;background:#fff;transition:.25s;cursor:pointer;text-align:center}
+.upload-zone:hover{border-color:var(--accent);background:var(--aqua-mist)}
+.upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.upload-zone.has-files{border-color:var(--accent);background:var(--aqua-mist);border-style:solid}
+.upload-icon{width:36px;height:36px;margin:0 auto 10px;border-radius:50%;background:var(--aqua-mist);border:1px solid rgba(34,211,238,.2);display:flex;align-items:center;justify-content:center;font-size:16px}
+.upload-title{font-size:14px;font-weight:700;color:var(--navy);font-family:'Montserrat',sans-serif;margin-bottom:4px}
+.upload-hint{font-size:12px;color:var(--muted);line-height:1.5}
+.upload-files{margin-top:8px;font-size:12px;color:var(--accent-deep);font-weight:600}
 
-@media(max-width:700px){
-  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--navy);padding:16px 28px;gap:4px;border-top:1px solid rgba(255,255,255,.08)}
-  .nav-links.open{display:flex}
-  .nav-burger{display:block}
-  .hero{padding:56px 0 64px}
-  .section{padding:72px 0}
-  .field-row{grid-template-columns:1fr}
-  .footer-inner{flex-direction:column}
-  .footer-contact{text-align:left}
-}
+/* Toggles (for "no documents yet" option) */
+.optional-notice{background:var(--iris-soft);border:1px solid rgba(167,139,250,.2);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--txt);line-height:1.5}
+.optional-notice svg{width:16px;height:16px;stroke:var(--iris);fill:none;stroke-width:2;flex-shrink:0;margin-top:1px}
+.optional-notice strong{color:#6D44D9;font-weight:700}
 
+/* Summary screen (recap before submit) */
+.summary-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px}
+.summary-section{padding:14px 0;border-bottom:1px solid var(--border)}
+.summary-section:last-child{border-bottom:none;padding-bottom:0}
+.summary-section:first-child{padding-top:0}
+.summary-label{font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.summary-val{font-size:15px;color:var(--navy);font-weight:500;line-height:1.5;word-break:break-word}
+.summary-val.muted{color:var(--muted);font-weight:400;font-style:italic}
+.summary-edit{font-size:12px;color:var(--accent-deep);font-weight:600;text-decoration:underline;text-underline-offset:2px;cursor:pointer;margin-left:8px}
 
-body{background:var(--pale)}
-.page-header{background:var(--navy);padding:48px 28px;text-align:center;color:var(--white);position:relative;overflow:hidden}
-.page-header::before{content:'';position:absolute;top:-40%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(14,116,144,.12) 0%,transparent 65%);pointer-events:none}
-.page-header h1{font-size:clamp(24px,4vw,32px);font-weight:800;margin-bottom:8px;position:relative}
-.page-header p{font-size:16px;color:rgba(237,233,254,.8);position:relative}
-.form-wrapper{margin-top:-24px;position:relative;z-index:1;padding-bottom:48px}
-.upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.upload-zone{border:2px dashed var(--border);border-radius:var(--radius-sm);padding:24px;text-align:center;cursor:pointer;transition:all var(--transition);position:relative;background:var(--pale)}
-.upload-zone:hover{border-color:var(--blue);background:var(--white)}
-.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
-.upload-zone .uz-title{font-size:14px;font-weight:700;color:var(--navy)}
-.upload-zone .uz-hint{font-size:12px;color:var(--muted);margin-top:4px}
-.upload-zone .uz-files{font-size:12px;color:var(--green);margin-top:6px;font-weight:600}
-.price-box{background:var(--pale);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;margin:28px 0}
-.price-val{font-family:'Montserrat',sans-serif;font-size:36px;font-weight:900;color:var(--accent)}
-.price-val small{font-size:14px;font-weight:400;color:var(--muted)}
-.price-note{font-size:12px;color:var(--muted);margin-top:6px}
-.success-msg{display:none;text-align:center;padding:48px 24px}
-.success-msg h2{color:var(--green);margin-bottom:12px}
-.success-msg p{color:var(--muted);font-size:16px}
-@media(max-width:500px){.upload-grid{grid-template-columns:1fr}}
+/* Price block */
+.price-block{background:linear-gradient(135deg,var(--surface) 0%,var(--navy) 100%);border-radius:var(--radius-lg);padding:28px;color:#fff;margin-bottom:20px;position:relative;overflow:hidden}
+.price-block::before{content:"";position:absolute;bottom:-30%;left:-10%;width:280px;height:280px;background:radial-gradient(circle,var(--iris-soft) 0%,transparent 70%);pointer-events:none}
+.price-label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;padding:4px 12px;background:var(--aqua-soft);border-radius:99px;position:relative;z-index:1}
+.price-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;font-family:'Montserrat',sans-serif;position:relative;z-index:1}
+.price-amount{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;position:relative;z-index:1}
+.price-val{font-family:'Montserrat',sans-serif;font-size:40px;font-weight:800;color:#fff;line-height:1}
+.price-unit{font-size:14px;color:rgba(237,233,254,.6);font-weight:500}
+.price-note{font-size:13px;color:rgba(237,233,254,.65);line-height:1.5;position:relative;z-index:1}
 
+/* Navigation buttons */
+.nav-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;flex-wrap:wrap}
+.btn{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;padding:14px 28px;border-radius:10px;cursor:pointer;transition:.25s cubic-bezier(.4,0,.2,1);display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:none}
+.btn-primary{background:var(--accent);color:var(--navy);box-shadow:0 2px 8px rgba(34,211,238,.25)}
+.btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px);box-shadow:0 4px 16px rgba(34,211,238,.35)}
+.btn-primary:disabled{background:var(--border);color:var(--muted);cursor:not-allowed;transform:none;box-shadow:none}
+.btn-submit{background:var(--accent);color:var(--navy);padding:18px 36px;font-size:16px;box-shadow:0 4px 20px rgba(34,211,238,.3)}
+.btn-submit:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 8px 28px rgba(34,211,238,.4)}
+.btn-ghost{background:none;color:var(--muted);padding:10px 16px}
+.btn-ghost:hover{color:var(--accent-deep)}
+.btn-skip{background:none;color:var(--muted);font-size:13px;font-weight:500;padding:8px 14px;text-decoration:underline;text-underline-offset:3px}
+.btn-skip:hover{color:var(--accent-deep)}
+
+/* Loading */
+.loading{display:none;text-align:center;padding:80px 20px}
+.loading.show{display:block;animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.spinner{width:64px;height:64px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 32px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-title{font-size:22px;font-weight:700;color:var(--navy);margin-bottom:8px;font-family:'Montserrat',sans-serif}
+.loading-msg{font-size:15px;color:var(--muted);min-height:24px;transition:opacity .3s}
+
+/* Success */
+.success{display:none;animation:fadeIn .5s;text-align:center;padding:60px 20px}
+.success.show{display:block}
+.success-check{width:96px;height:96px;margin:0 auto 28px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 12px rgba(34,211,238,.15),0 20px 40px rgba(34,211,238,.3);animation:popIn .6s cubic-bezier(.68,-.55,.27,1.55)}
+.success-check svg{width:48px;height:48px;stroke:var(--navy);fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;stroke-dashoffset:30;animation:drawCheck .5s .3s forwards}
+@keyframes popIn{0%{transform:scale(0) rotate(-45deg);opacity:0}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes drawCheck{to{stroke-dashoffset:0}}
+.success h2{font-size:28px;font-weight:800;margin-bottom:12px}
+.success p{color:var(--muted);margin-bottom:20px;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.6}
+.success-steps{display:grid;gap:10px;max-width:440px;margin:28px auto;text-align:left}
+.success-step{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px;font-size:14px}
+.success-step-n{width:28px;height:28px;border-radius:50%;background:var(--aqua-soft);color:var(--accent-deep);font-weight:700;font-family:'Montserrat',sans-serif;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;border:1px solid rgba(34,211,238,.2)}
+
+/* Footer */
+.footer{background:var(--deep);padding:48px 28px 36px;color:#64748B;font-size:13px;margin-top:60px}
+.footer-inner{max-width:980px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px}
+.footer-inner strong{color:var(--light);font-weight:700}
+.footer-inner p{margin-top:4px;font-size:12px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{color:rgba(237,233,254,.6);font-size:13px;text-decoration:none}
+.footer-legal{max-width:980px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(237,233,254,.3);text-align:center}
 </style>
 </head>
 <body>
+
 <div class="scroll-progress" id="scrollProgress"></div>
 <nav class="nav">
 <div class="nav-inner">
-<a href="./" class="nav-logo"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA" style="height:26px;width:auto"></a>
-<div class="nav-links" id="navLinks">
-<a href="./">Accueil</a>
-<a href="simulateur.html">Simulateur</a>
-<a href="estimateur.html">Estimateur</a>
-<a href="sur-mesure.html">Prestations</a>
-</div>
-<button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  <a href="./" class="nav-logo"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA"></a>
+  <div class="nav-links" id="navLinks">
+    <a href="./">Accueil</a>
+    <a href="simulateur.html">Simulateur</a>
+    <a href="estimateur.html">Estimateur</a>
+    <a href="sur-mesure.html">Prestations</a>
+  </div>
+  <button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
 </div>
 </nav>
 
-<div class="page-header">
-<h1>Demande d'audit avant achat</h1>
-<p>Remplissez le formulaire et envoyez vos documents. Réponse sous 24h.</p>
+<form id="auditForm" action="https://formspree.io/f/xzdjopya" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="_subject" value="[AUDIT 499€] Nouvelle demande">
+
+<div class="app" id="appContainer">
+
+<div class="progress-rail" id="progressRail">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-info">
+    <span>Étape <span class="progress-step" id="stepNum">1</span> sur <span id="stepTotal">9</span></span>
+    <span id="stepPct">11%</span>
+  </div>
 </div>
 
-<div id="form-section" class="form-wrapper">
-<form class="form-container" action="https://formspree.io/f/xzdjopya" method="POST" enctype="multipart/form-data" id="audit-form">
-<input type="hidden" name="_subject" value="AUDIT AVANT ACHAT — adora-economie.fr">
-
-<div class="form-section">
-<h3>Vos coordonnées</h3>
-<div class="section-hint">Pour que nous puissions vous recontacter.</div>
-<div class="field-row">
-<div class="field"><label>Nom</label><input type="text" name="nom" required placeholder="Dupont"></div>
-<div class="field"><label>Prénom</label><input type="text" name="prenom" required placeholder="Jean"></div>
-</div>
-<div class="field-row">
-<div class="field"><label>Email</label><input type="email" name="email" required placeholder="jean@exemple.fr"></div>
-<div class="field"><label>Téléphone</label><input type="tel" name="telephone" required placeholder="06 12 34 56 78"></div>
-</div>
-</div>
-
-<div class="form-section">
-<h3>Le bien concerné</h3>
-<div class="section-hint">Décrivez le bien que vous envisagez d'acheter.</div>
-<div class="field"><label>Adresse du bien</label><input type="text" name="adresse" required placeholder="12 rue de la Paix, 27400 Louviers"></div>
-<div class="field-row">
-<div class="field"><label>Type de bien</label>
-<select name="type_bien" required><option value="">Sélectionnez...</option><option value="maison">Maison individuelle</option><option value="appartement">Appartement</option><option value="immeuble">Immeuble</option><option value="local-commercial">Local commercial</option><option value="autre">Autre</option></select></div>
-<div class="field"><label>Surface habitable (m²)</label><input type="number" name="surface" required placeholder="120"></div>
-</div>
-<div class="field-row">
-<div class="field"><label>Année de construction <span class="opt">(approximative)</span></label><input type="text" name="annee" placeholder="1970"></div>
-<div class="field"><label>Prix demandé (FAI)</label><input type="text" name="prix" placeholder="250 000 €"></div>
-</div>
-<div class="field"><label>Contexte de l'achat <span class="opt">(résidence principale, investissement…)</span></label><textarea name="contexte" rows="3" placeholder="Ex : primo-accession pour résidence principale, budget travaux à définir, compromis prévu fin mai..."></textarea></div>
-</div>
-
-<div class="form-section">
-<h3>Documents à joindre</h3>
-<div class="section-hint">Plus vous fournissez de documents, plus l'analyse sera précise. PDF, JPG, PNG (max 10 Mo/fichier).</div>
-<div class="upload-grid">
-<div class="upload-zone"><input type="file" name="ddt" accept=".pdf,.jpg,.jpeg,.png" multiple onchange="showFiles(this,'ddt-files')"><div class="uz-title">DDT (diagnostics)</div><div class="uz-hint">PDF du dossier de diagnostic technique</div><div class="uz-files" id="ddt-files"></div></div>
-<div class="upload-zone"><input type="file" name="dpe" accept=".pdf,.jpg,.jpeg,.png" multiple onchange="showFiles(this,'dpe-files')"><div class="uz-title">DPE</div><div class="uz-hint">Diagnostic de performance énergétique</div><div class="uz-files" id="dpe-files"></div></div>
-<div class="upload-zone"><input type="file" name="photos_ext" accept=".jpg,.jpeg,.png" multiple onchange="showFiles(this,'ext-files')"><div class="uz-title">Photos extérieures</div><div class="uz-hint">Façades, toiture, terrain</div><div class="uz-files" id="ext-files"></div></div>
-<div class="upload-zone"><input type="file" name="photos_int" accept=".jpg,.jpeg,.png" multiple onchange="showFiles(this,'int-files')"><div class="uz-title">Photos intérieures</div><div class="uz-hint">Pièces, installations, défauts visibles</div><div class="uz-files" id="int-files"></div></div>
-</div>
+<!-- ═══════════ SCREEN 0 — TYPE DE BIEN ═══════════ -->
+<div class="screen active" id="s0" data-step="0">
+  <div class="screen-header">
+    <div class="screen-eyebrow">Votre projet</div>
+    <h2 class="screen-title">Quel type de bien envisagez-vous ?</h2>
+    <p class="screen-hint">L'audit avant achat s'adapte à tous types de biens immobiliers.</p>
+  </div>
+  <div class="cards">
+    <button type="button" class="card" data-val="maison" onclick="selectCard(this,0,'type_bien')">
+      <div class="card-icon">🏡</div>
+      <div class="card-title">Maison individuelle</div>
+      <div class="card-desc">Pavillon, maison de ville, corps de ferme</div>
+    </button>
+    <button type="button" class="card" data-val="appartement" onclick="selectCard(this,0,'type_bien')">
+      <div class="card-icon">🏢</div>
+      <div class="card-title">Appartement</div>
+      <div class="card-desc">En copropriété, duplex, triplex</div>
+    </button>
+    <button type="button" class="card" data-val="immeuble" onclick="selectCard(this,0,'type_bien')">
+      <div class="card-icon">🏗</div>
+      <div class="card-title">Immeuble entier</div>
+      <div class="card-desc">Investissement locatif, petit collectif</div>
+    </button>
+    <button type="button" class="card" data-val="autre" onclick="selectCard(this,0,'type_bien')">
+      <div class="card-icon">🏬</div>
+      <div class="card-title">Autre</div>
+      <div class="card-desc">Local commercial, atypique, mixte</div>
+    </button>
+  </div>
+  <input type="hidden" name="type_bien" id="f_type_bien">
 </div>
 
-<div class="price-box">
-<div class="price-val">499 € <small>TTC</small></div>
-<div class="price-note">Forfait fixe · Paiement après validation de la demande · Non assujetti TVA (art. 293B)</div>
+<!-- ═══════════ SCREEN 1 — LIEN ANNONCE ═══════════ -->
+<div class="screen" id="s1" data-step="1">
+  <div class="screen-header">
+    <div class="screen-eyebrow">L'annonce</div>
+    <h2 class="screen-title">Avez-vous le lien de l'annonce ?</h2>
+    <p class="screen-hint">Collez l'URL de l'annonce (SeLoger, LeBonCoin, Logic-Immo, agence…). Nous analysons les photos, la description et les diagnostics mentionnés.</p>
+    <div class="screen-why">ℹ️ Cela nous fait gagner un temps précieux — mais ce n'est pas obligatoire.</div>
+  </div>
+  <div class="input-block">
+    <input type="url" class="big-input big-input-xs" id="s1_input" name="lien_annonce" placeholder="https://www.seloger.com/annonces/..." autocomplete="off">
+    <button type="button" class="paste-helper" onclick="pasteFromClipboard('s1_input')">
+      📋 Coller depuis le presse-papier
+    </button>
+  </div>
+  <div class="nav-row">
+    <button type="button" class="btn btn-ghost" onclick="goPrev()">← Retour</button>
+    <div style="display:flex;gap:12px;align-items:center">
+      <button type="button" class="btn-skip" onclick="goNext()">Pas d'annonce en ligne</button>
+      <button type="button" class="btn btn-primary" onclick="goNext()">Continuer</button>
+    </div>
+  </div>
 </div>
 
-<button type="submit" class="btn-submit">Envoyer ma demande d'audit</button>
-<p style="text-align:center;margin-top:16px;font-size:13px"><a href="audit-avant-achat.html">En savoir plus sur l'audit avant achat</a></p>
+<!-- ═══════════ SCREEN 2 — ADRESSE ═══════════ -->
+<div class="screen" id="s2" data-step="2">
+  <div class="screen-header">
+    <div class="screen-eyebrow">Localisation</div>
+    <h2 class="screen-title">Où se trouve le bien ?</h2>
+    <p class="screen-hint">Adresse complète avec code postal et ville.</p>
+  </div>
+  <div class="input-block">
+    <input type="text" class="big-input big-input-smaller" id="s2_input" name="adresse" placeholder="12 rue de la Paix, 27400 Louviers" required>
+  </div>
+  <div class="nav-row">
+    <button type="button" class="btn btn-ghost" onclick="goPrev()">← Retour</button>
+    <button type="button" class="btn btn-primary" id="s2_next" onclick="goNext()" disabled>Continuer</button>
+  </div>
+</div>
+
+<!-- ═══════════ SCREEN 3 — SURFACE ═══════════ -->
+<div class="screen" id="s3" data-step="3">
+  <div class="screen-header">
+    <div class="screen-eyebrow">Surface</div>
+    <h2 class="screen-title">Quelle surface habitable ?</h2>
+    <p class="screen-hint">Environ — pas besoin d'être exact.</p>
+  </div>
+  <div class="slider-block">
+    <div class="slider-value"><span id="surfaceVal">100</span></div>
+    <div class="slider-unit">m² habitables</div>
+    <input type="range" class="slider-input" id="surface_slider" min="20" max="500" value="100" step="5" oninput="updateSurface(this.value)">
+    <input type="hidden" name="surface" id="f_surface" value="100">
+    <div class="slider-ticks"><span>20 m²</span><span>100 m²</span><span>250 m²</span><span>500+ m²</span></div>
+  </div>
+  <div class="nav-row">
+    <button type="button" class="btn btn-ghost" onclick="goPrev()">← Retour</button>
+    <button type="button" class="btn btn-primary" onclick="goNext()">Continuer</button>
+  </div>
+</div>
+
+<!-- ═══════════ SCREEN 4 — PRIX ═══════════ -->
+<div class="screen" id="s4" data-step="4">
+  <div class="screen-header">
+    <div class="screen-eyebrow">Prix demandé</div>
+    <h2 class="screen-title">Quel est le prix demandé (FAI) ?</h2>
+    <p class="screen-hint">Le prix affiché par le vendeur ou l'agence, frais d'agence inclus.</p>
+  </div>
+  <div class="input-block">
+    <div style="display:flex;align-items:baseline;gap:8px">
+      <input type="text" class="big-input" id="s4_input" name="prix" placeholder="250 000" inputmode="numeric" autocomplete="off" style="flex:1">
+      <span style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:700;color:var(--muted)">€</span>
+    </div>
+  </div>
+  <div class="nav-row">
+    <button type="button" class="btn btn-ghost" onclick="goPrev()">← Retour</button>
+    <button type="button" class="btn btn-primary" id="s4_next" onclick="goNext()" disabled>Continuer</button>
+  </div>
+</div>
+
+<!-- ═══════════ SCREEN 5 — ANNÉE ═══════════ -->
+<div class="screen" id="s5" data-step="5">
+  <div class="screen-header">
+    <div class="screen-eyebrow">Âge du bien</div>
+    <h2 class="screen-title">Année de construction ?</h2>
+    <p class="screen-hint">L'époque du bâti oriente l'analyse (amiante, plomb, techniques constructives…).</p>
+  </div>
+  <div class="cards">
+    <button type="button" class="card" data-val="avant1948" onclick="selectCard(this,5,'annee')">
+      <div class="card-icon">🏛</div>
+      <div class="card-title">Avant 1948</div>
+      <div class="card-desc">Bâti ancien, plomb à surveiller</div>
+    </button>
+    <button type="button" class="card" data-val="1948-1974" onclick="selectCard(this,5,'annee')">
+      <div class="card-icon">🧱</div>
+      <div class="card-title">1948 — 1974</div>
+      <div class="card-desc">Amiante possible avant 1997</div>
+    </button>
+    <button type="button" class="card" data-val="1975-1990" onclick="selectCard(this,5,'annee')">
+      <div class="card-icon">🏘</div>
+      <div class="card-title">1975 — 1990</div>
+      <div class="card-desc">Première isolation</div>
+    </button>
+    <button type="button" class="card" data-val="1991-2005" onclick="selectCard(this,5,'annee')">
+      <div class="card-icon">🏠</div>
+      <div class="card-title">1991 — 2005</div>
+      <div class="card-desc">RT 2000, confort moderne</div>
+    </button>
+    <button type="button" class="card" data-val="apres2005" onclick="selectCard(this,5,'annee')">
+      <div class="card-icon">✨</div>
+      <div class="card-title">Après 2005</div>
+      <div class="card-desc">RT 2005/2012, BBC</div>
+    </button>
+    <button type="button" class="card" data-val="nsp" onclick="selectCard(this,5,'annee')">
+      <div class="card-icon">❓</div>
+      <div class="card-title">Je ne sais pas</div>
+      <div class="card-desc">On le détectera dans les docs</div>
+    </button>
+  </div>
+  <input type="hidden" name="annee" id="f_annee">
+</div>
+
+<!-- ═══════════ SCREEN 6 — DOCUMENTS ═══════════ -->
+<div class="screen" id="s6" data-step="6">
+  <div class="screen-header">
+    <div class="screen-eyebrow">Documents</div>
+    <h2 class="screen-title">Joignez les documents disponibles</h2>
+    <p class="screen-hint">PDF, JPG, PNG — max 10 Mo par fichier. Plus vous fournissez, plus l'analyse sera précise.</p>
+  </div>
+  
+  <div class="optional-notice">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <div><strong>Pas encore tous les documents ?</strong> Pas de souci — envoyez ce que vous avez, on vous demandera le reste si besoin. Les photos suffisent souvent à démarrer l'analyse.</div>
+  </div>
+
+  <div class="uploads">
+    <label class="upload-zone" id="uz-ddt">
+      <input type="file" name="ddt" accept=".pdf,.jpg,.jpeg,.png" multiple onchange="showFiles(this,'uz-ddt')">
+      <div class="upload-icon">📋</div>
+      <div class="upload-title">DDT (diagnostics)</div>
+      <div class="upload-hint">Dossier de diagnostic technique</div>
+      <div class="upload-files" id="files-ddt"></div>
+    </label>
+    <label class="upload-zone" id="uz-dpe">
+      <input type="file" name="dpe" accept=".pdf,.jpg,.jpeg,.png" multiple onchange="showFiles(this,'uz-dpe')">
+      <div class="upload-icon">⚡</div>
+      <div class="upload-title">DPE</div>
+      <div class="upload-hint">Performance énergétique</div>
+      <div class="upload-files" id="files-dpe"></div>
+    </label>
+    <label class="upload-zone" id="uz-ext">
+      <input type="file" name="photos_ext" accept=".jpg,.jpeg,.png" multiple onchange="showFiles(this,'uz-ext')">
+      <div class="upload-icon">🏠</div>
+      <div class="upload-title">Photos extérieures</div>
+      <div class="upload-hint">Façades, toiture, terrain</div>
+      <div class="upload-files" id="files-ext"></div>
+    </label>
+    <label class="upload-zone" id="uz-int">
+      <input type="file" name="photos_int" accept=".jpg,.jpeg,.png" multiple onchange="showFiles(this,'uz-int')">
+      <div class="upload-icon">🛋</div>
+      <div class="upload-title">Photos intérieures</div>
+      <div class="upload-hint">Pièces, installations</div>
+      <div class="upload-files" id="files-int"></div>
+    </label>
+  </div>
+  
+  <div class="nav-row">
+    <button type="button" class="btn btn-ghost" onclick="goPrev()">← Retour</button>
+    <div style="display:flex;gap:12px;align-items:center">
+      <button type="button" class="btn-skip" onclick="goNext()">Passer cette étape</button>
+      <button type="button" class="btn btn-primary" onclick="goNext()">Continuer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SCREEN 7 — CONTEXTE ═══════════ -->
+<div class="screen" id="s7" data-step="7">
+  <div class="screen-header">
+    <div class="screen-eyebrow">Le contexte</div>
+    <h2 class="screen-title">Quelques mots sur votre projet ?</h2>
+    <p class="screen-hint">Plus vous en dites, plus l'audit sera pertinent. Résidence principale ou investissement ? Compromis déjà signé ? Budget travaux envisagé ? Points qui vous inquiètent ?</p>
+  </div>
+  <div class="input-block">
+    <textarea class="big-textarea" name="contexte" id="s7_input" placeholder="Ex : Primo-accession pour résidence principale. Budget travaux estimé 80k€. Le DPE en F nous inquiète un peu. Compromis prévu mi-mai."></textarea>
+  </div>
+  <div class="nav-row">
+    <button type="button" class="btn btn-ghost" onclick="goPrev()">← Retour</button>
+    <div style="display:flex;gap:12px;align-items:center">
+      <button type="button" class="btn-skip" onclick="goNext()">Passer cette étape</button>
+      <button type="button" class="btn btn-primary" onclick="goNext()">Continuer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SCREEN 8 — COORDONNÉES ═══════════ -->
+<div class="screen" id="s8" data-step="8">
+  <div class="screen-header">
+    <div class="screen-eyebrow">Dernière étape</div>
+    <h2 class="screen-title">Comment vous contacter ?</h2>
+    <p class="screen-hint">Nous vous recontactons sous 24h pour confirmer votre demande et convenir du calendrier de l'audit.</p>
+  </div>
+  <div class="input-block">
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Prénom</label>
+        <input type="text" class="field-input" name="prenom" id="s8_prenom" placeholder="Jean" required autocomplete="given-name">
+      </div>
+      <div class="field">
+        <label class="field-label">Nom</label>
+        <input type="text" class="field-input" name="nom" id="s8_nom" placeholder="Dupont" required autocomplete="family-name">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Email</label>
+        <input type="email" class="field-input" name="email" id="s8_email" placeholder="jean@exemple.fr" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label class="field-label">Téléphone</label>
+        <input type="tel" class="field-input" name="telephone" id="s8_tel" placeholder="06 12 34 56 78" required autocomplete="tel">
+      </div>
+    </div>
+  </div>
+  <div class="nav-row">
+    <button type="button" class="btn btn-ghost" onclick="goPrev()">← Retour</button>
+    <button type="button" class="btn btn-primary" id="s8_next" onclick="goToRecap()" disabled>Voir le récapitulatif</button>
+  </div>
+</div>
+
+<!-- ═══════════ SCREEN 9 — RÉCAP + SUBMIT ═══════════ -->
+<div class="screen" id="s9" data-step="9">
+  <div class="screen-header">
+    <div class="screen-eyebrow">Récapitulatif</div>
+    <h2 class="screen-title">Tout est prêt. On envoie ?</h2>
+    <p class="screen-hint">Vérifiez le récapitulatif avant d'envoyer votre demande.</p>
+  </div>
+  
+  <div class="summary-card" id="summaryCard"></div>
+  
+  <div class="price-block">
+    <div class="price-label">Prestation ADORA</div>
+    <div class="price-title">Audit avant achat immobilier</div>
+    <div class="price-amount">
+      <span class="price-val">499 €</span>
+      <span class="price-unit">TTC · forfait fixe</span>
+    </div>
+    <div class="price-note">Paiement après validation de la demande. Non assujetti TVA (art. 293B). Rapport PDF + échange téléphonique 30 min livré sous 48-72h.</div>
+  </div>
+  
+  <div class="nav-row">
+    <button type="button" class="btn btn-ghost" onclick="goPrev()">← Retour</button>
+    <button type="submit" class="btn btn-submit">Envoyer ma demande d'audit →</button>
+  </div>
+  <p style="margin-top:18px;font-size:12px;color:var(--muted);text-align:center">En envoyant, vous acceptez d'être recontacté. Vos données restent confidentielles et ne sont jamais revendues.</p>
+</div>
+
+</div>
+
+<!-- Loading -->
+<div class="loading" id="loading">
+  <div class="spinner"></div>
+  <div class="loading-title">Envoi de votre demande...</div>
+  <div class="loading-msg" id="loadingMsg">Transmission des documents...</div>
+</div>
+
+<!-- Success -->
+<div class="success" id="success">
+  <div class="success-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+  <h2>Demande reçue !</h2>
+  <p>Merci <span id="successName"></span>, votre demande d'audit est bien arrivée. Je vous recontacte personnellement sous 24h.</p>
+  
+  <div class="success-steps">
+    <div class="success-step"><div class="success-step-n">1</div><div><strong>Sous 24h</strong><br><span style="color:var(--muted);font-size:13px">Confirmation de votre demande par email ou téléphone</span></div></div>
+    <div class="success-step"><div class="success-step-n">2</div><div><strong>Après votre accord</strong><br><span style="color:var(--muted);font-size:13px">Lien de paiement sécurisé Stripe (499 € TTC)</span></div></div>
+    <div class="success-step"><div class="success-step-n">3</div><div><strong>48-72h après paiement</strong><br><span style="color:var(--muted);font-size:13px">Rapport d'audit PDF + appel téléphonique 30 min</span></div></div>
+  </div>
+  
+  <div style="margin-top:32px">
+    <a href="./" class="btn btn-ghost">Retour à l'accueil</a>
+    <a href="simulateur.html" class="btn btn-primary">Calculer mes aides →</a>
+  </div>
+</div>
+
 </form>
-</div>
-
-<div class="success-msg" id="success-section">
-<div class="form-container" style="margin-top:40px">
-<h2>Demande envoyée avec succès</h2>
-<p>Nous avons bien reçu votre demande d'audit. Nous vous recontactons sous 24 heures pour confirmer les modalités et le calendrier.</p>
-<p style="margin-top:16px"><a href="./">Retour à l'accueil</a> · <a href="simulateur.html">Calculer mes aides</a></p>
-</div>
-</div>
-
-<script>
-function showFiles(input,id){const el=document.getElementById(id);el.textContent=input.files.length>0?input.files.length+' fichier(s) sélectionné(s)':'';}
-document.getElementById('audit-form').addEventListener('submit',function(){setTimeout(function(){document.getElementById('form-section').style.display='none';document.getElementById('success-section').style.display='block';window.scrollTo(0,0)},1000)});
-</script>
 
 <footer class="footer">
 <div class="footer-inner">
-<div class="footer-brand"><strong>ADORA</strong> — Aymeric Dussauze<br><p>Économiste de la construction · Normandie & Île-de-France</p></div>
-<div class="footer-links">
-<a href="./">Accueil</a><a href="simulateur.html">Simulateur aides</a><a href="estimateur.html">Estimateur</a><a href="audit-avant-achat.html">Audit achat</a><a href="sur-mesure.html">Sur mesure</a>
-</div>
-<div class="footer-contact">06 60 21 55 09<br>aymericdussauze@gmail.com<br>adora-economie.fr</div>
+  <div><strong>ADORA</strong> — Aymeric Dussauze<p>Économiste de la construction · Normandie & Île-de-France</p></div>
+  <div class="footer-links">
+    <a href="./">Accueil</a>
+    <a href="simulateur.html">Simulateur aides</a>
+    <a href="estimateur.html">Estimateur</a>
+    <a href="audit-avant-achat.html">Audit achat</a>
+    <a href="sur-mesure.html">Sur mesure</a>
+  </div>
+  <div style="font-size:12px;color:rgba(237,233,254,.4);text-align:right">06 60 21 55 09<br>aymericdussauze@gmail.com<br>adora-economie.fr</div>
 </div>
 <div class="footer-legal">EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</div>
 </footer>
+
 <script>
-window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('scrollProgress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%'});
-const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+const TOTAL_STEPS = 10;
+let currentStep = 0;
+const STATE = {
+  type_bien: null, type_bien_label: null,
+  lien_annonce: "",
+  adresse: "",
+  surface: 100,
+  prix: "",
+  annee: null, annee_label: null,
+  contexte: "",
+  prenom: "", nom: "", email: "", telephone: "",
+  files: { ddt: 0, dpe: 0, photos_ext: 0, photos_int: 0 }
+};
+
+const CARD_LABELS = {
+  type_bien: {maison:"Maison individuelle",appartement:"Appartement",immeuble:"Immeuble entier",autre:"Autre"},
+  annee: {avant1948:"Avant 1948","1948-1974":"1948 — 1974","1975-1990":"1975 — 1990","1991-2005":"1991 — 2005",apres2005:"Après 2005",nsp:"Inconnue"}
+};
+
+// ═══ PROGRESS ═══
+function updateProgress() {
+  const pct = Math.round(((currentStep + 1) / TOTAL_STEPS) * 100);
+  document.getElementById("progressFill").style.width = pct + "%";
+  document.getElementById("stepNum").textContent = currentStep + 1;
+  document.getElementById("stepTotal").textContent = TOTAL_STEPS;
+  document.getElementById("stepPct").textContent = pct + "%";
+}
+
+// ═══ NAVIGATION ═══
+function goTo(n) {
+  if (n < 0 || n >= TOTAL_STEPS) return;
+  document.getElementById("s" + currentStep).classList.remove("active");
+  currentStep = n;
+  document.getElementById("s" + n).classList.add("active");
+  updateProgress();
+  window.scrollTo({top: 0, behavior: "smooth"});
+  // Focus first input on screen
+  setTimeout(() => {
+    const screen = document.getElementById("s" + n);
+    const firstInput = screen.querySelector("input:not([type=hidden]):not([type=file]),textarea");
+    if (firstInput && !firstInput.disabled) firstInput.focus();
+  }, 300);
+}
+function goNext() {
+  // Validate before leaving current
+  if (currentStep === 2) STATE.adresse = document.getElementById("s2_input").value.trim();
+  if (currentStep === 4) STATE.prix = document.getElementById("s4_input").value.trim();
+  if (currentStep === 1) STATE.lien_annonce = document.getElementById("s1_input").value.trim();
+  if (currentStep === 7) STATE.contexte = document.getElementById("s7_input").value.trim();
+  goTo(currentStep + 1);
+}
+function goPrev() { goTo(currentStep - 1); }
+
+// ═══ CARDS (auto-advance) ═══
+const FIELD_MAP = {
+  0: { field: "type_bien", autoAdvance: true },
+  5: { field: "annee", autoAdvance: true }
+};
+function selectCard(btn, stepIdx, field) {
+  const siblings = btn.parentElement.querySelectorAll(".card");
+  siblings.forEach(c => c.classList.remove("selected"));
+  btn.classList.add("selected");
+  const val = btn.dataset.val;
+  STATE[field] = val;
+  STATE[field + "_label"] = CARD_LABELS[field][val] || val;
+  document.getElementById("f_" + field).value = val;
+  setTimeout(goNext, 280);
+}
+
+// ═══ SURFACE SLIDER ═══
+function updateSurface(v) {
+  document.getElementById("surfaceVal").textContent = v;
+  document.getElementById("f_surface").value = v;
+  STATE.surface = parseInt(v);
+}
+
+// ═══ INPUT VALIDATION ═══
+document.getElementById("s2_input").addEventListener("input", function() {
+  document.getElementById("s2_next").disabled = this.value.trim().length < 5;
+});
+document.getElementById("s4_input").addEventListener("input", function() {
+  // Format number with spaces
+  let v = this.value.replace(/[^\d]/g, "");
+  if (v) {
+    this.value = v.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+  document.getElementById("s4_next").disabled = v.length < 4;
+});
+
+// Coordonnées validation
+function validateCoordonnees() {
+  const p = document.getElementById("s8_prenom").value.trim();
+  const n = document.getElementById("s8_nom").value.trim();
+  const e = document.getElementById("s8_email").value.trim();
+  const t = document.getElementById("s8_tel").value.trim();
+  const valid = p.length >= 2 && n.length >= 2 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e) && t.length >= 8;
+  document.getElementById("s8_next").disabled = !valid;
+  if (valid) { STATE.prenom = p; STATE.nom = n; STATE.email = e; STATE.telephone = t; }
+}
+["s8_prenom","s8_nom","s8_email","s8_tel"].forEach(id => {
+  document.getElementById(id).addEventListener("input", validateCoordonnees);
+});
+
+// ═══ PASTE FROM CLIPBOARD ═══
+async function pasteFromClipboard(inputId) {
+  try {
+    const text = await navigator.clipboard.readText();
+    const input = document.getElementById(inputId);
+    input.value = text;
+    input.focus();
+  } catch(e) {
+    alert("Impossible d'accéder au presse-papier. Collez manuellement avec Ctrl+V (Cmd+V sur Mac).");
+  }
+}
+
+// ═══ FILE UPLOADS ═══
+function showFiles(input, zoneId) {
+  const zone = document.getElementById(zoneId);
+  const filesEl = zone.querySelector(".upload-files");
+  const key = input.name === "ddt" ? "ddt" : input.name === "dpe" ? "dpe" : input.name === "photos_ext" ? "photos_ext" : "photos_int";
+  const n = input.files.length;
+  STATE.files[key] = n;
+  if (n > 0) {
+    filesEl.textContent = "✓ " + n + " fichier" + (n > 1 ? "s" : "") + " ajouté" + (n > 1 ? "s" : "");
+    zone.classList.add("has-files");
+  } else {
+    filesEl.textContent = "";
+    zone.classList.remove("has-files");
+  }
+}
+
+// ═══ RECAP ═══
+function goToRecap() {
+  validateCoordonnees();
+  buildSummary();
+  goTo(9);
+}
+
+function buildSummary() {
+  const s = STATE;
+  const filesTotal = s.files.ddt + s.files.dpe + s.files.photos_ext + s.files.photos_int;
+  const filesBreakdown = [];
+  if (s.files.ddt) filesBreakdown.push(s.files.ddt + " DDT");
+  if (s.files.dpe) filesBreakdown.push(s.files.dpe + " DPE");
+  if (s.files.photos_ext) filesBreakdown.push(s.files.photos_ext + " photo" + (s.files.photos_ext>1?"s":"") + " ext.");
+  if (s.files.photos_int) filesBreakdown.push(s.files.photos_int + " photo" + (s.files.photos_int>1?"s":"") + " int.");
+  const filesLabel = filesTotal === 0 ? "Aucun fichier" : filesTotal + " fichier" + (filesTotal>1?"s":"") + " (" + filesBreakdown.join(", ") + ")";
+  
+  const html = [
+    {label:"Type de bien", val: s.type_bien_label || "—", step:0},
+    {label:"Lien de l'annonce", val: s.lien_annonce || "—", step:1, muted: !s.lien_annonce},
+    {label:"Adresse", val: s.adresse || "—", step:2},
+    {label:"Surface", val: s.surface + " m²", step:3},
+    {label:"Prix demandé", val: s.prix ? s.prix + " €" : "—", step:4},
+    {label:"Année de construction", val: s.annee_label || "—", step:5},
+    {label:"Documents joints", val: filesLabel, step:6, muted: filesTotal===0},
+    {label:"Contexte", val: s.contexte || "Non précisé", step:7, muted: !s.contexte},
+    {label:"Vos coordonnées", val: s.prenom + " " + s.nom + " · " + s.email + " · " + s.telephone, step:8}
+  ].map(r => `
+    <div class="summary-section">
+      <div class="summary-label">${r.label} <span class="summary-edit" onclick="goTo(${r.step})">Modifier</span></div>
+      <div class="summary-val${r.muted ? ' muted' : ''}">${escapeHtml(r.val)}</div>
+    </div>
+  `).join("");
+  document.getElementById("summaryCard").innerHTML = html;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+}
+
+// ═══ SUBMIT ═══
+const LOADING_MSGS = [
+  "Transmission des documents...",
+  "Sécurisation des informations...",
+  "Envoi vers ADORA...",
+  "Finalisation..."
+];
+
+document.getElementById("auditForm").addEventListener("submit", function(e) {
+  // Let form submit naturally (multipart/form-data to Formspree)
+  // But show loading + redirect to success state
+  document.getElementById("appContainer").style.display = "none";
+  document.getElementById("loading").classList.add("show");
+  
+  const msgEl = document.getElementById("loadingMsg");
+  let i = 0;
+  msgEl.textContent = LOADING_MSGS[0];
+  const rotator = setInterval(() => {
+    i++;
+    if (i >= LOADING_MSGS.length) { clearInterval(rotator); return; }
+    msgEl.style.opacity = "0";
+    setTimeout(() => { msgEl.textContent = LOADING_MSGS[i]; msgEl.style.opacity = "1"; }, 200);
+  }, 700);
+  
+  // GA tracking
+  if (typeof gtag === "function") {
+    gtag("event", "audit_request", { surface: STATE.surface, type_bien: STATE.type_bien });
+  }
+  
+  // The form submits naturally to Formspree.
+  // Formspree will redirect back; but we handle success visually here.
+  // Use a timeout to show success screen (Formspree handles its own redirect)
+  // We don't prevent default — let form POST
+  setTimeout(() => {
+    clearInterval(rotator);
+    document.getElementById("loading").classList.remove("show");
+    document.getElementById("success").classList.add("show");
+    document.getElementById("successName").textContent = STATE.prenom;
+    window.scrollTo({top: 0, behavior: "smooth"});
+  }, 2500);
+});
+
+// ═══ SCROLL PROGRESS ═══
+window.addEventListener("scroll", () => {
+  const h = document.documentElement;
+  const el = document.getElementById("scrollProgress");
+  if (el) el.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + "%";
+});
+
+// ═══ INIT ═══
+updateProgress();
+
 </script>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0LENY960B"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M0LENY960B');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-M0LENY960B')</script>
 </body>
 </html>
