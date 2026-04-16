@@ -1153,16 +1153,11 @@ function generatePDF() {
     </div>
   ` : "";
   
-  // Build the complete HTML document
+  // Build the HTML report (body content only, scoped styles)
   const reportHTML = `
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>Simulation d'aides — ADORA</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
+<style id="pdfReportStyles">
+  #pdfReport * { margin: 0; padding: 0; box-sizing: border-box; }
+  #pdfReport {
     font-family: 'Helvetica', 'Arial', sans-serif;
     color: #1E1B4B;
     line-height: 1.55;
@@ -1170,9 +1165,10 @@ function generatePDF() {
     background: #fff;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+    width: 210mm;
   }
   
-  .page {
+  #pdfReport .page {
     width: 210mm;
     min-height: 297mm;
     padding: 0;
@@ -1180,17 +1176,17 @@ function generatePDF() {
     page-break-after: always;
     overflow: hidden;
   }
-  .page:last-child { page-break-after: auto; }
+  #pdfReport .page:last-child { page-break-after: auto; }
   
   /* ═══ PAGE 1 — COVER ═══ */
-  .cover-hero {
+  #pdfReport .cover-hero {
     background: linear-gradient(135deg, #0D1025 0%, #1A1F3D 100%);
     color: #fff;
     padding: 50px 40px 40px;
     position: relative;
     overflow: hidden;
   }
-  .cover-hero::before {
+  #pdfReport .cover-hero::before {
     content: "";
     position: absolute;
     top: -40%;
@@ -1200,7 +1196,7 @@ function generatePDF() {
     background: radial-gradient(circle, rgba(34,211,238,.12) 0%, transparent 70%);
     pointer-events: none;
   }
-  .cover-logo {
+  #pdfReport .cover-logo {
     font-family: 'Helvetica', sans-serif;
     font-size: 34pt;
     font-weight: 900;
@@ -1209,7 +1205,7 @@ function generatePDF() {
     margin-bottom: 6px;
     position: relative;
   }
-  .cover-sub-role {
+  #pdfReport .cover-sub-role {
     font-size: 10pt;
     color: rgba(237,233,254,.7);
     margin-bottom: 60px;
@@ -1217,22 +1213,22 @@ function generatePDF() {
     letter-spacing: 2px;
     font-weight: 500;
   }
-  .cover-title {
+  #pdfReport .cover-title {
     font-size: 32pt;
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 16px;
     letter-spacing: -0.5px;
   }
-  .cover-date {
+  #pdfReport .cover-date {
     font-size: 10pt;
     color: rgba(237,233,254,.6);
   }
   
-  .cover-body {
+  #pdfReport .cover-body {
     padding: 40px;
   }
-  .cover-prep {
+  #pdfReport .cover-prep {
     font-size: 10pt;
     color: #64748B;
     text-transform: uppercase;
@@ -1240,7 +1236,7 @@ function generatePDF() {
     font-weight: 600;
     margin-bottom: 6px;
   }
-  .cover-client {
+  #pdfReport .cover-client {
     font-size: 24pt;
     font-weight: 800;
     color: #0D1025;
@@ -1248,7 +1244,7 @@ function generatePDF() {
     letter-spacing: -0.3px;
   }
   
-  .profil-card {
+  #pdfReport .profil-card {
     border-radius: 14px;
     padding: 32px 36px;
     color: #fff;
@@ -1256,11 +1252,11 @@ function generatePDF() {
     overflow: hidden;
     margin-bottom: 30px;
   }
-  .profil-card.bleu { background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%); }
-  .profil-card.jaune { background: linear-gradient(135deg, #A16207 0%, #713F12 100%); }
-  .profil-card.violet { background: linear-gradient(135deg, #6B21A8 0%, #581C87 100%); }
-  .profil-card.rose { background: linear-gradient(135deg, #BE185D 0%, #831843 100%); }
-  .profil-label {
+  #pdfReport .profil-card.bleu { background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%); }
+  #pdfReport .profil-card.jaune { background: linear-gradient(135deg, #A16207 0%, #713F12 100%); }
+  #pdfReport .profil-card.violet { background: linear-gradient(135deg, #6B21A8 0%, #581C87 100%); }
+  #pdfReport .profil-card.rose { background: linear-gradient(135deg, #BE185D 0%, #831843 100%); }
+  #pdfReport .profil-label {
     font-size: 9pt;
     font-weight: 700;
     letter-spacing: 2px;
@@ -1268,40 +1264,40 @@ function generatePDF() {
     opacity: 0.85;
     margin-bottom: 10px;
   }
-  .profil-name {
+  #pdfReport .profil-name {
     font-size: 30pt;
     font-weight: 900;
     letter-spacing: -0.5px;
     margin-bottom: 6px;
     line-height: 1;
   }
-  .profil-desc {
+  #pdfReport .profil-desc {
     font-size: 11pt;
     opacity: 0.85;
     margin-bottom: 22px;
   }
-  .profil-divider {
+  #pdfReport .profil-divider {
     height: 1px;
     background: rgba(255,255,255,.2);
     margin: 0 0 18px 0;
   }
-  .profil-total-label {
+  #pdfReport .profil-total-label {
     font-size: 10pt;
     opacity: 0.75;
     margin-bottom: 4px;
   }
-  .profil-total {
+  #pdfReport .profil-total {
     font-size: 26pt;
     font-weight: 800;
     letter-spacing: -0.5px;
   }
   
-  .cover-badge-row {
+  #pdfReport .cover-badge-row {
     display: flex;
     gap: 10px;
     margin-top: 20px;
   }
-  .cover-badge {
+  #pdfReport .cover-badge {
     background: #FAFAFC;
     border: 1px solid #E5E7F2;
     border-radius: 8px;
@@ -1310,13 +1306,13 @@ function generatePDF() {
     color: #64748B;
     font-weight: 500;
   }
-  .cover-badge strong { color: #0D1025; }
+  #pdfReport .cover-badge strong { color: #0D1025; }
   
   /* ═══ PAGES SUIVANTES ═══ */
-  .section {
+  #pdfReport .section {
     padding: 40px 40px 30px;
   }
-  .section-eyebrow {
+  #pdfReport .section-eyebrow {
     font-size: 9pt;
     font-weight: 700;
     letter-spacing: 2px;
@@ -1324,21 +1320,21 @@ function generatePDF() {
     color: #0E7490;
     margin-bottom: 8px;
   }
-  .section-title {
+  #pdfReport .section-title {
     font-size: 22pt;
     font-weight: 800;
     color: #0D1025;
     margin-bottom: 6px;
     letter-spacing: -0.3px;
   }
-  .section-sub {
+  #pdfReport .section-sub {
     font-size: 11pt;
     color: #64748B;
     margin-bottom: 28px;
   }
   
   /* Situation table */
-  .situation-table {
+  #pdfReport .situation-table {
     width: 100%;
     border-collapse: collapse;
     background: #FAFAFC;
@@ -1347,13 +1343,13 @@ function generatePDF() {
     overflow: hidden;
     margin-bottom: 28px;
   }
-  .situation-table td {
+  #pdfReport .situation-table td {
     padding: 12px 20px;
     font-size: 11pt;
     border-bottom: 1px solid #E5E7F2;
   }
-  .situation-table tr:last-child td { border-bottom: none; }
-  .situation-table .sit-label {
+  #pdfReport .situation-table tr:last-child td { border-bottom: none; }
+  #pdfReport .situation-table .sit-label {
     font-weight: 600;
     color: #64748B;
     font-size: 9.5pt;
@@ -1361,24 +1357,24 @@ function generatePDF() {
     letter-spacing: 0.8px;
     width: 45%;
   }
-  .situation-table .sit-val {
+  #pdfReport .situation-table .sit-val {
     color: #0D1025;
     font-weight: 700;
   }
   
   /* Travaux */
-  .travaux-title {
+  #pdfReport .travaux-title {
     font-size: 13pt;
     font-weight: 700;
     color: #0D1025;
     margin-bottom: 10px;
   }
-  .travaux-list {
+  #pdfReport .travaux-list {
     list-style: none;
     padding: 0;
     margin-bottom: 20px;
   }
-  .travaux-list li {
+  #pdfReport .travaux-list li {
     padding: 8px 16px;
     background: #FAFAFC;
     border-left: 3px solid #22D3EE;
@@ -1386,7 +1382,7 @@ function generatePDF() {
     border-radius: 0 6px 6px 0;
     font-size: 10.5pt;
   }
-  .budget-line {
+  #pdfReport .budget-line {
     font-size: 13pt;
     font-weight: 700;
     color: #0D1025;
@@ -1395,10 +1391,10 @@ function generatePDF() {
     border-radius: 10px;
     border: 1px solid rgba(34,211,238,.2);
   }
-  .budget-line strong { color: #0E7490; }
+  #pdfReport .budget-line strong { color: #0E7490; }
   
   /* Aides table */
-  .aides-table {
+  #pdfReport .aides-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
@@ -1407,7 +1403,7 @@ function generatePDF() {
     border-radius: 12px;
     overflow: hidden;
   }
-  .aides-table thead th {
+  #pdfReport .aides-table thead th {
     background: #0D1025;
     color: #fff;
     text-align: left;
@@ -1417,25 +1413,25 @@ function generatePDF() {
     letter-spacing: 1.2px;
     text-transform: uppercase;
   }
-  .aides-table thead th:last-child { text-align: right; }
-  .aides-table tbody td {
+  #pdfReport .aides-table thead th:last-child { text-align: right; }
+  #pdfReport .aides-table tbody td {
     padding: 16px 20px;
     border-bottom: 1px solid #E5E7F2;
     font-size: 11pt;
     vertical-align: middle;
   }
-  .aides-table tbody tr:last-child td { border-bottom: none; }
-  .aides-table tbody tr:nth-child(even) td { background: #FAFAFC; }
-  .aides-table .aide-label {
+  #pdfReport .aides-table tbody tr:last-child td { border-bottom: none; }
+  #pdfReport .aides-table tbody tr:nth-child(even) td { background: #FAFAFC; }
+  #pdfReport .aides-table .aide-label {
     font-weight: 700;
     color: #0D1025;
     margin-bottom: 3px;
   }
-  .aides-table .aide-sub {
+  #pdfReport .aides-table .aide-sub {
     font-size: 9pt;
     color: #64748B;
   }
-  .aides-table .aide-val {
+  #pdfReport .aides-table .aide-val {
     text-align: right;
     font-weight: 800;
     color: #0E7490;
@@ -1444,7 +1440,7 @@ function generatePDF() {
   }
   
   /* RAC block */
-  .rac-block {
+  #pdfReport .rac-block {
     background: linear-gradient(135deg, #0D1025 0%, #1A1F3D 100%);
     color: #fff;
     padding: 24px 28px;
@@ -1454,16 +1450,16 @@ function generatePDF() {
     align-items: center;
     margin-bottom: 20px;
   }
-  .rac-label {
+  #pdfReport .rac-label {
     font-size: 13pt;
     font-weight: 700;
     margin-bottom: 3px;
   }
-  .rac-sub {
+  #pdfReport .rac-sub {
     font-size: 9.5pt;
     color: rgba(237,233,254,.7);
   }
-  .rac-amount {
+  #pdfReport .rac-amount {
     font-size: 22pt;
     font-weight: 800;
     color: #22D3EE;
@@ -1471,7 +1467,7 @@ function generatePDF() {
   }
   
   /* Alerts */
-  .alert {
+  #pdfReport .alert {
     padding: 14px 18px;
     border-radius: 8px;
     border-left: 3px solid;
@@ -1479,43 +1475,43 @@ function generatePDF() {
     font-size: 10.5pt;
     line-height: 1.6;
   }
-  .alert-warn {
+  #pdfReport .alert-warn {
     background: #FEF3C7;
     border-left-color: #FCD34D;
     color: #92400E;
   }
-  .alert-info {
+  #pdfReport .alert-info {
     background: rgba(34,211,238,.08);
     border-left-color: #22D3EE;
     color: #0E7490;
   }
   
   /* Next steps */
-  .steps-block {
+  #pdfReport .steps-block {
     background: rgba(167,139,250,.06);
     border: 1px solid rgba(167,139,250,.2);
     border-radius: 12px;
     padding: 28px 32px;
     margin-top: 24px;
   }
-  .steps-title {
+  #pdfReport .steps-title {
     font-size: 14pt;
     font-weight: 800;
     color: #0D1025;
     margin-bottom: 16px;
   }
-  .steps-list {
+  #pdfReport .steps-list {
     list-style: none;
     padding: 0;
   }
-  .steps-list li {
+  #pdfReport .steps-list li {
     padding: 8px 0 8px 32px;
     position: relative;
     font-size: 10.5pt;
     color: #1E1B4B;
     line-height: 1.6;
   }
-  .steps-list li::before {
+  #pdfReport .steps-list li::before {
     content: counter(step);
     counter-increment: step;
     position: absolute;
@@ -1531,10 +1527,10 @@ function generatePDF() {
     text-align: center;
     line-height: 22px;
   }
-  .steps-list { counter-reset: step; }
+  #pdfReport .steps-list { counter-reset: step; }
   
   /* CTA block */
-  .cta-block {
+  #pdfReport .cta-block {
     background: linear-gradient(135deg, #0D1025 0%, #1A1F3D 100%);
     color: #fff;
     padding: 40px;
@@ -1543,7 +1539,7 @@ function generatePDF() {
     position: relative;
     overflow: hidden;
   }
-  .cta-block::before {
+  #pdfReport .cta-block::before {
     content: "";
     position: absolute;
     bottom: -50%;
@@ -1553,7 +1549,7 @@ function generatePDF() {
     background: radial-gradient(circle, rgba(167,139,250,.12) 0%, transparent 70%);
     pointer-events: none;
   }
-  .cta-label {
+  #pdfReport .cta-label {
     font-size: 9pt;
     font-weight: 700;
     letter-spacing: 2px;
@@ -1562,14 +1558,14 @@ function generatePDF() {
     margin-bottom: 12px;
     position: relative;
   }
-  .cta-title {
+  #pdfReport .cta-title {
     font-size: 20pt;
     font-weight: 800;
     margin-bottom: 10px;
     line-height: 1.2;
     position: relative;
   }
-  .cta-desc {
+  #pdfReport .cta-desc {
     font-size: 11pt;
     color: rgba(237,233,254,.8);
     margin-bottom: 22px;
@@ -1577,12 +1573,12 @@ function generatePDF() {
     line-height: 1.6;
     position: relative;
   }
-  .cta-buttons {
+  #pdfReport .cta-buttons {
     display: flex;
     gap: 12px;
     position: relative;
   }
-  .cta-btn {
+  #pdfReport .cta-btn {
     padding: 12px 22px;
     border-radius: 8px;
     font-size: 10.5pt;
@@ -1590,40 +1586,40 @@ function generatePDF() {
     text-decoration: none;
     display: inline-block;
   }
-  .cta-btn-primary {
+  #pdfReport .cta-btn-primary {
     background: #22D3EE;
     color: #0D1025;
   }
-  .cta-btn-secondary {
+  #pdfReport .cta-btn-secondary {
     background: #A78BFA;
     color: #0D1025;
   }
   
   /* Contact */
-  .contact-card {
+  #pdfReport .contact-card {
     background: #FAFAFC;
     border: 1px solid #E5E7F2;
     border-radius: 12px;
     padding: 28px 32px;
   }
-  .contact-name {
+  #pdfReport .contact-name {
     font-size: 16pt;
     font-weight: 800;
     color: #0D1025;
     margin-bottom: 4px;
   }
-  .contact-role {
+  #pdfReport .contact-role {
     font-size: 10pt;
     color: #64748B;
     margin-bottom: 14px;
   }
-  .contact-line {
+  #pdfReport .contact-line {
     font-size: 10.5pt;
     color: #1E1B4B;
     margin-bottom: 6px;
   }
-  .contact-line strong { color: #0D1025; }
-  .contact-note {
+  #pdfReport .contact-line strong { color: #0D1025; }
+  #pdfReport .contact-note {
     font-size: 9.5pt;
     color: #64748B;
     margin-top: 14px;
@@ -1631,7 +1627,7 @@ function generatePDF() {
   }
   
   /* Footer legal */
-  .legal-footer {
+  #pdfReport .legal-footer {
     position: absolute;
     bottom: 20mm;
     left: 40px;
@@ -1644,8 +1640,7 @@ function generatePDF() {
   }
   
 </style>
-</head>
-<body>
+<div id="pdfReport">
 
 <!-- PAGE 1 — COVER -->
 <div class="page">
@@ -1791,18 +1786,30 @@ function generatePDF() {
   </div>
 </div>
 
-</body>
-</html>
+</div>
   `;
   
-  // Create container element to render the HTML
-  const container = document.createElement("div");
-  container.innerHTML = reportHTML;
-  container.style.position = "fixed";
-  container.style.left = "-9999px";
-  container.style.top = "0";
-  container.style.width = "210mm";
-  document.body.appendChild(container);
+  // Inject the styles + HTML into the page (hidden but rendered)
+  const wrapper = document.createElement("div");
+  wrapper.id = "pdfReportWrapper";
+  wrapper.style.position = "fixed";
+  wrapper.style.left = "0";
+  wrapper.style.top = "0";
+  wrapper.style.width = "210mm";
+  wrapper.style.zIndex = "-9999";
+  wrapper.style.opacity = "0.01";
+  wrapper.style.pointerEvents = "none";
+  wrapper.innerHTML = reportHTML;
+  document.body.appendChild(wrapper);
+  
+  // Target the #pdfReport div inside the wrapper for capture
+  const renderTarget = wrapper.querySelector("#pdfReport");
+  
+  if (!renderTarget) {
+    console.error("PDF target not found");
+    document.body.removeChild(wrapper);
+    return;
+  }
   
   // html2pdf options
   const opt = {
@@ -1813,7 +1820,9 @@ function generatePDF() {
       scale: 2,
       useCORS: true,
       letterRendering: true,
-      backgroundColor: "#ffffff"
+      backgroundColor: "#ffffff",
+      logging: false,
+      windowWidth: 794
     },
     jsPDF: { 
       unit: "mm", 
@@ -1824,22 +1833,28 @@ function generatePDF() {
     pagebreak: { mode: ["css", "legacy"] }
   };
   
-  // Generate PDF as blob and open in new tab
-  html2pdf()
-    .set(opt)
-    .from(container)
-    .toPdf()
-    .output("blob")
-    .then(function(pdfBlob) {
-      const pdfUrl = URL.createObjectURL(pdfBlob);
-      window.open(pdfUrl, "_blank");
-      document.body.removeChild(container);
-    })
-    .catch(function(err) {
-      console.error("Erreur génération PDF:", err);
-      document.body.removeChild(container);
-      throw err;
-    });
+  // Wait for render, then generate
+  setTimeout(function() {
+    html2pdf()
+      .set(opt)
+      .from(renderTarget)
+      .toPdf()
+      .output("blob")
+      .then(function(pdfBlob) {
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        window.open(pdfUrl, "_blank");
+        if (document.getElementById("pdfReportWrapper")) {
+          document.body.removeChild(wrapper);
+        }
+      })
+      .catch(function(err) {
+        console.error("Erreur génération PDF:", err);
+        if (document.getElementById("pdfReportWrapper")) {
+          document.body.removeChild(wrapper);
+        }
+        throw err;
+      });
+  }, 300);
 }
 
 function renderUnlocked() {
