@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <base href="https://aymericdussauze.github.io/adora-staging/">
-<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Demande d'audit avant achat — ADORA</title>
 <meta name="description" content="Demandez un audit avant achat immobilier. Un économiste de la construction analyse votre futur bien en 48-72h. 499 € forfait fixe.">
 <link rel="canonical" href="https://adora-economie.fr/audit-formulaire.html">
@@ -114,6 +114,8 @@ input,select,textarea{font-family:inherit}
 .upload-zone{position:relative;border:2px dashed var(--border);border-radius:var(--radius);padding:22px 18px;background:#fff;transition:.25s;cursor:pointer;text-align:center}
 .upload-zone:hover{border-color:var(--accent);background:var(--aqua-mist)}
 .upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer}
+
+.upload-zone.dragover{border-color:var(--accent);background:rgba(34,211,238,.12);transform:scale(1.02);box-shadow:0 0 0 4px rgba(34,211,238,.15)}
 .upload-zone.has-files{border-color:var(--accent);background:var(--aqua-mist);border-style:solid}
 .upload-icon{width:36px;height:36px;margin:0 auto 10px;border-radius:50%;background:var(--aqua-mist);border:1px solid rgba(34,211,238,.2);display:flex;align-items:center;justify-content:center;font-size:16px}
 .upload-title{font-size:14px;font-weight:700;color:var(--navy);font-family:'Montserrat',sans-serif;margin-bottom:4px}
@@ -258,7 +260,7 @@ input,select,textarea{font-family:inherit}
 <div class="progress-rail" id="progressRail">
   <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
   <div class="progress-info">
-    <span>Étape <span class="progress-step" id="stepNum">1</span> sur <span id="stepTotal">9</span></span>
+    <span>Étape <span class="progress-step" id="stepNum">1</span> sur <span id="stepTotal">10</span></span>
     <span id="stepPct">11%</span>
   </div>
 </div>
@@ -547,6 +549,13 @@ input,select,textarea{font-family:inherit}
     <div class="rgpd-check">
   <label><input type="checkbox" name="rgpd_consent" required> J'accepte que mes données soient traitées par ADORA pour répondre à ma demande, conformément à la <a href="politique-confidentialite.html" target="_blank">politique de confidentialité</a>.</label>
 </div>
+<div style="display:flex;align-items:center;justify-content:center;gap:16px;padding:14px 20px;background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.15);border-radius:10px;margin-bottom:16px;font-size:12px;color:var(--muted)">
+  <span style="display:flex;align-items:center;gap:5px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> Paiement sécurisé Stripe</span>
+  <span>·</span>
+  <span>SIRET 532 886 918</span>
+  <span>·</span>
+  <span>Données protégées</span>
+</div>
 <button type="submit" class="btn btn-submit">Envoyer ma demande d'audit →</button>
   </div>
   <p style="margin-top:18px;font-size:12px;color:var(--muted);text-align:center">En envoyant, vous acceptez d'être recontacté. Vos données restent confidentielles et ne sont jamais revendues.</p>
@@ -566,6 +575,7 @@ input,select,textarea{font-family:inherit}
   <div class="success-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
   <h2>Demande reçue !</h2>
   <p>Merci <span id="successName"></span>, votre demande d'audit est bien arrivée. Je vous recontacte personnellement sous 24h.</p>
+      <p style="font-size:13px;color:var(--muted);margin-top:8px">Référence : <strong id="successRef" style="color:var(--navy);font-family:'JetBrains Mono',monospace,sans-serif;letter-spacing:.5px">—</strong></p>
   
   <div class="success-steps">
     <div class="success-step"><div class="success-step-n">1</div><div><strong>Sous 24h</strong><br><span style="color:var(--muted);font-size:13px">Confirmation de votre demande par email ou téléphone</span></div></div>
@@ -648,12 +658,15 @@ function goTo(n) {
   currentStep = n;
   document.getElementById("s" + n).classList.add("active");
   updateProgress();
+  if (typeof gtag === "function") gtag("event", "audit_step", { step: n });
+  // Save draft
+  try { localStorage.setItem("adora_audit_draft", JSON.stringify(STATE)); localStorage.setItem("adora_audit_step", String(n)); } catch(ex) {}
   window.scrollTo({top: 0, behavior: "smooth"});
   // Focus first input on screen
   setTimeout(() => {
     const screen = document.getElementById("s" + n);
     const firstInput = screen.querySelector("input:not([type=hidden]):not([type=file]),textarea");
-    if (firstInput && !firstInput.disabled) firstInput.focus();
+    if (firstInput && !firstInput.disabled && window.innerWidth > 768) firstInput.focus();
   }, 300);
 }
 function goNext() {
@@ -699,7 +712,7 @@ document.getElementById("s4_input").addEventListener("input", function() {
   if (v) {
     this.value = v.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   }
-  document.getElementById("s4_next").disabled = v.length < 4;
+  document.getElementById("s4_next").disabled = v.length < 5 || parseInt(v) < 30000;
 });
 
 // Coordonnées validation
@@ -708,7 +721,7 @@ function validateCoordonnees() {
   const n = document.getElementById("s8_nom").value.trim();
   const e = document.getElementById("s8_email").value.trim();
   const t = document.getElementById("s8_tel").value.trim();
-  const valid = p.length >= 2 && n.length >= 2 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e) && t.length >= 8;
+  const valid = p.length >= 2 && n.length >= 2 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e) && /^(?:(?:\+|00)33[\s.-]?|0)[1-9](?:[\s.-]?\d{2}){4}$/.test(t.replace(/\s/g, ''));
   document.getElementById("s8_next").disabled = !valid;
   if (valid) { STATE.prenom = p; STATE.nom = n; STATE.email = e; STATE.telephone = t; }
 }
@@ -730,9 +743,22 @@ async function pasteFromClipboard(inputId) {
 
 // ═══ FILE UPLOADS ═══
 function showFiles(input, zoneId) {
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 Mo
   const zone = document.getElementById(zoneId);
   const filesEl = zone.querySelector(".upload-files");
   const key = input.name === "ddt" ? "ddt" : input.name === "dpe" ? "dpe" : input.name === "photos_ext" ? "photos_ext" : "photos_int";
+  
+  // Vérification taille fichiers
+  const oversized = Array.from(input.files).filter(f => f.size > MAX_FILE_SIZE);
+  if (oversized.length) {
+    alert("Fichier trop volumineux (max 10 Mo) : " + oversized.map(f => f.name + " (" + Math.round(f.size / 1024 / 1024) + " Mo)").join(", "));
+    input.value = "";
+    filesEl.textContent = "";
+    zone.classList.remove("has-files");
+    STATE.files[key] = 0;
+    return;
+  }
+  
   const n = input.files.length;
   STATE.files[key] = n;
   if (n > 0) {
@@ -792,12 +818,15 @@ const LOADING_MSGS = [
   "Finalisation..."
 ];
 
-document.getElementById("auditForm").addEventListener("submit", function(e) {
-  // Let form submit naturally (multipart/form-data to Formspree)
-  // But show loading + redirect to success state
+document.getElementById("auditForm").addEventListener("submit", async function(e) {
+  e.preventDefault(); // Empêche la soumission native (qui causerait un redirect Formspree)
+  
+  // Hide wizard, show loading
   document.getElementById("appContainer").style.display = "none";
   document.getElementById("loading").classList.add("show");
+  window.scrollTo({top: 0, behavior: "smooth"});
   
+  // Rotation des messages de chargement
   const msgEl = document.getElementById("loadingMsg");
   let i = 0;
   msgEl.textContent = LOADING_MSGS[0];
@@ -808,22 +837,46 @@ document.getElementById("auditForm").addEventListener("submit", function(e) {
     setTimeout(() => { msgEl.textContent = LOADING_MSGS[i]; msgEl.style.opacity = "1"; }, 200);
   }, 700);
   
-  // GA tracking
-  if (typeof gtag === "function") {
-    gtag("event", "audit_request", { surface: STATE.surface, type_bien: STATE.type_bien });
-  }
-  
-  // The form submits naturally to Formspree.
-  // Formspree will redirect back; but we handle success visually here.
-  // Use a timeout to show success screen (Formspree handles its own redirect)
-  // We don't prevent default — let form POST
-  setTimeout(() => {
+  // Envoi réel à Formspree via fetch AJAX
+  try {
+    const formData = new FormData(this);
+    const response = await fetch(this.action, {
+      method: "POST",
+      body: formData,
+      headers: { "Accept": "application/json" }
+    });
+    
+    clearInterval(rotator);
+    
+    if (response.ok) {
+      // SUCCÈS réel — GA4 + success screen
+      if (typeof gtag === "function") {
+        gtag("event", "audit_request", { surface: STATE.surface, type_bien: STATE.type_bien });
+      }
+      // Clear localStorage draft if exists
+      try { localStorage.removeItem("adora_audit_draft"); } catch(ex) {}
+      document.getElementById("loading").classList.remove("show");
+      document.getElementById("success").classList.add("show");
+      document.getElementById("successName").textContent = STATE.prenom;
+      // Generate reference number
+      var refNum = "AUD-" + new Date().toISOString().slice(0,10).replace(/-/g,"") + "-" + Math.random().toString(36).substring(2,6).toUpperCase();
+      var refEl = document.getElementById("successRef");
+      if (refEl) refEl.textContent = refNum;
+      window.scrollTo({top: 0, behavior: "smooth"});
+    } else {
+      throw new Error("Formspree a répondu " + response.status);
+    }
+  } catch(err) {
     clearInterval(rotator);
     document.getElementById("loading").classList.remove("show");
-    document.getElementById("success").classList.add("show");
-    document.getElementById("successName").textContent = STATE.prenom;
-    window.scrollTo({top: 0, behavior: "smooth"});
-  }, 2500);
+    document.getElementById("appContainer").style.display = "";
+    // Message d'erreur avec numéro de contact direct
+    const errDiv = document.createElement("div");
+    errDiv.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:999;background:#FEF2F2;border-bottom:2px solid #EF4444;padding:20px 24px;text-align:center;font-size:14px;color:#991B1B;font-family:'Plus Jakarta Sans',sans-serif";
+    errDiv.innerHTML = '<strong>L\'envoi a échoué.</strong> Merci de réessayer, ou contactez-moi directement au <a href="tel:+33660215509" style="color:#991B1B;font-weight:700;text-decoration:underline">06 60 21 55 09</a> — <button onclick="this.parentElement.remove()" style="background:none;border:none;color:#991B1B;cursor:pointer;font-weight:700;margin-left:12px">✕ Fermer</button>';
+    document.body.prepend(errDiv);
+    console.error("Erreur soumission audit:", err);
+  }
 });
 
 // ═══ SCROLL PROGRESS ═══
@@ -833,8 +886,54 @@ window.addEventListener("scroll", () => {
   if (el) el.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + "%";
 });
 
+
+// ═══ DRAG & DROP UPLOAD ═══
+document.querySelectorAll(".upload-zone").forEach(zone => {
+  const input = zone.querySelector('input[type="file"]');
+  if (!input) return;
+  
+  zone.addEventListener("dragover", e => { e.preventDefault(); e.stopPropagation(); zone.classList.add("dragover"); });
+  zone.addEventListener("dragleave", e => { e.preventDefault(); e.stopPropagation(); zone.classList.remove("dragover"); });
+  zone.addEventListener("drop", e => {
+    e.preventDefault(); e.stopPropagation();
+    zone.classList.remove("dragover");
+    if (e.dataTransfer.files.length) {
+      input.files = e.dataTransfer.files;
+      showFiles(input, zone.id);
+    }
+  });
+});
+
 // ═══ INIT ═══
+// Restore draft if exists
+(function() {
+  try {
+    var step = localStorage.getItem("adora_audit_step");
+    var draft = localStorage.getItem("adora_audit_draft");
+    if (step && draft && parseInt(step) > 0) {
+      var banner = document.createElement("div");
+      banner.id = "resumeBanner";
+      banner.style.cssText = "position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--navy,#0D1025);color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:16px;box-shadow:0 -4px 20px rgba(0,0,0,.15);font-size:14px;font-family:'Plus Jakarta Sans',sans-serif";
+      banner.innerHTML = '<span>Demande en cours (étape ' + (parseInt(step) + 1) + '/10)</span><button onclick="restoreAuditDraft()" style="background:var(--accent,#22D3EE);color:var(--navy,#0D1025);border:none;padding:8px 20px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit">Reprendre</button><button onclick="clearAuditDraft()" style="background:transparent;color:rgba(237,233,254,.6);border:1px solid rgba(255,255,255,.15);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit">Recommencer</button>';
+      document.body.appendChild(banner);
+    }
+  } catch(ex) {}
+})();
 updateProgress();
+
+function restoreAuditDraft() {
+  try {
+    var draft = JSON.parse(localStorage.getItem("adora_audit_draft"));
+    var step = parseInt(localStorage.getItem("adora_audit_step"));
+    if (draft) Object.assign(STATE, draft);
+    if (step > 0) goTo(step);
+  } catch(ex) {}
+  var b = document.getElementById("resumeBanner"); if (b) b.remove();
+}
+function clearAuditDraft() {
+  try { localStorage.removeItem("adora_audit_draft"); localStorage.removeItem("adora_audit_step"); } catch(ex) {}
+  var b = document.getElementById("resumeBanner"); if (b) b.remove();
+}
 
 </script>
 
