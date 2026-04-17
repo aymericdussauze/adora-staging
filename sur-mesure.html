@@ -159,6 +159,10 @@ img{max-width:100%;height:auto}
 @media(max-width:600px){.presta-grid{grid-template-columns:1fr}}
 
 
+/* CONTENT GRID */
+.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+@media(max-width:768px){.content-grid{grid-template-columns:1fr;gap:40px}}
+
 /* ═══ UNIFIED FOOTER ═══ */
 .footer{background:var(--navy, #0D1025);color:rgba(237,233,254,.7);padding:60px 24px 30px;margin-top:80px}
 .footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px}
@@ -210,14 +214,59 @@ img{max-width:100%;height:auto}
 
 <section class="section">
 <div class="container">
-<div class="section-header center reveal">
-<div class="section-label">Particuliers</div>
-<h2 class="section-title">Estimations & analyses</h2>
-<p class="section-sub">Pour ceux qui veulent savoir avant de s'engager.</p>
-</div>
-<div class="presta-grid reveal">
-<div class="presta-card"><h3>Estimation rapide</h3><div class="price">590 €</div><p>Estimation globale de votre projet à partir des plans et des photos. Fourchettes par lots principaux. Résultat sous 5 jours.</p></div>
-<div class="presta-card"><h3>Estimation détaillée</h3><div class="price">990 — 1 490 €</div><p>Métrés précis, allotissement complet tous corps d'état, prix unitaires Batichiffrage. Le même travail qu'un cabinet, livré sous 10 jours.</p></div>
+<div class="content-grid reveal">
+  <div>
+    <div class="section-label">Particuliers</div>
+    <h2 class="section-title">Estimation détaillée<span class="section-title-alt">de vos travaux de rénovation</span></h2>
+    <p style="font-size:16px;color:var(--txt);line-height:1.8;margin-bottom:20px">
+      Vous avez un projet de rénovation et vous voulez savoir <strong>combien ça coûte vraiment</strong> — avant de signer quoi que ce soit ? L'estimation détaillée ADORA vous donne une vision claire, chiffrée et opposable de votre budget travaux.
+    </p>
+    <p style="font-size:16px;color:var(--txt);line-height:1.8;margin-bottom:24px">
+      C'est le <strong>même niveau de travail qu'un cabinet d'économie de la construction</strong> — métrés sur plans, allotissement complet tous corps d'état, prix unitaires issus de bases de données professionnelles (Batichiffrage T1 2026).
+    </p>
+    <div style="background:var(--navy);color:var(--white);padding:24px 28px;border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+      <div>
+        <div style="font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);font-weight:700;margin-bottom:6px">Tarif</div>
+        <div style="font-size:13px;color:rgba(237,233,254,.7)">Selon surface et complexité du projet</div>
+      </div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;letter-spacing:-.02em">À partir de 990 <span style="font-size:18px;color:var(--accent)">€ TTC</span></div>
+    </div>
+    <a href="#contact" class="btn btn-accent" style="width:100%;text-align:center">Demander un devis pour mon projet →</a>
+  </div>
+  <div>
+    <div style="margin-bottom:32px">
+      <h3 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:16px;text-transform:uppercase;letter-spacing:1px">Le process</h3>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:14px;align-items:start">
+          <span style="background:var(--accent);color:var(--white);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">1</span>
+          <div><strong style="color:var(--navy)">Envoi des documents</strong><br><span style="font-size:14px;color:var(--muted)">Plans, photos, description du projet, budget envisagé</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:start">
+          <span style="background:var(--accent);color:var(--white);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">2</span>
+          <div><strong style="color:var(--navy)">Échange de cadrage</strong><br><span style="font-size:14px;color:var(--muted)">Appel téléphonique pour affiner le périmètre et les attentes</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:start">
+          <span style="background:var(--accent);color:var(--white);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">3</span>
+          <div><strong style="color:var(--navy)">Analyse et chiffrage</strong><br><span style="font-size:14px;color:var(--muted)">Métrés, ratios, allotissement TCE, application des coefficients régionaux</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:start">
+          <span style="background:var(--accent);color:var(--white);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">4</span>
+          <div><strong style="color:var(--navy)">Livraison sous 10 jours</strong><br><span style="font-size:14px;color:var(--muted)">Rapport PDF + appel de restitution de 30 min inclus</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--pale);border:1px solid var(--border);border-radius:var(--radius);padding:24px">
+      <h3 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">Documents produits</h3>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px">
+        <li style="font-size:14px;display:flex;gap:10px;align-items:flex-start"><span style="color:var(--accent);font-weight:700">✓</span> Estimatif détaillé tous corps d'état (15 lots)</li>
+        <li style="font-size:14px;display:flex;gap:10px;align-items:flex-start"><span style="color:var(--accent);font-weight:700">✓</span> Fourchettes basse / haute par poste</li>
+        <li style="font-size:14px;display:flex;gap:10px;align-items:flex-start"><span style="color:var(--accent);font-weight:700">✓</span> Répartition gros œuvre / second œuvre / équipements</li>
+        <li style="font-size:14px;display:flex;gap:10px;align-items:flex-start"><span style="color:var(--accent);font-weight:700">✓</span> Estimation des aides mobilisables (MPR, CEE, éco-PTZ)</li>
+        <li style="font-size:14px;display:flex;gap:10px;align-items:flex-start"><span style="color:var(--accent);font-weight:700">✓</span> Points de vigilance techniques</li>
+        <li style="font-size:14px;display:flex;gap:10px;align-items:flex-start"><span style="color:var(--accent);font-weight:700">✓</span> Méthodologie et sources de prix détaillées</li>
+      </ul>
+    </div>
+  </div>
 </div>
 </div>
 </section>
@@ -276,16 +325,16 @@ img{max-width:100%;height:auto}
 
 <section class="section">
 <div class="container">
-<div class="section-header center reveal">
-<div class="section-label">Professionnels</div>
-<h2 class="section-title">Pour architectes, BET & maîtres d'ouvrage</h2>
-<p class="section-sub">Intervention en sous-traitance ou en prestation directe. Tarif compétitif, autonomie complète.</p>
-</div>
-<div class="presta-grid reveal">
-<div class="presta-card"><h3>Chiffrage complet</h3><div class="price">380 € / jour</div><p>Estimations préliminaires et détaillées Tous Corps d'État. Métrés sur plans (AutoCAD, Revit), prix Batichiffrage.</p></div>
-<div class="presta-card"><h3>Cahier des charges & consultation</h3><div class="price">380 € / jour</div><p>Rédaction pièces écrites et montage DCE complet pour consultation des entreprises.</p></div>
-<div class="presta-card"><h3>Pilotage de chantier</h3><div class="price">420 — 450 € / jour</div><p>Ordonnancement, pilotage et coordination. Planning d'exécution, réunions, suivi délais.</p></div>
-<div class="presta-card"><h3>Accompagnement personnalisé</h3><div class="price">450 € / jour</div><p>Assistance à maîtrise d'ouvrage. Définition du programme, conseil budgétaire, accompagnement.</p></div>
+<div style="background:var(--navy);border-radius:var(--radius);padding:48px;color:var(--white);display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden" class="reveal">
+  <div style="position:absolute;top:-40%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(34,211,238,.1) 0%,transparent 65%);pointer-events:none"></div>
+  <div style="position:relative">
+    <div style="font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px">Professionnels</div>
+    <h2 style="font-size:clamp(24px,3.5vw,32px);font-weight:800;margin-bottom:12px;line-height:1.2">Architectes, BET, maîtres d'ouvrage</h2>
+    <p style="font-size:15px;color:rgba(214,228,240,.8);line-height:1.7;max-width:480px">ADORA intervient en freelance sur vos projets : métrés, CCTP, DPGF, OPC, AMO. Tarifs transparents affichés, zone Normandie & IDF.</p>
+  </div>
+  <div style="position:relative">
+    <a href="professionnels.html" class="btn btn-accent" style="font-size:15px;padding:16px 32px;white-space:nowrap">Voir l'offre pro →</a>
+  </div>
 </div>
 </div>
 </section>
@@ -323,7 +372,7 @@ img{max-width:100%;height:auto}
 <h2 class="section-title">Demander un devis gratuit</h2>
 <p class="section-sub">Décrivez votre projet, je vous réponds sous 24 heures.</p>
 </div>
-<form class="form-container contact-form reveal" action="https://formspree.io/f/xzdjopya" method="POST">
+<form class="form-container contact-form reveal" action="https://formspree.io/f/maqaewbn" method="POST">
 <input type="hidden" name="_subject" value="Demande sur mesure — adora-economie.fr">
 <div class="field"><label>Nom et prénom</label><input type="text" name="nom" required placeholder="Jean Dupont"></div>
 <div class="field-row">
@@ -331,7 +380,7 @@ img{max-width:100%;height:auto}
 <div class="field"><label>Téléphone</label><input type="tel" name="telephone" placeholder="06 12 34 56 78"></div>
 </div>
 <div class="field"><label>Type de prestation souhaitée</label>
-<select name="prestation" required><option value="">Sélectionnez...</option><option value="estimation-rapide">Estimation rapide (590 €)</option><option value="estimation-detaillee">Estimation détaillée (990-1 490 €)</option><option value="pack-essentiel">Pack Essentiel (2 200 €)</option><option value="pack-confort">Pack Confort (3 900 €)</option><option value="pack-serenite">Pack Sérénité (5-8%)</option><option value="redaction-dce">Rédaction cahier des charges</option><option value="opc">Pilotage >OPC / Suivi de chantier< suivi de chantier</option><option value="autre">Autre — je décris ci-dessous</option></select></div>
+<select name="prestation" required><option value="">Sélectionnez...</option><option value="estimation-detaillee">Estimation détaillée (à partir de 990 €)</option><option value="pack-essentiel">Pack Essentiel (2 200 €)</option><option value="pack-confort">Pack Confort (3 900 €)</option><option value="pack-serenite">Pack Sérénité (5-8%)</option><option value="autre">Autre — je décris ci-dessous</option></select></div>
 <div class="field"><label>Décrivez votre projet</label><textarea name="projet" required placeholder="Type de bien, surface, localisation, nature des travaux envisagés, budget approximatif, calendrier souhaité..."></textarea></div>
 <button type="submit" class="btn-submit">Envoyer ma demande</button>
 <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:10px">Réponse sous 24h · Devis gratuit · Sans engagement</p>
