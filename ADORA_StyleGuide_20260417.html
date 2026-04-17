@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADORA — Style Guide & Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0D1025;--blue:#0E7490;--accent:#22D3EE;--accent-hover:#06B6D4;
+  --iris:#A78BFA;--pale:#FAFAFC;--txt:#1E1B4B;--muted:#64748B;
+  --border:#E5E7F2;--white:#FFFFFF;--green:#10B981;--red:#EF4444;--amber:#F59E0B;
+  --radius:16px;--radius-sm:10px;
+  --shadow-card:0 1px 3px rgba(13,16,37,.06),0 8px 24px rgba(13,16,37,.04);
+  --shadow-hover:0 4px 12px rgba(13,16,37,.08),0 16px 40px rgba(13,16,37,.06);
+  --shadow-btn:0 2px 8px rgba(34,211,238,.25);
+  --transition:.3s cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--txt);background:var(--white);line-height:1.7;font-size:15px}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;line-height:1.2;color:var(--navy)}
+code,pre{font-family:'JetBrains Mono',monospace;font-size:13px}
+a{color:var(--blue);text-decoration:none}
+.container{max-width:960px;margin:0 auto;padding:0 28px}
+
+/* ═══ STYLE GUIDE LAYOUT ═══ */
+.sg-cover{background:var(--navy);padding:80px 0 60px;color:var(--white)}
+.sg-cover h1{font-size:42px;font-weight:900;letter-spacing:-.03em;margin-bottom:8px}
+.sg-cover h1 em{font-style:normal;color:var(--accent)}
+.sg-cover p{font-size:16px;color:rgba(237,233,254,.7);max-width:560px}
+.sg-meta{display:flex;gap:32px;margin-top:24px;font-size:13px;color:rgba(237,233,254,.5)}
+.sg-meta span{display:flex;align-items:center;gap:6px}
+
+.sg-nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);padding:12px 0}
+.sg-nav-inner{display:flex;gap:6px;flex-wrap:wrap}
+.sg-nav a{font-size:12px;font-weight:600;color:var(--muted);padding:6px 12px;border-radius:6px;text-transform:uppercase;letter-spacing:.5px;transition:all .2s}
+.sg-nav a:hover{background:var(--pale);color:var(--navy)}
+
+.sg-section{padding:64px 0;border-bottom:1px solid var(--border)}
+.sg-section:last-child{border-bottom:none}
+.sg-section-label{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.sg-section h2{font-size:28px;font-weight:800;margin-bottom:8px;letter-spacing:-.01em}
+.sg-section-desc{font-size:15px;color:var(--muted);margin-bottom:40px;max-width:640px}
+
+.sg-subsection{margin-bottom:48px}
+.sg-subsection h3{font-size:18px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.sg-subsection h3::before{content:'';width:3px;height:18px;background:var(--accent);border-radius:2px}
+.sg-subsection-desc{font-size:14px;color:var(--muted);margin-bottom:20px}
+
+/* Specimen blocks */
+.sg-specimen{background:var(--pale);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin-bottom:16px}
+.sg-specimen-dark{background:var(--navy);border-color:rgba(255,255,255,.1);color:var(--white)}
+.sg-code{background:#1a1b26;color:#c0caf5;padding:16px 20px;border-radius:8px;font-size:13px;line-height:1.6;overflow-x:auto;margin-bottom:16px}
+.sg-code .k{color:#bb9af7}.sg-code .v{color:#9ece6a}.sg-code .c{color:#565f89}
+
+/* Swatch grid */
+.sg-swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.sg-swatch{border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+.sg-swatch-color{height:64px}
+.sg-swatch-info{padding:10px 12px;background:var(--white)}
+.sg-swatch-name{font-size:12px;font-weight:700;color:var(--navy)}
+.sg-swatch-hex{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.sg-swatch-token{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);margin-top:2px}
+
+/* Type specimens */
+.sg-type-row{display:flex;align-items:baseline;gap:24px;padding:16px 0;border-bottom:1px solid var(--border)}
+.sg-type-meta{min-width:160px;font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+
+/* Component showcase */
+.sg-demo{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.sg-demo-vertical{flex-direction:column;align-items:stretch}
+
+/* Table */
+.sg-table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:16px}
+.sg-table th{text-align:left;padding:10px 16px;background:var(--pale);font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--border)}
+.sg-table td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top}
+.sg-table td code{background:var(--pale);padding:2px 6px;border-radius:4px;font-size:12px;color:var(--blue)}
+
+/* Responsive indicator */
+.sg-responsive{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.sg-device{border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center}
+.sg-device-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:8px}
+.sg-device-icon{font-size:28px;margin-bottom:8px}
+.sg-device-bp{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue)}
+.sg-device-desc{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* Workflow */
+.sg-flow{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:24px}
+.sg-flow-step{background:var(--pale);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:13px;font-weight:600;color:var(--navy);text-align:center;min-width:120px}
+.sg-flow-step.highlight{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+.sg-flow-step.dark{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.sg-flow-arrow{font-size:18px;color:var(--muted);padding:0 8px;flex-shrink:0}
+.sg-flow-label{font-size:10px;color:var(--muted);margin-top:4px;font-weight:400}
+
+/* Rule cards */
+.sg-rule{display:flex;gap:16px;padding:16px 20px;border-radius:10px;margin-bottom:12px;align-items:start}
+.sg-rule.do{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2)}
+.sg-rule.dont{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2)}
+.sg-rule-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.sg-rule-text{font-size:14px;line-height:1.6}
+.sg-rule-text strong{color:var(--navy)}
+
+/* Actual component demos */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;transition:all var(--transition);border:none;cursor:pointer;text-decoration:none}
+.btn-accent{background:var(--accent);color:var(--navy);box-shadow:var(--shadow-btn)}
+.btn-accent:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--navy);border:1.5px solid var(--border)}
+.btn-outline:hover{background:var(--pale);transform:translateY(-1px)}
+.btn-green{background:var(--iris);color:var(--white)}
+.btn-ghost{background:transparent;color:var(--muted);font-weight:600;padding:13px 16px}
+.btn-ghost:hover{color:var(--navy);background:var(--pale)}
+.btn-white{background:var(--white);color:var(--navy)}
+
+.demo-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;max-width:280px;transition:all var(--transition)}
+.demo-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-3px)}
+.demo-card h4{font-size:15px;margin-bottom:6px}
+.demo-card p{font-size:13px;color:var(--muted)}
+
+.demo-alert{padding:14px 18px;border-radius:8px;font-size:13px;display:flex;gap:10px;align-items:start}
+.demo-alert.warn{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);color:#92400E}
+.demo-alert.info{background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);color:var(--blue)}
+
+.demo-input{padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;width:260px;transition:border .2s}
+.demo-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,211,238,.1)}
+
+.demo-badge{display:inline-block;padding:4px 12px;border-radius:99px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.demo-badge.aqua{background:rgba(34,211,238,.12);color:var(--blue)}
+.demo-badge.iris{background:rgba(167,139,250,.12);color:#7C3AED}
+.demo-badge.green{background:rgba(16,185,129,.12);color:#059669}
+
+@media(max-width:768px){
+  .sg-responsive{grid-template-columns:1fr}
+  .sg-swatches{grid-template-columns:repeat(3,1fr)}
+  .sg-flow{flex-direction:column;align-items:stretch}
+  .sg-flow-arrow{text-align:center;transform:rotate(90deg);padding:4px 0}
+  .sg-type-row{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COVER                                          -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-cover">
+  <div class="container">
+    <h1>ADORA <em>Style Guide</em></h1>
+    <p>Design system complet du site adora-economie.fr. Palette, typographie, composants, responsive, workflows et règles de conception.</p>
+    <div class="sg-meta">
+      <span>📐 Design System : Indigo Aurora v3</span>
+      <span>📅 Avril 2026</span>
+      <span>📄 11 pages · 388 composants CSS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- NAV                                            -->
+<!-- ═══════════════════════════════════════════════ -->
+<nav class="sg-nav">
+  <div class="container">
+    <div class="sg-nav-inner">
+      <a href="#tokens">Tokens</a>
+      <a href="#typography">Typographie</a>
+      <a href="#colors">Couleurs</a>
+      <a href="#buttons">Boutons</a>
+      <a href="#cards">Cards</a>
+      <a href="#forms">Formulaires</a>
+      <a href="#navigation">Navigation</a>
+      <a href="#layout">Layout</a>
+      <a href="#responsive">Responsive</a>
+      <a href="#typeform">Typeform UX</a>
+      <a href="#workflows">Workflows</a>
+      <a href="#pdf">PDF</a>
+      <a href="#rules">Règles</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 1. DESIGN TOKENS                               -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="tokens">
+  <div class="container">
+    <div class="sg-section-label">01 — Fondations</div>
+    <h2>Design Tokens</h2>
+    <p class="sg-section-desc">Variables CSS partagées par toutes les pages. Définies dans le <code>:root</code> de chaque fichier HTML.</p>
+
+    <div class="sg-subsection">
+      <h3>Espacement & Arrondis</h3>
+      <table class="sg-table">
+        <tr><th>Token</th><th>Valeur</th><th>Usage</th></tr>
+        <tr><td><code>--radius</code></td><td>16px</td><td>Cards, sections, conteneurs principaux</td></tr>
+        <tr><td><code>--radius-sm</code></td><td>10px</td><td>Boutons, inputs, badges</td></tr>
+        <tr><td><code>padding section</code></td><td>100px 0 (desktop), 60px 0 (mobile)</td><td>Sections <code>.section</code></td></tr>
+        <tr><td><code>.container</code></td><td>max-width: 1120px, padding: 0 28px</td><td>Conteneur centré sur toutes les pages</td></tr>
+      </table>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Ombres</h3>
+      <table class="sg-table">
+        <tr><th>Token</th><th>Valeur</th><th>Usage</th></tr>
+        <tr><td><code>--shadow-card</code></td><td>0 1px 3px rgba(…,.06), 0 8px 24px rgba(…,.04)</td><td>État repos des cards</td></tr>
+        <tr><td><code>--shadow-hover</code></td><td>0 4px 12px rgba(…,.08), 0 16px 40px rgba(…,.06)</td><td>Hover des cards (+ translateY -2/-3px)</td></tr>
+        <tr><td><code>--shadow-btn</code></td><td>0 2px 8px rgba(34,211,238,.25)</td><td>Boutons CTA aqua — lueur colorée</td></tr>
+      </table>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Transitions</h3>
+      <table class="sg-table">
+        <tr><th>Token</th><th>Valeur</th><th>Usage</th></tr>
+        <tr><td><code>--transition</code></td><td>.3s cubic-bezier(.4,0,.2,1)</td><td>Toutes les transitions (hover, active, focus)</td></tr>
+        <tr><td><code>.reveal</code></td><td>opacity .7s + translateY(28px→0)</td><td>Animation d'entrée au scroll (IntersectionObserver)</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 2. TYPOGRAPHIE                                 -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="typography">
+  <div class="container">
+    <div class="sg-section-label">02 — Typographie</div>
+    <h2>Polices & hiérarchie</h2>
+    <p class="sg-section-desc">Deux familles Google Fonts. Montserrat pour l'impact, Plus Jakarta Sans pour la lisibilité.</p>
+
+    <div class="sg-subsection">
+      <h3>Familles de polices</h3>
+      <table class="sg-table">
+        <tr><th>Police</th><th>Rôle</th><th>Graisses</th><th>Contexte</th></tr>
+        <tr><td><strong style="font-family:Montserrat">Montserrat</strong></td><td>Titres, prix, données clés</td><td>700, 800, 900</td><td>h1, h2, h3, h4, .stat-value, .pack-price</td></tr>
+        <tr><td><strong style="font-family:'Plus Jakarta Sans'">Plus Jakarta Sans</strong></td><td>Corps de texte, navigation, boutons</td><td>400, 500, 600, 700, 800</td><td>body, .btn, .nav-links, paragraphes</td></tr>
+        <tr><td><strong style="font-family:'JetBrains Mono'">JetBrains Mono</strong></td><td>Données techniques, code</td><td>400, 500</td><td>Labels, badges, code, PDF uniquement</td></tr>
+      </table>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Échelle typographique</h3>
+      <div class="sg-specimen">
+        <div class="sg-type-row">
+          <div class="sg-type-meta">h1 hero<br>clamp(30px, 5vw, 48px)<br>weight 900</div>
+          <div style="font-family:Montserrat;font-size:42px;font-weight:900;letter-spacing:-.02em;color:var(--navy)">Simulateur d'aides à la <span style="color:var(--accent)">rénovation</span></div>
+        </div>
+        <div class="sg-type-row">
+          <div class="sg-type-meta">h2 section<br>clamp(28px, 4vw, 40px)<br>weight 800</div>
+          <div style="font-family:Montserrat;font-size:34px;font-weight:800;letter-spacing:-.01em;color:var(--navy)">Estimation détaillée</div>
+        </div>
+        <div class="sg-type-row">
+          <div class="sg-type-meta">h3 card title<br>17px<br>weight 700</div>
+          <div style="font-family:Montserrat;font-size:17px;font-weight:700;color:var(--navy)">Transparence des chiffres</div>
+        </div>
+        <div class="sg-type-row">
+          <div class="sg-type-meta">body<br>16px / 1.7<br>weight 400</div>
+          <div>Chaque estimation est détaillée, sourcée, explicable. Pas de "forfait global" opaque — vous savez d'où vient chaque euro du budget.</div>
+        </div>
+        <div class="sg-type-row">
+          <div class="sg-type-meta">small / label<br>12-13px<br>weight 500-700</div>
+          <div style="font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:2px">Section label</div>
+        </div>
+        <div class="sg-type-row">
+          <div class="sg-type-meta">muted<br>13-14px<br>color --muted</div>
+          <div style="font-size:14px;color:var(--muted)">Réponse sous 24h · Devis gratuit · Sans engagement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 3. COULEURS                                    -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="colors">
+  <div class="container">
+    <div class="sg-section-label">03 — Palette</div>
+    <h2>Indigo Aurora</h2>
+    <p class="sg-section-desc">Palette minimale à accent unique. Le fond navy domine, l'aqua ponctue. Pas de dégradés complexes.</p>
+
+    <div class="sg-subsection">
+      <h3>Couleurs principales</h3>
+      <div class="sg-swatches">
+        <div class="sg-swatch"><div class="sg-swatch-color" style="background:#0D1025"></div><div class="sg-swatch-info"><div class="sg-swatch-name">Nightfall</div><div class="sg-swatch-hex">#0D1025</div><div class="sg-swatch-token">--navy</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch-color" style="background:#22D3EE"></div><div class="sg-swatch-info"><div class="sg-swatch-name">Aqua</div><div class="sg-swatch-hex">#22D3EE</div><div class="sg-swatch-token">--accent</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch-color" style="background:#06B6D4"></div><div class="sg-swatch-info"><div class="sg-swatch-name">Aqua hover</div><div class="sg-swatch-hex">#06B6D4</div><div class="sg-swatch-token">--accent-hover</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch-color" style="background:#0E7490"></div><div class="sg-swatch-info"><div class="sg-swatch-name">Deep aqua</div><div class="sg-swatch-hex">#0E7490</div><div class="sg-swatch-token">--blue</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch-color" style="background:#A78BFA"></div><div class="sg-swatch-info"><div class="sg-swatch-name">Iris</div><div class="sg-swatch-hex">#A78BFA</div><div class="sg-swatch-token">--iris / --green</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch-color" style="background:#1E1B4B"></div><div class="sg-swatch-info"><div class="sg-swatch-name">Texte</div><div class="sg-swatch-hex">#1E1B4B</div><div class="sg-swatch-token">--txt</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch-color" style="background:#64748B"></div><div class="sg-swatch-info"><div class="sg-swatch-name">Muted</div><div class="sg-swatch-hex">#64748B</div><div class="sg-swatch-token">--muted</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch-color" style="background:#FAFAFC;border:1px solid #E5E7F2"></div><div class="sg-swatch-info"><div class="sg-swatch-name">Canvas</div><div class="sg-swatch-hex">#FAFAFC</div><div class="sg-swatch-token">--pale</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch-color" style="background:#E5E7F2"></div><div class="sg-swatch-info"><div class="sg-swatch-name">Border</div><div class="sg-swatch-hex">#E5E7F2</div><div class="sg-swatch-token">--border</div></div></div>
+      </div>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Couleurs sémantiques (alertes)</h3>
+      <div class="sg-swatches" style="max-width:500px">
+        <div class="sg-swatch"><div class="sg-swatch-color" style="background:#F59E0B"></div><div class="sg-swatch-info"><div class="sg-swatch-name">Warning</div><div class="sg-swatch-hex">#F59E0B</div><div class="sg-swatch-token">Alertes ⚠</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch-color" style="background:#10B981"></div><div class="sg-swatch-info"><div class="sg-swatch-name">Success</div><div class="sg-swatch-hex">#10B981</div><div class="sg-swatch-token">Checks ✓</div></div></div>
+        <div class="sg-swatch"><div class="sg-swatch-color" style="background:#EF4444"></div><div class="sg-swatch-info"><div class="sg-swatch-name">Error</div><div class="sg-swatch-hex">#EF4444</div><div class="sg-swatch-token">Erreurs</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 4. BOUTONS                                     -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="buttons">
+  <div class="container">
+    <div class="sg-section-label">04 — Composants</div>
+    <h2>Boutons</h2>
+    <p class="sg-section-desc">6 variantes. Tous les boutons partagent la classe de base <code>.btn</code> avec un modificateur.</p>
+
+    <div class="sg-specimen">
+      <div class="sg-demo">
+        <button class="btn btn-accent">Accent (CTA principal)</button>
+        <button class="btn btn-outline">Outline (secondaire)</button>
+        <button class="btn btn-green">Iris (tertiaire)</button>
+        <button class="btn btn-ghost">Ghost (retour)</button>
+      </div>
+      <div class="sg-demo" style="background:var(--navy);padding:16px;border-radius:10px;margin-top:12px">
+        <button class="btn btn-accent">Accent sur fond sombre</button>
+        <button class="btn btn-white">White (sur fond sombre)</button>
+        <button class="btn" style="background:transparent;color:rgba(214,228,240,.9);border:1.5px solid rgba(255,255,255,.2)">Outline (sur fond sombre)</button>
+      </div>
+    </div>
+
+    <table class="sg-table">
+      <tr><th>Classe</th><th>Fond</th><th>Texte</th><th>Usage</th></tr>
+      <tr><td><code>.btn-accent</code></td><td>Aqua #22D3EE</td><td>Navy #0D1025</td><td>CTA principal — "Estimer mes travaux", "Simuler mes aides"</td></tr>
+      <tr><td><code>.btn-outline</code></td><td>Transparent</td><td>Navy</td><td>Action secondaire sur fond clair</td></tr>
+      <tr><td><code>.btn-green</code></td><td>Iris #A78BFA</td><td>Blanc</td><td>Action alternative</td></tr>
+      <tr><td><code>.btn-ghost</code></td><td>Transparent</td><td>Muted</td><td>Retour, navigation Typeform</td></tr>
+      <tr><td><code>.btn-white</code></td><td>Blanc</td><td>Navy</td><td>CTA sur fond navy</td></tr>
+      <tr><td><code>.btn-submit</code></td><td>Navy</td><td>Blanc</td><td>Soumission formulaire</td></tr>
+    </table>
+
+    <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Texte sur aqua = navy.</strong> Toujours <code>color: var(--navy)</code> sur fond aqua. Jamais blanc — le contraste WCAG AA n'est pas atteint.</div></div>
+    <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Hover = lift + darken.</strong> Tous les boutons font <code>translateY(-1px)</code> au hover + assombrissement du fond.</div></div>
+    <div class="sg-rule dont"><span class="sg-rule-icon">❌</span><div class="sg-rule-text"><strong>Pas de bouton rouge.</strong> Aucun bouton destructif sur le site. Les formulaires n'ont pas de "Supprimer" ou "Annuler" visuellement agressif.</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 5. CARDS                                       -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="cards">
+  <div class="container">
+    <div class="sg-section-label">05 — Composants</div>
+    <h2>Cards & conteneurs</h2>
+    <p class="sg-section-desc">Conteneurs avec border-radius 16px, ombre légère, lift au hover. Plusieurs variantes selon le contexte.</p>
+
+    <div class="sg-subsection">
+      <h3>Card standard</h3>
+      <div class="sg-specimen">
+        <div class="sg-demo">
+          <div class="demo-card">
+            <h4>Transparence des chiffres</h4>
+            <p>Chaque estimation est détaillée, sourcée, explicable.</p>
+          </div>
+          <div class="demo-card" style="border-color:var(--accent);border-width:2px">
+            <h4>Card featured</h4>
+            <p>Border accent + badge "Le plus choisi" au-dessus.</p>
+          </div>
+        </div>
+      </div>
+      <table class="sg-table">
+        <tr><th>Propriété</th><th>Valeur</th></tr>
+        <tr><td>Border radius</td><td><code>var(--radius)</code> = 16px</td></tr>
+        <tr><td>Border</td><td>1px solid <code>var(--border)</code></td></tr>
+        <tr><td>Padding</td><td>24-32px</td></tr>
+        <tr><td>Hover</td><td><code>var(--shadow-hover)</code> + <code>translateY(-3px)</code></td></tr>
+        <tr><td>Featured</td><td>border 2px <code>var(--accent)</code> + badge pill en absolute top</td></tr>
+      </table>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Alertes & Badges</h3>
+      <div class="sg-specimen">
+        <div style="display:flex;flex-direction:column;gap:10px;max-width:500px">
+          <div class="demo-alert warn"><strong>⚠</strong> <span><strong>Artisan RGE obligatoire</strong> — Seuls les travaux par un artisan labellisé ouvrent droit aux aides.</span></div>
+          <div class="demo-alert info"><strong>✓</strong> <span><strong>Cumul MaPrimeRénov' + CEE</strong> — Les deux dispositifs sont cumulables en parcours monogeste.</span></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:16px">
+          <span class="demo-badge aqua">Cumulable</span>
+          <span class="demo-badge iris">Prêt</span>
+          <span class="demo-badge green">Automatique</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Bandeau CTA</h3>
+      <p class="sg-subsection-desc">Section pleine largeur fond navy avec titre, sous-titre et boutons centrés. Utilisé en pied de page de contenu.</p>
+      <div class="sg-specimen sg-specimen-dark" style="text-align:center;padding:40px">
+        <div style="font-family:Montserrat;font-size:28px;font-weight:800;margin-bottom:10px">Envie d'en <span style="color:var(--accent)">discuter</span> ?</div>
+        <div style="font-size:14px;color:rgba(237,233,254,.7);margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto">Un appel de 15 minutes suffit pour voir si on peut travailler ensemble.</div>
+        <div style="display:flex;gap:12px;justify-content:center">
+          <button class="btn btn-accent" style="font-size:13px;padding:10px 20px">Simuler mes aides</button>
+          <button class="btn" style="background:transparent;color:rgba(214,228,240,.9);border:1.5px solid rgba(255,255,255,.2);font-size:13px;padding:10px 20px">Découvrir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 6. FORMULAIRES                                 -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="forms">
+  <div class="container">
+    <div class="sg-section-label">06 — Composants</div>
+    <h2>Formulaires & inputs</h2>
+    <p class="sg-section-desc">Deux contextes : formulaires classiques (sur-mesure, audit) et inputs Typeform (simulateur, estimateur).</p>
+
+    <div class="sg-subsection">
+      <h3>Inputs standard</h3>
+      <div class="sg-specimen">
+        <div class="sg-demo">
+          <input class="demo-input" placeholder="Jean Dupont" value="">
+          <input class="demo-input" placeholder="jean@exemple.fr" type="email">
+        </div>
+      </div>
+      <table class="sg-table">
+        <tr><th>Propriété</th><th>Valeur</th></tr>
+        <tr><td>Border</td><td>1.5px solid <code>var(--border)</code></td></tr>
+        <tr><td>Focus</td><td>border <code>var(--accent)</code> + box-shadow 3px aqua 10%</td></tr>
+        <tr><td>Radius</td><td>8px</td></tr>
+        <tr><td>Font</td><td>Plus Jakarta Sans 15px</td></tr>
+      </table>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Input Typeform — Big number</h3>
+      <p class="sg-subsection-desc">Utilisé pour le revenu fiscal, le budget travaux, le prix. Chiffre centré en Montserrat 56px avec suffixe € aligné.</p>
+      <div class="sg-specimen" style="text-align:center">
+        <div style="font-family:Montserrat;font-size:56px;font-weight:900;color:var(--navy);letter-spacing:-.02em">32 000 <span style="font-size:28px;color:var(--muted)">€</span></div>
+        <div style="width:80%;max-width:400px;height:6px;background:var(--border);border-radius:3px;margin:16px auto 0;position:relative">
+          <div style="width:40%;height:100%;background:var(--accent);border-radius:3px"></div>
+          <div style="position:absolute;top:-6px;left:40%;width:18px;height:18px;background:var(--accent);border-radius:50%;border:3px solid var(--white);box-shadow:0 2px 6px rgba(0,0,0,.15)"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Bloc capture email (paywall simulateur)</h3>
+      <p class="sg-subsection-desc">Prénom + email côte à côte, bouton pleine largeur, ligne de réassurance avec icône bouclier. Wording : "Téléchargez" (pas "Recevez").</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 7. NAVIGATION                                  -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="navigation">
+  <div class="container">
+    <div class="sg-section-label">07 — Structure</div>
+    <h2>Navigation & Footer</h2>
+    <p class="sg-section-desc">Identiques sur les 11 pages du site. Aucune variation.</p>
+
+    <div class="sg-subsection">
+      <h3>Nav sticky</h3>
+      <div class="sg-specimen sg-specimen-dark" style="padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-radius:10px">
+        <strong style="color:var(--white);font-size:15px">ADORA</strong>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="color:rgba(237,233,254,.8);font-size:13px;padding:6px 12px">Simulateur</span>
+          <span style="color:var(--accent);font-size:13px;padding:6px 12px;background:rgba(34,211,238,.1);border-radius:6px">Estimateur</span>
+          <span style="color:rgba(237,233,254,.8);font-size:13px;padding:6px 12px">Audit achat</span>
+          <span style="color:rgba(237,233,254,.8);font-size:13px;padding:6px 12px">Sur mesure</span>
+          <span style="background:var(--accent);color:var(--navy);font-size:12px;font-weight:700;padding:7px 16px;border-radius:8px">Estimer mes travaux</span>
+        </div>
+      </div>
+      <table class="sg-table" style="margin-top:16px">
+        <tr><th>Propriété</th><th>Valeur</th></tr>
+        <tr><td>Position</td><td><code>sticky; top: 0</code></td></tr>
+        <tr><td>Background</td><td><code>rgba(13,16,37,.97)</code> + <code>backdrop-filter: blur(12px)</code></td></tr>
+        <tr><td>Liens</td><td>4 liens texte + 1 CTA bouton aqua</td></tr>
+        <tr><td>Lien actif</td><td>Classe <code>.active</code> : couleur accent + fond aqua 10%</td></tr>
+        <tr><td>CTA</td><td>"Estimer mes travaux" → <code>estimateur-outil.html</code></td></tr>
+        <tr><td>Mobile</td><td>Burger menu, liens en colonne</td></tr>
+      </table>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Footer 4 colonnes</h3>
+      <table class="sg-table">
+        <tr><th>Colonne</th><th>Contenu</th></tr>
+        <tr><td>Marque</td><td>ADORA + baseline + zone géographique</td></tr>
+        <tr><td>Outils</td><td>Simulateur · Estimateur · Audit · Sur mesure</td></tr>
+        <tr><td>ADORA</td><td>À propos · Professionnels · Blog</td></tr>
+        <tr><td>Contact</td><td>Tél (lien tel:) · Email (lien mailto:) · Site</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--muted);margin-top:8px">Ligne légale centrée : © 2026 ADORA · EI · SIRET · TVA art. 293B</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 8. LAYOUT                                      -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="layout">
+  <div class="container">
+    <div class="sg-section-label">08 — Structure</div>
+    <h2>Layout & grilles</h2>
+    <p class="sg-section-desc">Grilles CSS Grid et Flexbox. Pas de framework externe.</p>
+
+    <table class="sg-table">
+      <tr><th>Pattern</th><th>CSS</th><th>Usage</th></tr>
+      <tr><td><code>.content-grid</code></td><td>grid 1fr 1fr, gap 60px</td><td>Sections 2 colonnes (à-propos, sur-mesure, pro)</td></tr>
+      <tr><td><code>.value-grid</code></td><td>grid repeat(3, 1fr), gap 24px</td><td>Grille de 3 value cards (philosophie, process)</td></tr>
+      <tr><td><code>.packs-grid</code></td><td>grid repeat(3, 1fr), gap 20px</td><td>3 packs accompagnement</td></tr>
+      <tr><td><code>.stats-row</code></td><td>grid repeat(4, 1fr), gap 24px</td><td>4 chiffres clés en ligne</td></tr>
+      <tr><td><code>.tools-grid</code></td><td>grid repeat(4, 1fr), gap 16px</td><td>Chips outils/livrables</td></tr>
+      <tr><td><code>.presta-grid</code></td><td>grid repeat(2, 1fr), gap 24px</td><td>Cards prestation (estimateur landing)</td></tr>
+      <tr><td>Section alternée</td><td><code>.section-alt</code> → background <code>var(--pale)</code></td><td>Alternance blanc/gris pour rythmer</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 9. RESPONSIVE                                  -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="responsive">
+  <div class="container">
+    <div class="sg-section-label">09 — Responsive</div>
+    <h2>Breakpoints & adaptations</h2>
+    <p class="sg-section-desc">Mobile-first implicite. Breakpoints standards descendantes avec <code>max-width</code>.</p>
+
+    <div class="sg-responsive">
+      <div class="sg-device">
+        <div class="sg-device-icon">🖥️</div>
+        <div class="sg-device-label">Desktop</div>
+        <div class="sg-device-bp">> 900px</div>
+        <div class="sg-device-desc">Grilles multi-colonnes, nav liens visibles, sections 100px padding</div>
+      </div>
+      <div class="sg-device">
+        <div class="sg-device-icon">📱</div>
+        <div class="sg-device-label">Tablette</div>
+        <div class="sg-device-bp">768px</div>
+        <div class="sg-device-desc">Grilles 2→1 col, footer 2 col, nav burger, sections 60px padding</div>
+      </div>
+      <div class="sg-device">
+        <div class="sg-device-icon">📲</div>
+        <div class="sg-device-label">Mobile</div>
+        <div class="sg-device-bp">480px</div>
+        <div class="sg-device-desc">Tout en 1 col, footer empilé, stats 1 col, portrait 140px</div>
+      </div>
+    </div>
+
+    <table class="sg-table" style="margin-top:32px">
+      <tr><th>Breakpoint</th><th>Composants affectés</th></tr>
+      <tr><td><code>900px</code></td><td>Nav : burger apparaît, liens masqués. Hero grid : 1 colonne</td></tr>
+      <tr><td><code>768px</code></td><td>Content-grid, value-grid, packs-grid : passage 1 colonne. Footer : 2 colonnes. Tools-grid : 2 col</td></tr>
+      <tr><td><code>600px</code></td><td>Compare-grid : 1 colonne. Steps-grid : 1 colonne</td></tr>
+      <tr><td><code>540px</code></td><td>Capture form : inputs empilés. Cards Typeform : 1 col</td></tr>
+      <tr><td><code>480px</code></td><td>Stats-row : 1 colonne. Footer : 1 colonne. Portrait : 140px</td></tr>
+      <tr><td><code>450px</code></td><td>Slider big-number : taille réduite à 48px. Hero title : clamp bas</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 10. TYPEFORM UX                                -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="typeform">
+  <div class="container">
+    <div class="sg-section-label">10 — Interaction</div>
+    <h2>Typeform UX Pattern</h2>
+    <p class="sg-section-desc">Pattern commun aux 3 outils interactifs (simulateur, estimateur, audit). Une question par écran, avancement linéaire.</p>
+
+    <div class="sg-subsection">
+      <h3>Structure d'un écran</h3>
+      <table class="sg-table">
+        <tr><th>Élément</th><th>Classe</th><th>Rôle</th></tr>
+        <tr><td>Eyebrow</td><td><code>.screen-eyebrow</code></td><td>Catégorie — "Revenus", "Logement", "Travaux"</td></tr>
+        <tr><td>Titre</td><td><code>.screen-title</code></td><td>La question — "Quel est votre revenu fiscal ?"</td></tr>
+        <tr><td>Hint</td><td><code>.screen-hint</code></td><td>Explication courte sous le titre</td></tr>
+        <tr><td>Why box</td><td><code>.screen-why</code></td><td>ℹ️ "Pourquoi cette question ?" — toujours optionnel</td></tr>
+        <tr><td>Input</td><td>Variable</td><td>Cards cliquables / Slider / Input texte / Multi-select</td></tr>
+        <tr><td>Nav row</td><td><code>.nav-row</code></td><td>← Retour (ghost) + Continuer (primary)</td></tr>
+      </table>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Types d'inputs Typeform</h3>
+      <table class="sg-table">
+        <tr><th>Type</th><th>Comportement</th><th>Utilisé dans</th></tr>
+        <tr><td>Cards cliquables</td><td>Sélection au clic → auto-advance à l'écran suivant. Check aqua au state selected</td><td>Localisation, type bien, DPE, parcours, état, gamme</td></tr>
+        <tr><td>Slider</td><td>Big number central (Montserrat 56px) + range input + ticks</td><td>Foyer, surface, budget</td></tr>
+        <tr><td>Input texte</td><td>Grand champ centré avec suffixe € ou m²</td><td>Revenu fiscal, prix demandé</td></tr>
+        <tr><td>Multi-select</td><td>Toggles groupés par catégorie, sélection multiple</td><td>Travaux envisagés</td></tr>
+        <tr><td>Upload</td><td>Zone drag & drop + bouton parcourir</td><td>Audit : DDT, DPE, photos</td></tr>
+      </table>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Écran de chargement</h3>
+      <p class="sg-subsection-desc">Spinner SVG animé + 5 messages qui défilent toutes les 560ms. Durée totale : 2,8s. Donne une perception de calcul complexe et augmente la valeur perçue du résultat.</p>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Progress bar</h3>
+      <table class="sg-table">
+        <tr><th>Propriété</th><th>Valeur</th></tr>
+        <tr><td>Position</td><td>Sticky sous la nav (top: 56px)</td></tr>
+        <tr><td>Background</td><td><code>var(--pale)</code></td></tr>
+        <tr><td>Fill</td><td>Gradient <code>var(--iris)</code> → <code>var(--accent)</code></td></tr>
+        <tr><td>Label</td><td>"Étape X sur Y" — mise à jour dynamique</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 11. WORKFLOWS                                  -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="workflows">
+  <div class="container">
+    <div class="sg-section-label">11 — Architecture</div>
+    <h2>Workflows & tunnels</h2>
+    <p class="sg-section-desc">Trois tunnels de conversion avec des mécaniques différentes.</p>
+
+    <div class="sg-subsection">
+      <h3>Tunnel 1 — Simulateur (gratuit → lead)</h3>
+      <div class="sg-flow">
+        <div class="sg-flow-step">Simulateur<div class="sg-flow-label">10 écrans</div></div>
+        <div class="sg-flow-arrow">→</div>
+        <div class="sg-flow-step">Résultat aperçu<div class="sg-flow-label">MPR + CEE</div></div>
+        <div class="sg-flow-arrow">→</div>
+        <div class="sg-flow-step highlight">Capture email<div class="sg-flow-label">Prénom + email</div></div>
+        <div class="sg-flow-arrow">→</div>
+        <div class="sg-flow-step dark">Worker PDF<div class="sg-flow-label">5 pages</div></div>
+        <div class="sg-flow-arrow">→</div>
+        <div class="sg-flow-step">Résultat complet<div class="sg-flow-label">Tableau + alertes</div></div>
+      </div>
+      <p style="font-size:13px;color:var(--muted)">Double envoi parallèle : Formspree (lead CRM) + Worker Cloudflare (PDF immédiat). Le PDF s'ouvre dans un nouvel onglet.</p>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Tunnel 2 — Estimateur (freemium → 49 €)</h3>
+      <div class="sg-flow">
+        <div class="sg-flow-step">Estimateur<div class="sg-flow-label">8 écrans</div></div>
+        <div class="sg-flow-arrow">→</div>
+        <div class="sg-flow-step">Fourchette gratuite<div class="sg-flow-label">3 summary cards</div></div>
+        <div class="sg-flow-arrow">→</div>
+        <div class="sg-flow-step highlight">Paywall 49 €<div class="sg-flow-label">Prénom + Email + Stripe</div></div>
+        <div class="sg-flow-arrow">→</div>
+        <div class="sg-flow-step">Stripe Checkout<div class="sg-flow-label">Payment Link</div></div>
+        <div class="sg-flow-arrow">→</div>
+        <div class="sg-flow-step dark">paiement-reussi<div class="sg-flow-label">GA4 purchase</div></div>
+      </div>
+      <p style="font-size:13px;color:var(--muted)">Le rapport PDF détaillé est envoyé par email après paiement (flow à automatiser via Worker template estimateur).</p>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Tunnel 3 — Audit (499 € différé)</h3>
+      <div class="sg-flow">
+        <div class="sg-flow-step">Audit formulaire<div class="sg-flow-label">10 écrans + uploads</div></div>
+        <div class="sg-flow-arrow">→</div>
+        <div class="sg-flow-step highlight">Soumission<div class="sg-flow-label">Formspree</div></div>
+        <div class="sg-flow-arrow">→</div>
+        <div class="sg-flow-step">Validation manuelle<div class="sg-flow-label">Email ADORA</div></div>
+        <div class="sg-flow-arrow">→</div>
+        <div class="sg-flow-step dark">Paiement 499 €<div class="sg-flow-label">Lien Stripe par email</div></div>
+      </div>
+      <p style="font-size:13px;color:var(--muted)">Pas de paiement automatique. Le lien Stripe est envoyé manuellement après qualification de la demande.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 12. PDF                                        -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="pdf">
+  <div class="container">
+    <div class="sg-section-label">12 — PDF</div>
+    <h2>Design system PDF</h2>
+    <p class="sg-section-desc">Le PDF a son propre design system, distinct du site web. Inspiré Notion/Linear, tech moderne.</p>
+
+    <table class="sg-table">
+      <tr><th>Propriété</th><th>Site web</th><th>PDF</th></tr>
+      <tr><td>Police titres</td><td>Montserrat</td><td>Inter Tight 600</td></tr>
+      <tr><td>Police body</td><td>Plus Jakarta Sans</td><td>Inter Tight 400</td></tr>
+      <tr><td>Police data</td><td>—</td><td>JetBrains Mono</td></tr>
+      <tr><td>Police accent</td><td>—</td><td>Instrument Serif (italic, €)</td></tr>
+      <tr><td>Couleur principale</td><td>Navy #0D1025</td><td>Ink #0F0F11</td></tr>
+      <tr><td>Fond</td><td>Blanc #FFFFFF</td><td>Papier #FAFAF7</td></tr>
+      <tr><td>Accent</td><td>Aqua #22D3EE</td><td>Bleu #2A5CFF</td></tr>
+      <tr><td>Format</td><td>Responsive</td><td>A4 portrait fixe (210×297mm)</td></tr>
+    </table>
+
+    <div class="sg-subsection">
+      <h3>Pages du rapport simulateur</h3>
+      <table class="sg-table">
+        <tr><th>Page</th><th>Contenu</th><th>Composants clés</th></tr>
+        <tr><td>1 — Couverture</td><td>Logo, ref ADR-XXXX, titre, 3 métriques dashboard</td><td>metrics-grid (3 cols), cover-tag pill</td></tr>
+        <tr><td>2 — Situation</td><td>Données déclaratives, travaux envisagés, budget</td><td>data-grid (2 cols), chip-grid, callout noir</td></tr>
+        <tr><td>3 — Aides</td><td>Profil Anah, tableau 4 lignes + total, RAC</td><td>profile-banner, data-table, rac-card noir</td></tr>
+        <tr><td>4 — Alertes</td><td>3 alertes + 6 étapes numérotées</td><td>alert-card (warn/info), steps-table</td></tr>
+        <tr><td>5 — Closing</td><td>2 plan-cards (49€ + AMO), contact</td><td>plan-card (featured), contact-panel</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- 13. RÈGLES                                     -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="sg-section" id="rules">
+  <div class="container">
+    <div class="sg-section-label">13 — Règles</div>
+    <h2>Règles de conception</h2>
+    <p class="sg-section-desc">Principes non négociables pour maintenir la cohérence du site.</p>
+
+    <div class="sg-subsection">
+      <h3>Accessibilité (WCAG)</h3>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Texte sur fond aqua (#22D3EE) = couleur navy (#0D1025).</strong> Jamais blanc — ratio de contraste insuffisant (2.8:1 vs 4.5:1 requis AA).</div></div>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Focus visible</strong> sur tous les éléments interactifs. Border accent + box-shadow 3px aqua translucide.</div></div>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Labels explicites</strong> sur tous les champs de formulaire. Pas de placeholder seul.</div></div>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Architecture fichiers</h3>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Single-file par page.</strong> HTML + CSS + JS dans un seul fichier .html. Pas de fichiers CSS ou JS séparés. Permet le déploiement par copier-coller sur GitHub.</div></div>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Google Fonts uniquement.</strong> Pas de polices auto-hébergées. Chargement via <code>&lt;link&gt;</code> dans le <code>&lt;head&gt;</code>.</div></div>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Images en base64.</strong> Le portrait et le logo SVG sont embarqués en base64 dans le HTML. Zéro dépendance externe pour les assets.</div></div>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Base href.</strong> Toutes les pages incluent <code>&lt;base href="..."&gt;</code> pour gérer staging vs production. Liens relatifs partout.</div></div>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Cohérence inter-pages</h3>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Nav identique partout.</strong> 4 liens + 1 CTA. Seule la classe <code>.active</code> change selon la page.</div></div>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Footer identique partout.</strong> 4 colonnes + ligne légale. Aucune variation.</div></div>
+      <div class="sg-rule dont"><span class="sg-rule-icon">❌</span><div class="sg-rule-text"><strong>Pas de page sans GA4.</strong> Chaque fichier HTML doit inclure le tag <code>G-M0LENY960B</code>.</div></div>
+      <div class="sg-rule dont"><span class="sg-rule-icon">❌</span><div class="sg-rule-text"><strong>Pas de CSS framework.</strong> Pas de Tailwind, Bootstrap, ou autre. Tout est vanilla CSS avec variables.</div></div>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Wording & ton</h3>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Vouvoiement partout</strong> sur le site. Tutoiement uniquement dans les échanges email clients.</div></div>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>"Télécharger"</strong> pour le PDF simulateur (pas "Recevoir", pas "Débloquer").</div></div>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Prix TTC pour particuliers.</strong> Prix HT (TJM) pour professionnels. Toujours mentionner TVA art. 293B.</div></div>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Micro-copy rassurante.</strong> "Sans engagement", "Gratuit", "Aucun spam", "Vos données ne sont jamais revendues".</div></div>
+      <div class="sg-rule dont"><span class="sg-rule-icon">❌</span><div class="sg-rule-text"><strong>Pas de jargon BTP non expliqué.</strong> "DPE" doit être accompagné de "Diagnostic de Performance Énergétique" au moins une fois. "RFR" → "Revenu Fiscal de Référence".</div></div>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Nommage fichiers & documents</h3>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Format ADORA :</strong> <code>ADORA_NomsClient_Sujet_Dateaaaammjj</code><br>Exemple : <code>ADORA_NAWAWI_Note_Synthese_20260330.docx</code></div></div>
+      <div class="sg-rule do"><span class="sg-rule-icon">✅</span><div class="sg-rule-text"><strong>Pages web :</strong> kebab-case français — <code>a-propos.html</code>, <code>sur-mesure.html</code>, <code>audit-avant-achat.html</code></div></div>
+    </div>
+
+    <div class="sg-subsection">
+      <h3>Formspree</h3>
+      <table class="sg-table">
+        <tr><th>Environnement</th><th>Endpoint</th><th>Domaine autorisé</th></tr>
+        <tr><td>Staging</td><td><code>maqaewbn</code></td><td>aymericdussauze.github.io</td></tr>
+        <tr><td>Production</td><td><code>xzdjopya</code></td><td>adora-economie.fr</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--muted);margin-top:8px">Chaque formulaire inclut un champ caché <code>_formType</code> pour le routage : <code>simulateur_gratuit</code>, <code>estimateur_payant</code>, <code>audit_499</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- FOOTER                                         -->
+<!-- ═══════════════════════════════════════════════ -->
+<footer style="background:var(--navy);padding:40px 0;text-align:center;color:rgba(237,233,254,.4);font-size:13px">
+  <div class="container">
+    <strong style="color:var(--white);display:block;margin-bottom:8px">ADORA — Style Guide</strong>
+    Document interne · Dernière mise à jour : avril 2026<br>
+    Ce document fait référence pour toute évolution du site adora-economie.fr
+  </div>
+</footer>
+
+</body>
+</html>
