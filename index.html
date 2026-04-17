@@ -690,12 +690,12 @@ img { max-width: 100%; height: auto; }
     </div>
     <div class="hero-kpis">
       <div class="kpi-card">
-        <div class="kpi-val" data-count="15">0</div>
+        <div class="kpi-val" data-count="15">15</div>
         <div class="kpi-label">lots techniques analysés par estimation</div>
         <div class="kpi-context">GO, charpente, menuiseries, isolation, CVC…</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-val" data-count="101">0</div>
+        <div class="kpi-val" data-count="101">101</div>
         <div class="kpi-label">départements couverts</div>
         <div class="kpi-context">Coefficients régionaux actualisés T1 2026</div>
       </div>
@@ -766,7 +766,7 @@ img { max-width: 100%; height: auto; }
         <span class="tool-badge badge-new">Nouveau</span>
       </div>
       <h3>Estimateur de travaux</h3>
-      <div class="tool-price">Gratuit · Rapport complet 49 €</div>
+      <div class="tool-price">Gratuit · rapport complet 49 €</div>
       <p>Estimation structurée par 15 postes de travaux, coefficients régionaux, fourchettes réalistes. Comme un économiste, en 3 minutes.</p>
       <span class="tool-link">Découvrir l'estimateur</span>
     </a>
@@ -788,7 +788,7 @@ img { max-width: 100%; height: auto; }
         <span class="tool-badge badge-live">Disponible</span>
       </div>
       <h3>Accompagnement sur mesure</h3>
-      <div class="tool-price">à partir de 990 €</div>
+      <div class="tool-price">590 — 3 900 €</div>
       <p>Estimation détaillée, cahier des charges, suivi de chantier, accompagnement complet. Du chiffrage à la réception.</p>
       <span class="tool-link">Voir les packs</span>
     </a>
@@ -927,6 +927,7 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 function animateCount(el) {
   const target = parseInt(el.getAttribute('data-count'));
   if (!target) return;
+  el.textContent = '0';
   const duration = 1600;
   const start = performance.now();
   const ease = t => t < .5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
@@ -943,9 +944,7 @@ const counterObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.3 });
 document.querySelectorAll('[data-count]').forEach(el => {
-  const rect = el.getBoundingClientRect();
-  if (rect.top < window.innerHeight && rect.bottom > 0) { animateCount(el); }
-  else { counterObs.observe(el); }
+  counterObs.observe(el);
 });
 </script>
 

@@ -249,8 +249,7 @@ input,select{font-family:inherit}
 .footer-legal{max-width:980px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(237,233,254,.3);text-align:center}
 
 /* Demo banner */
-.demo-banner{background:var(--iris-soft);border-bottom:1px solid rgba(167,139,250,.2);padding:10px 20px;text-align:center;font-size:12px;color:var(--navy)}
-.demo-banner strong{color:#6D44D9}
+
 
 /* ═══ UNIFIED FOOTER ═══ */
 .footer{background:var(--navy, #0D1025);color:rgba(237,233,254,.7);padding:60px 24px 30px;margin-top:80px}
@@ -287,10 +286,6 @@ input,select{font-family:inherit}
   <button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
 </div>
 </nav>
-
-<div class="demo-banner">
-  <strong>⚠ Version de développement</strong> — Ratios provisoires en cours de calibration. Ne pas diffuser.
-</div>
 
 <div class="app">
 
@@ -964,7 +959,6 @@ const LOADING_MSGS = [
 function submitForm() {
   // Hide app, show loading
   document.querySelector(".app").style.display = "none";
-  document.querySelector(".demo-banner").style.display = "none";
   const loading = document.getElementById("loading");
   loading.classList.add("show");
   window.scrollTo({top: 0, behavior: "smooth"});
