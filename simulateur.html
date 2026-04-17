@@ -46,6 +46,12 @@ input,select,textarea{font-family:inherit}
 @media(max-width:600px){.app{padding:24px 16px 48px}}
 
 /* Progress */
+
+.rgpd-check{margin:16px 0}
+.rgpd-check label{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);line-height:1.5;cursor:pointer}
+.rgpd-check input[type="checkbox"]{margin-top:3px;flex-shrink:0;width:16px;height:16px;accent-color:var(--accent)}
+.rgpd-check a{color:var(--blue);text-decoration:underline}
+
 /* SIM HERO */
 .sim-hero{background:var(--navy);padding:48px 0 40px;color:var(--white);text-align:center;position:relative;overflow:hidden}
 .sim-hero::before{content:'';position:absolute;top:-60%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(14,116,144,.12) 0%,transparent 65%);pointer-events:none}
@@ -261,6 +267,9 @@ input,select,textarea{font-family:inherit}
 .footer-links{display:flex;gap:20px;flex-wrap:wrap}
 .footer-links a{color:rgba(237,233,254,.6);font-size:13px;text-decoration:none}
 .footer-legal{max-width:980px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(237,233,254,.3);text-align:center}
+.footer-legal a{color:rgba(237,233,254,.5);text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:#22D3EE}
+.footer-legal br{margin-bottom:6px}
 
 /* ═══ UNIFIED FOOTER ═══ */
 .footer{background:var(--navy, #0D1025);color:rgba(237,233,254,.7);padding:60px 24px 30px;margin-top:80px}
@@ -280,6 +289,20 @@ input,select,textarea{font-family:inherit}
 .footer-inner{grid-template-columns:1fr;gap:24px}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "MaPrimeRénov' et les CEE sont-ils cumulables ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, en parcours monogeste les deux dispositifs sont cumulables. En parcours accompagné, les CEE sont intégrés dans le calcul global de l'aide Anah."}},
+    {"@type": "Question", "name": "Faut-il faire les travaux avant ou après la demande d'aide ?", "acceptedAnswer": {"@type": "Answer", "text": "Toujours après. Vous devez créer votre dossier MaPrimeRénov' et choisir votre opérateur CEE avant de signer le moindre devis."}},
+    {"@type": "Question", "name": "Mon artisan doit-il être certifié RGE ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, c'est une condition obligatoire pour bénéficier de MaPrimeRénov' et des CEE. Vérifiez sur france-renov.gouv.fr."}},
+    {"@type": "Question", "name": "L'éco-PTZ est-il cumulable avec MaPrimeRénov' ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, sans condition de revenus. Jusqu'à 50 000 € à taux zéro sur 20 ans."}},
+    {"@type": "Question", "name": "Les montants du simulateur sont-ils garantis ?", "acceptedAnswer": {"@type": "Answer", "text": "Les montants sont calculés sur les barèmes Anah 2026 en vigueur. Ils sont indicatifs et dépendent de la validation de votre dossier."}},
+    {"@type": "Question", "name": "Quelle différence avec le site officiel MaPrimeRénov' ?", "acceptedAnswer": {"@type": "Answer", "text": "Le simulateur ADORA calcule simultanément les 4 dispositifs (MPR, CEE, éco-PTZ, TVA réduite) et affiche un reste à charge global."}}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -303,7 +326,7 @@ input,select,textarea{font-family:inherit}
 <!-- PAGE HERO -->
 <section class="sim-hero">
   <div class="container">
-    <h1>Simulateur d'aides à la <em>Rénovation énergétique</em></h1>
+    <h1>Simulateur d'aides à la <em>rénovation énergétique</em></h1>
     <p class="sim-hero-sub">Estimez vos droits MaPrimeRénov', CEE, éco-PTZ et TVA réduite — Barèmes 2026</p>
   </div>
 </section>
@@ -325,12 +348,12 @@ input,select,textarea{font-family:inherit}
   </div>
   <div class="cards">
     <button type="button" class="card" data-val="idf" onclick="selectCard(this,0,'loc')">
-      <div class="card-icon">🏙</div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="6" width="7" height="16"/><rect x="9" y="2" width="7" height="20"/><rect x="17" y="9" width="6" height="13"/></svg></div>
       <div class="card-title">Île-de-France</div>
       <div class="card-desc">Paris et petite/grande couronne (75, 77, 78, 91-95)</div>
     </button>
     <button type="button" class="card" data-val="hdf" onclick="selectCard(this,0,'loc')">
-      <div class="card-icon">🌳</div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22v-6M8 18l4-4 4 4"/><circle cx="12" cy="8" r="6"/></svg></div>
       <div class="card-title">Hors Île-de-France</div>
       <div class="card-desc">Reste du territoire métropolitain</div>
     </button>
@@ -346,12 +369,12 @@ input,select,textarea{font-family:inherit}
   </div>
   <div class="cards">
     <button type="button" class="card" data-val="maison" onclick="selectCard(this,1,'logType')">
-      <div class="card-icon">🏡</div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
       <div class="card-title">Maison individuelle</div>
       <div class="card-desc">Pavillon, maison de ville</div>
     </button>
     <button type="button" class="card" data-val="appart" onclick="selectCard(this,1,'logType')">
-      <div class="card-icon">🏢</div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 6h2M13 6h2M9 10h2M13 10h2M9 14h2M13 14h2M9 18h6"/></svg></div>
       <div class="card-title">Appartement</div>
       <div class="card-desc">En copropriété</div>
     </button>
@@ -376,7 +399,7 @@ input,select,textarea{font-family:inherit}
       <div class="card-title">Moins de 15 ans</div>
     </button>
     <button type="button" class="card card-compact" data-val="nsp" onclick="selectCard(this,2,'logAge')">
-      <div class="card-icon">❓</div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
       <div class="card-title">Je ne sais pas</div>
     </button>
   </div>
@@ -391,12 +414,12 @@ input,select,textarea{font-family:inherit}
   </div>
   <div class="cards">
     <button type="button" class="card" data-val="occupant" onclick="selectCard(this,3,'statut')">
-      <div class="card-icon">🔑</div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
       <div class="card-title">Propriétaire occupant</div>
       <div class="card-desc">Vous vivez dans ce logement (résidence principale)</div>
     </button>
     <button type="button" class="card" data-val="bailleur" onclick="selectCard(this,3,'statut')">
-      <div class="card-icon">🏘</div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M5 21V5a2 2 0 012-2h4a2 2 0 012 2v16"/><path d="M15 21V9a2 2 0 012-2h2a2 2 0 012 2v12"/></svg></div>
       <div class="card-title">Propriétaire bailleur</div>
       <div class="card-desc">Vous louez ce logement (investissement locatif)</div>
     </button>
@@ -471,12 +494,12 @@ input,select,textarea{font-family:inherit}
   </div>
   <div class="cards">
     <button type="button" class="card" data-val="geste" onclick="selectCard(this,7,'parcours')">
-      <div class="card-icon">🔧</div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
       <div class="card-title">Par geste / bouquet</div>
       <div class="card-desc">Un ou plusieurs travaux ciblés (chaudière, isolation, fenêtres…). Cumul MPR + CEE.</div>
     </button>
     <button type="button" class="card" data-val="ampleur" onclick="selectCard(this,7,'parcours')">
-      <div class="card-icon">🏗</div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 20h20M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg></div>
       <div class="card-title">Rénovation d'ampleur</div>
       <div class="card-desc">Saut de 2+ classes DPE avec accompagnement. Aides plus élevées, MAIS pas de cumul CEE.</div>
     </button>
@@ -543,7 +566,7 @@ input,select,textarea{font-family:inherit}
     </div>
     
     <div class="good-news" id="goodNews">
-      <div class="good-news-icon">✨</div>
+      <div class="good-news-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3zM5 19l1 3 1-3 3-1-3-1-1-3-1 3-3 1 3 1z"/></svg></div>
       <div class="good-news-text" id="goodNewsText"></div>
     </div>
 
@@ -581,6 +604,9 @@ input,select,textarea{font-family:inherit}
             <input type="text" class="capture-input" id="prenom" placeholder="Prénom" autocomplete="given-name">
             <input type="email" class="capture-input" id="email" placeholder="votre@email.com" autocomplete="email">
           </div>
+          <div class="rgpd-check">
+  <label><input type="checkbox" id="rgpdCheck"> J'accepte que mes données soient traitées par ADORA pour répondre à ma demande, conformément à la <a href="politique-confidentialite.html" target="_blank">politique de confidentialité</a>.</label>
+</div>
           <button type="button" class="capture-cta" id="unlockBtn" onclick="unlock()">Télécharger mon rapport →</button>
         </div>
         <div class="capture-reassurance">
@@ -616,6 +642,75 @@ input,select,textarea{font-family:inherit}
   </div>
 </div>
 
+<!-- ═══ SEO PILLAR CONTENT ═══ -->
+<section class="section" style="padding:80px 0">
+<div class="container" style="max-width:760px">
+  <h2 style="font-size:28px;font-weight:800;color:var(--navy);margin-bottom:16px">Comment fonctionne MaPrimeRénov' en 2026</h2>
+  <p>MaPrimeRénov' est la principale aide publique à la rénovation énergétique en France. Gérée par l'Anah (Agence nationale de l'habitat), elle s'adresse aux propriétaires occupants et bailleurs dont le logement a plus de 15 ans.</p>
+  <p>En 2026, le dispositif distingue deux parcours. Le <strong>parcours monogeste</strong> finance un geste isolé (changement de chauffage, isolation d'un poste, VMC) avec des plafonds par type de travaux. Le <strong>parcours accompagné</strong> (ou rénovation d'ampleur) finance un bouquet de travaux avec un gain énergétique minimal de 2 classes DPE, sous condition d'accompagnement par un opérateur agréé Mon Accompagnateur Rénov'.</p>
+  <p>Le montant de la prime dépend de votre <strong>profil de revenus Anah</strong> : Bleu (très modestes), Jaune (modestes), Violet (intermédiaires) ou Rose (supérieurs). Les plafonds sont différents en Île-de-France et hors Île-de-France. Le simulateur ci-dessus applique automatiquement les bons barèmes selon votre situation.</p>
+
+  <h2 style="font-size:28px;font-weight:800;color:var(--navy);margin:48px 0 16px">Barèmes CEE 2026 par type de travaux</h2>
+  <p>Les Certificats d'Économie d'Énergie (CEE) sont une prime versée par les fournisseurs d'énergie (TotalEnergies, EDF, Engie, Effy, Hellio, etc.) pour financer des travaux de rénovation énergétique. Contrairement à MaPrimeRénov', les CEE sont cumulables avec la prime Anah en parcours monogeste.</p>
+  <p>Le montant des CEE dépend du type de travaux, de la zone climatique et de la surface traitée. Les postes les plus généreux en CEE sont l'isolation des combles perdus, le remplacement d'une chaudière fioul par une pompe à chaleur, et l'installation d'un système solaire combiné. Attention : les montants varient fortement d'un opérateur à l'autre (parfois du simple au triple), d'où l'intérêt de comparer avant de signer.</p>
+  <p>Point important : <strong>ne signez jamais un devis avant d'avoir choisi votre opérateur CEE</strong>. La prime doit être demandée avant la signature du devis, sous peine de perdre le bénéfice de l'aide.</p>
+
+  <h2 style="font-size:28px;font-weight:800;color:var(--navy);margin:48px 0 16px">Cumul MaPrimeRénov' + CEE + éco-PTZ + TVA 5,5 %</h2>
+  <p>L'un des points forts du dispositif 2026 est la possibilité de <strong>cumuler plusieurs aides</strong> sur un même projet. En parcours monogeste, MaPrimeRénov' et les CEE sont cumulables, ce qui peut représenter jusqu'à 90 % du coût des travaux pour les ménages les plus modestes.</p>
+  <p>L'éco-prêt à taux zéro (éco-PTZ) complète le montage : jusqu'à 50 000 € empruntables à 0 % sur 20 ans, sans condition de revenus. Ce n'est pas une aide (il faut rembourser le capital), mais c'est un levier puissant pour financer le reste à charge sans frais.</p>
+  <p>Enfin, la TVA réduite à 5,5 % s'applique automatiquement aux travaux de rénovation énergétique réalisés par un professionnel dans un logement de plus de 2 ans. L'économie par rapport au taux normal de 20 % représente environ 14,5 % du montant HT des travaux — souvent plusieurs milliers d'euros.</p>
+  <p>Le simulateur ci-dessus calcule automatiquement le cumul de ces quatre dispositifs et affiche votre reste à charge effectif.</p>
+
+  <h2 style="font-size:28px;font-weight:800;color:var(--navy);margin:48px 0 16px">3 exemples chiffrés selon le profil de revenus</h2>
+  
+  <div style="background:var(--pale);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px">
+    <h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px">Profil Bleu — Revenus très modestes</h3>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:8px"><strong>Projet :</strong> PAC air/eau + isolation combles + VMC double flux — Budget 35 000 €</p>
+    <p style="font-size:14px">MaPrimeRénov' : 20 000 € · CEE : 3 500–5 000 € · TVA 5,5 % : 5 075 € d'économie · <strong>Reste à charge estimé : 5 000–6 500 €</strong></p>
+  </div>
+  
+  <div style="background:var(--pale);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px">
+    <h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px">Profil Jaune — Revenus modestes</h3>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:8px"><strong>Projet :</strong> Poêle à granulés + isolation murs par l'intérieur — Budget 22 000 €</p>
+    <p style="font-size:14px">MaPrimeRénov' : 9 000 € · CEE : 2 000–3 000 € · TVA 5,5 % : 3 190 € d'économie · <strong>Reste à charge estimé : 7 800–8 800 €</strong></p>
+  </div>
+  
+  <div style="background:var(--pale);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px">
+    <h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px">Profil Violet — Revenus intermédiaires</h3>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:8px"><strong>Projet :</strong> PAC géothermique + VMC — Budget 55 000 €</p>
+    <p style="font-size:14px">MaPrimeRénov' : 11 000 € · CEE : 3 000–4 500 € · TVA 5,5 % : 7 975 € d'économie · <strong>Reste à charge estimé : 32 500–34 000 €</strong></p>
+  </div>
+
+  <h2 style="font-size:28px;font-weight:800;color:var(--navy);margin:48px 0 16px">Questions fréquentes</h2>
+  <div class="faq-list" style="margin-bottom:0">
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">MaPrimeRénov' et les CEE sont-ils cumulables ?</div>
+      <div class="faq-a">Oui, en parcours monogeste les deux dispositifs sont cumulables. En parcours accompagné (rénovation d'ampleur), les CEE sont intégrés dans le calcul global de l'aide Anah.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Faut-il faire les travaux avant ou après la demande d'aide ?</div>
+      <div class="faq-a">Toujours après. Vous devez créer votre dossier MaPrimeRénov' et choisir votre opérateur CEE avant de signer le moindre devis. Tout travail commencé avant la validation du dossier vous fait perdre le bénéfice des aides.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Mon artisan doit-il être certifié RGE ?</div>
+      <div class="faq-a">Oui, c'est une condition obligatoire pour bénéficier de MaPrimeRénov' et des CEE. Vérifiez la certification de votre artisan sur france-renov.gouv.fr avant tout engagement.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">L'éco-PTZ est-il cumulable avec MaPrimeRénov' ?</div>
+      <div class="faq-a">Oui, sans condition de revenus. Vous pouvez emprunter jusqu'à 50 000 € à taux zéro sur 20 ans pour financer le reste à charge après déduction des aides.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Les montants affichés par le simulateur sont-ils garantis ?</div>
+      <div class="faq-a">Les montants sont calculés sur les barèmes Anah 2026 en vigueur. Ils sont indicatifs et dépendent de la validation effective de votre dossier par l'Anah et de l'opérateur CEE retenu. Le simulateur donne un ordre de grandeur fiable, pas un engagement contractuel.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Quelle différence entre ce simulateur et le site officiel MaPrimeRénov' ?</div>
+      <div class="faq-a">Le simulateur ADORA calcule simultanément les 4 dispositifs (MaPrimeRénov', CEE, éco-PTZ, TVA réduite) et affiche un reste à charge global. Le site officiel ne traite que la prime Anah. Vous gagnez une vision complète de votre plan de financement en une seule simulation.</div>
+    </div>
+  </div>
+</div>
+</section>
+
 <footer class="footer">
 <div class="footer-inner">
   <div class="footer-brand">
@@ -634,6 +729,7 @@ input,select,textarea{font-family:inherit}
     <a href="a-propos.html">À propos</a>
     <a href="professionnels.html">Professionnels</a>
     <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
   </div>
   <div class="footer-col footer-contact">
     <div class="footer-col-title">Contact</div>
@@ -642,7 +738,7 @@ input,select,textarea{font-family:inherit}
     <a href="https://adora-economie.fr">adora-economie.fr</a>
   </div>
 </div>
-<div class="footer-legal">© 2026 ADORA · EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</div>
+<div class="footer-legal">© 2026 ADORA · EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI<br><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a> · <a href="cgv.html">CGV</a></div>
 </footer>
 
 <script>
@@ -1009,6 +1105,10 @@ function unlock() {
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     alert("Adresse email invalide.");
+    return;
+  }
+  if (!document.getElementById("rgpdCheck").checked) {
+    alert("Merci d'accepter la politique de confidentialité pour continuer.");
     return;
   }
   

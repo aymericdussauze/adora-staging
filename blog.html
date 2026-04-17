@@ -93,6 +93,9 @@ img{max-width:100%;height:auto}
 .footer-links a:hover{color:var(--white)}
 .footer-contact{font-size:12px;color:rgba(237,233,254,.4);text-align:right}
 .footer-legal{max-width:1120px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(237,233,254,.3);text-align:center}
+.footer-legal a{color:rgba(237,233,254,.5);text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:#22D3EE}
+.footer-legal br{margin-bottom:6px}
 
 /* FORMS */
 .form-container{max-width:720px;margin:0 auto;background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:40px;box-shadow:var(--shadow-card)}
@@ -314,7 +317,7 @@ img{max-width:100%;height:auto}
 <section class="section" style="padding:80px 0">
   <div class="container" style="max-width:640px;text-align:center">
     <div style="width:72px;height:72px;border-radius:18px;background:rgba(34,211,238,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:32px">
-      ✏️
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 3a2.83 2.83 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
     </div>
     <h2 style="font-size:28px;font-weight:800;color:var(--navy);margin-bottom:12px">Premiers articles en préparation</h2>
     <p style="font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:32px">
@@ -324,27 +327,27 @@ img{max-width:100%;height:auto}
     <div style="background:var(--pale);border:1px solid var(--border);border-radius:var(--radius);padding:32px;text-align:left;margin-bottom:40px">
       <h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:16px">Articles à venir</h3>
       <div style="display:flex;flex-direction:column;gap:14px">
-        <div style="display:flex;gap:12px;align-items:start">
+        <a href="les-15-lots-tce-expliques.html" style="display:flex;gap:12px;align-items:start;text-decoration:none;padding:12px;border-radius:10px;transition:background .2s">
           <span style="background:var(--accent);color:var(--navy);width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">1</span>
           <div>
             <div style="font-weight:600;color:var(--navy);margin-bottom:2px">Les 15 lots TCE expliqués à un particulier</div>
             <div style="font-size:13px;color:var(--muted)">Comprendre la structure d'un budget travaux — gros œuvre, second œuvre, équipements</div>
           </div>
-        </div>
-        <div style="display:flex;gap:12px;align-items:start">
+        </a>
+        <a href="maprimerenov-2026-guide-complet.html" style="display:flex;gap:12px;align-items:start;text-decoration:none;padding:12px;border-radius:10px;transition:background .2s">
           <span style="background:var(--accent);color:var(--navy);width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">2</span>
           <div>
             <div style="font-weight:600;color:var(--navy);margin-bottom:2px">MaPrimeRénov' 2026 : ce qui change pour votre rénovation</div>
             <div style="font-size:13px;color:var(--muted)">Barèmes, profils, parcours monogeste vs ampleur — le guide complet</div>
           </div>
-        </div>
-        <div style="display:flex;gap:12px;align-items:start">
+        </a>
+        <a href="10-pieges-techniques-ddt-achat-immobilier.html" style="display:flex;gap:12px;align-items:start;text-decoration:none;padding:12px;border-radius:10px;transition:background .2s">
           <span style="background:var(--accent);color:var(--navy);width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">3</span>
           <div>
             <div style="font-weight:600;color:var(--navy);margin-bottom:2px">Avant d'acheter : les 10 pièges techniques à vérifier sur un DDT</div>
             <div style="font-size:13px;color:var(--muted)">Amiante, plomb, termites, DPE — ce que le dossier technique révèle (et ce qu'il cache)</div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
 
@@ -390,6 +393,7 @@ img{max-width:100%;height:auto}
     <a href="a-propos.html">À propos</a>
     <a href="professionnels.html">Professionnels</a>
     <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
   </div>
   <div class="footer-col footer-contact">
     <div class="footer-col-title">Contact</div>
@@ -398,7 +402,7 @@ img{max-width:100%;height:auto}
     <a href="https://adora-economie.fr">adora-economie.fr</a>
   </div>
 </div>
-<div class="footer-legal">© 2026 ADORA · EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</div>
+<div class="footer-legal">© 2026 ADORA · EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI<br><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a> · <a href="cgv.html">CGV</a></div>
 </footer>
 <script>
 document.addEventListener("DOMContentLoaded",()=>{

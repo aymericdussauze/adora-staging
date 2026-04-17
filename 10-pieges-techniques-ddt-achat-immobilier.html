@@ -4,11 +4,14 @@
 <meta charset="UTF-8">
 <base href="https://aymericdussauze.github.io/adora-staging/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estimateur de travaux | Combien coûtent vos travaux de rénovation ? | ADORA</title>
-<meta name="description" content="Estimez gratuitement le coût de vos travaux de rénovation par lot. 15 postes TCE, coefficients régionaux, rapport PDF professionnel.">
-<link rel="canonical" href="https://adora-economie.fr/estimateur.html">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+
+<title>Avant d'acheter : les 10 pièges techniques à vérifier sur un DDT — ADORA Blog</title>
+<meta name="description" content="Les 10 pièges techniques à vérifier dans un DDT avant d'acheter un bien immobilier : amiante, plomb, DPE, termites, assainissement. d'économie de la construction fondé par Aymeric Dussauze. 15 ans de gestion de projets, une reconversion BTP, des outils digitaux au service du métier.">
 <style>
+
 /* ═══ ADORA PropTech Design System v2 ═══ */
 :root{--navy:#0D1025;--blue:#0E7490;--accent:#22D3EE;--accent-hover:#06B6D4;--light:#EDE9FE;--pale:#FAFAFC;--green:#A78BFA;--green-hover:#8B6FE3;--txt:#1E1B4B;--muted:#64748B;--border:#E5E7F2;--white:#FFFFFF;--radius:16px;--radius-sm:10px;--shadow-card:0 1px 3px rgba(13,16,37,.06),0 8px 24px rgba(13,16,37,.04);--shadow-hover:0 4px 12px rgba(13,16,37,.08),0 16px 40px rgba(13,16,37,.06);--shadow-btn:0 2px 8px rgba(34,211,238,.25);--transition:.3s cubic-bezier(.4,0,.2,1)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -164,6 +167,13 @@ img{max-width:100%;height:auto}
 @media(max-width:450px){.steps-grid{grid-template-columns:1fr}}
 
 
+
+/* PORTRAIT */
+.portrait-photo{width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid var(--border);box-shadow:0 4px 20px rgba(13,16,37,.1)}
+.portrait-block{display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:24px}
+.portrait-block-inline{display:flex;align-items:center;gap:20px}
+@media(max-width:768px){.portrait-photo{width:140px;height:140px}.portrait-block-inline{flex-direction:column;text-align:center}}
+
 /* ═══ UNIFIED FOOTER ═══ */
 .footer{background:var(--navy, #0D1025);color:rgba(237,233,254,.7);padding:60px 24px 30px;margin-top:80px}
 .footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px}
@@ -181,27 +191,107 @@ img{max-width:100%;height:auto}
 @media(max-width:480px){
 .footer-inner{grid-template-columns:1fr;gap:24px}
 }
-</style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question", "name": "Comment l'estimation est-elle calculée ?", "acceptedAnswer": {"@type": "Answer", "text": "L'estimation utilise les prix unitaires Batichiffrage actualisés T1 2026, avec des coefficients régionaux par département et un allotissement en 15 lots TCE."}},
-    {"@type": "Question", "name": "Quelle est la précision de l'estimation ?", "acceptedAnswer": {"@type": "Answer", "text": "La fourchette gratuite donne un ordre de grandeur à +/- 20%. Le rapport détaillé à 49€ affine avec un allotissement complet par lot."}},
-    {"@type": "Question", "name": "Quelle différence avec un devis d'artisan ?", "acceptedAnswer": {"@type": "Answer", "text": "Un devis d'artisan chiffre ses propres travaux. L'estimation ADORA couvre l'ensemble du projet, tous corps d'état, avec un regard indépendant."}}
-  ]
+
+
+/* ═══ PAGE-SPECIFIC STYLES ═══ */
+.page-hero{background:var(--navy);padding:80px 0 60px;color:var(--white);position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:-40%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(14,116,144,.12) 0%,transparent 65%);pointer-events:none}
+.page-hero h1{font-size:clamp(32px,5vw,52px);font-weight:900;margin-bottom:16px;letter-spacing:-.02em;position:relative}
+.page-hero h1 em{font-style:normal;color:var(--accent)}
+.page-hero .lead{font-size:18px;color:rgba(214,228,240,.85);max-width:600px;line-height:1.7;position:relative}
+
+/* Content sections */
+.content-section{padding:80px 0}
+.content-section:nth-child(even){background:var(--pale)}
+.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.content-narrow{max-width:720px}
+
+.content-label{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
+.content-title{font-size:clamp(26px,3.5vw,36px);font-weight:800;color:var(--navy);margin-bottom:20px;letter-spacing:-.01em;line-height:1.2}
+.content-text{font-size:16px;color:var(--txt);line-height:1.8;margin-bottom:20px}
+.content-text strong{color:var(--navy);font-weight:700}
+
+/* Value cards */
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.value-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;transition:all var(--transition)}
+.value-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-3px)}
+.value-card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.value-card-icon.blue{background:rgba(34,211,238,.1);color:var(--blue)}
+.value-card-icon.iris{background:rgba(167,139,250,.1);color:var(--green)}
+.value-card-icon.teal{background:rgba(14,116,144,.1);color:#0E7490}
+.value-card h3{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.value-card p{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* Timeline / parcours */
+.timeline{position:relative;padding-left:36px;margin-top:32px}
+.timeline::before{content:'';position:absolute;left:12px;top:4px;bottom:4px;width:2px;background:var(--border)}
+.timeline-item{position:relative;padding-bottom:32px}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-item::before{content:'';position:absolute;left:-30px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:3px solid var(--white);box-shadow:0 0 0 2px var(--accent)}
+.timeline-year{font-size:13px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.timeline-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.timeline-desc{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* Stats row */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:40px 0}
+.stat{text-align:center}
+.stat-value{font-family:'Montserrat',sans-serif;font-size:36px;font-weight:900;color:var(--navy);letter-spacing:-.02em;line-height:1}
+.stat-value span{color:var(--accent)}
+.stat-label{font-size:13px;color:var(--muted);margin-top:8px;font-weight:500}
+
+/* Pricing table */
+.pricing-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin-top:32px}
+.pricing-table thead th{background:var(--navy);color:var(--white);padding:16px 24px;font-size:13px;font-weight:700;text-align:left;letter-spacing:.5px}
+.pricing-table thead th:last-child{text-align:right}
+.pricing-table tbody td{padding:18px 24px;border-bottom:1px solid var(--border);font-size:15px;color:var(--txt)}
+.pricing-table tbody tr:last-child td{border-bottom:none}
+.pricing-table tbody tr:nth-child(even) td{background:var(--pale)}
+.pricing-table tbody td:last-child{text-align:right;font-family:'Montserrat',sans-serif;font-weight:700;color:var(--navy);font-size:16px;white-space:nowrap}
+.pricing-table .prestation-name{font-weight:600;color:var(--navy);margin-bottom:2px}
+.pricing-table .prestation-desc{font-size:13px;color:var(--muted)}
+.pricing-note{font-size:13px;color:var(--muted);margin-top:16px;font-style:italic}
+
+/* Tools grid */
+.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+.tool-chip{background:var(--pale);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);text-align:center;transition:all var(--transition)}
+.tool-chip:hover{background:rgba(34,211,238,.08);border-color:var(--accent)}
+
+/* CTA band */
+.cta-band{background:var(--navy);padding:80px 0;color:var(--white);text-align:center;position:relative;overflow:hidden}
+.cta-band::before{content:'';position:absolute;top:-60%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(167,139,250,.1) 0%,transparent 60%);pointer-events:none}
+.cta-band h2{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:16px;position:relative}
+.cta-band h2 em{font-style:normal;color:var(--accent)}
+.cta-band p{font-size:17px;color:rgba(214,228,240,.8);max-width:560px;margin:0 auto 32px;line-height:1.7;position:relative}
+.cta-band .btn-group{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+
+/* Reference card */
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:32px;display:flex;gap:24px;align-items:start;margin-top:32px}
+.ref-card-icon{width:56px;height:56px;border-radius:14px;background:rgba(34,211,238,.08);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.ref-card-body h4{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.ref-card-body p{font-size:14px;color:var(--muted);line-height:1.6}
+.ref-card-badge{display:inline-block;background:rgba(34,211,238,.1);color:var(--blue);font-size:13px;font-weight:700;padding:4px 10px;border-radius:6px;margin-top:8px}
+
+@media(max-width:768px){
+  .content-grid{grid-template-columns:1fr;gap:40px}
+  .value-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr);gap:20px}
+  .tools-grid{grid-template-columns:repeat(2,1fr)}
+  .pricing-table thead th,.pricing-table tbody td{padding:12px 14px;font-size:14px}
 }
-</script>
+@media(max-width:480px){
+  .stats-row{grid-template-columns:1fr}
+}
+
+</style>
 </head>
 <body>
-<div class="scroll-progress" id="scrollProgress"></div>
+
 <nav class="nav">
 <div class="nav-inner">
   <a href="./" class="nav-logo"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NDAgMjAwIiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjIwMCI+CiAgPGcgZmlsbD0id2hpdGUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8IS0tIFRyaWFuZ2xlIGljb24gLS0+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgOCkgdHJhbnNsYXRlKC03NSwgLTk5KSI+CiAgICAgIDxwYXRoIGQ9Ik0gMTE3LDI4MiBMIDE2OSwyODEgTCAxNzQsMjc0IEwgMTc3LDI2OCBMIDIyOSwxOTMgTCAyMjksMTkxIEwgMjA2LDE1OCBMIDIwNywxNTUgTCAyMjksMTU2IEwgMjM0LDE2NSBMIDIzNywxNjggTCAyMzksMTczIEwgMjgxLDIzNSBMIDI4MiwyNDAgTCAyNDAsMjQwIEwgMjEzLDI4MCBMIDIxMywyODIgTCAzNjQsMjgyIEwgMzYxLDI3NiBMIDMwMCwxODcgTCAyOTksMTg0IEwgMjQyLDk5IEwgMjQwLDEwMCBMIDIwNywxNTAgTCAyMDEsMTU2IEwgMTQwLDI0OCBMIDEzNywyNTEgTCAxMzYsMjU0IEwgMTI0LDI3MCBaIi8+CiAgICA8L2c+CiAgICA8IS0tIFRleHQgIkFkb3JhIiAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCwgMTIpIHNjYWxlKDEuOCkgdHJhbnNsYXRlKC03MSwgLTMyMCkiPgogICAgICA8cGF0aCBkPSJNIDEwMiwzMjYgTCA5MywzNTIgTCA5MSwzNTUgTCA4NywzNjkgTCA4NSwzNzIgTCA4MiwzODMgTCA4MCwzODYgTCA3OCwzOTUgTCA3MSw0MTMgTCA3MSw0MTYgTCA4OSw0MTUgTCA5NywzOTAgTCAxMjUsMzg5IEwgMTMwLDM5NCBMIDEzMSw0MDAgTCAxMzMsNDAzIEwgMTM3LDQxNiBMIDE1NSw0MTYgTCAxNTUsNDEyIEwgMTUzLDQwOSBMIDEyNCwzMjYgWiBNIDExNCwzNDQgTCAxMjMsMzcyIEwgMTIyLDM3NiBMIDEwMiwzNzUgTCAxMDIsMzcyIEwgMTA2LDM1OSBMIDEwOCwzNTYgTCAxMTAsMzQ3IFoiLz4KICAgICAgPHBhdGggZD0iTSAyMjUsMzIwIEwgMjA4LDMyMCBMIDIwNiwzNTIgTCAyMDIsMzQ4IEwgMTk0LDM0NSBMIDE4MCwzNDUgTCAxNjksMzQ5IEwgMTU5LDM2MCBMIDE1NSwzNzMgTCAxNTYsMzk1IEwgMTYyLDQwNyBMIDE3MCw0MTQgTCAxNzgsNDE3IEwgMTkzLDQxNyBMIDE5OSw0MTUgTCAyMDUsNDA4IEwgMjA4LDQwOCBMIDIwOCw0MTYgTCAyMjUsNDE2IFogTSAxODcsMzU3IEwgMTk0LDM1NyBMIDE5OSwzNTkgTCAyMDQsMzY0IEwgMjA3LDM3MSBMIDIwOCwzODUgTCAyMDYsMzk0IEwgMjA0LDM5OCBMIDE5OSw0MDMgTCAxOTUsNDA1IEwgMTg2LDQwNSBMIDE4Miw0MDMgTCAxNzYsMzk3IEwgMTczLDM4OSBMIDE3MywzNzIgTCAxNzYsMzY1IEwgMTgyLDM1OSBaIi8+CiAgICAgIDxwYXRoIGQ9Ik0gMjU1LDM0NiBMIDI0NCwzNTIgTCAyMzgsMzU5IEwgMjMzLDM3MSBMIDIzMywzODkgTCAyMzUsMzk3IEwgMjQwLDQwNiBMIDI0NSw0MTEgTCAyNTIsNDE1IEwgMjU5LDQxNyBMIDI3Nyw0MTcgTCAyODMsNDE1IEwgMjk1LDQwNiBMIDMwMSwzOTYgTCAzMDMsMzg4IEwgMzAzLDM3NCBMIDMwMSwzNjYgTCAyOTYsMzU3IEwgMjkwLDM1MSBMIDI4MywzNDcgTCAyNzcsMzQ1IFogTSAyNjQsMzU3IEwgMjcyLDM1NyBMIDI3NiwzNTkgTCAyODEsMzY0IEwgMjg1LDM3NSBMIDI4NSwzODcgTCAyODMsMzk1IEwgMjc2LDQwMyBMIDI3Miw0MDUgTCAyNjQsNDA1IEwgMjU5LDQwMyBMIDI1NCwzOTggTCAyNTAsMzg2IEwgMjUwLDM3NCBMIDI1MiwzNjggTCAyNTgsMzYwIFoiLz4KICAgICAgPHBhdGggZD0iTSAzNTAsMzQ1IEwgMzM4LDM0NiBMIDMyOCwzNTUgTCAzMjgsMzQ3IEwgMzExLDM0NyBMIDMxMSw0MTYgTCAzMjgsNDE1IEwgMzI4LDM3NCBMIDMzMCwzNjggTCAzMzYsMzYyIEwgMzQzLDM1OSBMIDM1MCwzNTkgWiIvPgogICAgICA8cGF0aCBkPSJNIDM2NCwzNDkgTCAzNTksMzUzIEwgMzU1LDM2MCBMIDM1NCwzNjQgTCAzNTUsMzY5IEwgMzcwLDM2OSBMIDM3MSwzNjMgTCAzNzUsMzU4IEwgMzc3LDM1NyBMIDM4NiwzNTcgTCAzOTIsMzYyIEwgMzkzLDM2NSBMIDM5MiwzNzQgTCAzNzIsMzc1IEwgMzYwLDM4MCBMIDM1NCwzODYgTCAzNTEsMzk0IEwgMzUxLDQwMiBMIDM1NCw0MDkgTCAzNTgsNDEzIEwgMzY2LDQxNyBMIDM4MSw0MTcgTCAzODYsNDE1IEwgMzkxLDQwOSBMIDM5NCw0MDkgTCAzOTUsNDE2IEwgNDExLDQxNiBMIDQxMCwzNjcgTCA0MDksMzYxIEwgNDA2LDM1NCBMIDQwMCwzNDggTCAzOTEsMzQ1IEwgMzczLDM0NSBaIE0gMzkzLDM4NSBMIDM5MiwzOTcgTCAzODYsNDA0IEwgMzg0LDQwNSBMIDM3NSw0MDUgTCAzNjksNDAwIEwgMzY5LDM5MiBMIDM3NSwzODYgTCAzODMsMzg0IFoiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="ADORA" style="height:26px;width:auto"></a>
   <div class="nav-links" id="navLinks">
     <a href="simulateur.html">Simulateur</a>
-    <a href="estimateur.html" class="active">Estimateur</a>
+    <a href="estimateur.html">Estimateur</a>
     <a href="audit-avant-achat.html">Audit achat</a>
     <a href="sur-mesure.html">Sur mesure</a>
     <a href="estimateur-outil.html" class="nav-cta">Estimer mes travaux</a>
@@ -209,182 +299,57 @@ img{max-width:100%;height:auto}
   <button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
 </div>
 </nav>
+<style>
+.article-hero{background:var(--navy);padding:56px 0 44px;color:var(--white)}
+.article-meta{display:flex;gap:16px;align-items:center;margin-bottom:16px;font-size:13px;color:rgba(214,228,240,.5)}
+.article-meta span{display:flex;align-items:center;gap:6px}
+.article-tag{padding:4px 10px;background:rgba(34,211,238,.15);color:var(--accent,#22D3EE);border-radius:6px;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.article-hero h1{font-size:clamp(26px,4vw,38px);font-weight:900;letter-spacing:-.02em;margin-bottom:12px;max-width:680px}
+.article-hero h1 em{font-style:normal;color:var(--accent,#22D3EE)}
+.article-hero .lead{font-size:16px;color:rgba(214,228,240,.7);max-width:600px;line-height:1.7}
+.article-body{max-width:720px;margin:0 auto;padding:60px 28px}
+.article-body h2{font-size:22px;font-weight:800;color:var(--navy,#0D1025);margin:40px 0 14px}
+.article-body h3{font-size:17px;font-weight:700;color:var(--navy,#0D1025);margin:28px 0 10px}
+.article-body p{font-size:16px;line-height:1.8;margin-bottom:16px;color:var(--txt,#1E1B4B)}
+.article-body ul,.article-body ol{padding-left:24px;margin-bottom:16px}
+.article-body li{font-size:15px;line-height:1.7;margin-bottom:8px}
+.article-body strong{color:var(--navy,#0D1025)}
+.article-body blockquote{border-left:3px solid var(--accent,#22D3EE);padding:16px 24px;margin:24px 0;background:var(--pale,#FAFAFC);border-radius:0 10px 10px 0;font-size:15px;color:var(--muted,#64748B)}
+.article-body .callout{background:var(--pale,#FAFAFC);border:1px solid var(--border,#E5E7F2);border-radius:12px;padding:24px;margin:24px 0}
+.article-cta{background:var(--navy,#0D1025);border-radius:16px;padding:40px;text-align:center;color:var(--white);margin:48px 0}
+.article-cta h3{color:var(--white);font-size:22px;margin-bottom:8px}
+.article-cta p{color:rgba(237,233,254,.7);margin-bottom:20px;font-size:15px}
+.article-placeholder{background:var(--pale,#FAFAFC);border:2px dashed var(--border,#E5E7F2);border-radius:16px;padding:60px 40px;text-align:center;margin:40px 0}
+.article-placeholder h2{color:var(--muted);font-size:22px;margin-bottom:8px}
+.article-placeholder p{color:var(--muted);font-size:15px}
+</style>
 
-<section class="hero">
-<div class="container">
-<div class="hero-grid">
-<div>
-<h1>Combien vont coûter<br>vos <em>travaux</em> ?</h1>
-<p class="subtitle">Obtenez une estimation structurée par lot, avec des fourchettes réalistes et des coefficients régionaux. Comme un économiste de la construction, en 3 minutes.</p>
-<div class="hero-badges">
-<span class="hero-badge">✓ 15 postes de travaux</span>
-<span class="hero-badge">✓ 101 départements</span>
-<span class="hero-badge">✓ Barèmes 2026</span>
-</div>
-<div style="display:flex;gap:14px;flex-wrap:wrap">
-<a href="estimateur-outil.html" class="btn btn-accent">Lancer mon estimation</a>
-<a href="#compare" class="btn btn-outline">Voir les formules</a>
-</div>
-</div>
-<div class="lots-visual" style="display:none"></div>
-</div>
-</div>
-</section>
-
-<section class="section">
-<div class="container">
-<div class="explain-grid reveal">
-<div class="explain-text">
-<h3>Pas un simple prix au m².<br>Un vrai allotissement.</h3>
-<p>Les "estimateurs" en ligne donnent un prix au m² générique. ADORA décompose votre budget par <strong>15 lots techniques</strong> — exactement comme le ferait un économiste de la construction en phase esquisse.</p>
-<p>Vous voyez où va chaque euro : gros œuvre, menuiseries, plomberie, électricité… Vous pouvez arbitrer, reporter, comparer.</p>
-</div>
-<div class="lots-visual">
-<div class="lots-example">
-<div class="lot-pill"><span>Gros œuvre</span><span class="price">32 400 €</span></div>
-<div class="lot-pill"><span>Charpente</span><span class="price">8 200 €</span></div>
-<div class="lot-pill highlight"><span>Électricité</span><span class="price">18 600 €</span></div>
-<div class="lot-pill"><span>Plomberie</span><span class="price">15 100 €</span></div>
-<div class="lot-pill"><span>Menuiseries</span><span class="price">12 800 €</span></div>
-<div class="lot-pill"><span>Isolation</span><span class="price">9 400 €</span></div>
-<div class="lot-pill"><span>Plâtrerie</span><span class="price">7 200 €</span></div>
-<div class="lot-pill"><span>Peinture</span><span class="price">5 800 €</span></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section class="section section-alt" id="compare">
-<div class="container">
-<div class="section-header center reveal">
-<div class="section-label">Formules</div>
-<h2 class="section-title">Gratuit pour commencer.<br>Complet pour décider.</h2>
-<p class="section-sub">La synthèse gratuite vous donne l'enveloppe. Le rapport complet vous donne le détail pour agir.</p>
-</div>
-<div class="compare-grid reveal">
-<div class="compare-card">
-<div class="compare-header">
-<h3>Synthèse gratuite</h3>
-<div class="compare-price free">0 €</div>
-</div>
-<ul class="compare-list">
-<li><span class="check">&#10003;</span> Enveloppe globale (fourchette basse/haute)</li>
-<li><span class="check">&#10003;</span> 3 grands postes : gros œuvre, second œuvre, équipements</li>
-<li><span class="check">&#10003;</span> Ratio moyen au m² affiché</li>
-<li><span class="check">&#10003;</span> Coefficient régional appliqué</li>
-<li><span class="cross">&#10007;</span> <span style="color:#bbb">Détail par lot (15 lots)</span></li>
-<li><span class="cross">&#10007;</span> <span style="color:#bbb">Camembert de répartition</span></li>
-<li><span class="cross">&#10007;</span> <span style="color:#bbb">Rapport PDF professionnel</span></li>
-<li><span class="cross">&#10007;</span> <span style="color:#bbb">Coefficients correcteurs détaillés</span></li>
-</ul>
-<div class="compare-cta"><a href="estimateur-outil.html" class="btn btn-green" style="width:100%;font-size:14px;padding:12px">Commencer gratuitement</a></div>
-</div>
-<div class="compare-card premium">
-<div class="compare-header">
-<h3>Rapport complet</h3>
-<div class="compare-price paid">49 € <small>TTC</small></div>
-</div>
-<ul class="compare-list">
-<li><span class="check">&#10003;</span> <strong>Allotissement complet : 15 lots avec fourchettes</strong></li>
-<li><span class="check">&#10003;</span> <strong>Camembert de répartition par lot</strong></li>
-<li><span class="check">&#10003;</span> <strong>Rapport PDF téléchargeable brandé ADORA</strong></li>
-<li><span class="check">&#10003;</span> <strong>6 coefficients correcteurs expliqués</strong></li>
-<li><span class="check">&#10003;</span> Comparaison avec les moyennes nationales</li>
-<li><span class="check">&#10003;</span> Alertes métier (amiante, structure, accès)</li>
-<li><span class="check">&#10003;</span> Enveloppe globale + ratio au m²</li>
-<li><span class="check">&#10003;</span> Coefficient régional détaillé</li>
-</ul>
-<div class="compare-cta"><a href="estimateur-outil.html" class="btn btn-accent" style="width:100%;font-size:14px;padding:12px">Obtenir mon rapport complet</a></div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Report preview -->
-<section class="section section-alt" style="padding:60px 0">
-<div class="container" style="text-align:center">
-  <p style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);margin-bottom:16px">Aperçu du rapport 49 €</p>
-  <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <div style="width:110px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px 10px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
-      <div style="height:6px;width:45%;background:var(--navy);border-radius:3px;margin-bottom:8px"></div>
-      <div style="height:3px;width:75%;background:var(--border);border-radius:2px;margin-bottom:4px"></div>
-      <div style="height:3px;width:60%;background:var(--border);border-radius:2px;margin-bottom:10px"></div>
-      <div style="height:20px;background:var(--accent);opacity:.15;border-radius:4px"></div>
-      <div style="font-size:8px;color:var(--muted);margin-top:6px">Synthèse</div>
+<section class="article-hero">
+  <div class="container">
+    <div class="article-meta">
+      <span class="article-tag">Audit & achat</span>
+      <span>Avril 2026</span>
+      <span>7 min de lecture</span>
     </div>
-    <div style="width:110px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px 10px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
-      <div style="height:4px;width:55%;background:var(--accent);border-radius:2px;margin-bottom:6px"></div>
-      <div style="height:8px;width:100%;background:var(--pale);border-radius:3px;margin-bottom:3px"></div>
-      <div style="height:8px;width:100%;background:var(--pale);border-radius:3px;margin-bottom:3px"></div>
-      <div style="height:8px;width:100%;background:var(--pale);border-radius:3px;margin-bottom:3px"></div>
-      <div style="height:8px;width:100%;background:var(--pale);border-radius:3px;margin-bottom:3px"></div>
-      <div style="height:8px;width:100%;background:var(--pale);border-radius:3px"></div>
-      <div style="font-size:8px;color:var(--muted);margin-top:6px">15 lots détaillés</div>
-    </div>
-    <div style="width:110px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px 10px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
-      <div style="height:4px;width:50%;background:var(--accent);border-radius:2px;margin-bottom:6px"></div>
-      <div style="display:flex;justify-content:center;margin-bottom:6px"><div style="width:40px;height:40px;border-radius:50%;border:4px solid var(--accent);opacity:.3"></div></div>
-      <div style="height:3px;width:70%;background:var(--border);border-radius:2px;margin:0 auto"></div>
-      <div style="font-size:8px;color:var(--muted);margin-top:6px">Répartition</div>
-    </div>
-    <div style="width:110px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px 10px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
-      <div style="height:4px;width:45%;background:var(--accent);border-radius:2px;margin-bottom:6px"></div>
-      <div style="height:3px;width:85%;background:var(--border);border-radius:2px;margin-bottom:4px"></div>
-      <div style="height:3px;width:70%;background:var(--border);border-radius:2px;margin-bottom:6px"></div>
-      <div style="height:12px;background:var(--navy);border-radius:3px"></div>
-      <div style="font-size:8px;color:var(--muted);margin-top:6px">Alertes & coefficients</div>
-    </div>
+    <h1>Avant d'acheter : les 10 pièges techniques à vérifier sur un DDT</h1>
+    <p class="lead">Amiante, plomb, termites, DPE, assainissement… Le dossier de diagnostic technique révèle beaucoup — mais il cache aussi des choses. Voici ce qu'il faut regarder avant de signer.</p>
   </div>
-  <p style="font-size:12px;color:var(--muted);margin-top:14px;font-style:italic">Extrait d'un rapport type — détail par lot, coefficients régionaux, points de vigilance</p>
-</div>
 </section>
 
-<section class="section">
-<div class="container">
-<div class="section-header center reveal">
-<div class="section-label">Comment ça marche</div>
-<h2 class="section-title">4 étapes, 3 minutes</h2>
+<div class="article-body">
+  <div class="article-placeholder">
+    <h2>Article en cours de rédaction</h2>
+    <p>Le contenu complet de cet article sera publié prochainement.<br>En attendant, utilisez les outils ADORA pour obtenir des réponses concrètes.</p>
+  </div>
+  
+  <div class="article-cta">
+    <h3>Envie de passer à l'action ?</h3>
+    <p>Cet article vous a donné les clés pour comprendre. L'outil vous donne les chiffres.</p>
+    <a href="audit-avant-achat.html" class="btn btn-accent" style="font-size:15px;padding:14px 32px">Demander un audit</a>
+  </div>
+  
+  <p style="text-align:center;margin-top:32px"><a href="blog.html" style="color:var(--blue);font-weight:600">← Retour au blog</a></p>
 </div>
-<div class="steps-grid reveal">
-<div class="step-card"><div class="step-num">1</div><h4>Votre projet</h4><p>Type de bien, surface, département, nature des travaux.</p></div>
-<div class="step-card"><div class="step-num">2</div><h4>Votre bien</h4><p>État actuel, ancienneté, accès, diagnostics existants.</p></div>
-<div class="step-card"><div class="step-num">3</div><h4>Calcul instantané</h4><p>15 lots × coefficients régionaux et correcteurs = votre estimation.</p></div>
-<div class="step-card"><div class="step-num">4</div><h4>Résultats</h4><p>Synthèse gratuite immédiate. Rapport complet en option.</p></div>
-</div>
-</div>
-</section>
-
-<section class="section section-alt" id="faq">
-<div class="container">
-<div class="section-header center reveal">
-<div class="section-label">FAQ</div>
-<h2 class="section-title">Questions fréquentes</h2>
-<p class="section-sub">Tout ce que vous devez savoir avant de lancer votre estimation.</p>
-</div>
-<div class="faq-list reveal">
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Est-ce que l'estimation est fiable ?</div><div class="faq-a">Notre estimateur utilise des ratios professionnels calibrés sur la base Batichiffrage 2026 — la référence des économistes de la construction en France. Les prix sont régionalisés par département et ajustés par 6 coefficients correcteurs. C'est une estimation paramétrique qui donne une enveloppe budgétaire réaliste pour préparer votre projet.</div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Quelle différence avec un devis d'artisan ?</div><div class="faq-a">Un devis d'artisan est un engagement contractuel sur un prix précis. Notre estimation est un outil d'aide à la décision en amont : elle vous permet de savoir combien prévoir avant de solliciter des artisans. C'est le même travail qu'un économiste fait en phase d'esquisse — mais accessible en 3 minutes.</div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Pourquoi 15 lots et pas un prix au m² ?</div><div class="faq-a">Parce que « 800 à 1 200 €/m² » ne vous dit pas si c'est l'électricité ou la plomberie qui coûte cher. En décomposant par lot, vous voyez exactement où va votre budget et pouvez arbitrer.</div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Mes données sont-elles protégées ?</div><div class="faq-a">Votre email est collecté uniquement pour vous envoyer vos résultats. Nous ne vendons pas vos données et n'avons pas de partenariat commercial avec des entreprises de travaux. ADORA est un cabinet indépendant.</div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Comment fonctionne le paiement ?</div><div class="faq-a">La synthèse gratuite ne nécessite aucun paiement. Pour le rapport complet à 49 € TTC, le paiement s'effectue par carte bancaire via Stripe. Vous recevez votre rapport PDF immédiatement après paiement.</div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Et si j'ai besoin d'aller plus loin ?</div><div class="faq-a">ADORA propose des prestations sur mesure : audit avant achat (499 €), estimation détaillée (990-1 490 €), et packs d'accompagnement AMO (2 200 à 3 900 €).</div></div>
-</div>
-</div>
-</section>
-
-<section class="cta-band">
-<div class="container">
-<h2>Prêt à estimer vos travaux ?</h2>
-<p class="cta-sub">3 minutes, gratuit, sans engagement. Vous obtenez une enveloppe budgétaire structurée immédiatement.</p>
-<div class="cta-btns"><a href="estimateur-outil.html" class="btn btn-accent">Lancer mon estimation</a></div>
-<div class="cta-links">
-<a href="simulateur.html">Calculer mes aides</a>
-<a href="audit-avant-achat.html">Audit avant achat — 499 €</a>
-<a href="sur-mesure.html">Accompagnement sur mesure</a>
-</div>
-</div>
-</section>
 
 <footer class="footer">
 <div class="footer-inner">
@@ -416,11 +381,12 @@ img{max-width:100%;height:auto}
 <div class="footer-legal">© 2026 ADORA · EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI<br><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a> · <a href="cgv.html">CGV</a></div>
 </footer>
 <script>
-window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('scrollProgress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%'});
-const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.addEventListener("DOMContentLoaded",()=>{
+  const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add("visible");obs.unobserve(el.target)}}),{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+});
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0LENY960B"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M0LENY960B');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-M0LENY960B");</script>
 </body>
 </html>

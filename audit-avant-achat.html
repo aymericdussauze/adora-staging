@@ -181,6 +181,17 @@ img{max-width:100%;height:auto}
 .footer-inner{grid-template-columns:1fr;gap:24px}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "L'audit inclut-il une visite sur site ?", "acceptedAnswer": {"@type": "Answer", "text": "Non, l'audit à 499€ est réalisé sur documents. Une visite sur site relève d'une prestation AMO complète."}},
+    {"@type": "Question", "name": "Si je veux aller plus loin après l'audit ?", "acceptedAnswer": {"@type": "Answer", "text": "L'audit peut déboucher sur un accompagnement AMO complet. Les 499€ sont alors intégralement déduits de la mission."}},
+    {"@type": "Question", "name": "Quels documents dois-je fournir ?", "acceptedAnswer": {"@type": "Answer", "text": "Le dossier de diagnostic technique (DDT), le DPE, des photos intérieures et extérieures, et le lien de l'annonce si disponible."}}
+  ]
+}
+</script>
 </head>
 <body>
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -219,6 +230,9 @@ img{max-width:100%;height:auto}
 <li>Conseil de négociation chiffré</li>
 <li>Échange téléphonique 30 min</li>
 </ul>
+<div style="margin-top:16px;padding:12px 16px;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.25);border-radius:8px;font-size:13px;color:var(--txt);line-height:1.5">
+  <strong style="color:var(--navy)">Bon à savoir :</strong> si vous poursuivez avec un accompagnement AMO, les 499 € sont intégralement déduits de la mission.
+</div>
 </div>
 </div>
 </div>
@@ -271,6 +285,42 @@ img{max-width:100%;height:auto}
 <div class="deliv-card"><h4>Conseil négo</h4><p>Arguments chiffrés et opposables pour négocier le prix sur la base de faits techniques.</p></div>
 <div class="deliv-card"><h4>Appel 30 min</h4><p>Échange direct avec l'économiste. Questions, clarifications, stratégie d'acquisition.</p></div>
 </div>
+
+<!-- Report preview mockup -->
+<div class="reveal" style="margin-top:48px;text-align:center">
+  <p style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);margin-bottom:16px">Aperçu du rapport type</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <div style="width:120px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 10px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
+      <div style="height:6px;width:50%;background:var(--navy);border-radius:3px;margin-bottom:10px"></div>
+      <div style="height:3px;width:80%;background:var(--border);border-radius:2px;margin-bottom:5px"></div>
+      <div style="height:3px;width:65%;background:var(--border);border-radius:2px;margin-bottom:12px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
+        <div style="height:16px;background:var(--pale);border-radius:3px"></div>
+        <div style="height:16px;background:var(--pale);border-radius:3px"></div>
+      </div>
+      <div style="font-size:8px;color:var(--muted);margin-top:8px">Couverture</div>
+    </div>
+    <div style="width:120px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 10px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
+      <div style="height:4px;width:60%;background:var(--accent);border-radius:2px;margin-bottom:8px"></div>
+      <div style="height:3px;width:90%;background:var(--border);border-radius:2px;margin-bottom:4px"></div>
+      <div style="height:3px;width:75%;background:var(--border);border-radius:2px;margin-bottom:4px"></div>
+      <div style="height:3px;width:85%;background:var(--border);border-radius:2px;margin-bottom:4px"></div>
+      <div style="height:3px;width:60%;background:var(--border);border-radius:2px;margin-bottom:8px"></div>
+      <div style="height:14px;background:rgba(34,211,238,.1);border-radius:3px"></div>
+      <div style="font-size:8px;color:var(--muted);margin-top:8px">Analyse DDT</div>
+    </div>
+    <div style="width:120px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 10px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
+      <div style="height:4px;width:55%;background:var(--accent);border-radius:2px;margin-bottom:8px"></div>
+      <div style="height:10px;width:100%;background:var(--pale);border-radius:3px;margin-bottom:4px"></div>
+      <div style="height:10px;width:100%;background:var(--pale);border-radius:3px;margin-bottom:4px"></div>
+      <div style="height:10px;width:100%;background:var(--pale);border-radius:3px;margin-bottom:4px"></div>
+      <div style="height:14px;background:var(--navy);border-radius:3px"></div>
+      <div style="font-size:8px;color:var(--muted);margin-top:8px">Budget travaux</div>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin-top:12px;font-style:italic">Extrait d'un rapport type — données fictives à titre d'illustration</p>
+</div>
+
 </div>
 </section>
 
@@ -321,6 +371,7 @@ img{max-width:100%;height:auto}
     <a href="a-propos.html">À propos</a>
     <a href="professionnels.html">Professionnels</a>
     <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
   </div>
   <div class="footer-col footer-contact">
     <div class="footer-col-title">Contact</div>

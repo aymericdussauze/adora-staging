@@ -655,6 +655,37 @@ img { max-width: 100%; height: auto; }
 .footer-inner{grid-template-columns:1fr;gap:24px}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "ADORA — Économiste de la construction",
+  "description": "Cabinet indépendant d'économie de la construction. Estimations TCE, CCTP/DPGF, AMO pour particuliers et professionnels.",
+  "url": "https://adora-economie.fr",
+  "telephone": "+33660215509",
+  "email": "aymericdussauze@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Louviers",
+    "postalCode": "27400",
+    "addressRegion": "Normandie",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    {"@type": "AdministrativeArea", "name": "Eure (27)"},
+    {"@type": "AdministrativeArea", "name": "Seine-Maritime (76)"},
+    {"@type": "AdministrativeArea", "name": "Île-de-France"}
+  ],
+  "priceRange": "49€ — 3900€",
+  "founder": {
+    "@type": "Person",
+    "name": "Aymeric Dussauze",
+    "jobTitle": "Économiste de la construction",
+    "sameAs": "https://www.linkedin.com/in/aymericdussauze/"
+  },
+  "sameAs": ["https://www.linkedin.com/in/aymericdussauze/"]
+}
+</script>
 </head>
 <body>
 
@@ -684,11 +715,9 @@ img { max-width: 100%; height: auto; }
       <div class="hero-eyebrow">Disponible pour de nouveaux projets</div>
       <h1>Vous rénovez&nbsp;?<br>Sachez <em>combien</em><br>avant de signer.</h1>
       <p class="hero-sub">Outils en ligne gratuits et accompagnement sur mesure par un économiste de la construction indépendant. Normandie & Île-de-France.</p>
-      <div class="hero-btns">
-        <a href="estimateur-outil.html" class="btn btn-accent" style="font-size:17px;padding:18px 40px">Estimer mes travaux gratuitement</a>
-      </div>
-      <div style="margin-top:12px">
-        <a href="simulateur.html" style="color:rgba(237,233,254,.7);font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:3px">ou calculer mes aides à la rénovation →</a>
+      <div class="hero-btns" style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="estimateur-outil.html" class="btn btn-accent" style="font-size:16px;padding:16px 36px">Estimer mes travaux</a>
+        <a href="simulateur.html" class="btn btn-outline" style="font-size:16px;padding:16px 36px">Calculer mes aides</a>
       </div>
       <div class="hero-reassurance">
         <span>Gratuit pour commencer</span>
@@ -759,7 +788,7 @@ img { max-width: 100%; height: auto; }
   <div class="tools-grid stagger">
     <a href="simulateur.html" class="tool-card tc-green reveal" style="--i:0">
       <div class="tool-top">
-        <div class="tool-icon">📊</div>
+        <div class="tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg></div>
         <span class="tool-badge badge-live">En ligne</span>
       </div>
       <h3>Simulateur d'aides</h3>
@@ -770,7 +799,7 @@ img { max-width: 100%; height: auto; }
 
     <a href="estimateur.html" class="tool-card tc-blue reveal" style="--i:1">
       <div class="tool-top">
-        <div class="tool-icon">🏗️</div>
+        <div class="tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 20h20M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg></div>
         <span class="tool-badge badge-new">Nouveau</span>
       </div>
       <h3>Estimateur de travaux</h3>
@@ -781,7 +810,7 @@ img { max-width: 100%; height: auto; }
 
     <a href="audit-avant-achat.html" class="tool-card tc-amber reveal" style="--i:2">
       <div class="tool-top">
-        <div class="tool-icon">🔍</div>
+        <div class="tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
         <span class="tool-badge badge-new">Nouveau</span>
       </div>
       <h3>Audit avant achat</h3>
@@ -792,7 +821,7 @@ img { max-width: 100%; height: auto; }
 
     <a href="sur-mesure.html" class="tool-card tc-purple reveal" style="--i:3">
       <div class="tool-top">
-        <div class="tool-icon">🤝</div>
+        <div class="tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <span class="tool-badge badge-live">Disponible</span>
       </div>
       <h3>Accompagnement sur mesure</h3>
@@ -872,6 +901,59 @@ img { max-width: 100%; height: auto; }
 </div>
 </section>
 
+<!-- ═══ TÉMOIGNAGES (placeholder) ═══ -->
+<section class="section">
+<div class="container">
+  <div class="section-header center">
+    <div class="section-label">Retours clients</div>
+    <h2 class="section-title">Ce qu'en disent ceux qui ont testé</h2>
+    <p class="section-sub">Premiers retours de clients accompagnés. Cette section s'enrichira au fil des missions.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:800px;margin:0 auto" class="reveal">
+    <div style="background:var(--pale);border:1px solid var(--border);border-radius:var(--radius);padding:28px;position:relative">
+      <div style="font-size:32px;color:var(--accent);font-family:Georgia,serif;line-height:1;margin-bottom:12px">"</div>
+      <p style="font-size:14px;color:var(--txt);line-height:1.7;margin-bottom:16px;font-style:italic">Témoignage à venir — premier client en cours d'accompagnement.</p>
+      <div style="font-size:13px;font-weight:600;color:var(--navy)">— Prénom, projet</div>
+      <div style="font-size:12px;color:var(--muted)">Localité · 2026</div>
+    </div>
+    <div style="background:var(--pale);border:1px solid var(--border);border-radius:var(--radius);padding:28px;position:relative">
+      <div style="font-size:32px;color:var(--accent);font-family:Georgia,serif;line-height:1;margin-bottom:12px">"</div>
+      <p style="font-size:14px;color:var(--txt);line-height:1.7;margin-bottom:16px;font-style:italic">Témoignage à venir — retour client à solliciter après livraison.</p>
+      <div style="font-size:13px;font-weight:600;color:var(--navy)">— Prénom, projet</div>
+      <div style="font-size:12px;color:var(--muted)">Localité · 2026</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="section section-alt">
+<div class="container">
+  <div class="section-header center">
+    <div class="section-label">Questions fréquentes</div>
+    <h2 class="section-title">Vos questions, mes réponses</h2>
+  </div>
+  <div class="faq-list reveal" style="max-width:720px;margin:0 auto">
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Est-ce que l'estimation en ligne est fiable ?</div>
+      <div class="faq-a">L'estimation utilise les mêmes bases de données de prix que les professionnels (Batichiffrage, actualisée T1 2026) avec des coefficients régionaux par département. La fourchette gratuite donne un ordre de grandeur réaliste. Le rapport détaillé à 49 € affine avec un allotissement complet en 15 lots TCE — le même travail qu'un cabinet, livré sous 48h.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Quelle différence avec un devis d'artisan ?</div>
+      <div class="faq-a">Un devis d'artisan chiffre ses propres travaux dans sa spécialité. Mon estimation couvre l'ensemble du projet, tous corps d'état confondus, et vous permet de comparer les devis reçus avec un regard indépendant. Je ne suis lié à aucun artisan, aucune marque, aucun fournisseur — mon seul engagement est envers vous.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Comment protégez-vous mes données ?</div>
+      <div class="faq-a">Vos données ne sont jamais revendues à des artisans ou des prestataires. Les paiements sont traités par Stripe (certifié PCI DSS). Les formulaires transitent par Formspree (serveurs sécurisés). Vous pouvez demander la suppression de vos données à tout moment. Détails dans ma <a href="politique-confidentialite.html">politique de confidentialité</a>.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Intervenez-vous partout en France ?</div>
+      <div class="faq-a">Les outils en ligne (simulateur d'aides, estimateur) couvrent les 101 départements français avec des coefficients régionaux adaptés. Pour les prestations sur site (audit avant achat, AMO, suivi de chantier), j'interviens en Normandie (Eure 27, Seine-Maritime 76) et en Île-de-France. D'autres zones sont possibles selon le projet — contactez-moi pour en discuter.</div>
+    </div>
+  </div>
+</div>
+</section>
+
 <!-- ═══ CTA FINAL ═══ -->
 <section class="cta-band">
 <div class="container">
@@ -907,6 +989,7 @@ img { max-width: 100%; height: auto; }
     <a href="a-propos.html">À propos</a>
     <a href="professionnels.html">Professionnels</a>
     <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
   </div>
   <div class="footer-col footer-contact">
     <div class="footer-col-title">Contact</div>
