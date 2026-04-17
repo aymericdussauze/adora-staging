@@ -215,6 +215,12 @@ input,select,textarea{font-family:inherit}
 @media(max-width:480px){
 .footer-inner{grid-template-columns:1fr;gap:24px}
 }
+
+.audit-hero{background:var(--navy);padding:48px 0 40px;color:#fff;text-align:center;position:relative;overflow:hidden}
+.audit-hero::before{content:'';position:absolute;top:-60%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(14,116,144,.12) 0%,transparent 65%);pointer-events:none}
+.audit-hero h1{font-size:clamp(24px,4vw,38px);font-weight:900;letter-spacing:-.02em;margin-bottom:12px;position:relative}
+.audit-hero h1 em{font-style:normal;color:var(--accent)}
+.audit-hero-sub{font-size:15px;color:rgba(214,228,240,.75);max-width:560px;margin:0 auto;line-height:1.6;position:relative}
 </style>
 </head>
 <body>
@@ -239,6 +245,15 @@ input,select,textarea{font-family:inherit}
 <input type="hidden" name="_formType" value="audit_499">
 
 <div class="app" id="appContainer">
+
+
+<!-- PAGE HERO -->
+<section class="audit-hero">
+  <div class="container">
+    <h1>Audit avant <em>Achat immobilier</em></h1>
+    <p class="audit-hero-sub">Analyse technique complète du bien · Estimation travaux · Conseil de négociation</p>
+  </div>
+</section>
 
 <div class="progress-rail" id="progressRail">
   <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>

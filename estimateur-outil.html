@@ -279,6 +279,13 @@ input,select{font-family:inherit}
 @media(max-width:480px){
 .footer-inner{grid-template-columns:1fr;gap:24px}
 }
+
+/* ESTIM HERO */
+.estim-hero{background:var(--navy);padding:48px 0 40px;color:#fff;text-align:center;position:relative;overflow:hidden}
+.estim-hero::before{content:'';position:absolute;top:-60%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(14,116,144,.12) 0%,transparent 65%);pointer-events:none}
+.estim-hero h1{font-size:clamp(24px,4vw,38px);font-weight:900;letter-spacing:-.02em;margin-bottom:12px;position:relative}
+.estim-hero h1 em{font-style:normal;color:var(--accent)}
+.estim-hero-sub{font-size:15px;color:rgba(214,228,240,.75);max-width:560px;margin:0 auto;line-height:1.6;position:relative}
 </style>
 </head>
 <body>
@@ -297,6 +304,14 @@ input,select{font-family:inherit}
   <button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">&#9776;</button>
 </div>
 </nav>
+
+<!-- PAGE HERO -->
+<section class="estim-hero">
+  <div class="container">
+    <h1>Estimateur de travaux de <em>Rénovation</em></h1>
+    <p class="estim-hero-sub">Estimation détaillée en 15 lots TCE · Prix Batichiffrage T1 2026 · 101 départements</p>
+  </div>
+</section>
 
 <div class="app">
 
@@ -547,7 +562,15 @@ input,select{font-family:inherit}
 
 <!-- ═══════════ RESULTS ═══════════ -->
 <div class="results" id="results">
-  <div class="app">
+  <!-- PAGE HERO -->
+<section class="estim-hero">
+  <div class="container">
+    <h1>Estimateur de travaux de <em>Rénovation</em></h1>
+    <p class="estim-hero-sub">Estimation détaillée en 15 lots TCE · Prix Batichiffrage T1 2026 · 101 départements</p>
+  </div>
+</section>
+
+<div class="app">
     
     <div class="result-hero">
       <div class="result-label">Votre estimation</div>

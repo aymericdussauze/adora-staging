@@ -654,6 +654,16 @@ img { max-width: 100%; height: auto; }
 @media(max-width:480px){
 .footer-inner{grid-template-columns:1fr;gap:24px}
 }
+
+/* FAQ accordion */
+.faq-list{display:flex;flex-direction:column;gap:0}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{padding:18px 0;font-size:15px;font-weight:600;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-q::after{content:'+';font-size:20px;color:var(--muted);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-q::after{content:'−'}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:14px;color:var(--muted);line-height:1.7}
+.faq-item.open .faq-a{max-height:500px;padding-bottom:18px}
+
 </style>
 <script type="application/ld+json">
 {
@@ -825,7 +835,7 @@ img { max-width: 100%; height: auto; }
         <span class="tool-badge badge-live">Disponible</span>
       </div>
       <h3>Accompagnement sur mesure</h3>
-      <div class="tool-price">590 — 3 900 €</div>
+      <div class="tool-price">À partir de 990 €</div>
       <p>Estimation détaillée, cahier des charges, suivi de chantier, accompagnement complet. Du chiffrage à la réception.</p>
       <span class="tool-link">Voir les packs</span>
     </a>
@@ -834,11 +844,18 @@ img { max-width: 100%; height: auto; }
 </section>
 
 <!-- ═══ TEASER B2B ═══ -->
-<section style="padding:0">
+<section style="padding:40px 0">
 <div class="container">
-  <div style="background:var(--pale);border-radius:var(--radius);padding:24px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:-50px;position:relative;z-index:1" class="reveal">
-    <p style="font-size:15px;color:var(--navy);font-weight:600;margin:0">Vous êtes architecte, BET ou maître d'ouvrage ?</p>
-    <a href="sur-mesure.html" class="btn btn-outline" style="color:var(--navy);border-color:var(--border);padding:10px 24px;font-size:13px">Découvrir les prestations pro →</a>
+  <div style="background:var(--navy);border-radius:var(--radius);padding:40px 48px;color:var(--white);display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;position:relative;overflow:hidden" class="reveal">
+    <div style="position:absolute;top:-40%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(34,211,238,.1) 0%,transparent 65%);pointer-events:none"></div>
+    <div style="position:relative">
+      <div style="font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px">Professionnels</div>
+      <h3 style="font-size:22px;font-weight:800;margin-bottom:8px;color:var(--white)">Architectes, BET, maîtres d'ouvrage</h3>
+      <p style="font-size:14px;color:rgba(214,228,240,.75);max-width:440px;line-height:1.6">Économiste freelance en renfort de votre équipe. Métrés, CCTP, DPGF, OPC, AMO — tarifs transparents.</p>
+    </div>
+    <div style="position:relative">
+      <a href="professionnels.html" class="btn btn-accent" style="font-size:14px;padding:14px 28px;white-space:nowrap">Voir l'offre pro →</a>
+    </div>
   </div>
 </div>
 </section>
