@@ -91,6 +91,9 @@ img{max-width:100%;height:auto}
 .footer-links a:hover{color:var(--white)}
 .footer-contact{font-size:12px;color:rgba(237,233,254,.4);text-align:right}
 .footer-legal{max-width:1120px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:rgba(237,233,254,.3);text-align:center}
+.footer-legal a{color:rgba(237,233,254,.5);text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:#22D3EE}
+.footer-legal br{margin-bottom:6px}
 
 /* FORMS */
 .form-container{max-width:720px;margin:0 auto;background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:40px;box-shadow:var(--shadow-card)}
@@ -169,6 +172,20 @@ img{max-width:100%;height:auto}
 .portrait-block{display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:24px}
 .portrait-block-inline{display:flex;align-items:center;gap:20px}
 @media(max-width:768px){.portrait-photo{width:140px;height:140px}.portrait-block-inline{flex-direction:column;text-align:center}}
+
+
+.rgpd-check{margin:16px 0}
+.rgpd-check label{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);line-height:1.5;cursor:pointer}
+.rgpd-check input[type="checkbox"]{margin-top:3px;flex-shrink:0;width:16px;height:16px;accent-color:var(--accent)}
+.rgpd-check a{color:var(--blue);text-decoration:underline}
+
+
+/* Mobile call button */
+.mobile-call-btn{display:none}
+@media(max-width:768px){
+.mobile-call-btn{display:flex;align-items:center;gap:8px;position:fixed;bottom:20px;right:20px;z-index:90;background:var(--accent);color:var(--navy);padding:12px 20px;border-radius:99px;font-size:14px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;text-decoration:none;box-shadow:0 4px 16px rgba(34,211,238,.35);transition:all .2s}
+.mobile-call-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(34,211,238,.45)}
+}
 
 /* ═══ UNIFIED FOOTER ═══ */
 .footer{background:var(--navy, #0D1025);color:rgba(237,233,254,.7);padding:60px 24px 30px;margin-top:80px}
@@ -361,7 +378,7 @@ img{max-width:100%;height:auto}
 <div class="about-role">Économiste de la construction<br>Titre Professionnel Niveau 5</div>
 <div class="about-stats">
 <div><div class="about-stat-val">15 ans</div><div class="about-stat-label">de gestion de projets</div></div>
-<div><div class="about-stat-val">-12%</div><div class="about-stat-label">vs marché (réf.)</div></div>
+<div><div class="about-stat-val">-12%</div><div class="about-stat-label">vs marché (réf. 136 m², 76)</div></div>
 <div><div class="about-stat-val">24h</div><div class="about-stat-label">délai de réponse</div></div>
 <div><div class="about-stat-val">27/76/IDF</div><div class="about-stat-label">zone d'intervention</div></div>
 </div>
@@ -392,6 +409,9 @@ img{max-width:100%;height:auto}
 <div class="field"><label>Type de prestation souhaitée</label>
 <select name="prestation" required><option value="">Sélectionnez...</option><option value="estimation-detaillee">Estimation détaillée (à partir de 990 €)</option><option value="pack-essentiel">Pack Essentiel (2 200 €)</option><option value="pack-confort">Pack Confort (3 900 €)</option><option value="pack-serenite">Pack Sérénité (5-8%)</option><option value="autre">Autre — je décris ci-dessous</option></select></div>
 <div class="field"><label>Décrivez votre projet</label><textarea name="projet" required placeholder="Type de bien, surface, localisation, nature des travaux envisagés, budget approximatif, calendrier souhaité..."></textarea></div>
+<div class="rgpd-check">
+  <label><input type="checkbox" name="rgpd_consent" required> J'accepte que mes données soient traitées par ADORA pour répondre à ma demande, conformément à la <a href="politique-confidentialite.html" target="_blank">politique de confidentialité</a>.</label>
+</div>
 <button type="submit" class="btn-submit">Envoyer ma demande</button>
 <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:10px">Réponse sous 24h · Devis gratuit · Sans engagement</p>
 </form>
@@ -436,7 +456,7 @@ img{max-width:100%;height:auto}
     <a href="https://adora-economie.fr">adora-economie.fr</a>
   </div>
 </div>
-<div class="footer-legal">© 2026 ADORA · EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI</div>
+<div class="footer-legal">© 2026 ADORA · EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI<br><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a> · <a href="cgv.html">CGV</a></div>
 </footer>
 <script>
 window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('scrollProgress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%'});
@@ -445,5 +465,12 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0LENY960B"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M0LENY960B');</script>
+
+<!-- Mobile call button -->
+<a href="tel:+33660215509" class="mobile-call-btn" aria-label="Appeler Aymeric">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+  <span>Appeler</span>
+</a>
+
 </body>
 </html>
