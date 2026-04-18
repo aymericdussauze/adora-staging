@@ -154,7 +154,7 @@ img{max-width:100%;height:auto}
 .check{color:var(--green);font-weight:700;font-size:16px;flex-shrink:0}
 .cross{color:#D1D5DB;font-weight:700;font-size:16px;flex-shrink:0}
 .compare-cta{text-align:center;margin-top:24px}
-.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:960px;margin:0 auto}
+.steps-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;max-width:1000px;margin:0 auto}
 .step-card{text-align:center;padding:28px 20px}
 .step-num{width:48px;height:48px;background:var(--navy);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;margin:0 auto 16px}
 .step-card h4{font-size:15px;color:var(--navy);margin-bottom:8px}
@@ -273,10 +273,10 @@ img{max-width:100%;height:auto}
 <li><span class="check">&#10003;</span> 3 grands postes : gros œuvre, second œuvre, équipements</li>
 <li><span class="check">&#10003;</span> Ratio moyen au m² affiché</li>
 <li><span class="check">&#10003;</span> Coefficient régional appliqué</li>
-<li><span class="cross">&#10007;</span> <span style="color:#bbb">Détail par lot (15 lots)</span></li>
-<li><span class="cross">&#10007;</span> <span style="color:#bbb">Camembert de répartition</span></li>
-<li><span class="cross">&#10007;</span> <span style="color:#bbb">Rapport PDF professionnel</span></li>
-<li><span class="cross">&#10007;</span> <span style="color:#bbb">Coefficients correcteurs détaillés</span></li>
+<li><span class="cross">&#10007;</span> <span style="color:#bbb">Détail par lot (15 lots × 4 gammes)</span></li>
+<li><span class="cross">&#10007;</span> <span style="color:#bbb">Points de vigilance technique</span></li>
+<li><span class="cross">&#10007;</span> <span style="color:#bbb">Planning prévisionnel</span></li>
+<li><span class="cross">&#10007;</span> <span style="color:#bbb">Rapport PDF 6 pages</span></li>
 </ul>
 <div class="compare-cta"><a href="estimateur-outil.html" class="btn btn-green" style="width:100%;font-size:14px;padding:12px">Commencer gratuitement</a></div>
 </div>
@@ -286,57 +286,78 @@ img{max-width:100%;height:auto}
 <div class="compare-price paid">49 € <small>TTC</small></div>
 </div>
 <ul class="compare-list">
-<li><span class="check">&#10003;</span> <strong>Allotissement complet : 15 lots avec fourchettes</strong></li>
-<li><span class="check">&#10003;</span> <strong>Camembert de répartition par lot</strong></li>
-<li><span class="check">&#10003;</span> <strong>Rapport PDF téléchargeable brandé ADORA</strong></li>
+<li><span class="check">&#10003;</span> <strong>15 lots détaillés × 4 gammes (éco → haut de gamme)</strong></li>
 <li><span class="check">&#10003;</span> <strong>6 coefficients correcteurs expliqués</strong></li>
-<li><span class="check">&#10003;</span> Comparaison avec les moyennes nationales</li>
-<li><span class="check">&#10003;</span> Alertes métier (amiante, structure, accès)</li>
-<li><span class="check">&#10003;</span> Enveloppe globale + ratio au m²</li>
-<li><span class="check">&#10003;</span> Coefficient régional détaillé</li>
+<li><span class="check">&#10003;</span> <strong>Points de vigilance technique personnalisés</strong></li>
+<li><span class="check">&#10003;</span> <strong>Benchmark départemental vs moyenne nationale</strong></li>
+<li><span class="check">&#10003;</span> <strong>Planning prévisionnel par phases</strong></li>
+<li><span class="check">&#10003;</span> <strong>Rapport PDF 6 pages brandé ADORA</strong></li>
+<li><span class="check">&#10003;</span> Enveloppe globale + fourchettes</li>
 </ul>
+<p style="font-size:12px;color:var(--blue);font-weight:700;text-align:center;margin:10px 0 0;padding:8px 0;border-top:1px solid var(--border)">49 € déductibles si vous signez un accompagnement ADORA sous 30 jours</p>
 <div class="compare-cta"><a href="estimateur-outil.html" class="btn btn-accent" style="width:100%;font-size:14px;padding:12px">Obtenir mon rapport complet</a></div>
 </div>
 </div>
 </div>
 </section>
 
-<!-- Report preview -->
+<!-- Report preview + social proof -->
 <section class="section section-alt" style="padding:60px 0">
-<div class="container" style="text-align:center">
-  <p style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);margin-bottom:16px">Aperçu du rapport 49 €</p>
-  <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <div style="width:110px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px 10px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
-      <div style="height:6px;width:45%;background:var(--navy);border-radius:3px;margin-bottom:8px"></div>
-      <div style="height:3px;width:75%;background:var(--border);border-radius:2px;margin-bottom:4px"></div>
-      <div style="height:3px;width:60%;background:var(--border);border-radius:2px;margin-bottom:10px"></div>
-      <div style="height:20px;background:var(--accent);opacity:.15;border-radius:4px"></div>
-      <div style="font-size:8px;color:var(--muted);margin-top:6px">Synthèse</div>
+<div class="container">
+  <p style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);margin-bottom:16px;text-align:center">Aperçu du rapport 49 €</p>
+  <div class="reveal" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px">
+    <div style="width:100px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 8px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
+      <div style="height:4px;width:35%;background:var(--accent);border-radius:2px;margin-bottom:6px"></div>
+      <div style="height:16px;background:var(--navy);border-radius:3px;margin-bottom:6px"></div>
+      <div style="display:flex;gap:3px;margin-bottom:4px"><div style="flex:2;height:18px;background:var(--navy);border-radius:3px"></div><div style="flex:1;height:18px;background:var(--pale);border-radius:3px"></div><div style="flex:1;height:18px;background:var(--pale);border-radius:3px"></div></div>
+      <div style="font-size:7px;color:var(--muted);margin-top:4px;text-align:center">Couverture</div>
     </div>
-    <div style="width:110px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px 10px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
-      <div style="height:4px;width:55%;background:var(--accent);border-radius:2px;margin-bottom:6px"></div>
-      <div style="height:8px;width:100%;background:var(--pale);border-radius:3px;margin-bottom:3px"></div>
-      <div style="height:8px;width:100%;background:var(--pale);border-radius:3px;margin-bottom:3px"></div>
-      <div style="height:8px;width:100%;background:var(--pale);border-radius:3px;margin-bottom:3px"></div>
-      <div style="height:8px;width:100%;background:var(--pale);border-radius:3px;margin-bottom:3px"></div>
-      <div style="height:8px;width:100%;background:var(--pale);border-radius:3px"></div>
-      <div style="font-size:8px;color:var(--muted);margin-top:6px">15 lots détaillés</div>
-    </div>
-    <div style="width:110px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px 10px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
+    <div style="width:100px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 8px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
       <div style="height:4px;width:50%;background:var(--accent);border-radius:2px;margin-bottom:6px"></div>
-      <div style="display:flex;justify-content:center;margin-bottom:6px"><div style="width:40px;height:40px;border-radius:50%;border:4px solid var(--accent);opacity:.3"></div></div>
-      <div style="height:3px;width:70%;background:var(--border);border-radius:2px;margin:0 auto"></div>
-      <div style="font-size:8px;color:var(--muted);margin-top:6px">Répartition</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:4px"><div style="height:10px;background:var(--pale);border-radius:2px"></div><div style="height:10px;background:var(--pale);border-radius:2px"></div><div style="height:10px;background:var(--pale);border-radius:2px"></div><div style="height:10px;background:var(--pale);border-radius:2px"></div></div>
+      <div style="display:flex;flex-wrap:wrap;gap:2px"><div style="height:5px;width:30%;background:var(--accent);opacity:.2;border-radius:2px"></div><div style="height:5px;width:25%;background:var(--border);border-radius:2px"></div><div style="height:5px;width:35%;background:var(--accent);opacity:.2;border-radius:2px"></div></div>
+      <div style="font-size:7px;color:var(--muted);margin-top:4px;text-align:center">Votre projet</div>
     </div>
-    <div style="width:110px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:12px 10px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
-      <div style="height:4px;width:45%;background:var(--accent);border-radius:2px;margin-bottom:6px"></div>
-      <div style="height:3px;width:85%;background:var(--border);border-radius:2px;margin-bottom:4px"></div>
-      <div style="height:3px;width:70%;background:var(--border);border-radius:2px;margin-bottom:6px"></div>
+    <div style="width:100px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 8px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
+      <div style="height:4px;width:55%;background:var(--accent);border-radius:2px;margin-bottom:5px"></div>
+      <div style="height:6px;width:100%;background:var(--pale);border-radius:2px;margin-bottom:2px"></div>
+      <div style="height:6px;width:100%;background:var(--pale);border-radius:2px;margin-bottom:2px"></div>
+      <div style="height:6px;width:100%;background:var(--pale);border-radius:2px;margin-bottom:2px"></div>
+      <div style="height:6px;width:100%;background:var(--pale);border-radius:2px;margin-bottom:2px"></div>
+      <div style="height:6px;width:100%;background:var(--pale);border-radius:2px;margin-bottom:3px"></div>
       <div style="height:12px;background:var(--navy);border-radius:3px"></div>
-      <div style="font-size:8px;color:var(--muted);margin-top:6px">Alertes & coefficients</div>
+      <div style="font-size:7px;color:var(--muted);margin-top:4px;text-align:center">15 lots × 4 gammes</div>
+    </div>
+    <div style="width:100px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 8px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
+      <div style="height:4px;width:45%;background:var(--accent);border-radius:2px;margin-bottom:5px"></div>
+      <div style="height:6px;width:100%;background:var(--border);border-radius:99px;margin-bottom:5px;position:relative"><div style="height:100%;width:47%;background:linear-gradient(90deg,var(--accent),var(--blue));border-radius:99px"></div></div>
+      <div style="height:14px;background:var(--pale);border:1px solid var(--border);border-radius:3px;margin-bottom:2px"></div>
+      <div style="height:14px;background:var(--pale);border:1px solid var(--border);border-radius:3px;margin-bottom:2px"></div>
+      <div style="font-size:7px;color:var(--muted);margin-top:4px;text-align:center">Analyse & alertes</div>
+    </div>
+    <div style="width:100px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 8px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
+      <div style="height:4px;width:40%;background:var(--accent);border-radius:2px;margin-bottom:5px"></div>
+      <div style="border-left:2px solid var(--border);margin-left:8px;padding-left:8px"><div style="height:5px;width:60%;background:var(--accent);opacity:.3;border-radius:2px;margin-bottom:4px"></div><div style="height:5px;width:60%;background:var(--accent);opacity:.3;border-radius:2px;margin-bottom:4px"></div><div style="height:5px;width:60%;background:var(--accent);opacity:.3;border-radius:2px;margin-bottom:4px"></div><div style="height:5px;width:60%;background:var(--green);opacity:.3;border-radius:2px"></div></div>
+      <div style="font-size:7px;color:var(--muted);margin-top:4px;text-align:center">Planning</div>
+    </div>
+    <div style="width:100px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 8px;box-shadow:0 4px 12px rgba(0,0,0,.06)">
+      <div style="height:4px;width:50%;background:var(--accent);border-radius:2px;margin-bottom:5px"></div>
+      <div style="height:12px;background:var(--navy);border-radius:3px;margin-bottom:4px"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:3px"><div style="height:10px;background:rgba(34,211,238,.08);border-radius:2px"></div><div style="height:10px;background:rgba(34,211,238,.08);border-radius:2px"></div><div style="height:10px;background:rgba(34,211,238,.08);border-radius:2px"></div></div>
+      <div style="height:12px;border:1.5px solid var(--navy);border-radius:3px"></div>
+      <div style="font-size:7px;color:var(--muted);margin-top:4px;text-align:center">Prendre RDV</div>
     </div>
   </div>
-  <p style="font-size:12px;color:var(--muted);margin-top:14px;font-style:italic">Extrait d'un rapport type — détail par lot, coefficients régionaux, points de vigilance</p>
+  <p style="font-size:12px;color:var(--muted);text-align:center;font-style:italic;margin-bottom:40px">6 pages : couverture, contexte projet, estimation détaillée, analyse technique, planning, accompagnement</p>
+
+  <!-- Social proof -->
+  <div class="reveal" style="max-width:640px;margin:0 auto;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px 28px;display:flex;gap:18px;align-items:start;box-shadow:0 2px 12px rgba(0,0,0,.04)">
+    <div style="width:40px;height:40px;border-radius:50%;background:var(--green-bg,#ECFDF5);border:1px solid rgba(5,150,105,.15);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;color:var(--green,#059669)">✓</div>
+    <div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;color:var(--navy);margin-bottom:6px">Rénovation 136 m² en Seine-Maritime — résultat : −12 % vs devis initiaux</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">Un couple acquéreur a fait appel à ADORA après avoir utilisé l'estimateur pour auditer ses 3 devis. Réallocation de 2 lots, négociation appuyée par le DPGF. Économie nette de 18 000 € sur l'enveloppe finale.</div>
+    </div>
+  </div>
 </div>
 </section>
 
@@ -344,13 +365,14 @@ img{max-width:100%;height:auto}
 <div class="container">
 <div class="section-header center reveal">
 <div class="section-label">Comment ça marche</div>
-<h2 class="section-title">4 étapes, 3 minutes</h2>
+<h2 class="section-title">5 étapes, 3 minutes</h2>
 </div>
 <div class="steps-grid reveal">
-<div class="step-card"><div class="step-num">1</div><h4>Votre projet</h4><p>Type de bien, surface, département, nature des travaux.</p></div>
-<div class="step-card"><div class="step-num">2</div><h4>Votre bien</h4><p>État actuel, ancienneté, accès, diagnostics existants.</p></div>
-<div class="step-card"><div class="step-num">3</div><h4>Calcul instantané</h4><p>15 lots × coefficients régionaux et correcteurs = votre estimation.</p></div>
-<div class="step-card"><div class="step-num">4</div><h4>Résultats</h4><p>Synthèse gratuite immédiate. Rapport complet en option.</p></div>
+<div class="step-card"><div class="step-num">1</div><h4>Votre projet</h4><p>Type de rénovation, bien, surface, département, année de construction.</p></div>
+<div class="step-card"><div class="step-num">2</div><h4>Votre bien</h4><p>État actuel, gamme souhaitée, contraintes (amiante, accès).</p></div>
+<div class="step-card"><div class="step-num">3</div><h4>Fourchette instantanée</h4><p>Votre enveloppe budgétaire apparaît immédiatement à l'écran.</p></div>
+<div class="step-card"><div class="step-num">4</div><h4>Email = synthèse</h4><p>Entrez votre email pour débloquer la répartition par grands postes.</p></div>
+<div class="step-card"><div class="step-num">5</div><h4>Rapport complet</h4><p>49 € → PDF 6 pages avec 15 lots, analyse, planning et alertes.</p></div>
 </div>
 </div>
 </section>
@@ -367,8 +389,9 @@ img{max-width:100%;height:auto}
 <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Quelle différence avec un devis d'artisan ?</div><div class="faq-a">Un devis d'artisan est un engagement contractuel sur un prix précis. Notre estimation est un outil d'aide à la décision en amont : elle vous permet de savoir combien prévoir avant de solliciter des artisans. C'est le même travail qu'un économiste fait en phase d'esquisse — mais accessible en 3 minutes.</div></div>
 <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Pourquoi 15 lots et pas un prix au m² ?</div><div class="faq-a">Parce que « 800 à 1 200 €/m² » ne vous dit pas si c'est l'électricité ou la plomberie qui coûte cher. En décomposant par lot, vous voyez exactement où va votre budget et pouvez arbitrer.</div></div>
 <div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Mes données sont-elles protégées ?</div><div class="faq-a">Votre email est collecté uniquement pour vous envoyer vos résultats. Nous ne vendons pas vos données et n'avons pas de partenariat commercial avec des entreprises de travaux. ADORA est un cabinet indépendant.</div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Comment fonctionne le paiement ?</div><div class="faq-a">La synthèse gratuite ne nécessite aucun paiement. Pour le rapport complet à 49 € TTC, le paiement s'effectue par carte bancaire via Stripe. Vous recevez votre rapport PDF immédiatement après paiement.</div></div>
-<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Et si j'ai besoin d'aller plus loin ?</div><div class="faq-a">ADORA propose des prestations sur mesure : audit avant achat (499 €), estimation détaillée (990-1 490 €), et packs d'accompagnement AMO (2 200 à 3 900 €).</div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Comment fonctionne le paiement ?</div><div class="faq-a">La synthèse gratuite ne nécessite aucun paiement — juste votre email. Pour le rapport complet à 49 € TTC, le paiement s'effectue par carte bancaire via Stripe (CB, Apple Pay, Google Pay). Vous accédez à vos résultats détaillés immédiatement après paiement et le rapport PDF 6 pages se génère en parallèle.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Les 49 € sont-ils déductibles ?</div><div class="faq-a">Oui. Si vous signez un accompagnement ADORA (audit devis, cahier des charges, AMO) dans les 30 jours suivant l'achat du rapport, les 49 € sont intégralement crédités sur votre facture. Le rapport n'est pas une dépense — c'est le premier pas d'un accompagnement.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Et si j'ai besoin d'aller plus loin ?</div><div class="faq-a">ADORA propose un accompagnement progressif : audit de vos devis, cahier des charges technique (CCTP/DPGF) pour consulter les entreprises sur des bases identiques, et accompagnement complet du chiffrage à la réception.</div></div>
 </div>
 </div>
 </section>
