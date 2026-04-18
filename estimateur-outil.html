@@ -125,7 +125,7 @@ input,select{font-family:inherit}
 .btn-skip:hover{color:var(--accent-deep)}
 
 /* ═══ LOADING SCREEN ═══ */
-.loading{display:none;text-align:center;padding:80px 20px}
+.loading{display:none;text-align:center;padding:80px 20px;max-width:680px;margin:0 auto}
 .loading.show{display:block;animation:fadeIn .3s}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .spinner{width:64px;height:64px;border:4px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 32px}
@@ -135,7 +135,8 @@ input,select{font-family:inherit}
 
 /* ═══ RESULTS ═══ */
 .results{display:none}
-.results.show{display:block;animation:fadeIn .5s}
+.results.show{display:block;animation:fadeIn .5s;max-width:680px;margin:0 auto;padding:40px 20px 80px}
+@media(max-width:600px){.results.show{padding:24px 16px 48px}}
 
 .result-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--surface) 100%);border-radius:var(--radius-lg);padding:40px 32px;color:#fff;margin-bottom:20px;position:relative;overflow:hidden}
 .result-hero::before{content:"";position:absolute;top:-50%;right:-20%;width:300px;height:300px;background:radial-gradient(circle,var(--aqua-soft) 0%,transparent 70%);pointer-events:none}
@@ -287,6 +288,20 @@ input,select{font-family:inherit}
 .estim-hero h1{font-size:clamp(24px,4vw,38px);font-weight:900;letter-spacing:-.02em;margin-bottom:12px;position:relative}
 .estim-hero h1 em{font-style:normal;color:var(--accent)}
 .estim-hero-sub{font-size:15px;color:rgba(214,228,240,.75);max-width:560px;margin:0 auto;line-height:1.6;position:relative}
+
+/* ═══ LEAD GATE ═══ */
+.lead-gate{background:var(--white);border:2px solid var(--accent);border-radius:var(--radius-lg);padding:32px 28px;text-align:center;margin:24px 0;box-shadow:0 4px 24px rgba(13,16,37,.08)}
+.lead-gate-icon{width:48px;height:48px;border-radius:50%;background:var(--accent-bg);border:1px solid rgba(34,211,238,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--accent)}
+.lead-gate-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:var(--navy);margin-bottom:8px;letter-spacing:-.02em}
+.lead-gate-sub{font-size:14px;color:var(--txt);line-height:1.6;margin-bottom:20px;max-width:420px;margin-left:auto;margin-right:auto}
+.lead-gate-form{display:flex;gap:10px;max-width:440px;margin:0 auto 12px}
+.lead-gate-input{flex:1;padding:14px 16px;border:1px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;background:var(--white);color:var(--navy);transition:.2s}
+.lead-gate-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,211,238,.12)}
+.lead-gate-btn{padding:14px 24px;background:var(--accent);color:var(--navy);border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:.25s;white-space:nowrap}
+.lead-gate-btn:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.lead-gate-trust{font-size:11px;color:var(--muted);margin-top:4px}
+.lead-gate-trust svg{width:12px;height:12px;vertical-align:-2px;margin-right:3px;opacity:.5}
+.lead-gate-error{color:#DC2626;font-size:13px;margin-top:8px;display:none}
 </style>
 </head>
 <body>
@@ -334,8 +349,13 @@ input,select{font-family:inherit}
   <div class="cards">
     <button class="card" data-val="complete" data-profile="complete" onclick="selectCard(this,0)">
       <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <div class="card-title">Rénovation globale</div>
-      <div class="card-desc">Remise à neuf complète du logement</div>
+      <div class="card-title">Rénovation intérieure complète</div>
+      <div class="card-desc">Second œuvre complet, sans façades ni toiture</div>
+    </button>
+    <button class="card" data-val="totale" data-profile="totale" onclick="selectCard(this,0)">
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="20" height="15" rx="2"/><path d="M12 2L2 8h20L12 2z"/><path d="M6 12h4v5H6zM14 12h4v5h-4z"/></svg></div>
+      <div class="card-title">Rénovation totale</div>
+      <div class="card-desc">Tous corps d'état, toiture et façades incluses</div>
     </button>
     <button class="card" data-val="energetique" data-profile="partielle" onclick="selectCard(this,0)">
       <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
@@ -372,10 +392,11 @@ input,select{font-family:inherit}
       <div class="card-title">Appartement</div>
     </button>
     <button class="card" data-val="immeuble" onclick="selectCard(this,1)">
-      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 20h20M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg></div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="2" width="14" height="20" rx="1"/><path d="M15 10h6a1 1 0 011 1v11"/><path d="M5 6h2M9 6h2M5 10h2M9 10h2M5 14h2M9 14h2M5 18h2M18 14h2M18 18h2"/></svg></div>
       <div class="card-title">Immeuble entier</div>
     </button>
   </div>
+  <div style="margin-top:20px;text-align:center"><button type="button" class="btn btn-ghost" onclick="goPrev()" style="font-size:13px;color:var(--muted)">← Retour</button></div>
 </div>
 
 <!-- ═══════════ SCREEN 2 — SURFACE ═══════════ -->
@@ -449,6 +470,7 @@ input,select{font-family:inherit}
       <div class="card-desc">RT 2005/2012, BBC possible</div>
     </button>
   </div>
+  <div style="margin-top:20px;text-align:center"><button type="button" class="btn btn-ghost" onclick="goPrev()" style="font-size:13px;color:var(--muted)">← Retour</button></div>
 </div>
 
 <!-- ═══════════ SCREEN 5 — ÉTAT ═══════════ -->
@@ -460,7 +482,7 @@ input,select{font-family:inherit}
   </div>
   <div class="cards">
     <button class="card" data-val="bon" onclick="selectCard(this,5)">
-      <div class="card-icon">✅</div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div>
       <div class="card-title">Bon état</div>
       <div class="card-desc">Habitable en l'état, rénovation confort</div>
     </button>
@@ -475,11 +497,12 @@ input,select{font-family:inherit}
       <div class="card-desc">Rénovation lourde à prévoir</div>
     </button>
     <button class="card" data-val="tres_degrade" onclick="selectCard(this,5)">
-      <div class="card-icon">⚠️</div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
       <div class="card-title">Très dégradé</div>
       <div class="card-desc">Réhabilitation, gros œuvre à revoir</div>
     </button>
   </div>
+  <div style="margin-top:20px;text-align:center"><button type="button" class="btn btn-ghost" onclick="goPrev()" style="font-size:13px;color:var(--muted)">← Retour</button></div>
 </div>
 
 <!-- ═══════════ SCREEN 6 — GAMME ═══════════ -->
@@ -496,7 +519,7 @@ input,select{font-family:inherit}
       <div class="card-desc">Entrée de gamme, matériaux standards</div>
     </button>
     <button class="card" data-val="standard" onclick="selectCard(this,6)">
-      <div class="card-icon">⭐</div>
+      <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg></div>
       <div class="card-title">Standard</div>
       <div class="card-desc">Bon rapport qualité/prix, grandes marques</div>
     </button>
@@ -511,6 +534,7 @@ input,select{font-family:inherit}
       <div class="card-desc">Sur-mesure, matériaux nobles</div>
     </button>
   </div>
+  <div style="margin-top:20px;text-align:center"><button type="button" class="btn btn-ghost" onclick="goPrev()" style="font-size:13px;color:var(--muted)">← Retour</button></div>
 </div>
 
 <!-- ═══════════ SCREEN 7 — CONTRAINTES ═══════════ -->
@@ -578,6 +602,22 @@ input,select{font-family:inherit}
       </div>
     </div>
     
+    <!-- ═══ LEAD GATE — Email capture avant résultats détaillés ═══ -->
+    <div class="lead-gate" id="leadGate">
+      <div class="lead-gate-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg></div>
+      <div class="lead-gate-title">Recevez votre estimation par email</div>
+      <div class="lead-gate-sub">Entrez votre email pour accéder à la synthèse détaillée de votre estimation et la conserver.</div>
+      <div class="lead-gate-form">
+        <input type="email" class="lead-gate-input" id="leadEmail" placeholder="votre@email.com" autocomplete="email" onkeydown="if(event.key==='Enter'){event.preventDefault();unlockWithEmail()}">
+        <button class="lead-gate-btn" onclick="unlockWithEmail()">Voir mes résultats →</button>
+      </div>
+      <div class="lead-gate-error" id="leadError">Adresse email invalide.</div>
+      <div class="lead-gate-trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg> Pas de spam. Vos données restent confidentielles.</div>
+    </div>
+
+    <!-- Contenu gated — visible uniquement après capture email -->
+    <div id="gatedContent" style="display:none">
+
     <div class="good-news">
       <div class="good-news-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3zM5 19l1 3 1-3 3-1-3-1-1-3-1 3-3 1 3 1z"/></svg></div>
       <div class="good-news-text"><strong>Bonne nouvelle :</strong> votre projet semble éligible à plusieurs aides d'État. Le montant sera détaillé dans votre rapport.</div>
@@ -716,6 +756,8 @@ input,select{font-family:inherit}
       </div>
     </div>
 
+    </div><!-- /gatedContent -->
+
     <!-- UNLOCKED STATE -->
     <div class="unlocked" id="unlocked">
       
@@ -799,6 +841,7 @@ const PROFILES = {
   rafraichissement: [9,10],
   partielle: [1,5,6,11,12,13],
   complete: [1,5,6,7,8,9,10,11,12,13],
+  totale: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
   lourde: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 };
 
@@ -1069,6 +1112,62 @@ function euros(v) {
   return new Intl.NumberFormat("fr-FR", {style:"currency", currency:"EUR", maximumFractionDigits:0}).format(v);
 }
 
+
+// ═══════════════════════════════════════════════════════════
+// LEAD GATE — Email capture avant résultats détaillés
+// ═══════════════════════════════════════════════════════════
+function unlockWithEmail() {
+  const email = document.getElementById("leadEmail").value.trim();
+  const errEl = document.getElementById("leadError");
+  
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.style.display = "block";
+    return;
+  }
+  errEl.style.display = "none";
+  
+  STATE.leadEmail = email;
+  
+  // Fire & forget lead capture
+  const r = STATE.result;
+  fetch("https://formspree.io/f/maqaewbn", {
+    method: "POST",
+    headers: {"Content-Type":"application/json","Accept":"application/json"},
+    body: JSON.stringify({
+      _formType: "estimateur_lead_gratuit",
+      email,
+      _subject: "[Estimateur Lead] " + (STATE.dept || "") + " · " + STATE.surface + " m² · " + euros(r.totalLow) + "-" + euros(r.totalHigh),
+      projet: STATE.projet,
+      surface: STATE.surface,
+      dept: STATE.dept,
+      dept_nom: DEPT_NAMES[STATE.dept] || "",
+      estimation_low: r.totalLow,
+      estimation_mid: r.totalMid,
+      estimation_high: r.totalHigh
+    })
+  }).catch(() => {});
+  
+  if (typeof gtag === "function") {
+    gtag("event", "generate_lead", { value: 0, currency: "EUR", source: "estimateur_email" });
+  }
+  
+  // Show gated content with smooth scroll
+  document.getElementById("leadGate").style.display = "none";
+  const gated = document.getElementById("gatedContent");
+  gated.style.display = "block";
+  
+  // Scroll vers le contenu révélé
+  setTimeout(() => {
+    gated.scrollIntoView({behavior: "smooth", block: "start"});
+  }, 100);
+  
+  // Pre-fill checkout email
+  const checkoutEmail = document.getElementById("email");
+  if (checkoutEmail && !checkoutEmail.value) {
+    checkoutEmail.value = email;
+  }
+}
+
 // ═══════════════════════════════════════════════════════════
 // RESULTS DISPLAY
 // ═══════════════════════════════════════════════════════════
@@ -1076,7 +1175,7 @@ function showResults() {
   const r = STATE.result;
   const s = STATE;
   
-  const scopeMap = {complete:"rénovation complète",energetique:"rénovation énergétique",achat:"rénovation après achat",rafraichissement:"rafraîchissement"};
+  const scopeMap = {complete:"rénovation intérieure complète",totale:"rénovation totale",energetique:"rénovation énergétique",achat:"rénovation après achat",rafraichissement:"rafraîchissement"};
   document.getElementById("rScope").textContent = scopeMap[s.projet] || "rénovation";
   document.getElementById("rLow").textContent = euros(r.totalLow);
   document.getElementById("rHigh").textContent = euros(r.totalHigh);
@@ -1100,6 +1199,11 @@ function showResults() {
 // puis coller l'URL Payment Link ici :
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/REMPLACER_PAR_TON_LIEN_STRIPE";
 
+// ═══════════════════════════════════════════════════════════
+// WORKER PDF — URL du Worker Cloudflare
+// ═══════════════════════════════════════════════════════════
+const PDF_WORKER_URL = "https://adora-pdf.aymericdussauze.workers.dev";
+
 function proceedToPayment() {
   const prenom = document.getElementById("prenom").value.trim();
   const email = document.getElementById("email").value.trim();
@@ -1121,8 +1225,6 @@ function proceedToPayment() {
   btn.disabled = true;
   
   // ═══ 1. Envoi des données au backend Make/Zapier via Formspree ═══
-  // Formspree reçoit toutes les données du projet + email
-  // Make/Zapier pourra ensuite les croiser avec l'événement Stripe pour générer le PDF
   const formData = {
     _formType: "estimateur_payant",
     prenom, email,
@@ -1168,7 +1270,19 @@ function proceedToPayment() {
     localStorage.setItem("adora_email", email);
   } catch(e) {}
   
-  // ═══ 4. Redirection Stripe avec email préremplit ═══
+  // ═══ 4. Redirection Stripe ou mode recette ═══
+  if (STRIPE_PAYMENT_LINK.includes("REMPLACER")) {
+    // ══ MODE RECETTE — Stripe pas encore configuré ══
+    console.log("🧪 MODE RECETTE — Stripe non configuré, bypass paiement");
+    console.log("📦 Données projet:", JSON.stringify(formData, null, 2));
+    setTimeout(() => {
+      // Option C : affichage page immédiat + PDF en parallèle
+      showUnlockedResults(btn);
+      generateEstimateurPdf();
+    }, 800);
+    return;
+  }
+  
   // Stripe Payment Link accepte ?prefilled_email= pour préremplir le checkout
   // L'URL retour (success_url) est configurée dans le dashboard Stripe
   setTimeout(() => {
@@ -1177,6 +1291,133 @@ function proceedToPayment() {
     window.location.href = url;
   }, 500);
 }
+
+// ═══════════════════════════════════════════════════════════
+// OPTION C — Affichage page + PDF Worker en parallèle
+// ═══════════════════════════════════════════════════════════
+function showUnlockedResults(btn) {
+  document.getElementById("paywall").style.display = "none";
+  renderUnlocked();
+  document.getElementById("unlocked").classList.add("show");
+  document.getElementById("unlocked").scrollIntoView({behavior:"smooth", block:"start"});
+  if (btn) btn.textContent = "✓ Résultats affichés";
+}
+
+async function generateEstimateurPdf() {
+  const s = STATE;
+  const r = s.result;
+  
+  // Build Worker payload (contrat de données estimateur)
+  const activeLots = PROFILES[s.profile] || PROFILES.complete;
+  
+  // Build coefficients object
+  const coeffDept = DEPT_COEFF[s.dept] || 1.0;
+  const coeffEtat = getCoeffEtat(s.etat);
+  const coeffAnc = getCoeffAncien(s.annee);
+  const coeffAmiante = getCoeffAmiante(s.amiante);
+  const coeffType = getCoeffType(s.typeBien);
+  const coeffGlobal = coeffDept * coeffEtat * coeffAnc * coeffAmiante * coeffType * getCoeffAcces(s.acces_difficile) * getCoeffPlomb(s.plomb);
+  
+  // Build lots_detail with all 4 gammes per lot
+  const lotsDetail = r.results.map(l => ({
+    id: l.id,
+    nom: l.nom,
+    eco: l.low,      // Approximation: low ≈ eco
+    std: l.mid,      // mid ≈ standard
+    confort: Math.round(l.mid * 1.5),
+    hdg: Math.round(l.mid * 2.2)
+  }));
+  
+  const payload = {
+    type: "estimateur",
+    data: {
+      prenom: s.prenom || "Client",
+      email: s.email || "",
+      type_renovation: s.projet,
+      type_bien: s.typeBien,
+      surface_m2: s.surface,
+      dept: s.dept,
+      dept_nom: DEPT_NAMES[s.dept] || "",
+      annee: s.annee,
+      etat: s.etat,
+      gamme: s.gamme || "standard",
+      amiante: !!s.amiante,
+      plomb: !!s.plomb,
+      acces_difficile: !!s.acces_difficile,
+      lots_actifs: activeLots,
+      coefficients: {
+        dept: coeffDept,
+        anciennete: coeffAnc,
+        etat: coeffEtat,
+        amiante: coeffAmiante,
+        type_bien: coeffType,
+        global: Math.round(coeffGlobal * 100) / 100
+      },
+      lots_detail: lotsDetail,
+      estimation: {
+        eco: r.totalLow,
+        standard: r.totalMid,
+        confort: Math.round(r.totalMid * 1.5),
+        hdg: Math.round(r.totalMid * 2.2),
+        fourchette_basse: Math.round(r.totalMid * 0.85),
+        fourchette_haute: Math.round(r.totalMid * 1.20)
+      }
+    }
+  };
+  
+  console.log("📄 Appel Worker PDF...", PDF_WORKER_URL);
+  
+  // Show PDF loading indicator
+  const pdfStatus = document.createElement("div");
+  pdfStatus.id = "pdfStatus";
+  pdfStatus.style.cssText = "background:var(--navy);color:#fff;padding:16px 20px;border-radius:10px;margin:20px 0;display:flex;align-items:center;gap:12px;font-size:14px";
+  pdfStatus.innerHTML = '<div class="spinner" style="width:20px;height:20px;border-width:2px"></div> Génération de votre rapport PDF en cours...';
+  const unlocked = document.getElementById("unlocked");
+  unlocked.parentNode.insertBefore(pdfStatus, unlocked);
+  
+  try {
+    const response = await fetch(PDF_WORKER_URL, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload)
+    });
+    
+    if (!response.ok) {
+      throw new Error("Worker " + response.status);
+    }
+    
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    
+    // Replace loading indicator with download link
+    pdfStatus.style.background = "var(--green-bg)";
+    pdfStatus.style.color = "var(--navy)";
+    pdfStatus.style.border = "1px solid rgba(5,150,105,.2)";
+    pdfStatus.innerHTML = `
+      <span style="font-size:20px">✓</span>
+      <span style="flex:1"><strong>Votre rapport PDF est prêt !</strong></span>
+      <a href="${url}" target="_blank" download="ADORA_Estimation_${s.dept}_${s.surface}m2.pdf" 
+         style="padding:8px 18px;background:var(--navy);color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;display:inline-flex;align-items:center;gap:6px">
+        Télécharger le PDF →
+      </a>`;
+    
+    // Auto-open in new tab
+    window.open(url, "_blank");
+    
+    console.log("✅ PDF généré avec succès");
+    
+  } catch (err) {
+    console.error("❌ Erreur génération PDF:", err);
+    pdfStatus.style.background = "var(--amber-bg)";
+    pdfStatus.style.color = "var(--navy)";
+    pdfStatus.style.border = "1px solid rgba(217,119,6,.2)";
+    pdfStatus.innerHTML = `
+      <span style="font-size:20px">⚠</span>
+      <span style="flex:1"><strong>Le PDF est en cours de préparation.</strong> Vous le recevrez par email sous 5 minutes à <strong>${escHtml(s.email||"")}</strong>.</span>`;
+  }
+}
+
+function escHtml(s) { return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
 function renderUnlocked() {
   const r = STATE.result;
@@ -1216,7 +1457,7 @@ function renderUnlocked() {
 function estimerAides(s) {
   // Rough estimation based on project type and scope
   const r = s.result;
-  const isEnerg = s.projet === "energetique" || s.projet === "complete" || s.projet === "achat";
+  const isEnerg = s.projet === "energetique" || s.projet === "complete" || s.projet === "totale" || s.projet === "achat";
   const mpr = isEnerg ? Math.round(r.totalMid * 0.12) : 0;
   const cee = isEnerg ? Math.round(r.totalMid * 0.05) : 0;
   const ecoptz = isEnerg ? Math.min(50000, r.totalMid) : 0;
