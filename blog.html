@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -362,13 +361,41 @@ img{max-width:100%;height:auto}
 
     <p style="font-size:15px;color:var(--txt);margin-bottom:24px;font-weight:500">Envie d'être prévenu(e) à la publication ?</p>
     
-    <form action="https://formspree.io/f/maqaewbn" method="POST" style="display:flex;gap:10px;max-width:440px;margin:0 auto">
+    <form id="blogNewsletter" style="display:flex;gap:10px;max-width:440px;margin:0 auto">
       <input type="hidden" name="_subject" value="[Blog ADORA] Inscription newsletter">
       <input type="hidden" name="_formType" value="blog_newsletter">
-      <input type="email" name="email" required placeholder="votre@email.com" style="flex:1;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif">
+      <input type="email" name="email" id="nlEmail" required placeholder="votre@email.com" style="flex:1;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif">
       <button type="submit" class="btn btn-accent" style="padding:12px 24px;font-size:14px;white-space:nowrap">M'inscrire</button>
     </form>
-    <p style="font-size:12px;color:var(--muted);margin-top:10px">Pas de spam. 1 email par article publié, c'est tout.</p>
+    <div id="nlSuccess" style="display:none;max-width:440px;margin:0 auto;padding:16px 24px;background:rgba(5,150,105,.08);border:1px solid rgba(5,150,105,.2);border-radius:10px;text-align:center">
+      <p style="font-size:15px;color:#059669;font-weight:600;margin:0">✓ Merci ! Votre inscription a été prise en compte.</p>
+      <p style="font-size:13px;color:var(--muted);margin-top:6px">Vous recevrez un email à chaque nouvel article publié.</p>
+    </div>
+    <p id="nlNote" style="font-size:12px;color:var(--muted);margin-top:10px">Pas de spam. 1 email par article publié, c'est tout.</p>
+    <script>
+    document.getElementById("blogNewsletter").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      var btn = this.querySelector("button");
+      btn.textContent = "Envoi...";
+      btn.disabled = true;
+      try {
+        var resp = await fetch("https://formspree.io/f/maqaewbn", {
+          method: "POST",
+          body: new FormData(this),
+          headers: { "Accept": "application/json" }
+        });
+        if (resp.ok) {
+          this.style.display = "none";
+          document.getElementById("nlNote").style.display = "none";
+          document.getElementById("nlSuccess").style.display = "block";
+        } else { throw new Error(); }
+      } catch(err) {
+        btn.textContent = "M'inscrire";
+        btn.disabled = false;
+        alert("Erreur lors de l'inscription. Réessayez ou contactez-moi directement.");
+      }
+    });
+    </script>
   </div>
 </section>
 
