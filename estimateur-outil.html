@@ -1200,6 +1200,53 @@ const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/test_6oUaEZadS5EHb805FHdjO00
 // ═══════════════════════════════════════════════════════════
 const PDF_WORKER_URL = "https://adora-pdf.aymericdussauze.workers.dev";
 
+// ═══════════════════════════════════════════════════════════
+// ORDER ID — Référence unique commande ADORA
+// ═══════════════════════════════════════════════════════════
+function generateOrderId() {
+  const year = new Date().getFullYear();
+  const rand = Math.floor(Math.random() * 9000) + 1000;
+  return `EST-${year}-${rand}`;
+}
+
+// ═══════════════════════════════════════════════════════════
+// SAVE TO WORKER KV — Sauvegarde serveur avant Stripe
+// ═══════════════════════════════════════════════════════════
+async function saveOrderToWorker(ref, payload) {
+  try {
+    const resp = await fetch(PDF_WORKER_URL + "/save", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ ref, data: payload })
+    });
+    const result = await resp.json();
+    console.log("💾 Commande sauvegardée:", ref, result.ok ? "✓" : "✗");
+    return result.ok;
+  } catch(e) {
+    console.warn("⚠ Sauvegarde KV échouée (non bloquant):", e);
+    return false;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// SEND EMAIL — Demande au Worker d'envoyer le PDF par email
+// ═══════════════════════════════════════════════════════════
+async function sendEmailWithPdf(ref, type, data, email) {
+  try {
+    const resp = await fetch(PDF_WORKER_URL + "/send-email", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ ref, type, data, email })
+    });
+    const result = await resp.json();
+    console.log("📧 Email envoyé:", result.ok ? "✓" : "✗", result);
+    return result.ok;
+  } catch(e) {
+    console.warn("⚠ Envoi email échoué:", e);
+    return false;
+  }
+}
+
 function proceedToPayment() {
   const prenom = document.getElementById("prenom").value.trim();
   const email = document.getElementById("email").value.trim();
@@ -1260,31 +1307,47 @@ function proceedToPayment() {
     });
   }
   
-  // ═══ 3. Sauvegarde complète pour récupération post-paiement ═══
+  // ═══ 3. Générer ID commande + sauvegarder ═══
+  const orderRef = generateOrderId();
+  STATE.orderRef = orderRef;
+  
   try {
     localStorage.setItem("adora_prenom", prenom);
     localStorage.setItem("adora_email", email);
     localStorage.setItem("adora_state", JSON.stringify(STATE));
+    localStorage.setItem("adora_order_ref", orderRef);
   } catch(e) {}
+  
+  // Sauvegarde serveur (KV) — fire & forget, ne bloque pas Stripe
+  const kvPayload = {
+    prenom, email, orderRef,
+    projet: STATE.projet, typeBien: STATE.typeBien, surface: STATE.surface,
+    dept: STATE.dept, dept_nom: DEPT_NAMES[STATE.dept] || "",
+    annee: STATE.annee, etat: STATE.etat, gamme: STATE.gamme,
+    amiante: STATE.amiante, plomb: STATE.plomb, acces_difficile: STATE.acces_difficile,
+    profile: STATE.profile,
+    result: STATE.result,
+    timestamp: new Date().toISOString()
+  };
+  saveOrderToWorker(orderRef, kvPayload);
+  
+  console.log("🏷️ Commande:", orderRef);
   
   // ═══ 4. Redirection Stripe ou mode recette ═══
   if (STRIPE_PAYMENT_LINK.includes("REMPLACER")) {
-    // ══ MODE RECETTE — Stripe pas encore configuré ══
     console.log("🧪 MODE RECETTE — Stripe non configuré, bypass paiement");
-    console.log("📦 Données projet:", JSON.stringify(formData, null, 2));
     setTimeout(() => {
-      // Option C : affichage page immédiat + PDF en parallèle
       showUnlockedResults(btn);
       generateEstimateurPdf();
     }, 800);
     return;
   }
   
-  // Stripe Payment Link accepte ?prefilled_email= pour préremplir le checkout
-  // L'URL retour (success_url) est configurée dans le dashboard Stripe
+  // Stripe Payment Link avec ref comme client_reference_id
   setTimeout(() => {
-    const url = STRIPE_PAYMENT_LINK + "?prefilled_email=" + encodeURIComponent(email)
-              + "&client_reference_id=" + encodeURIComponent(prenom + "_" + Date.now());
+    const url = STRIPE_PAYMENT_LINK 
+      + "?prefilled_email=" + encodeURIComponent(email)
+      + "&client_reference_id=" + encodeURIComponent(orderRef);
     window.location.href = url;
   }, 500);
 }
@@ -1300,14 +1363,11 @@ function showUnlockedResults(btn) {
   if (btn) btn.textContent = "✓ Résultats affichés";
 }
 
-async function generateEstimateurPdf() {
+function buildWorkerPayload() {
   const s = STATE;
   const r = s.result;
-  
-  // Build Worker payload (contrat de données estimateur)
   const activeLots = PROFILES[s.profile] || PROFILES.complete;
   
-  // Build coefficients object
   const coeffDept = DEPT_COEFF[s.dept] || 1.0;
   const coeffEtat = getCoeffEtat(s.etat);
   const coeffAnc = getCoeffAncien(s.annee);
@@ -1315,52 +1375,50 @@ async function generateEstimateurPdf() {
   const coeffType = getCoeffType(s.typeBien);
   const coeffGlobal = coeffDept * coeffEtat * coeffAnc * coeffAmiante * coeffType * getCoeffAcces(s.acces_difficile) * getCoeffPlomb(s.plomb);
   
-  // Build lots_detail with all 4 gammes per lot
   const lotsDetail = r.results.map(l => ({
-    id: l.id,
-    nom: l.nom,
-    eco: l.low,      // Approximation: low ≈ eco
-    std: l.mid,      // mid ≈ standard
+    id: l.id, nom: l.nom,
+    eco: l.low, std: l.mid,
     confort: Math.round(l.mid * 1.5),
     hdg: Math.round(l.mid * 2.2)
   }));
   
-  const payload = {
-    type: "estimateur",
-    data: {
-      prenom: s.prenom || "Client",
-      email: s.email || "",
-      type_renovation: s.projet,
-      type_bien: s.typeBien,
-      surface_m2: s.surface,
-      dept: s.dept,
-      dept_nom: DEPT_NAMES[s.dept] || "",
-      annee: s.annee,
-      etat: s.etat,
-      gamme: s.gamme || "standard",
-      amiante: !!s.amiante,
-      plomb: !!s.plomb,
-      acces_difficile: !!s.acces_difficile,
-      lots_actifs: activeLots,
-      coefficients: {
-        dept: coeffDept,
-        anciennete: coeffAnc,
-        etat: coeffEtat,
-        amiante: coeffAmiante,
-        type_bien: coeffType,
-        global: Math.round(coeffGlobal * 100) / 100
-      },
-      lots_detail: lotsDetail,
-      estimation: {
-        eco: r.totalLow,
-        standard: r.totalMid,
-        confort: Math.round(r.totalMid * 1.5),
-        hdg: Math.round(r.totalMid * 2.2),
-        fourchette_basse: Math.round(r.totalMid * 0.85),
-        fourchette_haute: Math.round(r.totalMid * 1.20)
-      }
+  return {
+    prenom: s.prenom || "Client",
+    email: s.email || "",
+    ref: s.orderRef || "",
+    type_renovation: s.projet,
+    type_bien: s.typeBien,
+    surface_m2: s.surface,
+    dept: s.dept,
+    dept_nom: DEPT_NAMES[s.dept] || "",
+    annee: s.annee,
+    etat: s.etat,
+    gamme: s.gamme || "standard",
+    amiante: !!s.amiante,
+    plomb: !!s.plomb,
+    acces_difficile: !!s.acces_difficile,
+    lots_actifs: activeLots,
+    coefficients: {
+      dept: coeffDept, anciennete: coeffAnc, etat: coeffEtat,
+      amiante: coeffAmiante, type_bien: coeffType,
+      global: Math.round(coeffGlobal * 100) / 100
+    },
+    lots_detail: lotsDetail,
+    estimation: {
+      eco: r.totalLow, standard: r.totalMid,
+      confort: Math.round(r.totalMid * 1.5),
+      hdg: Math.round(r.totalMid * 2.2),
+      fourchette_basse: Math.round(r.totalMid * 0.85),
+      fourchette_haute: Math.round(r.totalMid * 1.20)
     }
   };
+}
+
+async function generateEstimateurPdf() {
+  const s = STATE;
+  
+  const workerData = buildWorkerPayload();
+  const payload = { type: "estimateur", data: workerData };
   
   console.log("📄 Appel Worker PDF...", PDF_WORKER_URL);
   
@@ -1529,73 +1587,123 @@ function clearSession() {
 // ═══════════════════════════════════════════════════════════
 // POST-PAIEMENT — Retour Stripe avec ?paid=1
 // ═══════════════════════════════════════════════════════════
-(function checkPostPayment() {
+(async function checkPostPayment() {
   const params = new URLSearchParams(window.location.search);
   if (!params.has("paid")) return;
   
+  let saved = null;
+  let orderRef = null;
+  
+  // Stratégie 1 : localStorage (fast path)
   try {
     const savedRaw = localStorage.getItem("adora_state");
-    if (!savedRaw) {
-      console.error("❌ Retour paiement mais pas de STATE sauvegardé");
-      return;
+    orderRef = localStorage.getItem("adora_order_ref");
+    if (savedRaw) {
+      saved = JSON.parse(savedRaw);
+      console.log("💳 Retour paiement — restauration depuis localStorage", orderRef);
     }
-    
-    const saved = JSON.parse(savedRaw);
-    Object.assign(STATE, saved);
-    
-    console.log("💳 Retour paiement Stripe — restauration STATE", STATE.prenom, STATE.email);
-    
-    // Masquer le wizard et le hero estimateur
-    document.querySelector(".app").style.display = "none";
-    const heroSection = document.querySelector(".estim-hero");
-    if (heroSection) heroSection.style.display = "none";
-    
-    // Recalculer si nécessaire
-    if (!STATE.result) {
-      calculate();
+  } catch(e) {}
+  
+  // Stratégie 2 : récupération depuis Worker KV (si localStorage vide)
+  if (!saved && orderRef) {
+    console.log("🔄 localStorage vide — tentative récupération KV:", orderRef);
+    try {
+      const resp = await fetch(PDF_WORKER_URL + "/retrieve?ref=" + encodeURIComponent(orderRef));
+      if (resp.ok) {
+        const result = await resp.json();
+        if (result.ok && result.data) {
+          saved = result.data;
+          console.log("✓ Récupération KV réussie");
+        }
+      }
+    } catch(e) {
+      console.warn("⚠ Récupération KV échouée:", e);
     }
-    
-    // Afficher les résultats
-    showResults();
-    
-    // Masquer le lead gate et le paywall, montrer directement le contenu
-    document.getElementById("leadGate").style.display = "none";
-    document.getElementById("gatedContent").style.display = "block";
-    document.getElementById("paywall").style.display = "none";
-    
-    // Afficher les résultats déverrouillés
-    renderUnlocked();
-    document.getElementById("unlocked").classList.add("show");
-    
-    // Bandeau de confirmation
-    const confirm = document.createElement("div");
-    confirm.style.cssText = "background:var(--green-bg,#ECFDF5);border:1px solid rgba(5,150,105,.2);border-radius:12px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;gap:14px";
-    confirm.innerHTML = '<span style="font-size:24px">✓</span><div><strong style="color:var(--navy);font-size:15px">Paiement confirmé — merci ' + escHtml(STATE.prenom||"") + ' !</strong><div style="color:var(--muted);font-size:13px;margin-top:4px">Votre rapport détaillé est affiché ci-dessous. Le PDF se génère en parallèle.</div></div>';
-    const results = document.getElementById("results");
-    results.insertBefore(confirm, results.firstChild);
-    
-    // Générer le PDF en parallèle
-    generateEstimateurPdf();
-    
-    // Tracking GA4
-    if (typeof gtag === "function") {
-      gtag("event", "purchase", {
-        currency: "EUR",
-        value: 49,
-        transaction_id: params.get("session_id") || ("EST_" + Date.now()),
-        items: [{item_name: "Rapport estimation ADORA", price: 49, quantity: 1}]
-      });
-    }
-    
-    // Nettoyage localStorage
-    localStorage.removeItem("adora_state");
-    
-    // Nettoyage URL (retirer ?paid=1)
-    window.history.replaceState({}, "", window.location.pathname);
-    
-  } catch(e) {
-    console.error("❌ Erreur post-paiement:", e);
   }
+  
+  // Stratégie 3 : ref dans l'URL (dernier recours)
+  if (!saved) {
+    const urlRef = params.get("ref");
+    if (urlRef) {
+      console.log("🔄 Tentative récupération KV via URL ref:", urlRef);
+      orderRef = urlRef;
+      try {
+        const resp = await fetch(PDF_WORKER_URL + "/retrieve?ref=" + encodeURIComponent(urlRef));
+        if (resp.ok) {
+          const result = await resp.json();
+          if (result.ok && result.data) {
+            saved = result.data;
+            console.log("✓ Récupération KV via URL réussie");
+          }
+        }
+      } catch(e) {}
+    }
+  }
+  
+  if (!saved) {
+    console.error("❌ Retour paiement — aucune donnée récupérable");
+    return;
+  }
+  
+  Object.assign(STATE, saved);
+  orderRef = orderRef || STATE.orderRef || "—";
+  
+  // Masquer le wizard
+  document.querySelector(".app").style.display = "none";
+  const heroSection = document.querySelector(".estim-hero");
+  if (heroSection) heroSection.style.display = "none";
+  
+  // Recalculer si nécessaire
+  if (!STATE.result) calculate();
+  
+  // Afficher les résultats
+  showResults();
+  document.getElementById("leadGate").style.display = "none";
+  document.getElementById("gatedContent").style.display = "block";
+  document.getElementById("paywall").style.display = "none";
+  renderUnlocked();
+  document.getElementById("unlocked").classList.add("show");
+  
+  // Bandeau de confirmation avec ref commande
+  const confirm = document.createElement("div");
+  confirm.style.cssText = "background:var(--green-bg,#ECFDF5);border:1px solid rgba(5,150,105,.2);border-radius:12px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;gap:14px";
+  confirm.innerHTML = '<span style="font-size:24px">✓</span><div><strong style="color:var(--navy);font-size:15px">Paiement confirmé — merci ' + escHtml(STATE.prenom||"") + ' !</strong><div style="color:var(--muted);font-size:13px;margin-top:4px">Référence : <strong>' + escHtml(orderRef) + '</strong> · Votre rapport PDF se génère et vous sera envoyé par email.</div></div>';
+  const results = document.getElementById("results");
+  results.insertBefore(confirm, results.firstChild);
+  
+  // Générer le PDF en parallèle (affichage dans le navigateur)
+  generateEstimateurPdf();
+  
+  // Envoyer le PDF par email (via Worker + Resend)
+  if (STATE.email) {
+    try {
+      const emailPayload = buildWorkerPayload();
+      console.log("📧 Envoi email en cours...", STATE.email, orderRef);
+      sendEmailWithPdf(orderRef, "estimateur", emailPayload, STATE.email);
+    } catch(emailErr) {
+      console.error("❌ Erreur préparation email:", emailErr);
+    }
+  } else {
+    console.warn("⚠ Pas d'email dans STATE — email non envoyé");
+  }
+  
+  // Tracking GA4
+  if (typeof gtag === "function") {
+    gtag("event", "purchase", {
+      currency: "EUR",
+      value: 49,
+      transaction_id: orderRef,
+      items: [{item_name: "Rapport estimation ADORA", price: 49, quantity: 1}]
+    });
+  }
+  
+  // Nettoyage
+  try {
+    localStorage.removeItem("adora_state");
+    localStorage.removeItem("adora_order_ref");
+  } catch(e) {}
+  window.history.replaceState({}, "", window.location.pathname);
+  
 })();
 
 </script>
