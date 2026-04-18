@@ -288,6 +288,24 @@ input,select,textarea{font-family:inherit}
 @media(max-width:480px){
 .footer-inner{grid-template-columns:1fr;gap:24px}
 }
+
+
+/* FAQ accordion */
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{padding:18px 0;font-size:15px;font-weight:600;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-q::after{content:'+';font-size:20px;color:var(--muted);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-q::after{content:'−'}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:14px;color:var(--muted);line-height:1.7}
+.faq-item.open .faq-a{max-height:500px;padding-bottom:18px}
+.faq-a a{color:var(--blue);text-decoration:underline}
+
+/* SEO pillar content */
+.seo-content h2{font-family:'Montserrat',sans-serif;font-size:24px;font-weight:800;color:var(--navy);margin:48px 0 16px;letter-spacing:-.02em}
+.seo-content h2:first-child{margin-top:0}
+.seo-content p{font-size:16px;line-height:1.8;color:var(--txt);margin-bottom:16px}
+.seo-content strong{color:var(--navy)}
+.seo-content a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+
 </style>
 <script type="application/ld+json">
 {
@@ -645,23 +663,24 @@ input,select,textarea{font-family:inherit}
 <!-- ═══ SEO PILLAR CONTENT ═══ -->
 <section class="section" style="padding:80px 0">
 <div class="container" style="max-width:760px">
-  <h2 style="font-size:28px;font-weight:800;color:var(--navy);margin-bottom:16px">Comment fonctionne MaPrimeRénov' en 2026</h2>
+<div class="seo-content">
+  <h2>Comment fonctionne MaPrimeRénov' en 2026</h2>
   <p>MaPrimeRénov' est la principale aide publique à la rénovation énergétique en France. Gérée par l'Anah (Agence nationale de l'habitat), elle s'adresse aux propriétaires occupants et bailleurs dont le logement a plus de 15 ans.</p>
   <p>En 2026, le dispositif distingue deux parcours. Le <strong>parcours monogeste</strong> finance un geste isolé (changement de chauffage, isolation d'un poste, VMC) avec des plafonds par type de travaux. Le <strong>parcours accompagné</strong> (ou rénovation d'ampleur) finance un bouquet de travaux avec un gain énergétique minimal de 2 classes DPE, sous condition d'accompagnement par un opérateur agréé Mon Accompagnateur Rénov'.</p>
   <p>Le montant de la prime dépend de votre <strong>profil de revenus Anah</strong> : Bleu (très modestes), Jaune (modestes), Violet (intermédiaires) ou Rose (supérieurs). Les plafonds sont différents en Île-de-France et hors Île-de-France. Le simulateur ci-dessus applique automatiquement les bons barèmes selon votre situation.</p>
 
-  <h2 style="font-size:28px;font-weight:800;color:var(--navy);margin:48px 0 16px">Barèmes CEE 2026 par type de travaux</h2>
+  <h2 >Barèmes CEE 2026 par type de travaux</h2>
   <p>Les Certificats d'Économie d'Énergie (CEE) sont une prime versée par les fournisseurs d'énergie (TotalEnergies, EDF, Engie, Effy, Hellio, etc.) pour financer des travaux de rénovation énergétique. Contrairement à MaPrimeRénov', les CEE sont cumulables avec la prime Anah en parcours monogeste.</p>
   <p>Le montant des CEE dépend du type de travaux, de la zone climatique et de la surface traitée. Les postes les plus généreux en CEE sont l'isolation des combles perdus, le remplacement d'une chaudière fioul par une pompe à chaleur, et l'installation d'un système solaire combiné. Attention : les montants varient fortement d'un opérateur à l'autre (parfois du simple au triple), d'où l'intérêt de comparer avant de signer.</p>
   <p>Point important : <strong>ne signez jamais un devis avant d'avoir choisi votre opérateur CEE</strong>. La prime doit être demandée avant la signature du devis, sous peine de perdre le bénéfice de l'aide.</p>
 
-  <h2 style="font-size:28px;font-weight:800;color:var(--navy);margin:48px 0 16px">Cumul MaPrimeRénov' + CEE + éco-PTZ + TVA 5,5 %</h2>
+  <h2 >Cumul MaPrimeRénov' + CEE + éco-PTZ + TVA 5,5 %</h2>
   <p>L'un des points forts du dispositif 2026 est la possibilité de <strong>cumuler plusieurs aides</strong> sur un même projet. En parcours monogeste, MaPrimeRénov' et les CEE sont cumulables, ce qui peut représenter jusqu'à 90 % du coût des travaux pour les ménages les plus modestes.</p>
   <p>L'éco-prêt à taux zéro (éco-PTZ) complète le montage : jusqu'à 50 000 € empruntables à 0 % sur 20 ans, sans condition de revenus. Ce n'est pas une aide (il faut rembourser le capital), mais c'est un levier puissant pour financer le reste à charge sans frais.</p>
   <p>Enfin, la TVA réduite à 5,5 % s'applique automatiquement aux travaux de rénovation énergétique réalisés par un professionnel dans un logement de plus de 2 ans. L'économie par rapport au taux normal de 20 % représente environ 14,5 % du montant HT des travaux — souvent plusieurs milliers d'euros.</p>
   <p>Le simulateur ci-dessus calcule automatiquement le cumul de ces quatre dispositifs et affiche votre reste à charge effectif.</p>
 
-  <h2 style="font-size:28px;font-weight:800;color:var(--navy);margin:48px 0 16px">3 exemples chiffrés selon le profil de revenus</h2>
+  <h2 >3 exemples chiffrés selon le profil de revenus</h2>
   
   <div style="background:var(--pale);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px">
     <h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px">Profil Bleu — Revenus très modestes</h3>
@@ -681,7 +700,7 @@ input,select,textarea{font-family:inherit}
     <p style="font-size:14px">MaPrimeRénov' : 11 000 € · CEE : 3 000–4 500 € · TVA 5,5 % : 7 975 € d'économie · <strong>Reste à charge estimé : 32 500–34 000 €</strong></p>
   </div>
 
-  <h2 style="font-size:28px;font-weight:800;color:var(--navy);margin:48px 0 16px">Questions fréquentes</h2>
+  <h2 >Questions fréquentes</h2>
   <div class="faq-list" style="margin-bottom:0">
     <div class="faq-item">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">MaPrimeRénov' et les CEE sont-ils cumulables ?</div>
@@ -708,6 +727,7 @@ input,select,textarea{font-family:inherit}
       <div class="faq-a">Le simulateur ADORA calcule simultanément les 4 dispositifs (MaPrimeRénov', CEE, éco-PTZ, TVA réduite) et affiche un reste à charge global. Le site officiel ne traite que la prime Anah. Vous gagnez une vision complète de votre plan de financement en une seule simulation.</div>
     </div>
   </div>
+</div>
 </div>
 </section>
 
