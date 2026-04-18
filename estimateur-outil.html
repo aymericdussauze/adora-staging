@@ -1197,7 +1197,7 @@ function showResults() {
 // ═══════════════════════════════════════════════════════════
 // Créer le produit "Rapport d'estimation ADORA - 49€" dans ton dashboard Stripe
 // puis coller l'URL Payment Link ici :
-const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/REMPLACER_PAR_TON_LIEN_STRIPE";
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/test_6oUaEZadS5EHb805FHdjO00";
 
 // ═══════════════════════════════════════════════════════════
 // WORKER PDF — URL du Worker Cloudflare
@@ -1264,10 +1264,11 @@ function proceedToPayment() {
     });
   }
   
-  // ═══ 3. Sauvegarde pour personnalisation de la page de remerciement ═══
+  // ═══ 3. Sauvegarde complète pour récupération post-paiement ═══
   try {
     localStorage.setItem("adora_prenom", prenom);
     localStorage.setItem("adora_email", email);
+    localStorage.setItem("adora_state", JSON.stringify(STATE));
   } catch(e) {}
   
   // ═══ 4. Redirection Stripe ou mode recette ═══
@@ -1528,6 +1529,78 @@ function clearSession() {
   const banner = document.getElementById("resumeBanner");
   if (banner) banner.remove();
 }
+
+// ═══════════════════════════════════════════════════════════
+// POST-PAIEMENT — Retour Stripe avec ?paid=1
+// ═══════════════════════════════════════════════════════════
+(function checkPostPayment() {
+  const params = new URLSearchParams(window.location.search);
+  if (!params.has("paid")) return;
+  
+  try {
+    const savedRaw = localStorage.getItem("adora_state");
+    if (!savedRaw) {
+      console.error("❌ Retour paiement mais pas de STATE sauvegardé");
+      return;
+    }
+    
+    const saved = JSON.parse(savedRaw);
+    Object.assign(STATE, saved);
+    
+    console.log("💳 Retour paiement Stripe — restauration STATE", STATE.prenom, STATE.email);
+    
+    // Masquer le wizard et le hero estimateur
+    document.querySelector(".app").style.display = "none";
+    const heroSection = document.querySelector(".estim-hero");
+    if (heroSection) heroSection.style.display = "none";
+    
+    // Recalculer si nécessaire
+    if (!STATE.result) {
+      calculate();
+    }
+    
+    // Afficher les résultats
+    showResults();
+    
+    // Masquer le lead gate et le paywall, montrer directement le contenu
+    document.getElementById("leadGate").style.display = "none";
+    document.getElementById("gatedContent").style.display = "block";
+    document.getElementById("paywall").style.display = "none";
+    
+    // Afficher les résultats déverrouillés
+    renderUnlocked();
+    document.getElementById("unlocked").classList.add("show");
+    
+    // Bandeau de confirmation
+    const confirm = document.createElement("div");
+    confirm.style.cssText = "background:var(--green-bg,#ECFDF5);border:1px solid rgba(5,150,105,.2);border-radius:12px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;gap:14px";
+    confirm.innerHTML = '<span style="font-size:24px">✓</span><div><strong style="color:var(--navy);font-size:15px">Paiement confirmé — merci ' + escHtml(STATE.prenom||"") + ' !</strong><div style="color:var(--muted);font-size:13px;margin-top:4px">Votre rapport détaillé est affiché ci-dessous. Le PDF se génère en parallèle.</div></div>';
+    const results = document.getElementById("results");
+    results.insertBefore(confirm, results.firstChild);
+    
+    // Générer le PDF en parallèle
+    generateEstimateurPdf();
+    
+    // Tracking GA4
+    if (typeof gtag === "function") {
+      gtag("event", "purchase", {
+        currency: "EUR",
+        value: 49,
+        transaction_id: params.get("session_id") || ("EST_" + Date.now()),
+        items: [{item_name: "Rapport estimation ADORA", price: 49, quantity: 1}]
+      });
+    }
+    
+    // Nettoyage localStorage
+    localStorage.removeItem("adora_state");
+    
+    // Nettoyage URL (retirer ?paid=1)
+    window.history.replaceState({}, "", window.location.pathname);
+    
+  } catch(e) {
+    console.error("❌ Erreur post-paiement:", e);
+  }
+})();
 
 </script>
 
