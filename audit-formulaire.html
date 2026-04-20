@@ -37,6 +37,8 @@ input,select,textarea{font-family:inherit}
 .nav-links{display:flex;gap:8px;align-items:center}
 .nav-links a{color:rgba(237,233,254,.8);font-size:13.5px;font-weight:500;padding:6px 14px;border-radius:8px;transition:.3s;text-decoration:none}
 .nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-links .nav-cta{background:var(--accent);color:var(--navy);font-weight:700;padding:7px 16px;border-radius:8px}
+.nav-links .nav-cta:hover{background:var(--accent-hover);color:var(--navy)}
 .nav-burger{display:none;color:#fff;font-size:22px;padding:8px}
 @media(max-width:700px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(13,16,37,.97);padding:16px 28px;gap:4px}.nav-links.open{display:flex}.nav-burger{display:block}}
 
@@ -245,7 +247,8 @@ input,select,textarea{font-family:inherit}
 </div>
 </nav>
 
-<form id="auditForm" action="https://formspree.io/f/maqaewbn" method="POST" enctype="multipart/form-data">
+<form id="auditForm" action="https://formspree.io/f/maqaewbn"
+<!-- MIGRATION PROD : remplacer maqaewbn par xzdjopya --> method="POST" enctype="multipart/form-data">
 <input type="hidden" name="_subject" value="[AUDIT 499€] Nouvelle demande">
 <input type="hidden" name="_formType" value="audit_499">
 
@@ -943,6 +946,6 @@ function clearAuditDraft() {
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0LENY960B"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-M0LENY960B')</script>
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{token: 3f8ca9a1113f413a990a17c08ab83442}'></script><!-- End Cloudflare Web Analytics -->"}'></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3f8ca9a1113f413a990a17c08ab83442"}'></script>
 </body>
 </html>
