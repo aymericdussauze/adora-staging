@@ -1,0 +1,29 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Audit pages avec Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://adora-economie.fr/
+            https://adora-economie.fr/estimateur.html
+            https://adora-economie.fr/simulateur.html
+            https://adora-economie.fr/audit-avant-achat.html
+          temporaryPublicStorage: true
+          uploadArtifacts: true
+
+      - name: Vérifier scores minimums
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://adora-economie.fr/
+          budgetPath: .github/lighthouse-budget.json
