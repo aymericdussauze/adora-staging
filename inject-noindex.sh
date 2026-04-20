@@ -1,46 +1,60 @@
 #!/bin/bash
 # ═══════════════════════════════════════════════════════════
 # ADORA — Injection meta noindex sur toutes les pages staging
+# Compatible macOS (BSD sed) + Linux (GNU sed)
 # Usage : ./inject-noindex.sh [répertoire]
-# Défaut : répertoire courant
 # ═══════════════════════════════════════════════════════════
 
 DIR="${1:-.}"
 COUNT=0
 SKIP=0
+FAIL=0
 
-echo "🔒 ADORA — Injection meta noindex/nofollow"
-echo "   Répertoire : $DIR"
-echo "   ─────────────────────────────────────────"
+echo ""
+echo "   ADORA — Injection meta noindex/nofollow"
+echo "   Repertoire : $DIR"
+echo "   -----------------------------------------"
 
 for file in "$DIR"/*.html; do
   [ -f "$file" ] || continue
   filename=$(basename "$file")
 
-  # Vérifier si la balise existe déjà
+  # Verifier si la balise existe deja
   if grep -q 'name="robots"' "$file"; then
-    echo "   ⏭  $filename (déjà présent)"
+    echo "   skip $filename (deja present)"
     SKIP=$((SKIP + 1))
     continue
   fi
 
-  # Injecter après <head> ou après la première ligne contenant <head
+  # Injection compatible macOS BSD sed :
+  # sed -i '' (extension vide = pas de fichier backup)
+  # Nouvelle ligne litterale dans le remplacement (pas \n)
   if grep -q '<head>' "$file"; then
-    sed -i 's|<head>|<head>\n    <meta name="robots" content="noindex, nofollow">|' "$file"
-    echo "   ✅ $filename"
-    COUNT=$((COUNT + 1))
-  elif grep -q '<head ' "$file"; then
-    sed -i '/<head /a\    <meta name="robots" content="noindex, nofollow">' "$file"
-    echo "   ✅ $filename"
-    COUNT=$((COUNT + 1))
+    sed -i '' '/<head>/a\
+    <meta name="robots" content="noindex, nofollow">
+' "$file"
+
+    # Verifier que ca a marche
+    if grep -q 'name="robots"' "$file"; then
+      echo "   ok   $filename"
+      COUNT=$((COUNT + 1))
+    else
+      echo "   FAIL $filename"
+      FAIL=$((FAIL + 1))
+    fi
   else
-    echo "   ⚠️  $filename (pas de <head> trouvé)"
+    echo "   WARN $filename (pas de <head>)"
+    FAIL=$((FAIL + 1))
   fi
 done
 
-echo "   ─────────────────────────────────────────"
-echo "   ✅ $COUNT fichiers modifiés | ⏭ $SKIP déjà à jour"
+echo "   -----------------------------------------"
+echo "   $COUNT fichiers modifies"
+echo "   $SKIP deja a jour"
+if [ $FAIL -gt 0 ]; then
+  echo "   $FAIL echecs"
+fi
 echo ""
-echo "   Vérification rapide :"
-grep -rl 'name="robots"' "$DIR"/*.html 2>/dev/null | wc -l
-echo "   fichiers contiennent la balise noindex"
+TOTAL=$(grep -rl 'name="robots"' "$DIR"/*.html 2>/dev/null | wc -l | tr -d ' ')
+echo "   Verification : $TOTAL fichiers contiennent noindex"
+echo ""
