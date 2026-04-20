@@ -1,0 +1,6 @@
+# ADORA — Staging (aymericdussauze.github.io/adora-staging/)
+# Bloquer tous les crawlers pour éviter le duplicate content avec adora-economie.fr
+# À REMPLACER par robots_PROD.txt lors de la migration prod (Phase 4)
+
+User-agent: *
+Disallow: /
