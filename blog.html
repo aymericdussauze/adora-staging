@@ -285,6 +285,15 @@ img{max-width:100%;height:auto}
 @media(max-width:480px){
   .stats-row{grid-template-columns:1fr}
 }
+/* ═══ MOBILE FIXES — 21/04/2026 ═══ */
+.cta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:520px;margin:0 auto}
+@media(max-width:540px){
+  .cta-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .nav-links .nav-cta{width:100%;text-align:center;margin-top:8px}
+  .footer-contact a{word-break:break-all}
+}
 
 </style>
     <script src="https://browser.sentry-cdn.com/8.0.0/bundle.tracing.min.js" crossorigin="anonymous"></script>
@@ -409,7 +418,7 @@ img{max-width:100%;height:auto}
   <div class="container" style="text-align:center">
     <h2 style="font-size:22px;font-weight:800;color:var(--navy);margin-bottom:8px">Besoin de chiffres concrets ?</h2>
     <p style="font-size:15px;color:var(--muted);margin-bottom:32px">Mes outils gratuits vous donnent des réponses en quelques minutes.</p>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:520px;margin:0 auto">
+    <div class="cta-grid">
       <a href="simulateur.html" class="btn btn-accent" style="font-size:14px;padding:14px 20px">Simuler mes aides</a>
       <a href="estimateur-outil.html" class="btn" style="font-size:14px;padding:14px 20px;background:var(--navy);color:var(--white);border-radius:10px;font-weight:700">Estimer mes travaux</a>
     </div>
