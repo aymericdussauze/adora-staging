@@ -208,6 +208,13 @@ img{max-width:100%;height:auto}
 @media(max-width:480px){
 .footer-inner{grid-template-columns:1fr;gap:24px}
 }
+/* ═══ MOBILE FIXES — 21/04/2026 ═══ */
+.teaser-b2b{background:var(--navy);border-radius:var(--radius);padding:48px;color:var(--white);display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden}
+@media(max-width:700px){
+  .teaser-b2b{grid-template-columns:1fr;padding:28px 20px;gap:16px;text-align:center}
+  .nav-links .nav-cta{width:100%;text-align:center;margin-top:8px}
+  .footer-contact a{word-break:break-all}
+}
 </style>
     <script src="https://browser.sentry-cdn.com/8.0.0/bundle.tracing.min.js" crossorigin="anonymous"></script>
     <script>Sentry.init({dsn:"https://14b68c10a24c3da4127332e14fd20359@o4511253060976640.ingest.de.sentry.io/4511253075132496",tracesSampleRate:0,replaysSessionSampleRate:0});</script>
@@ -357,7 +364,7 @@ img{max-width:100%;height:auto}
 
 <section class="section">
 <div class="container">
-<div style="background:var(--navy);border-radius:var(--radius);padding:48px;color:var(--white);display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden" class="reveal">
+<div class="teaser-b2b reveal">
   <div style="position:absolute;top:-40%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(34,211,238,.1) 0%,transparent 65%);pointer-events:none"></div>
   <div style="position:relative">
     <div style="font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px">Professionnels</div>

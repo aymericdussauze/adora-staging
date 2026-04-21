@@ -56,6 +56,18 @@ a{color:var(--blue);text-decoration:none}
 .btn-navy:hover{background:var(--blue);color:var(--white)}
 
 .footer-mini{text-align:center;padding:24px;font-size:12px;color:var(--muted);border-top:1px solid var(--border);margin-top:40px}
+
+/* ═══ MOBILE FIXES — 21/04/2026 ═══ */
+@media(max-width:500px){
+  .search-form{flex-direction:column}
+  .search-form button{width:100%}
+  .btn-group{flex-direction:column}
+  .btn-group .btn{width:100%;justify-content:center}
+  .page h1{font-size:22px}
+  .search-box{padding:20px}
+  .result-row{flex-direction:column;gap:4px}
+  .result-val{font-size:15px}
+}
 </style>
     <script src="https://browser.sentry-cdn.com/8.0.0/bundle.tracing.min.js" crossorigin="anonymous"></script>
     <script>Sentry.init({dsn:"https://14b68c10a24c3da4127332e14fd20359@o4511253060976640.ingest.de.sentry.io/4511253075132496",tracesSampleRate:0,replaysSessionSampleRate:0});</script>

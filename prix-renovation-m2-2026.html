@@ -385,6 +385,11 @@ img{max-width:100%;height:auto}
 .faq-item.open .faq-q::after{content:'−'}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:14px;color:var(--muted);line-height:1.7}
 .faq-item.open .faq-a{max-height:500px;padding-bottom:18px}
+/* ═══ MOBILE FIXES — 21/04/2026 ═══ */
+@media(max-width:700px){
+  .nav-links .nav-cta{width:100%;text-align:center;margin-top:8px}
+  .footer-contact a{word-break:break-all}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -460,6 +465,7 @@ img{max-width:100%;height:auto}
 
 <p>En économie de la construction, un budget se structure en <strong>15 lots TCE</strong> (Tous Corps d'État). C'est la norme professionnelle qui permet de comparer les devis sur des bases identiques, d'identifier les postes sur-facturés, et de prévoir les imprévus lot par lot. Voici les fourchettes que j'utilise pour une rénovation lourde à complète, actualisées T1 2026.</p>
 
+<div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
 <table class="data-table">
   <thead>
     <tr><th>Lot</th><th>Périmètre</th><th>€ HT/m²</th></tr>
@@ -482,6 +488,7 @@ img{max-width:100%;height:auto}
     <tr><td><span class="lot-name">15 — Équipements divers</span><div class="lot-desc">Domotique, VMC, alarme, divers</div></td><td>Selon programme</td><td>20 — 60</td></tr>
   </tbody>
 </table>
+</div>
 
 <p style="font-size:13px;color:var(--muted);font-style:italic;margin-top:-8px">Source : ratios Batichiffrage T1 2026, ajustés sur base de mes missions. Les fourchettes couvrent le standard au confort — hors haut de gamme et cas atypiques.</p>
 

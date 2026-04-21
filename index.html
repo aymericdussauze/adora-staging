@@ -668,6 +668,16 @@ img { max-width: 100%; height: auto; }
 .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:14px;color:var(--muted);line-height:1.7}
 .faq-item.open .faq-a{max-height:500px;padding-bottom:18px}
 
+/* ═══ MOBILE FIXES — 21/04/2026 ═══ */
+.testimonial-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:800px;margin:0 auto}
+.teaser-b2b{background:var(--navy);border-radius:var(--radius);padding:40px 48px;color:var(--white);display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;position:relative;overflow:hidden}
+@media(max-width:700px){
+  .testimonial-grid{grid-template-columns:1fr}
+  .teaser-b2b{grid-template-columns:1fr;padding:28px 20px;gap:16px;text-align:center}
+  .nav-links .nav-cta{width:100%;text-align:center;margin-top:8px}
+  .footer-contact a{word-break:break-all}
+}
+
 </style>
 <script type="application/ld+json">
 {
@@ -852,7 +862,7 @@ img { max-width: 100%; height: auto; }
 <!-- ═══ TEASER B2B ═══ -->
 <section style="padding:40px 0">
 <div class="container">
-  <div style="background:var(--navy);border-radius:var(--radius);padding:40px 48px;color:var(--white);display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;position:relative;overflow:hidden" class="reveal">
+  <div class="teaser-b2b reveal">
     <div style="position:absolute;top:-40%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(34,211,238,.1) 0%,transparent 65%);pointer-events:none"></div>
     <div style="position:relative">
       <div style="font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px">Professionnels</div>
@@ -932,7 +942,7 @@ img { max-width: 100%; height: auto; }
     <h2 class="section-title">Ce qu'en disent ceux qui ont testé</h2>
     <p class="section-sub">Premiers retours de clients accompagnés. Cette section s'enrichira au fil des missions.</p>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:800px;margin:0 auto" class="reveal">
+  <div class="testimonial-grid reveal">
     <div style="background:var(--pale);border:1px solid var(--border);border-radius:var(--radius);padding:28px;position:relative">
       <div style="font-size:32px;color:var(--accent);font-family:Georgia,serif;line-height:1;margin-bottom:12px">"</div>
       <p style="font-size:14px;color:var(--txt);line-height:1.7;margin-bottom:16px;font-style:italic">Témoignage à venir — premier client en cours d'accompagnement.</p>
