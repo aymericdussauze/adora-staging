@@ -828,24 +828,26 @@ input,select{font-family:inherit}
 <script>
 
 // ═══════════════════════════════════════════════════════════
-// DATA — RATIOS (€/m² habitable, prix de vente TTC)
+// DATA — RATIOS (€ HT/m² SHAB) — Batichiffrage 2025
+// Calibrés le 21/04/2026 — validés par Aymeric Dussauze
+// Source : BCR1 + BCR2 + BCR3 (22 960 ouvrages)
 // ═══════════════════════════════════════════════════════════
 const LOTS = [
-  {id:1,  nom:"Démolition / Curage",            eco:15, std:25, confort:35, hdg:45},
-  {id:2,  nom:"Gros-œuvre / Maçonnerie",        eco:40, std:80, confort:130,hdg:200},
-  {id:3,  nom:"Charpente / Couverture",         eco:30, std:60, confort:100,hdg:160},
-  {id:4,  nom:"Étanchéité",                     eco:8,  std:15, confort:25, hdg:40},
-  {id:5,  nom:"Menuiseries extérieures",        eco:35, std:65, confort:110,hdg:180},
-  {id:6,  nom:"Isolation / Doublages",          eco:25, std:45, confort:70, hdg:100},
-  {id:7,  nom:"Cloisons / Plâtrerie",           eco:20, std:40, confort:60, hdg:85},
-  {id:8,  nom:"Menuiseries intérieures",        eco:15, std:30, confort:50, hdg:80},
-  {id:9,  nom:"Revêtements de sols",            eco:20, std:40, confort:70, hdg:120},
-  {id:10, nom:"Peinture / Rev. muraux",         eco:12, std:20, confort:30, hdg:50},
-  {id:11, nom:"Plomberie / Sanitaires",         eco:25, std:50, confort:85, hdg:140},
-  {id:12, nom:"Électricité / Courants faibles", eco:20, std:40, confort:65, hdg:100},
-  {id:13, nom:"CVC (Chauffage/Ventilation)",    eco:25, std:55, confort:90, hdg:150},
-  {id:14, nom:"Façades / Ravalement",           eco:15, std:35, confort:60, hdg:100},
-  {id:15, nom:"Aménagements extérieurs",        eco:10, std:25, confort:45, hdg:80}
+  {id:1,  nom:"Démolition / Curage",            eco:12, std:25, confort:40,  hdg:55},
+  {id:2,  nom:"Gros-œuvre / Maçonnerie",        eco:10, std:45, confort:100, hdg:180},
+  {id:3,  nom:"Charpente / Couverture",         eco:30, std:65, confort:110, hdg:180},
+  {id:4,  nom:"Étanchéité",                     eco:8,  std:18, confort:30,  hdg:50},
+  {id:5,  nom:"Menuiseries extérieures",        eco:45, std:90, confort:160, hdg:280},
+  {id:6,  nom:"Isolation / Doublages",          eco:25, std:50, confort:85,  hdg:130},
+  {id:7,  nom:"Cloisons / Plâtrerie",           eco:18, std:40, confort:65,  hdg:95},
+  {id:8,  nom:"Menuiseries intérieures",        eco:15, std:35, confort:60,  hdg:100},
+  {id:9,  nom:"Revêtements de sols et murs",    eco:18, std:40, confort:75,  hdg:130},
+  {id:10, nom:"Peinture / Décoration",          eco:15, std:28, confort:50,  hdg:80},
+  {id:11, nom:"Plomberie / Sanitaires",         eco:30, std:60, confort:110, hdg:190},
+  {id:12, nom:"Électricité",                    eco:30, std:60, confort:95,  hdg:150},
+  {id:13, nom:"Chauffage / Ventilation",        eco:25, std:55, confort:100, hdg:180},
+  {id:14, nom:"VRD / Réseaux",                  eco:8,  std:20, confort:35,  hdg:60},
+  {id:15, nom:"Aménagements extérieurs",        eco:8,  std:18, confort:35,  hdg:60}
 ];
 
 const PROFILES = {
