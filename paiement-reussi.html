@@ -9,10 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Paiement confirmé — ADORA</title>
 <meta name="robots" content="noindex, nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://browser.sentry-cdn.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://browser.sentry-cdn.com" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/adora-fonts.css">
 <style>
 :root{
   --navy:#0D1025;--surface:#1A1F3D;--deep:#080B1C;
@@ -141,7 +139,11 @@ a{color:inherit;text-decoration:none}
 }
 </style>
     <script defer src="https://browser.sentry-cdn.com/8.0.0/bundle.min.js" crossorigin="anonymous"></script>
-    <script>Sentry.init({dsn:"https://14b68c10a24c3da4127332e14fd20359@o4511253060976640.ingest.de.sentry.io/4511253075132496",tracesSampleRate:0,replaysSessionSampleRate:0});</script>
+    <script type="text/plain" data-adora-consent="analytics">Sentry.init({dsn:"https://14b68c10a24c3da4127332e14fd20359@o4511253060976640.ingest.de.sentry.io/4511253075132496",tracesSampleRate:0,replaysSessionSampleRate:0});</script>
+<!-- ADORA CMP -->
+  <link rel="stylesheet" href="/assets/css/adora-cmp.css">
+  <script src="/assets/js/adora-cmp.js"></script>
+  <!-- /ADORA CMP -->
 </head>
 <body>
 
@@ -217,9 +219,9 @@ a{color:inherit;text-decoration:none}
     <div>
       <h3>Je m'occupe personnellement de chaque dossier</h3>
       <p>Si votre rapport n'arrive pas dans les 15 minutes, vérifiez votre dossier <strong>Spam / Indésirables</strong>. Si rien ne s'y trouve, contactez-moi — je règle ça immédiatement.</p>
-      <p>Aymeric Dussauze · <a href="tel:0660215509">06 60 21 55 09</a> · <a href="mailto:aymericdussauze@gmail.com">aymericdussauze@gmail.com</a></p>
+      <p>Aymeric Dussauze · <a href="tel:+33672010767">06 72 01 07 67</a> · <a href="mailto:contact@adora-economie.fr">contact@adora-economie.fr</a></p>
       <div class="actions">
-        <a href="mailto:aymericdussauze@gmail.com?subject=Rapport%20d%27estimation%20non%20re%C3%A7u" class="btn btn-ghost">Signaler un problème</a>
+        <a href="mailto:contact@adora-economie.fr?subject=Rapport%20d%27estimation%20non%20re%C3%A7u" class="btn btn-ghost">Signaler un problème</a>
       </div>
     </div>
   </div>
@@ -256,12 +258,13 @@ a{color:inherit;text-decoration:none}
   </div>
   <div class="footer-col footer-contact">
     <div class="footer-col-title">Contact</div>
-    <a href="tel:+33660215509">06 60 21 55 09</a>
-    <a href="mailto:aymericdussauze@gmail.com">aymericdussauze@gmail.com</a>
+    <a href="tel:+33672010767">06 72 01 07 67</a>
+    <a href="mailto:contact@adora-economie.fr">contact@adora-economie.fr</a>
     <a href="https://adora-economie.fr">adora-economie.fr</a>
   </div>
 </div>
 <div class="footer-legal">© 2026 ADORA · EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI<br><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a> · <a href="cgv.html">CGV</a></div>
+<div style="margin-top:12px;font-size:13px;opacity:0.8"><button type="button" class="adora-cmp-footer-link" onclick="if(window.adoraConsent)window.adoraConsent.show()">🍪 Gérer mes cookies</button></div>
 </footer>
 
 <script>
@@ -312,15 +315,13 @@ a{color:inherit;text-decoration:none}
   if (typeof gtag === "function") {
     gtag("event", "purchase", {
       transaction_id: params.get("session_id") || ("adora_" + Date.now()),
-      value: 49,
+      value: 499,
       currency: "EUR",
-      items: [{item_name: "Rapport estimation ADORA", price: 49, quantity: 1}]
+      items: [{item_name: "Audit avant achat ADORA", price: 499, quantity: 1}]
     });
   }
 })();
 </script>
-
-
 
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3f8ca9a1113f413a990a17c08ab83442"}'></script>
 </body>

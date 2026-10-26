@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex, nofollow">
 <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -11,10 +11,8 @@
 <title>Simulateur d'aides rénovation 2026 — ADORA</title>
 <meta name="description" content="Calculez gratuitement vos aides MaPrimeRénov', CEE, éco-PTZ et TVA 5,5%. Barèmes Anah 2026. Par ADORA, économiste de la construction.">
 <link rel="canonical" href="https://adora-economie.fr/simulateur.html">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://browser.sentry-cdn.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://browser.sentry-cdn.com" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/adora-fonts.css">
 <style>
 :root{
   --navy:#0D1025;--surface:#1A1F3D;--deep:#080B1C;
@@ -296,7 +294,6 @@ input,select,textarea{font-family:inherit}
 .footer-inner{grid-template-columns:1fr;gap:24px}
 }
 
-
 /* FAQ accordion */
 .faq-item{border-bottom:1px solid var(--border)}
 .faq-q{padding:18px 0;font-size:15px;font-weight:600;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -334,7 +331,31 @@ input,select,textarea{font-family:inherit}
 }
 </script>
     <script defer src="https://browser.sentry-cdn.com/8.0.0/bundle.min.js" crossorigin="anonymous"></script>
-    <script>Sentry.init({dsn:"https://14b68c10a24c3da4127332e14fd20359@o4511253060976640.ingest.de.sentry.io/4511253075132496",tracesSampleRate:0,replaysSessionSampleRate:0});</script>
+    <script type="text/plain" data-adora-consent="analytics">Sentry.init({dsn:"https://14b68c10a24c3da4127332e14fd20359@o4511253060976640.ingest.de.sentry.io/4511253075132496",tracesSampleRate:0,replaysSessionSampleRate:0});</script>
+<script type="application/ld+json" data-adora-schema="webapp-simulateur">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Simulateur d'aides à la rénovation énergétique",
+  "url": "https://adora-economie.fr/simulateur.html",
+  "description": "Simulateur en ligne gratuit qui calcule les aides à la rénovation énergétique : MaPrimeRénov' 2026, CEE (Coup de pouce), éco-PTZ, TVA réduite 5,5 %. Selon revenu fiscal, type de logement et travaux envisagés.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "fr-FR",
+  "isAccessibleForFree": true,
+  "creator": {
+    "@type": "ProfessionalService",
+    "@id": "https://adora-economie.fr/#business",
+    "name": "ADORA",
+    "url": "https://adora-economie.fr/"
+  }
+}
+</script>
+<!-- ADORA CMP -->
+  <link rel="stylesheet" href="/assets/css/adora-cmp.css">
+  <script src="/assets/js/adora-cmp.js"></script>
+  <!-- /ADORA CMP -->
 </head>
 <body>
 
@@ -773,12 +794,13 @@ input,select,textarea{font-family:inherit}
   </div>
   <div class="footer-col footer-contact">
     <div class="footer-col-title">Contact</div>
-    <a href="tel:+33660215509">06 60 21 55 09</a>
-    <a href="mailto:aymericdussauze@gmail.com">aymericdussauze@gmail.com</a>
+    <a href="tel:+33672010767">06 72 01 07 67</a>
+    <a href="mailto:contact@adora-economie.fr">contact@adora-economie.fr</a>
     <a href="https://adora-economie.fr">adora-economie.fr</a>
   </div>
 </div>
 <div class="footer-legal">© 2026 ADORA · EI · SIRET 532 886 918 00020 · TVA non applicable, art. 293B du CGI<br><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a> · <a href="cgv.html">CGV</a></div>
+<div style="margin-top:12px;font-size:13px;opacity:0.8"><button type="button" class="adora-cmp-footer-link" onclick="if(window.adoraConsent)window.adoraConsent.show()">🍪 Gérer mes cookies</button></div>
 </footer>
 
 <script>
@@ -1390,8 +1412,6 @@ updateProgress();
 buildTravauxList();
 
 </script>
-
-
 
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"3f8ca9a1113f413a990a17c08ab83442"}'></script>
 </body>
