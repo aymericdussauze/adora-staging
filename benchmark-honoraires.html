@@ -914,12 +914,12 @@ img{max-width:100%;height:auto}
   'use strict';
 
   /* ── Configuration de la précommande ─────────────────────────────
-     stripeLink : coller ici le Payment Link Stripe à 79 € avant la mise
-     en ligne (laisser vide tant que le lien n'existe pas). Penser à
-     régler dans Stripe la redirection après paiement vers :
-     https://adora-economie.fr/paiement-reussi-benchmark.html?prix=79&session_id={CHECKOUT_SESSION_ID} */
+     stripeLink : Payment Link Stripe à 79 € (plink_1UV4Z6QfpdvmUTEZWsc8yR5W,
+     créé le 27/10/2026, limité à 21 paiements). Redirection après paiement :
+     https://adora-economie.fr/paiement-reussi-benchmark.html?prix=79&session_id={CHECKOUT_SESSION_ID}
+     Vider la valeur pour revenir au message de repli (précommande par email). */
   var CONFIG = {
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/28E5kF917gAe2H0dmZ4Rq03?locale=fr',
     price: 79,
     itemId: 'benchmark-honoraires-2026',
     itemName: 'Benchmark des honoraires en marché public 2026'
