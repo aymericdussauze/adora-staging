@@ -613,7 +613,7 @@ img{max-width:100%;height:auto}
   'use strict';
   /* stripeLink : Payment Link Stripe à 39 €, redirection après paiement vers
      https://adora-economie.fr/paiement-reussi-devis.html?session_id={CHECKOUT_SESSION_ID} */
-  var CONFIG = { stripeLink: '', price: 39, itemId: 'analyse-devis', itemName: 'Analyse de devis' };
+  var CONFIG = { stripeLink: 'https://buy.stripe.com/7sYcN7917bfUftM5Ux4Rq04?locale=fr', price: 39, itemId: 'analyse-devis', itemName: 'Analyse de devis' };
   var NOTE = 'Le paiement en ligne ouvre très bientôt. En attendant, envoyez votre devis à <a href="mailto:contact@adora-economie.fr?subject=Analyse%20de%20devis">contact@adora-economie.fr</a>.';
   function track(name, params) { try { if (typeof window.gtag === 'function') { window.gtag('event', name, params); } } catch (e) {} }
   Array.prototype.forEach.call(document.querySelectorAll('[data-checkout]'), function (btn) {
