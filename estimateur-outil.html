@@ -789,7 +789,7 @@ input,select{font-family:inherit}
           <li><strong>Budget détaillé par lot</strong> — 15 postes chiffrés avec fourchettes basse/haute</li>
           <li><strong>Montant exact des aides</strong> — MaPrimeRénov', CEE, éco-PTZ, TVA 5,5%</li>
           <li><strong>3 points de vigilance technique</strong> — alertes métier sur votre projet</li>
-          <li><strong>Rapport PDF brandé ADORA</strong> — envoyé sous 5 minutes par email</li>
+          <li><strong>Rapport PDF brandé ADORA</strong> — envoyé sous 15 minutes par email</li>
         </ul>
         
         <div class="checkout-form">
@@ -1573,7 +1573,7 @@ async function generateEstimateurPdf() {
     pdfStatus.style.border = "1px solid rgba(217,119,6,.2)";
     pdfStatus.innerHTML = `
       <span style="font-size:20px">⚠</span>
-      <span style="flex:1"><strong>Le PDF est en cours de préparation.</strong> Vous le recevrez par email sous 5 minutes à <strong>${escHtml(s.email||"")}</strong>.</span>`;
+      <span style="flex:1"><strong>Le PDF est en cours de préparation.</strong> Vous le recevrez par email sous 15 minutes à <strong>${escHtml(s.email||"")}</strong>.</span>`;
   }
 }
 
